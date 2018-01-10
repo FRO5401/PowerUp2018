@@ -17,14 +17,7 @@ import org.usfirst.frc.team5401.robot.commands.XboxMove;
  *
  */
 public class DriveBase extends Subsystem {
-	
-	private double LOW_GEAR_LEFT_DPP;
-	private double LOW_GEAR_RIGHT_DPP;
-	
-	private double HIGH_GEAR_LEFT_DPP;
-	private double HIGH_GEAR_RIGHT_DPP;
-	
-//	double GYRO_OFFSET;
+	//All constants are now in RobotMap
 	
 	private VictorSP leftDrive1;
 	private VictorSP rightDrive1;
@@ -38,13 +31,6 @@ public class DriveBase extends Subsystem {
 	private AHRS navxGyro;
 	
 	public DriveBase(){
-		//TODO 
-		LOW_GEAR_LEFT_DPP = 0;
-		LOW_GEAR_RIGHT_DPP = 0;
-		
-		HIGH_GEAR_LEFT_DPP = 0;
-		HIGH_GEAR_RIGHT_DPP = 0;
-
 		leftDrive1   = new VictorSP(RobotMap.DRIVE_LEFT_MOTOR_1);
 		rightDrive1  = new VictorSP(RobotMap.DRIVE_RIGHT_MOTOR_1);
 		leftDrive2  = new VictorSP(RobotMap.DRIVE_LEFT_MOTOR_2);
@@ -97,16 +83,16 @@ public class DriveBase extends Subsystem {
     	//Meaning Low speed to high speed
     	//Assumes Pneumatic forward/out shifts low to high
     	gearShifter.set(DoubleSolenoid.Value.kForward);
-    	leftEncoder.setDistancePerPulse(HIGH_GEAR_LEFT_DPP);
-    	rightEncoder.setDistancePerPulse(HIGH_GEAR_RIGHT_DPP);
+    	leftEncoder.setDistancePerPulse(RobotMap.HIGH_GEAR_LEFT_DPP);
+    	rightEncoder.setDistancePerPulse(RobotMap.HIGH_GEAR_RIGHT_DPP);
     	System.out.println("Shifting Drive Gear to High Gear");
     }
 
     public void shiftGearHighToLow(){
     	//Assumes Pneumatic reverse/in shifts high to low
     	gearShifter.set(DoubleSolenoid.Value.kReverse);
-    	leftEncoder.setDistancePerPulse(LOW_GEAR_LEFT_DPP);
-    	rightEncoder.setDistancePerPulse(LOW_GEAR_RIGHT_DPP);
+    	leftEncoder.setDistancePerPulse(RobotMap.LOW_GEAR_LEFT_DPP);
+    	rightEncoder.setDistancePerPulse(RobotMap.LOW_GEAR_RIGHT_DPP);
     	System.out.println("Shifting Drive Gear to Low Gear");
     }
     public double getVelocityOfRobot(){
@@ -118,13 +104,13 @@ public class DriveBase extends Subsystem {
 
     
     public void setDPPLowGear(){
-    	leftEncoder.setDistancePerPulse(LOW_GEAR_LEFT_DPP);
-    	rightEncoder.setDistancePerPulse(LOW_GEAR_RIGHT_DPP);
+    	leftEncoder.setDistancePerPulse(RobotMap.LOW_GEAR_LEFT_DPP);
+    	rightEncoder.setDistancePerPulse(RobotMap.LOW_GEAR_RIGHT_DPP);
     }
     
     public void setDPPHighGear(){
-    	leftEncoder.setDistancePerPulse(HIGH_GEAR_LEFT_DPP);
-    	rightEncoder.setDistancePerPulse(HIGH_GEAR_RIGHT_DPP);
+    	leftEncoder.setDistancePerPulse(RobotMap.HIGH_GEAR_LEFT_DPP);
+    	rightEncoder.setDistancePerPulse(RobotMap.HIGH_GEAR_RIGHT_DPP);
     }
     
     public double getEncoderDistance(){

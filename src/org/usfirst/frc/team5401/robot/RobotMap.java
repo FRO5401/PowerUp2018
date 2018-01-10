@@ -8,6 +8,19 @@ package org.usfirst.frc.team5401.robot;
  */
 public class RobotMap {
 	
+	//Global Constants that are not locations
+	//This is for DriveBase
+	public static final double LOW_GEAR_LEFT_DPP = 0;
+	public static final double LOW_GEAR_RIGHT_DPP = 0;
+	public static final double HIGH_GEAR_LEFT_DPP = 0;
+	public static final double HIGH_GEAR_RIGHT_DPP = 0;
+	
+	//This is for XboxMove
+	
+	public static final double DRIVE_SENSITIVITY_PRECISE = 0;
+	public static final double DRIVE_SENSITIVITY_DEFAULT = 0;
+	public static final double DRIVE_THRESHHOLD = 0;
+	public static final double DRIVE_SPIN_SENSITIVITY = 0;
 	
 	//Motors
 		//Drive Motors

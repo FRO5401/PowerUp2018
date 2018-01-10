@@ -18,7 +18,7 @@ import org.usfirst.frc.team5401.robot.subsystems.*;
  */
 public class Robot extends IterativeRobot {
 
-	public static final DriveBase drivebase = new DriveBase();
+	public static DriveBase drivebase = new DriveBase();
 	public static OI oi;
 
 	Command autonomousCommand;
@@ -32,7 +32,7 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		oi = new OI();
 		drivebase = new DriveBase();
-		chooser.addDefault("Default Auto", new ExampleCommand());
+		//chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
 	}
