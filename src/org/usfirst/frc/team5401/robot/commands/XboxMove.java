@@ -15,15 +15,6 @@ public class XboxMove extends Command {
 	private final double MINIMUM_VELOCITY_FOR_HIGH_GEAR; //Experimentally Determined, REMEMBER inches per second
 	private final double MAXIMUM_VELOCITY_FOR_LOW_GEAR;
 	
-/*	1/23/17 NOT NEEDED because using velocity for gear shift, no acceleration is used
-	double accelerationSample1;//Oldest Sample
-	double accelerationSample2;
-	double accelerationSample3;
-	double accelerationSample4;
-	double accelerationSample5;//Newest Sample
-
-	double avgAccelerationFromSamples;
-*/	
 	double velocitySample1;
 	double velocitySample2;
 

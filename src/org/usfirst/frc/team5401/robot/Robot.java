@@ -1,4 +1,3 @@
-
 package org.usfirst.frc.team5401.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -9,7 +8,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc.team5401.robot.subsystems.DriveBase;
+import org.usfirst.frc.team5401.robot.subsystems.*;
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the IterativeRobot
@@ -19,7 +18,6 @@ import org.usfirst.frc.team5401.robot.subsystems.DriveBase;
  */
 public class Robot extends IterativeRobot {
 
-	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 	public static final DriveBase drivebase = new DriveBase();
 	public static OI oi;
 
