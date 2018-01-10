@@ -22,6 +22,16 @@ public class RobotMap {
 	public static final double DRIVE_THRESHHOLD = 0;
 	public static final double DRIVE_SPIN_SENSITIVITY = 0;
 	
+	//This is for OI
+	 public static final int XBOX_CONTROLLER_DRIVER = 0;
+	 public static final int XBOX_CONTROLLER_OPERATOR = 1;
+	 public static final int XBOX_AXIS_LEFT_X = 0;
+	 public static final int XBOX_AXIS_LEFT_TRIGGER = 0;
+	 public static final int XBOX_AXIS_RIGHT_TRIGGER = 0;
+	 public static final int XBOX_AXIS_RIGHT_Y = 0;
+	 public static final int XBOX_AXIS_LEFT_Y = 0;
+	 
+	 
 	//Motors
 		//Drive Motors
 	public static final int DRIVE_LEFT_MOTOR_1 	= 0;
