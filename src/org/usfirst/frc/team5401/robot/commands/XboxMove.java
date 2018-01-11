@@ -10,11 +10,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  */
 public class XboxMove extends Command {
-	//Might make the following constants in RobotMap
-//	private final double accelerationThreshhold;
-	private final double MINIMUM_VELOCITY_FOR_HIGH_GEAR; //Experimentally Determined, REMEMBER inches per second
-	private final double MAXIMUM_VELOCITY_FOR_LOW_GEAR;
-	
 	double velocitySample1;
 	double velocitySample2;
 
@@ -22,37 +17,11 @@ public class XboxMove extends Command {
 	//double deltaTime;
 	
 	public XboxMove() {
-		
-//        accelerationThreshhold = 0.01;
-		
-		//Min and Max velocity have to be different to prevent constant shifting if at the shift speed if there is only one shift speed
-		MINIMUM_VELOCITY_FOR_HIGH_GEAR 	= 35;// REMEMBER inches per second
-		MAXIMUM_VELOCITY_FOR_LOW_GEAR 	= 45;
-		
-/*		1/23/17 NOT NEEDED
-  		//Remember to initialize to zero
-		accelerationSample1 = 0;
-		accelerationSample2 = 0;
-		accelerationSample3 = 0;
-		accelerationSample4 = 0;
-		accelerationSample5 = 0;
-		
-		avgAccelerationFromSamples = 0;
-*/		
 		velocitySample1 = 0;
 		velocitySample2 = 0;
-		
-		//1/23/17 NOT NEEDED because no acceleration
-		//deltaTime = 0;
-		
-		
-		// Use requires() here to declare subsystem dependencies
-
-        requires(Robot.drivebase);
+		requires(Robot.drivebase);
         System.out.println("XBoxMove Constructed");
-        //Starts timer, 1/23/17 NOT NEEDED because no timer necessary
-        //Robot.drivebase.startTimer();
-	}
+    }
 
     // Called just before this Command runs the first time
     protected void initialize() {
@@ -62,10 +31,7 @@ public class XboxMove extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	//System.out.println("XBoxMove Excute");
     	double angle = Robot.drivebase.getGyroAngle();
-    	SmartDashboard.putNumber("Gyro",  angle);
-    	Robot.drivebase.getGyroAngle();
     	
     	double  slew      = Robot.oi.readXboxLeftX_Driver() * -1;
 
@@ -167,31 +133,7 @@ public class XboxMove extends Command {
 */   	
     	//Gets new final velocity
     	velocitySample2 = Robot.drivebase.getVelocityOfRobot();
-    	
-    	//1/23/17 NOT NEEDED
-    	//Gets change in time
-    	//deltaTime = Robot.drivebase.getTimerValue();
-    	
-    	//1/23/17 NOT NEEDED
-    	//Restarts timer for deltaTime in next iteration
-    	//Robot.drivebase.stopTimer();
-    	//Robot.drivebase.resetTimer();
-    	//Robot.drivebase.startTimer();
-
-/*    	1/23/17 NOT NEEDED
-    	//Backlogs the acceleration
-    	accelerationSample1 = accelerationSample2;
-    	accelerationSample2 = accelerationSample3;
-    	accelerationSample3 = accelerationSample4;
-    	accelerationSample4 = accelerationSample5;
-
-    	//Gets newest acceleration from the velocity sample above, pretty much final - inital
-    	accelerationSample5 = (velocitySample2-velocitySample1)/deltaTime;
-
-    	//calculates the average acceleration from previous samples to balance out spikes in acceleration
-    	avgAccelerationFromSamples = (accelerationSample1+accelerationSample2+accelerationSample3+accelerationSample4+accelerationSample5)/5;
-*/
-    	
+    	    	
     	
     	//												vvvvv this is for no shifting at acceleration = 0 when robot is totally still, might be unnecessary
 /*    	if(slew <= 0 + RobotMap.DRIVE_THRESHHOLD && velocitySample2 != 0){

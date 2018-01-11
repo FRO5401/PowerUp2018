@@ -27,8 +27,6 @@ public class AutoDrive extends Command {
 	private double velocitySample2;
 	
 	private final double autoDistThresh;
-	private final double MAXIMUM_VELOCITY_FOR_LOW_GEAR;
-	private final double MINIMUM_VELOCITY_FOR_HIGH_GEAR;
 	
     public AutoDrive(double DistanceInput, double SpeedInput) {
         // Use requires() here to declare subsystem dependencies
@@ -36,6 +34,7 @@ public class AutoDrive extends Command {
     	requires(Robot.drivebase);
 
     	desiredDistance = DistanceInput;
+    	//Distance is 127 inches not considering robot size
     	autoDriveSpeed = SpeedInput;
     	doneTraveling = true;
     	distanceTraveled = 0;
@@ -45,20 +44,12 @@ public class AutoDrive extends Command {
     	
     	//Final Variables
     	autoDistThresh = 2;
-    	MAXIMUM_VELOCITY_FOR_LOW_GEAR = 50;
-    	MINIMUM_VELOCITY_FOR_HIGH_GEAR = 40;
-    	
-//    	if (SpeedInput > .5){
-//    		Robot.drivebase.shiftGearLowToHigh();
-//    	} else {
-//    		Robot.drivebase.shiftGearHighToLow();
-//    	}
+    
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.drivebase.encoderReset();
-//    	Robot.drivebase.resetGyro(); 
     	heading = Robot.drivebase.getGyroAngle();
     	drift = 0;
     	doneTraveling = true;
@@ -106,64 +97,6 @@ public class AutoDrive extends Command {
     		distanceTraveled = (Robot.drivebase.getEncoderDistance());
     	}
     	
-    	/*****Shifting Gear Code*********/
-/*    	Robot.drivebase.getEncoderDistance();
-   	
-    	//Gets new final velocity
-    	velocitySample2 = Robot.drivebase.getVelocityOfRobot();
-*/    	
-    	//1/23/17 NOT NEEDED
-    	//Gets change in time
-    	//deltaTime = Robot.drivebase.getTimerValue();
-    	
-    	//1/23/17 NOT NEEDED
-    	//Restarts timer for deltaTime in next iteration
-    	//Robot.drivebase.stopTimer();
-    	//Robot.drivebase.resetTimer();
-    	//Robot.drivebase.startTimer();
-
-/*    	1/23/17 NOT NEEDED
-    	//Backlogs the acceleration
-    	accelerationSample1 = accelerationSample2;
-    	accelerationSample2 = accelerationSample3;
-    	accelerationSample3 = accelerationSample4;
-    	accelerationSample4 = accelerationSample5;
-
-    	//Gets newest acceleration from the velocity sample above, pretty much final - inital
-    	accelerationSample5 = (velocitySample2-velocitySample1)/deltaTime;
-
-    	//calculates the average acceleration from previous samples to balance out spikes in acceleration
-    	avgAccelerationFromSamples = (accelerationSample1+accelerationSample2+accelerationSample3+accelerationSample4+accelerationSample5)/5;
-*/
-    	
-    	//Uses average acceleration for gear shifting up to higher speeds
-    	//0 is just there to understand original logic
-		//Commented out because of problems of unwanted shifting up if running at a low constant velocity
-    		//if(Math.abs(avgAccelerationFromSamples) <= 0 + accelerationThreshhold){
-    			//Robot.drivebase.shiftGearLowToHigh();
-    		//}
-/*    		
-    	//Alternative Upshift using velocity
-    		if(Math.abs(velocitySample2) >= MAXIMUM_VELOCITY_FOR_LOW_GEAR){
-    			Robot.drivebase.shiftGearLowToHigh();
-    			Robot.drivebase.setDPPHighGear();
-    		}
-
-
-    	//Uses Current Velocity to Shift High to Low
-    		if(Math.abs(velocitySample2) <= MINIMUM_VELOCITY_FOR_HIGH_GEAR){
-    			Robot.drivebase.shiftGearHighToLow();
-    			Robot.drivebase.setDPPLowGear();
-    		}
-
-    	//Alternative Downshift Due to release in Thottle
-    		//if(Math.abs(thottle) <= 0 + RobotMap.DRIVE_THRESHHOLD) {
-    		//	Robot.drivebase.shiftGearHighToLow();
-    		//}
-    		
-    	
-    	//Gear Shift Done
-*/    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
