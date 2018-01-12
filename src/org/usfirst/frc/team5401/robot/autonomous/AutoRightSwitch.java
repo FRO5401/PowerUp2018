@@ -13,12 +13,17 @@ public class AutoRightSwitch extends CommandGroup {
     	if(gameData.charAt(0) == 'R')
     	{
     	//Start at Auto Position #5. Drive Forward 140 inches, place block on switch
+    		addSequential(new AutoDrive(140.595, 1));
+    		//addSequential(new xxxx());
     
     	}
     	else 
     	{    	
     	//Start at Auto Position #5. Drive Forward 55 inches, turn left 
     	//(Figure out specifics later)
+    		addSequential(new AutoDrive(55, 1));
+    		addSequential(new AutoTurnAngle(-90, true, false));
+    		//addSequential(new xxxx());
     	}
     }
 }
