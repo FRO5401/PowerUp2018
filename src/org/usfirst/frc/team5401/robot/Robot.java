@@ -18,7 +18,12 @@ import org.usfirst.frc.team5401.robot.subsystems.*;
  */
 public class Robot extends IterativeRobot {
 
-	public static DriveBase drivebase = new DriveBase();
+	//OI has to be last
+	public static Arm arm;
+	public static Climber climber;
+	public static DriveBase drivebase;
+	public static RollerClaw rollerclaw;
+	public static Wrist wrist;
 	public static OI oi;
 
 	Command autonomousCommand;
@@ -30,8 +35,14 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
-		oi = new OI();
+		//OI has to be last
+		arm = new Arm();
+		climber = new Climber();
 		drivebase = new DriveBase();
+		rollerclaw = new RollerClaw();
+		wrist = new Wrist();
+		oi = new OI();
+		
 		//chooser.addDefault("Default Auto", new ExampleCommand());
 		chooser.addDefault("AutoDrive", new AutoDrive( 127 , 1));
 		SmartDashboard.putData("Auto mode", chooser);
