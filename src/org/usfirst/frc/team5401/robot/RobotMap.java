@@ -50,6 +50,9 @@ public class RobotMap {
 	//Solenoids
 	public static final int DRIVE_SHIFT_IN 		= 0;
 	public static final int DRIVE_SHIFT_OUT 	= 0;
+	//Double Solenoids
+	public static final int WRIST_MOVER_FWD_CHANNEL = 0;
+	public static final int WRIST_MOVER_BACK_CHANNEL = 0;
 	//DIO Sensors
 	public static final int DRIVE_ENC_LEFT_A 	= 0;
 	public static final int DRIVE_ENC_LEFT_B 	= 0;
