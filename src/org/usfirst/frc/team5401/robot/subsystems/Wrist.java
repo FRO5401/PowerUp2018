@@ -21,7 +21,7 @@ public class Wrist extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     }
     
-    
+    	//Controlled by a button
     public void wristInOut(int direction){
     	if(direction == 1) {
     		wristMover.set(DoubleSolenoid.Value.kForward);
