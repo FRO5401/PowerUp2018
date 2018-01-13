@@ -15,6 +15,9 @@ public class RobotMap {
 	public static final double HIGH_GEAR_LEFT_DPP = 0;
 	public static final double HIGH_GEAR_RIGHT_DPP = 0;
 	
+	//This is for RollerClaw
+	public static final double ROLLER_SPEED = 0.9;
+	
 	//This is for XboxMove
 	public static final double MINIMUM_VELOCITY_FOR_HIGH_GEAR = 0; //Experimentally Determined, REMEMBER inches per second
 	public static final double MAXIMUM_VELOCITY_FOR_LOW_GEAR = 0;
@@ -50,9 +53,14 @@ public class RobotMap {
 	//Solenoids
 	public static final int DRIVE_SHIFT_IN 		= 0;
 	public static final int DRIVE_SHIFT_OUT 	= 0;
+	public static final int ROLLER_CLAW_SOLENOID		    = 0;
 	//DIO Sensors
 	public static final int DRIVE_ENC_LEFT_A 	= 0;
 	public static final int DRIVE_ENC_LEFT_B 	= 0;
 	public static final int DRIVE_ENC_RIGHT_A 	= 0;
 	public static final int DRIVE_ENC_RIGHT_B 	= 0;
+	public static final int ROLLER_CLAW_LIMIT_SWITCH   = 0;
+	//RollerClaw
+	public static final int ROLLER_CLAW_LEFT_ROLLER    = 0;
+	public static final int ROLLER_CLAW_RIGHT_ROLLER   = 0;
 }
