@@ -23,6 +23,11 @@ public class RobotMap {
 	public static final double DRIVE_THRESHHOLD = 0;
 	public static final double DRIVE_SPIN_SENSITIVITY = 0;
 	
+	//This is for AutoTurnAngle
+	public static final double ANGLE_THRESHOLD = 1;//in degrees
+	public static final double AUTO_TURN_SPEED = 0.95;
+	public static final double AUTO_TURN_PRECISION = 0.5;
+	
 	//This is for OI
 	 public static final int XBOX_CONTROLLER_DRIVER = 0;
 	 public static final int XBOX_CONTROLLER_OPERATOR = 1;

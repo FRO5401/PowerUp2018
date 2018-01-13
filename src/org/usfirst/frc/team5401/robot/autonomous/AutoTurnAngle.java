@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team5401.robot.Robot;
+import org.usfirst.frc.team5401.robot.RobotMap;
 import org.usfirst.frc.team5401.robot.commands.XboxMove;
 import edu.wpi.first.wpilibj.command.Scheduler;
 
@@ -18,22 +19,9 @@ public class AutoTurnAngle extends Command {
 	private boolean finished;
 	private double angleReport;
 	
-	//Constants
-	private final double angleThreshold;
-	private final double autoTurnSpeed;
-	private final double autoTurnPrecision;
-	private final boolean modeAuto;
-	private final boolean modeAutoTarget;
-
-    public AutoTurnAngle(double angle, boolean inAuto, boolean autoTarget) {
-    	//Initialize Constants
-    	angleThreshold	= 1; 		//Turn angle in degrees
-    	autoTurnSpeed	= 0.95;
-    	autoTurnPrecision = .5;
-    	
-    	modeAuto = inAuto;
-    	modeAutoTarget = autoTarget;
-    	
+	
+    public AutoTurnAngle(double angle) {
+    	//Units are degrees
     	requires(Robot.drivebase);
     	
     	desiredTurnAngleRelativeToInitAngle = angle;
@@ -48,9 +36,6 @@ public class AutoTurnAngle extends Command {
     	initAngle = Robot.drivebase.getGyroAngle();
     	currentAngleRelativeToInitAngle = 0;
     	
-    	if (modeAutoTarget){
-    		desiredTurnAngleRelativeToInitAngle = 90;
-    	}
     	
 //    	Robot.drivebase.recalibrateGyro(); 
     }
@@ -60,16 +45,16 @@ public class AutoTurnAngle extends Command {
     	//System.out.println("InitAngle: " + initAngle);
     	//System.out.println("AutoTurning: " + desiredTurnAngleRelativeToInitAngle);
     	//System.out.println("Current Angle: " + currentAngleRelativeToInitAngle);
-    	if (Math.abs(desiredTurnAngleRelativeToInitAngle) <= angleThreshold){
+    	if (Math.abs(desiredTurnAngleRelativeToInitAngle) <= RobotMap.ANGLE_THRESHOLD){
     		//desiredTurnAngleRelativeToInitAngle too small
     		System.out.println("AutoTurnAngle should stop1");
     		finished = true;
     	} else {
-    		if (desiredTurnAngleRelativeToInitAngle > 0 && (currentAngleRelativeToInitAngle < Math.abs(desiredTurnAngleRelativeToInitAngle) - angleThreshold)){
-    			Robot.drivebase.drive(-autoTurnSpeed * autoTurnPrecision, autoTurnSpeed * autoTurnPrecision);
+    		if (desiredTurnAngleRelativeToInitAngle > 0 && (currentAngleRelativeToInitAngle < Math.abs(desiredTurnAngleRelativeToInitAngle) - RobotMap.ANGLE_THRESHOLD)){
+    			Robot.drivebase.drive(-RobotMap.AUTO_TURN_SPEED * RobotMap.AUTO_TURN_PRECISION, RobotMap.AUTO_TURN_SPEED * RobotMap.AUTO_TURN_PRECISION);
     			finished = false;
-    		} else if (desiredTurnAngleRelativeToInitAngle < 0 && (currentAngleRelativeToInitAngle > angleThreshold - Math.abs(desiredTurnAngleRelativeToInitAngle))) {
-    			Robot.drivebase.drive(autoTurnSpeed * autoTurnPrecision, -autoTurnSpeed * autoTurnPrecision);
+    		} else if (desiredTurnAngleRelativeToInitAngle < 0 && (currentAngleRelativeToInitAngle > RobotMap.ANGLE_THRESHOLD - Math.abs(desiredTurnAngleRelativeToInitAngle))) {
+    			Robot.drivebase.drive(RobotMap.AUTO_TURN_SPEED * RobotMap.ANGLE_THRESHOLD, -RobotMap.AUTO_TURN_SPEED * RobotMap.ANGLE_THRESHOLD);
     			finished = false;
     		} else { //error or exactly 0
     			//Finished
@@ -89,11 +74,7 @@ public class AutoTurnAngle extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	if (modeAuto) {	 //if in auto, stop motors
-    		Robot.drivebase.stop();
-    	} else { //if in teleop, start xboxmove
-    		Scheduler.getInstance().add(new XboxMove());
-    	}
+    	Robot.drivebase.stop();
     	System.out.println("AutoTurnAngle end()");
     }
 
