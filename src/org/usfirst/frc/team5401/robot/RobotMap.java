@@ -55,4 +55,11 @@ public class RobotMap {
 	public static final int DRIVE_ENC_LEFT_B 	= 0;
 	public static final int DRIVE_ENC_RIGHT_A 	= 0;
 	public static final int DRIVE_ENC_RIGHT_B 	= 0;
+	
+	//Arm
+	
+	public static final double armRange = 0;
+	public static final double armOffest = 0;
+	public static final int armPotChannel = 0;
+	
 }
