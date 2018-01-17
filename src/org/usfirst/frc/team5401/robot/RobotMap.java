@@ -15,19 +15,6 @@ public class RobotMap {
 	public static final double HIGH_GEAR_LEFT_DPP = 0;
 	public static final double HIGH_GEAR_RIGHT_DPP = 0;
 	
-	//This is for Arm
-	public static final double ARM_MOTOR_SPEED = 0;
-	public static final double ARM_kP = 0;
-	public static final double ARM_kI = 0;
-	public static final double ARM_kD = 0;
-	public static final double ARM_kF = 0;
-	public static final double ARM_RANGE = 0;
-	public static final double ARM_OFFSET = 0;
-	public static final int TIMEOUT_LIMIT_IN_Ms = 10;//Might change. 10 is default in sample code
-	public static final int ARM_THRESHOLD_FOR_PID = 2;
-
-
-	
 	//This is for XboxMove
 	public static final double MINIMUM_VELOCITY_FOR_HIGH_GEAR = 0; //Experimentally Determined, REMEMBER inches per second
 	public static final double MAXIMUM_VELOCITY_FOR_LOW_GEAR = 0;
@@ -68,10 +55,11 @@ public class RobotMap {
 	public static final int DRIVE_ENC_LEFT_B 	= 0;
 	public static final int DRIVE_ENC_RIGHT_A 	= 0;
 	public static final int DRIVE_ENC_RIGHT_B 	= 0;
-	//Analog Devices
-	public static final int ARM_POT_CHANNEL = 0;
 	
+	//Arm
 	
-
+	public static final double armRange = 0;
+	public static final double armOffest = 0;
+	public static final int armPotChannel = 0;
 	
 }
