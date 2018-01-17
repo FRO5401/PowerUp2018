@@ -44,7 +44,14 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		
 		//chooser.addDefault("Default Auto", new ExampleCommand());
-		chooser.addDefault("AutoDrive", new AutoDrive( 127 , 1));
+		chooser.addDefault("Do Nothing", new AutoDrive(0 , 0));
+		chooser.addObject("Test Forward", new AutoDrive(30, .5));
+		chooser.addObject("Auto Switch #2", new AutoCenterSwitch());
+		chooser.addObject("Auto Switch #1", new AutoLeftSwitch());
+		chooser.addObject("Auto Switch #2", new AutoRightSwitch());
+		chooser.addObject("Auto Scale #2", new AutoScaleCenter());
+		chooser.addObject("Auto Scale #1", new AutoScaleLeft());
+		chooser.addObject("Auto Scale #3", new AutoScaleRight());
 		SmartDashboard.putData("Auto mode", chooser);
 	}
 
@@ -121,6 +128,6 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void testPeriodic() {
-		LiveWindow.run();
+		//LiveWindow.run();
 	}
 }

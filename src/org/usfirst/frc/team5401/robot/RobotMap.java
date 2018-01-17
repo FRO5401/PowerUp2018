@@ -41,18 +41,18 @@ public class RobotMap {
 	//Motors
 		//Drive Motors
 	public static final int DRIVE_LEFT_MOTOR_1 	= 0;
-	public static final int DRIVE_RIGHT_MOTOR_1 = 0;
-	public static final int DRIVE_LEFT_MOTOR_2 	= 0;
-	public static final int DRIVE_RIGHT_MOTOR_2 = 0;
+	public static final int DRIVE_RIGHT_MOTOR_1 = 1;
+	public static final int DRIVE_LEFT_MOTOR_2 	= 7;
+	public static final int DRIVE_RIGHT_MOTOR_2 = 8;
 	
 	//PCM ID
 	public static final int PCM_ID 				= 0;
 	//Solenoids
 	public static final int DRIVE_SHIFT_IN 		= 0;
-	public static final int DRIVE_SHIFT_OUT 	= 0;
+	public static final int DRIVE_SHIFT_OUT 	= 1;
 	//DIO Sensors
-	public static final int DRIVE_ENC_LEFT_A 	= 0;
-	public static final int DRIVE_ENC_LEFT_B 	= 0;
-	public static final int DRIVE_ENC_RIGHT_A 	= 0;
-	public static final int DRIVE_ENC_RIGHT_B 	= 0;
+	public static final int DRIVE_ENC_LEFT_A 	= 2;
+	public static final int DRIVE_ENC_LEFT_B 	= 3;
+	public static final int DRIVE_ENC_RIGHT_A 	= 4;
+	public static final int DRIVE_ENC_RIGHT_B 	= 5;
 }
