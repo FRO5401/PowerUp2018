@@ -28,6 +28,10 @@ public class RobotMap {
 	public static final double AUTO_TURN_SPEED = 0.95;
 	public static final double AUTO_TURN_PRECISION = 0.5;
 	
+	//This is for Climber
+	public static final double MOTOR_SPEED = 0.9;
+	public static final double CLIMB_PRECISION = 1;
+	
 	//This is for OI
 	 public static final int XBOX_CONTROLLER_DRIVER = 0;
 	 public static final int XBOX_CONTROLLER_OPERATOR = 1;
@@ -44,18 +48,28 @@ public class RobotMap {
 	public static final int DRIVE_RIGHT_MOTOR_1 = 0;
 	public static final int DRIVE_LEFT_MOTOR_2 	= 0;
 	public static final int DRIVE_RIGHT_MOTOR_2 = 0;
+		//Climber Motor
+	public static final int CLIMBER_MOTOR = 0;
+
 	
 	//PCM ID
 	public static final int PCM_ID 				= 0;
 	//Solenoids
 	public static final int DRIVE_SHIFT_IN 		= 0;
 	public static final int DRIVE_SHIFT_OUT 	= 0;
+	public static final int STABILIZER_OUT      = 0;
 	//Double Solenoids
-	public static final int WRIST_MOVER_FWD_CHANNEL = 0;
+	public static final int WRIST_MOVER_FWD_CHANNEL  = 0;
 	public static final int WRIST_MOVER_BACK_CHANNEL = 0;
+	public static final int CLIMBER_EXTENDER_IN      = 0;
+	public static final int CLIMBER_EXTENDER_OUT     = 0;
 	//DIO Sensors
 	public static final int DRIVE_ENC_LEFT_A 	= 0;
 	public static final int DRIVE_ENC_LEFT_B 	= 0;
 	public static final int DRIVE_ENC_RIGHT_A 	= 0;
 	public static final int DRIVE_ENC_RIGHT_B 	= 0;
+	//Digital Input
+	public static final int CLIMBER_SWITCH_TOP    = 0;
+	public static final int CLIMBER_SWITCH_BOTTOM = 0;
+	
 }
