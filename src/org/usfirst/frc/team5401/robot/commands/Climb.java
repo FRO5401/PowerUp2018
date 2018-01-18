@@ -31,17 +31,7 @@ public class Climb extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	climbTopSwitch = Robot.climber.reportTopClimbSwitch();
-    	climbBottomSwitch = Robot.climber.reportBottomClimbSwitch();
-    	
-    	if(input > 0 || (climbTopSwitch || climbBottomSwitch)){
-    		Robot.climber.startClimber();
-    		Robot.climber.climberSwitchControl(input);
-    	}
-    	else if(input < 0 || !(climbTopSwitch || climbBottomSwitch)){
-    		Robot.climber.stopClimber();
-    		Robot.climber.climberSwitchControl(input);
-    	}
+    	Robot.climber.climberSwitchControl(input);
     }
 
     // Make this return true when this Command no longer needs to run execute()
