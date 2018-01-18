@@ -32,15 +32,8 @@ public class Climber extends Subsystem {
 		climberMotor        = new TalonSRX (RobotMap.CLIMBER_MOTOR);
 	}
 	
-	public void deployStabilizer(int stabilizerDirection){
-		if (stabilizerDirection == 1){
-			rollerStabilizer.set(true);
-			SmartDashboard.putNumber("Stabilizers Deployed", 1);			
-		}
-		else if (stabilizerDirection == -1){
-			rollerStabilizer.set(false);
-			SmartDashboard.putNumber("Stabilizers Deployed", -1);
-		}
+	public void deployStabilizer(boolean stabilizerDirection){
+		rollerStabilizer.set(stabilizerDirection);
 	}
 	
 	public void climbExtenderUpDown(int climbExtenderDirection){

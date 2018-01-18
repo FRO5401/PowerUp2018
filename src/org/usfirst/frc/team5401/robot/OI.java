@@ -68,7 +68,16 @@ public class OI {
 	
 	//Buttons
 	public OI(){
-
+		
+		//Stabilizer Deploy
+		//xboxXXXXX.whenPressed(new StabilizerDeploy());
+		
+		//Climber Extender
+		//xboxXXXXX.whenPressed(new ClimberExtender());
+		
+		//Climb
+		//xboxXXXXX.whenPressed(new Climb(1));
+		//xboxXXXXX.whenReleased(new Climb(0));
 		
 	}
 	

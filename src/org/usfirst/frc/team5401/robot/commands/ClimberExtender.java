@@ -7,20 +7,21 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class StabilizerDeploy extends Command {
+public class ClimberExtender extends Command {
 	
-	private boolean upDown;
+	int extendRetract;
 
-    public StabilizerDeploy(boolean stabilizerDirection) {
+    public ClimberExtender(int extenderDirection) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.climber);
-    	upDown = stabilizerDirection;
+    	
+    	extendRetract = extenderDirection;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.climber.deployStabilizer(upDown);
+    	Robot.climber.climbExtenderUpDown(extendRetract);
     }
 
     // Called repeatedly when this Command is scheduled to run
