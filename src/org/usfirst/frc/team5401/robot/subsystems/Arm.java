@@ -29,13 +29,15 @@ public class Arm extends Subsystem {
 	private boolean armPidEnabled;
 	
 	private int loopIndex;
+	private int setArrayPoint[] =  {0, 0 ,0 , 0};
+	
 	
 	public Arm(){
 		
 		loopIndex = 0;
 		
 		//Object instantiation
-		armTalon = new TalonSRX(0);//TODO need to check on RoboRIO
+		armTalon = new TalonSRX(0);//TODO need to check on RoboRIO  //TODO Make this a constant ref to robot map, move other todo to robotmap
 		armPot = new AnalogPotentiometer(RobotMap.ARM_POT_CHANNEL, RobotMap.ARM_RANGE, RobotMap.ARM_OFFSET);
 		
 		/******REPEAT THE FOLLOWING LINE TO MAKE SET POINTS*********/
@@ -63,14 +65,6 @@ public class Arm extends Subsystem {
         armTalon.config_kP(loopIndex, RobotMap.ARM_kP, RobotMap.TIMEOUT_LIMIT_IN_Ms);
         armTalon.config_kI(loopIndex, RobotMap.ARM_kI, RobotMap.TIMEOUT_LIMIT_IN_Ms);
         armTalon.config_kD(loopIndex, RobotMap.ARM_kD, RobotMap.TIMEOUT_LIMIT_IN_Ms);        
-        
-        
-		//PID Stuff
-		armPidEnabled = true;
-		
-
-		
-		
 		
 	}
 	
@@ -80,18 +74,33 @@ public class Arm extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     }
 	
-	public void setBreak(){
+	public void setBrake(boolean brakeSet){
 		//Controlled by either override or reaching end of PID setpoint
 		//Disabled once override is engaged
+		brake.set(brakeSet);
 	}
 	
-	public void SetPoint(){
+	public void SetPoint(int setPointIndex){
+	
+		armTalon.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Brake);
+		armTalon.set(ControlMode.Position, setArrayPoint[setPointIndex]);
+		brake.set(false);
+		armPidEnabled = true;
 		//Finds set point
 		//Calls to command for which set point
-		//Disables PID
 	}
 	
-	public void OverrideMove(){
+	public void pidStop(){
+		
+		brake.set(true);
+		armPidEnabled = false;
+		armTalon.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Coast);
+		
+	}
+	
+	public void OverrideMove(int operatorJoystick){
+		
+		armTalon.set(ControlMode.PercentOutput, operatorJoystick);
 		//Like DriveBase, sends out a direction to move to speed controller
 
 	}

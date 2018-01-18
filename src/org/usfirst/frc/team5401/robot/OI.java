@@ -102,6 +102,33 @@ public class OI {
 		return xboxController_Driver.getRawButton(2);
 	}
 	
+	//Operator Arm Buttons
+	
+	public int getArmButtons(){
+		
+		if (xboxController_Operator.getRawButton(1));
+		{
+		return 0;
+		}
+		if (xboxController_Operator.getRawButton(2));
+		{
+		return 1;
+		}
+		if (xboxController_Operator.getRawButton(3));
+		{
+		return 2;
+		}
+		if (xboxController_Operator.getRawButton(4));
+		{
+		return 3;
+		}
+		if (xboxController_Operator.getRawButton(5));
+		{
+		return 4;
+		}
+		return -1;
+	}
+	
 	//For GearMechanism
 	public int getXboxRightStickY_Driver(){ //TODO remove
 		double value = xboxController_Driver.getRawAxis(RobotMap.XBOX_AXIS_RIGHT_Y);
@@ -129,12 +156,9 @@ public class OI {
 	
 	//For Feeder In/Out
 	public int getXboxTriggers_Operator(){
-		double left  = xboxController_Operator.getRawAxis(RobotMap.XBOX_AXIS_LEFT_TRIGGER);
 		double right = xboxController_Operator.getRawAxis(RobotMap.XBOX_AXIS_RIGHT_TRIGGER);
 		if (right > .1){ 
 			return 1;
-		} else if (left > .1){//<--left is in
-			return -1;
 		} else {
 			return 0;
 		}
