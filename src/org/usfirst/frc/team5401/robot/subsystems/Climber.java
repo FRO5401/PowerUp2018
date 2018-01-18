@@ -53,7 +53,7 @@ public class Climber extends Subsystem {
 			SmartDashboard.putNumber("Climber is Extended", -1);
 		}
 	}
-	
+    //XXX Switches are all reversed because they default to true and go false when tripped
 	public boolean reportTopClimbSwitch(){
 		SmartDashboard.putBoolean("Climber Top Switch", !(climberSwitchTop.get()));
 		return  !climberSwitchTop.get();
@@ -66,7 +66,7 @@ public class Climber extends Subsystem {
 		
 	}
 	
-	public void climberSwitchControl(double input, boolean Override){
+	public void climberSwitchControl(double input){
 		if(reportTopClimbSwitch() && input > 0){
 			input = 0;
 		}
