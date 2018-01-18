@@ -1,5 +1,6 @@
 package org.usfirst.frc.team5401.robot.subsystems;
 
+import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -16,7 +17,7 @@ import org.usfirst.frc.team5401.robot.commands.XboxMove;
 /**
  *
  */
-public class DriveBase extends Subsystem {
+public class DriveBase extends PIDSubsystem {
 	//All constants are now in RobotMap
 	
 	private VictorSP leftDrive1;
@@ -30,7 +31,13 @@ public class DriveBase extends Subsystem {
 	private Encoder rightEncoder;
 	private AHRS navxGyro;
 	
+	double p, i, d;
+	
 	public DriveBase(){
+		super(1,0,0);
+		setAbsoluteTolerance(.5);
+		getPIDController().setContinuous(false);
+		
 		leftDrive1   = new VictorSP(RobotMap.DRIVE_LEFT_MOTOR_1);
 		rightDrive1  = new VictorSP(RobotMap.DRIVE_RIGHT_MOTOR_1);
 		leftDrive2  = new VictorSP(RobotMap.DRIVE_LEFT_MOTOR_2);
@@ -47,11 +54,13 @@ public class DriveBase extends Subsystem {
 		SmartDashboard.putNumber("Actual Gyro Pitch", 	getGyroPitch());
 		SmartDashboard.putNumber("Actual Gyro Roll", 	getGyroRoll());
 		
+		p = SmartDashboard.getNumber("DriveStraight P", 0);
+		i = SmartDashboard.getNumber("DriveStraight I", 0);
+		d = SmartDashboard.getNumber("DriveStraight D", 0);
 		
-		SmartDashboard.putNumber("Left Enc Raw" , leftEncoder.get());
-		SmartDashboard.putNumber("Right Enc Raw", rightEncoder.get());
-		SmartDashboard.putNumber("Left Enc Adj" , leftEncoder.getDistance());
-		SmartDashboard.putNumber("Right Enc Adj", rightEncoder.getDistance());
+		SmartDashboard.putNumber("DriveStraight P", p);
+		SmartDashboard.putNumber("DriveStraight I", i);
+		SmartDashboard.putNumber("DriveStraight D", d);
 	}
 	
     public void initDefaultCommand() {
@@ -66,10 +75,12 @@ public class DriveBase extends Subsystem {
     	leftDrive2.set(leftDriveDesired);
     	rightDrive2.set(-1 * rightDriveDesired);
     	
+    	/*
     	SmartDashboard.putNumber("Left Enc Raw" , leftEncoder.get());
 		SmartDashboard.putNumber("Right Enc Raw", rightEncoder.get());
 		SmartDashboard.putNumber("Left Enc Adj" , leftEncoder.getDistance());
 		SmartDashboard.putNumber("Right Enc Adj", rightEncoder.getDistance());
+		*/
     }
 
     public void stop(){
@@ -118,18 +129,46 @@ public class DriveBase extends Subsystem {
     	double rightDistanceRaw = rightEncoder.get();
     	SmartDashboard.putNumber("Left Enc Raw", leftDistanceRaw);
     	SmartDashboard.putNumber("Right Enc Raw", rightDistanceRaw);
+    	
     	double leftDistance = leftEncoder.getDistance();
     	double rightDistance = rightEncoder.getDistance();
     	SmartDashboard.putNumber("Left Enc Adj", leftDistance);
     	SmartDashboard.putNumber("Right Enc Adj", rightDistance);
-    	double encoderDistance = (leftDistance + rightDistance)/2;
     	
-    	return encoderDistance;
+    	double encoderDistance = (leftDistance + rightDistance) / 2;
+    	SmartDashboard.putNumber("Mean Enc Adj", encoderDistance);
+    	//return encoderDistance;
+    	
+    	double encoderDistanceRaw = (leftDistanceRaw + rightDistanceRaw) / 2;
+    	SmartDashboard.putNumber("Mean Enc Raw", encoderDistanceRaw);
+    	return encoderDistanceRaw;
     }
     
     public void encoderReset(){
     	leftEncoder.reset();
     	rightEncoder.reset();
+    }
+    
+    public void enablePID () {
+    	p = SmartDashboard.getNumber("DriveStraight P", 0);
+    	i = SmartDashboard.getNumber("DriveStraight I", 0);
+    	d = SmartDashboard.getNumber("DriveStraight D", 0);
+    	getPIDController().setPID(p, i, d);
+    	enable();
+    }
+    
+    public double returnPIDInput () {
+    	// Return your input value for the PID loop
+        // e.g. a sensor, like a potentiometer:
+        // yourPot.getAverageVoltage() / kYourMaxVoltage;
+    	return getEncoderDistance();
+    }
+    
+    public void usePIDOutput (double output) {
+    	// Use output to drive your system, like a motor
+        // e.g. yourMotor.set(output);
+    	SmartDashboard.putNumber("PIDOutput", output);
+    	drive(output, output);
     }
     
     public double getGyroAngle() {

@@ -46,12 +46,13 @@ public class Robot extends IterativeRobot {
 		//chooser.addDefault("Default Auto", new ExampleCommand());
 		chooser.addDefault("Do Nothing", new AutoDrive(0 , 0));
 		chooser.addObject("Test Forward", new AutoDrive(30, .5));
-		chooser.addObject("Auto Switch #2", new AutoCenterSwitch());
 		chooser.addObject("Auto Switch #1", new AutoLeftSwitch());
-		chooser.addObject("Auto Switch #2", new AutoRightSwitch());
-		chooser.addObject("Auto Scale #2", new AutoScaleCenter());
+		chooser.addObject("Auto Switch #2", new AutoCenterSwitch());
+		chooser.addObject("Auto Switch #3", new AutoRightSwitch());
 		chooser.addObject("Auto Scale #1", new AutoScaleLeft());
+		chooser.addObject("Auto Scale #2", new AutoScaleCenter());
 		chooser.addObject("Auto Scale #3", new AutoScaleRight());
+		chooser.addObject("Auto PID DriveStraight", new AutoPIDDrive());
 		SmartDashboard.putData("Auto mode", chooser);
 	}
 
