@@ -98,6 +98,12 @@ public class Arm extends Subsystem {
 		
 	}
 	
+	public void armInterrupted(){
+		
+		armPidEnabled = false;
+		armTalon.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Coast);
+	}
+	
 	public void overrideMove(double operatorJoystick){
 		
 		armTalon.set(ControlMode.PercentOutput, operatorJoystick);
