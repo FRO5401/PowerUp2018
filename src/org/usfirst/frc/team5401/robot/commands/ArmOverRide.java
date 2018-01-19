@@ -7,40 +7,46 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class armMoveButton extends Command {
+public class ArmOverRide extends Command {
 
-	private boolean done; 
-	
-    public armMoveButton() {
+    public ArmOverRide() {
+    	requires(Robot.arm);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	done = (Robot.oi.getArmButtons() !=-1);
-    	Robot.arm.SetPoint(Robot.oi.getArmButtons());
-
+    	
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	done = (Robot.oi.getArmButtons() !=-1);
+    	Robot.oi.getXboxLeftStickY_Operator();
+    	int overRideButton = Robot.oi.getXboxTriggers_Operator();
+    	//calling to the button as well as the joystick
+    	
+    	
+    	if(overRideButton == 1)
+    	{
+    		
+    		Robot.arm.setBrake(false);
+    		Robot.arm.overrideMove(overRideButton);	
+    	}
+    	//Calling for the overridemove button from the subsystem and the value of the left joystick form OI. This is executed.
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return done;
+        return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.arm.pidStop();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	Robot.arm.pidStop();
     }
 }

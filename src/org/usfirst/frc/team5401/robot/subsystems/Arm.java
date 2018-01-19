@@ -80,7 +80,7 @@ public class Arm extends Subsystem {
 		brake.set(brakeSet);
 	}
 	
-	public void SetPoint(int setPointIndex){
+	public void setPoint(int setPointIndex){
 	
 		armTalon.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Brake);
 		armTalon.set(ControlMode.Position, setArrayPoint[setPointIndex]);
@@ -98,7 +98,7 @@ public class Arm extends Subsystem {
 		
 	}
 	
-	public void OverrideMove(int operatorJoystick){
+	public void overrideMove(double operatorJoystick){
 		
 		armTalon.set(ControlMode.PercentOutput, operatorJoystick);
 		//Like DriveBase, sends out a direction to move to speed controller
