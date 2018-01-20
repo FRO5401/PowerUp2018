@@ -7,20 +7,21 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class RollerClawExpandContract extends Command {
+public class RollerClawTopClose extends Command {
 	
-	int expandContract;
+	boolean upDownClose;
 
-    public RollerClawExpandContract(int clawDirection) {
+    public RollerClawTopClose(boolean rollerClawCloseDirection) {
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.rollerclaw);
-        
-        expandContract = clawDirection;
+        // eg. requires(chassis);
+    	requires(Robot.rollerclaw);
+    	
+    	upDownClose = rollerClawCloseDirection;    	
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.rollerclaw.clawExpandContract(expandContract);
+    	Robot.rollerclaw.clawClose(upDownClose);
     }
 
     // Called repeatedly when this Command is scheduled to run

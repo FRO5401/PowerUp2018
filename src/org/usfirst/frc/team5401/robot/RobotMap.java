@@ -27,7 +27,7 @@ public class RobotMap {
 	public static final double DRIVE_SPIN_SENSITIVITY = 0;
 	
 	//This is for AutoTurnAngle
-	public static final double ANGLE_THRESHOLD = 1;//in degrees
+	public static final double ANGLE_THRESHOLD = 1; //in degrees
 	public static final double AUTO_TURN_SPEED = 0.95;
 	public static final double AUTO_TURN_PRECISION = 0.5;
 	
@@ -53,7 +53,8 @@ public class RobotMap {
 	//Solenoids
 	public static final int DRIVE_SHIFT_IN 		= 0;
 	public static final int DRIVE_SHIFT_OUT 	= 0;
-	public static final int ROLLER_CLAW_SOLENOID		    = 0;
+	public static final int ROLLER_CLAW_CLOSE   = 0;
+	public static final int ROLLER_CLAW_FAR     = 0;
 	//DIO Sensors
 	public static final int DRIVE_ENC_LEFT_A 	= 0;
 	public static final int DRIVE_ENC_LEFT_B 	= 0;
@@ -61,6 +62,6 @@ public class RobotMap {
 	public static final int DRIVE_ENC_RIGHT_B 	= 0;
 	public static final int ROLLER_CLAW_LIMIT_SWITCH   = 0;
 	//RollerClaw
-	public static final int ROLLER_CLAW_LEFT_ROLLER    = 0;
-	public static final int ROLLER_CLAW_RIGHT_ROLLER   = 0;
+	public static final int ROLLER_CLAW_TOP_ROLLER    = 0;
+	public static final int ROLLER_CLAW_BOTTOM_ROLLER   = 0;
 }

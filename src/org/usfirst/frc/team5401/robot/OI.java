@@ -69,16 +69,8 @@ public class OI {
 	//Buttons
 	public OI(){
 		
-		//Roller Claw Expand/Contract
-		//xboxXXXXX.whenPressed(new RollerClawExpandContract(1));
-		//xboxXXXXX.whenReleased(new RollerClawExpandContract(-1));
-		
-		//Roller Claw In/Out
-		//xboxXXXXX.whenPressed(new RollerClawInOut());
-		
-		//Roller Claw Rotate
-		//xboxXXXXX.whenPressed(new RollerClawRotate());
-
+		//Roller Claw Top Far
+		//Roller Claw Top Close
 		
 	}
 	

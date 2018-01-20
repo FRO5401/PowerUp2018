@@ -5,26 +5,24 @@ import org.usfirst.frc.team5401.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * this uses when pressed/when released in OI.
  *
  */
-public class RollerClawRotate extends Command {
+public class RollerClawTopFar extends Command {
 	
-	int rollerDirection;
+	boolean upDownFar;
 
-    public RollerClawRotate(int direction) {
+    public RollerClawTopFar(boolean rollerClawFarDirection) {
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.rollerclaw);
-        rollerDirection = direction;
+        // eg. requires(chassis);
+    	requires(Robot.rollerclaw);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.rollerclaw.rollerRotate(rollerDirection);
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute(){
+    protected void execute() {
     }
 
     // Make this return true when this Command no longer needs to run execute()
