@@ -59,7 +59,7 @@ public class Climber extends Subsystem {
 		
 	}
 	
-	public void climberSwitchControl(double input){
+	public void climberStartMotors(double input){
 		if(reportTopClimbSwitch() && input > 0){
 			input = 0;
 		}
@@ -67,15 +67,10 @@ public class Climber extends Subsystem {
 			input = 0;
 		}
 				
-		climberMotor.set(ControlMode.Velocity, (input * RobotMap.CLIMB_PRECISION));
+		climberMotor.set(ControlMode.PercentOutput, (input * RobotMap.CLIMB_PRECISION));
 	}
 	public void stopClimber(){
 		climberMotor.set(ControlMode.PercentOutput, 0);
-	}
-	
-	public void startClimber(){
-		climberMotor.set(ControlMode.Velocity, RobotMap.MOTOR_SPEED);
-		
 	}
 
     // Put methods for controlling this subsystem
