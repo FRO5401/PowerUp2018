@@ -8,19 +8,16 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class StabilizerDeploy extends Command {
-	
-	private boolean upDown;
 
-    public StabilizerDeploy(boolean stabilizerDirection) {
+    public StabilizerDeploy() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.climber);
-    	upDown = stabilizerDirection;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.climber.controlStabilizer(upDown);
+    	Robot.climber.switchStabilizerState();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -39,6 +36,7 @@ public class StabilizerDeploy extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	Robot.climber.controlStabilizer(upDown);
+    	Robot.climber.retractStabilizer();
+    	System.out.print("Stabilizer Interrupted");
     }
 }

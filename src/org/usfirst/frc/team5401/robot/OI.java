@@ -69,13 +69,15 @@ public class OI {
 	//Buttons
 	public OI(){
 		
-		  TODO: Assign buttons to climber functions
 		 
 		  //Stabilizer Deploy
 		  xboxStart_Operator.whenPressed(new StabilizerDeploy());
 		  
 		  //Climber Extender
 		  xboxStart_Operator.whenPressed(new ClimberExtender());
+		  
+		  //Climber Platforms
+		  xboxStart_Operator.whenPressed(new ClimberPlatforms());
 		  
 		  //Climb
 		  xboxY_Operator.whenPressed(new Climb(1));

@@ -63,6 +63,8 @@ public class RobotMap {
 	public static final int WRIST_MOVER_BACK_CHANNEL = 0;
 	public static final int CLIMBER_EXTENDER_IN      = 0;
 	public static final int CLIMBER_EXTENDER_OUT     = 0;
+	public static final int CLIMBER_PLATFORM_UP      = 0;
+	public static final int CLIMBER_PLATFORM_DOWN    = 0;
 	//DIO Sensors
 	public static final int DRIVE_ENC_LEFT_A 	= 0;
 	public static final int DRIVE_ENC_LEFT_B 	= 0;

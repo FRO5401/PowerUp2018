@@ -9,18 +9,15 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class ClimberPlatforms extends Command {
 	
-	private int inOut;
-
-    public ClimberPlatforms(int platformDirection) {
+    public ClimberPlatforms() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.climber);
-    	inOut = platformDirection;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.climber.climbExtenderUpDown(inOut);
+    	Robot.climber.switchPlatformState();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -39,5 +36,7 @@ public class ClimberPlatforms extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	Robot.climber.platformUp();
+    	System.out.print("Climb Platforms Interrupted");
     }
 }
