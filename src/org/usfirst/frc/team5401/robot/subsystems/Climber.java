@@ -23,6 +23,8 @@ public class Climber extends Subsystem {
 	private DigitalInput climberSwitchBottom;
 	private TalonSRX climberMotor;
 	
+	private boolean stabilizerEnabled;
+	
 	
 	public Climber(){
 		rollerStabilizer    = new Solenoid(RobotMap.STABILIZER_OUT);
@@ -30,11 +32,20 @@ public class Climber extends Subsystem {
 		climberSwitchTop    = new DigitalInput (RobotMap.CLIMBER_SWITCH_TOP);
 		climberSwitchBottom = new DigitalInput (RobotMap.CLIMBER_SWITCH_BOTTOM);
 		climberMotor        = new TalonSRX (RobotMap.CLIMBER_MOTOR);
+		
+		stabilizerEnabled = false;
 	}
-	
-	public void deployStabilizer(boolean stabilizerDirection){
-		rollerStabilizer.set(stabilizerDirection);
+		
+	public void controlStabilizer(boolean enabled){
+		if(enabled){
+			rollerStabilizer.set(true);
+		}
+		else if(!enabled){
+			rollerStabilizer.set(false);
+		}
+
 	}
+	  
 	
 	public void climbExtenderUpDown(int climbExtenderDirection){
 		if (climbExtenderDirection == 1){

@@ -68,19 +68,19 @@ public class OI {
 	
 	//Buttons
 	public OI(){
-		/*
-		 * TODO: Assign buttons to climber functions
-		 *
-		 *Stabilizer Deploy
-		 *xboxXXXXX.whenPressed(new StabilizerDeploy());
-		 *
-		 *Climber Extender
-		 *xboxXXXXX.whenPressed(new ClimberExtender());
-		 *
-		 *Climb
-		 *xboxXXXXX.whenPressed(new Climb(1));
-		 *xboxXXXXX.whenReleased(new Climb(0));
-		 */
+		
+		  TODO: Assign buttons to climber functions
+		 
+		  //Stabilizer Deploy
+		  xboxStart_Operator.whenPressed(new StabilizerDeploy());
+		  
+		  //Climber Extender
+		  xboxStart_Operator.whenPressed(new ClimberExtender());
+		  
+		  //Climb
+		  xboxY_Operator.whenPressed(new Climb(1));
+		  xboxY_Operator.whenReleased(new Climb(0));
+		  
 	}
 	
 	/**Method Naming: 'read' = Analog; 'get' = Digital **/
