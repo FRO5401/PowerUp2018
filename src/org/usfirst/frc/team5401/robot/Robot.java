@@ -1,5 +1,5 @@
 package org.usfirst.frc.team5401.robot;
-import org.usfirst.frc.team5401.robot.autonomous.*;
+//import org.usfirst.frc.team5401.robot.autonomous.*;
 import edu.wpi.first.wpilibj.IterativeRobot;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -44,7 +44,7 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		
 		//chooser.addDefault("Default Auto", new ExampleCommand());
-		chooser.addDefault("AutoDrive", new AutoDrive( 127 , 1));
+//		chooser.addDefault("AutoDrive", new AutoDrive( 127 , 1));
 		SmartDashboard.putData("Auto mode", chooser);
 	}
 

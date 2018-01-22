@@ -55,7 +55,7 @@ public class RobotMap {
 	public static final int DRIVE_SHIFT_OUT 	= 0;
 	//DIO Sensors
 	public static final int DRIVE_ENC_LEFT_A 	= 0;
-	public static final int DRIVE_ENC_LEFT_B 	= 0;
-	public static final int DRIVE_ENC_RIGHT_A 	= 0;
-	public static final int DRIVE_ENC_RIGHT_B 	= 0;
+	public static final int DRIVE_ENC_LEFT_B 	= 1;
+	public static final int DRIVE_ENC_RIGHT_A 	= 2;
+	public static final int DRIVE_ENC_RIGHT_B 	= 3;
 }
