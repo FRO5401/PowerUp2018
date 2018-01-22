@@ -7,11 +7,11 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
-import com.kauailabs.navx.frc.AHRS;
+//import com.kauailabs.navx.frc.AHRS;
 
 import org.usfirst.frc.team5401.robot.RobotMap;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.usfirst.frc.team5401.robot.commands.XboxMove;
+//import org.usfirst.frc.team5401.robot.commands.XboxMove;
 
 /**
  *
@@ -30,7 +30,7 @@ public class DriveBase extends Subsystem {
 	
 	private Encoder leftEncoder;
 	private Encoder rightEncoder;
-	private AHRS navxGyro;
+//	private AHRS navxGyro;
 	
 	public DriveBase(){
 		leftDrive1   = new VictorSP(RobotMap.DRIVE_LEFT_MOTOR_1);
@@ -44,12 +44,12 @@ public class DriveBase extends Subsystem {
 		//																					vvv if this was false, DPP doesn't have to be negative
 		rightEncoder = new Encoder(RobotMap.DRIVE_ENC_RIGHT_A, RobotMap.DRIVE_ENC_RIGHT_B, true, Encoder.EncodingType.k4X);
 
-		navxGyro = new AHRS(SerialPort.Port.kMXP);
-		navxGyro.reset();
+//		navxGyro = new AHRS(SerialPort.Port.kMXP);
+//		navxGyro.reset();
 		
-		SmartDashboard.putNumber("Actual Gyro Angle", 	getGyroAngle());
-		SmartDashboard.putNumber("Actual Gyro Pitch", 	getGyroPitch());
-		SmartDashboard.putNumber("Actual Gyro Roll", 	getGyroRoll());
+//		SmartDashboard.putNumber("Actual Gyro Angle", 	getGyroAngle());
+//		SmartDashboard.putNumber("Actual Gyro Pitch", 	getGyroPitch());
+//		SmartDashboard.putNumber("Actual Gyro Roll", 	getGyroRoll());
 		
 		
 		SmartDashboard.putNumber("Left Enc Raw" , leftEncoder.get());
@@ -60,7 +60,7 @@ public class DriveBase extends Subsystem {
 	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-    	setDefaultCommand(new XboxMove());
+//    	setDefaultCommand(new XboxMove());
     }
     
     //TODO need to verify the negatives are in right place
@@ -139,16 +139,16 @@ public class DriveBase extends Subsystem {
     	leftEncoder.reset();
     	rightEncoder.reset();
     }
-    
+/*    
     public double getGyroAngle() {
-    	double currentAngle = navxGyro.getAngle();
-    	SmartDashboard.putNumber("navx Angle", currentAngle);
-    	return currentAngle;
+//    	double currentAngle = navxGyro.getAngle();
+//    	SmartDashboard.putNumber("navx Angle", currentAngle);
+//    	return currentAngle;
     }
     
     public double getGyroPitch()
     {
-    	double currentPitch = navxGyro.getPitch();
+//    	double currentPitch = navxGyro.getPitch();
     	SmartDashboard.putNumber("navx Pitch", currentPitch);
     	return currentPitch;
     }	
@@ -157,5 +157,5 @@ public class DriveBase extends Subsystem {
     	double currentRoll = navxGyro.getRoll();
     	SmartDashboard.putNumber("navx Roll", currentRoll);
     	return currentRoll;
-    }
+    }*/
 }
