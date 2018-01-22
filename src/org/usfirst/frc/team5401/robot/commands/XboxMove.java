@@ -45,12 +45,17 @@ public class XboxMove extends Command {
     	boolean gearShiftLow  = Robot.oi.getXboxBack_Driver();
     	boolean gearShiftHigh = Robot.oi.getXboxStart_Driver();
     	
+    	System.out.println("Throttle " + throttle + " ");
+    	System.out.println("Reverse " + reverse + " ");
+    	System.out.println("Turn " + turn + " ");
+    	
     	//Manual Gear Shift
-    	if (gearShiftHigh){
+/*    	if (gearShiftHigh){
     		Robot.drivebase.shiftGearLowToHigh();;
     	} else if (gearShiftLow){
     		Robot.drivebase.shiftGearHighToLow();
-    	}
+		}
+*/
     	
     	//Inverts Drive
     	if (invert){
@@ -118,8 +123,8 @@ public class XboxMove extends Command {
     		}
     	}
     	
-//    	System.out.println("LEFT: " + left);
-//    	System.out.println("RIGHT: " + right);
+    	System.out.println("LEFT: " + left);
+    	System.out.println("RIGHT: " + right);
     	
     	Robot.drivebase.drive(left, right);
     

@@ -59,7 +59,7 @@ public class AutoDrive extends Command {
     	System.out.println("Angle when starting DriveShift:" + Robot.drivebase.getGyroAngle());
     	SmartDashboard.putNumber("heading", heading);
     	
-    	Robot.drivebase.shiftGearHighToLow();
+//    	Robot.drivebase.shiftGearHighToLow();
     }
 
     // Called repeatedly when this Command is scheduled to run

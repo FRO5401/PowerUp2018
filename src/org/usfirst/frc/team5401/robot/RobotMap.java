@@ -18,10 +18,10 @@ public class RobotMap {
 	//This is for XboxMove
 	public static final double MINIMUM_VELOCITY_FOR_HIGH_GEAR = 0; //Experimentally Determined, REMEMBER inches per second
 	public static final double MAXIMUM_VELOCITY_FOR_LOW_GEAR = 0;
-	public static final double DRIVE_SENSITIVITY_PRECISE = 0;
-	public static final double DRIVE_SENSITIVITY_DEFAULT = 0;
-	public static final double DRIVE_THRESHHOLD = 0;
-	public static final double DRIVE_SPIN_SENSITIVITY = 0;
+	public static final double DRIVE_SENSITIVITY_PRECISE = 1;
+	public static final double DRIVE_SENSITIVITY_DEFAULT = 1;
+	public static final double DRIVE_THRESHHOLD = 0.2;
+	public static final double DRIVE_SPIN_SENSITIVITY = 1;
 	
 	//This is for AutoTurnAngle
 	public static final double ANGLE_THRESHOLD = 1;//in degrees
@@ -32,10 +32,11 @@ public class RobotMap {
 	 public static final int XBOX_CONTROLLER_DRIVER = 0;
 	 public static final int XBOX_CONTROLLER_OPERATOR = 1;
 	 public static final int XBOX_AXIS_LEFT_X = 0;
-	 public static final int XBOX_AXIS_LEFT_TRIGGER = 0;
-	 public static final int XBOX_AXIS_RIGHT_TRIGGER = 0;
-	 public static final int XBOX_AXIS_RIGHT_Y = 0;
-	 public static final int XBOX_AXIS_LEFT_Y = 0;
+	 public static final int XBOX_AXIS_LEFT_TRIGGER = 2;
+	 public static final int XBOX_AXIS_RIGHT_TRIGGER = 3;
+	 public static final int XBOX_AXIS_RIGHT_Y = 5;
+	 public static final int XBOX_AXIS_LEFT_Y = 1;
+	 public static final int XBOX_AXIS_RIGHT_X = 4;
 	 
 	 
 	//Motors
