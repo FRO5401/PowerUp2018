@@ -23,6 +23,8 @@ public class DriveBase extends Subsystem {
 	private VictorSP rightDrive1;
 	private VictorSP leftDrive2;
 	private VictorSP rightDrive2;
+	private VictorSP leftDrive3;
+	private VictorSP rightDrive3;
 
 	private DoubleSolenoid gearShifter;
 	
@@ -35,6 +37,8 @@ public class DriveBase extends Subsystem {
 		rightDrive1  = new VictorSP(RobotMap.DRIVE_RIGHT_MOTOR_1);
 		leftDrive2  = new VictorSP(RobotMap.DRIVE_LEFT_MOTOR_2);
 		rightDrive2 = new VictorSP(RobotMap.DRIVE_RIGHT_MOTOR_2);
+		leftDrive3  = new VictorSP(RobotMap.DRIVE_LEFT_MOTOR_3);
+		rightDrive3 = new VictorSP(RobotMap.DRIVE_RIGHT_MOTOR_3);
 		gearShifter = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.DRIVE_SHIFT_IN, RobotMap.DRIVE_SHIFT_OUT);
 		leftEncoder = new Encoder(RobotMap.DRIVE_ENC_LEFT_A, RobotMap.DRIVE_ENC_LEFT_B, true, Encoder.EncodingType.k4X);
 		//																					vvv if this was false, DPP doesn't have to be negative
@@ -65,6 +69,8 @@ public class DriveBase extends Subsystem {
     	rightDrive1.set(-1* rightDriveDesired);
     	leftDrive2.set(leftDriveDesired);
     	rightDrive2.set(-1 * rightDriveDesired);
+    	leftDrive3.set(leftDriveDesired);
+    	rightDrive3.set(-1 * rightDriveDesired);
     	
     	SmartDashboard.putNumber("Left Enc Raw" , leftEncoder.get());
 		SmartDashboard.putNumber("Right Enc Raw", rightEncoder.get());
@@ -77,6 +83,8 @@ public class DriveBase extends Subsystem {
     	rightDrive1.set(0);
     	leftDrive2.set(0);
     	rightDrive2.set(0);
+    	leftDrive3.set(0);
+    	rightDrive3.set(0);
     }
 
     public void shiftGearLowToHigh(){
