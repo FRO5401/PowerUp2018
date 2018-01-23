@@ -4,17 +4,16 @@ import org.usfirst.frc.team5401.robot.Robot;
 import org.usfirst.frc.team5401.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- *
+ * Xbox Controller Move Command
+ * FIRST PowerUP 2018
+ * Team 5401
  */
 public class XboxMove extends Command {
 	double velocitySample1;
 	double velocitySample2;
-
-	//1/23/17 1/23/17 NOT NEEDED because the time for acceleration equation is no longer necessary
-	//double deltaTime;
 	
 	public XboxMove() {
 		velocitySample1 = 0;
@@ -25,8 +24,9 @@ public class XboxMove extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.drivebase.shiftGearHighToLow();
+    	//Robot.drivebase.shiftGearHighToLow();
     	//Robot.drivebase.shiftGearLowToHigh();
+        System.out.println("XBoxMove Initialized");
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -42,8 +42,8 @@ public class XboxMove extends Command {
     	boolean turn	  = Robot.oi.getTurnButton_Driver();
     	boolean invert	  = Robot.oi.getDriveInvertButton_Driver();
     	
-    	boolean gearShiftLow  = Robot.oi.getXboxBack_Driver();
-    	boolean gearShiftHigh = Robot.oi.getXboxStart_Driver();
+//    	boolean gearShiftLow  = Robot.oi.getXboxBack_Driver();
+//    	boolean gearShiftHigh = Robot.oi.getXboxStart_Driver();
     	
     	System.out.println("Throttle " + throttle + " ");
     	System.out.println("Reverse " + reverse + " ");
@@ -56,7 +56,7 @@ public class XboxMove extends Command {
     		Robot.drivebase.shiftGearHighToLow();
 		}
 */
-    	
+/*    	
     	//Inverts Drive
     	if (invert){
     		slew *= -1;
@@ -86,12 +86,12 @@ public class XboxMove extends Command {
 
     	//Driving Code
     	double right = 0, left = 0, sensitivity;
-    	/*
+    	
     	System.out.println("LEFT STICK X: " + slew + "\n"
     					 + "RIGHT TRIGGER: " + throttle + "\n"
     					 + "LEFT TRIGGER: " + reverse + "\n"
     					 + "BRAKE: " + brake);
-    	*/
+    	
     	
     	if (precision) { //Sets drive precision based on RobotMap and Precision Mode
     		sensitivity	=	RobotMap.DRIVE_SENSITIVITY_PRECISE;
@@ -126,18 +126,21 @@ public class XboxMove extends Command {
     	System.out.println("LEFT: " + left);
     	System.out.println("RIGHT: " + right);
     	
+    	
+    	left = throttle * .8;
+    	right = throttle * .8;
     	Robot.drivebase.drive(left, right);
     
-    	
+    }
     	
     	
 /*****Shifting Gear Code*********/
-    	Robot.drivebase.getEncoderDistance();
+//    	Robot.drivebase.getEncoderDistance();
 /*    	//Backlogs the old final velocity (velocity 2) into the new initial velocity (velocity 1)
     	velocitySample1 = velocitySample2;
 */   	
     	//Gets new final velocity
-    	velocitySample2 = Robot.drivebase.getVelocityOfRobot();
+//    	velocitySample2 = Robot.drivebase.getVelocityOfRobot();
     	    	
     	
     	//												vvvvv this is for no shifting at acceleration = 0 when robot is totally still, might be unnecessary
@@ -169,7 +172,7 @@ public class XboxMove extends Command {
     		
     	}
     	//Gear Shift Done
-*/    }
+*///    }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {

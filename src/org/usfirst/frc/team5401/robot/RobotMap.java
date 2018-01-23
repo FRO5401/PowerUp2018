@@ -18,10 +18,10 @@ public class RobotMap {
 	//This is for XboxMove
 	public static final double MINIMUM_VELOCITY_FOR_HIGH_GEAR = 0; //Experimentally Determined, REMEMBER inches per second
 	public static final double MAXIMUM_VELOCITY_FOR_LOW_GEAR = 0;
-	public static final double DRIVE_SENSITIVITY_PRECISE = 1;
-	public static final double DRIVE_SENSITIVITY_DEFAULT = 1;
+	public static final double DRIVE_SENSITIVITY_PRECISE = .8;
+	public static final double DRIVE_SENSITIVITY_DEFAULT = .8;
 	public static final double DRIVE_THRESHHOLD = 0.2;
-	public static final double DRIVE_SPIN_SENSITIVITY = 1;
+	public static final double DRIVE_SPIN_SENSITIVITY = .8;
 	
 	//This is for AutoTurnAngle
 	public static final double ANGLE_THRESHOLD = 1;//in degrees
@@ -37,6 +37,10 @@ public class RobotMap {
 	 public static final int XBOX_AXIS_RIGHT_Y = 5;
 	 public static final int XBOX_AXIS_LEFT_Y = 1;
 	 public static final int XBOX_AXIS_RIGHT_X = 4;
+	 public static final int XBOX_BUTTON_LEFT_BUMPER = 5;
+	 public static final int XBOX_BUTTON_RIGHT_BUMPER = 6;
+	 public static final int XBOX_BUTTON_LEFT_JOYSTICK_BUTTON = 9;
+	 public static final int XBOX_BUTTON_B = 2;
 	 
 	 
 	//Motors

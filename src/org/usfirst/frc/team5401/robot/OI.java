@@ -87,19 +87,19 @@ public class OI {
 	}
 	
 	public boolean getPrecision_Driver(){
-		return xboxController_Driver.getRawButton(5);
+		return xboxController_Driver.getRawButton(RobotMap.XBOX_BUTTON_LEFT_BUMPER);
 	}
 	
 	public boolean getBrake_Driver(){
-		return xboxController_Driver.getRawButton(6);
+		return xboxController_Driver.getRawButton(RobotMap.XBOX_BUTTON_RIGHT_BUMPER);
 	}
 	
 	public boolean getTurnButton_Driver(){
-		return xboxController_Driver.getRawButton(9);
+		return xboxController_Driver.getRawButton(RobotMap.XBOX_BUTTON_LEFT_JOYSTICK_BUTTON);
 	}
 	
 	public boolean getDriveInvertButton_Driver() {
-		return xboxController_Driver.getRawButton(2);
+		return xboxController_Driver.getRawButton(RobotMap.XBOX_BUTTON_B);
 	}
 	
 	//For GearMechanism

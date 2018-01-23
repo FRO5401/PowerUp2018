@@ -36,11 +36,11 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		//OI has to be last
-		arm = new Arm();
-		climber = new Climber();
+//		arm = new Arm();
+//		climber = new Climber();
 		drivebase = new DriveBase();
-		rollerclaw = new RollerClaw();
-		wrist = new Wrist();
+//		rollerclaw = new RollerClaw();
+//		wrist = new Wrist();
 		oi = new OI();
 		
 		//chooser.addDefault("Default Auto", new ExampleCommand());
@@ -121,6 +121,6 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void testPeriodic() {
-		LiveWindow.run();
+//		LiveWindow.run();
 	}
 }
