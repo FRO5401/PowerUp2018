@@ -131,7 +131,7 @@ public class DriveBase extends Subsystem {
     	SmartDashboard.putNumber("Left Enc Adj", leftDistance);
     	SmartDashboard.putNumber("Right Enc Adj", rightDistance);
     	double encoderDistance = (leftDistance + rightDistance)/2;
-    	
+    	System.out.println("Encoder Distance: " + encoderDistance);
     	return encoderDistance;
     }
     
