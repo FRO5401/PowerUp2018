@@ -25,6 +25,7 @@ public class RobotMap {
 	public static final double ARM_OFFSET = 0;
 	public static final int TIMEOUT_LIMIT_IN_Ms = 10;//Might change. 10 is default in sample code
 	public static final int ARM_THRESHOLD_FOR_PID = 2;
+	public static final int ARM_TALON = 0;
 
 
 	
@@ -70,6 +71,15 @@ public class RobotMap {
 	public static final int DRIVE_ENC_RIGHT_B 	= 0;
 	//Analog Devices
 	public static final int ARM_POT_CHANNEL = 0;
+	// getArmButtons
+	public static final int SETPOINT_HIGH   = 0;
+	public static final int SETPOINT_PORTAL = 1;
+	public static final int SETPOINT_SWITCH = 2;
+	public static final int SETPOINT_GROUND = 3;
+	public static final int SETPOINT_SCALE  = 4;
+	
+	
+	
 	
 	
 

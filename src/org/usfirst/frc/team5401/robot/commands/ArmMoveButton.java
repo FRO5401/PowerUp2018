@@ -12,6 +12,7 @@ public class ArmMoveButton extends Command {
 	private boolean done; 
 	
     public ArmMoveButton() {
+    	
     	requires(Robot.arm);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -19,13 +20,15 @@ public class ArmMoveButton extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	done = (Robot.oi.getArmButtons() !=-1);
+    	
+    	done = (Robot.oi.getArmButtons() == -1);
     	Robot.arm.setPoint(Robot.oi.getArmButtons());
 
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	
     	done = (Robot.oi.getArmButtons() !=-1);
     }
 
@@ -36,12 +39,14 @@ public class ArmMoveButton extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	
     	Robot.arm.pidStop();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	
     	Robot.arm.armInterrupted();
     	
     }

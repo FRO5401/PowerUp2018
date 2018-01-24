@@ -22,16 +22,16 @@ public class ArmOverRide extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.oi.getXboxLeftStickY_Operator();
-    	int overRideButton = Robot.oi.getXboxTriggers_Operator();
+    	
+    	double overRideMoving = Robot.oi.getXboxRightStickY_Operator();
+    	boolean overRideButton = Robot.oi.getOperatorOverride_Driver();
     	//calling to the button as well as the joystick
     	
     	
-    	if(overRideButton == 1)
+    	if(overRideButton == true)
     	{
-    		
     		Robot.arm.setBrake(false);
-    		Robot.arm.overrideMove(overRideButton);	
+    		Robot.arm.overrideMove(overRideMoving);	
     	}
     	//Calling for the overridemove button from the subsystem and the value of the left joystick form OI. This is executed.
     }
@@ -43,10 +43,12 @@ public class ArmOverRide extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.arm.overrideStopped();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	Robot.arm.armInterrupted();
     }
 }

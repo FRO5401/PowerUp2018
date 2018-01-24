@@ -29,7 +29,7 @@ public class Arm extends Subsystem {
 	private boolean armPidEnabled;
 	
 	private int loopIndex;
-	private int setArrayPoint[] =  {0, 0 ,0 , 0};
+	private int setArrayPoint[] =  {12, 78 , 9 , 032};
 	
 	
 	public Arm(){
@@ -37,7 +37,7 @@ public class Arm extends Subsystem {
 		loopIndex = 0;
 		
 		//Object instantiation
-		armTalon = new TalonSRX(0);//TODO need to check on RoboRIO  //TODO Make this a constant ref to robot map, move other todo to robotmap
+		armTalon = new TalonSRX(RobotMap.ARM_TALON);//TODO need to check on RoboRIO  //TODO Make this a constant ref to robot map, move other todo to robotmap
 		armPot = new AnalogPotentiometer(RobotMap.ARM_POT_CHANNEL, RobotMap.ARM_RANGE, RobotMap.ARM_OFFSET);
 		
 		/******REPEAT THE FOLLOWING LINE TO MAKE SET POINTS*********/
@@ -75,9 +75,10 @@ public class Arm extends Subsystem {
     }
 	
 	public void setBrake(boolean brakeSet){
+		
+		brake.set(brakeSet);
 		//Controlled by either override or reaching end of PID setpoint
 		//Disabled once override is engaged
-		brake.set(brakeSet);
 	}
 	
 	public void setPoint(int setPointIndex){
@@ -105,10 +106,17 @@ public class Arm extends Subsystem {
 	}
 	
 	public void overrideMove(double operatorJoystick){
-		
+	
 		armTalon.set(ControlMode.PercentOutput, operatorJoystick);
 		//Like DriveBase, sends out a direction to move to speed controller
 
+	}
+	
+	public void overrideStopped(){
+		
+		armTalon.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Coast);
+		brake.set(true);
+		armPidEnabled = false;
 	}
 
     // Put methods for controlling this subsystem

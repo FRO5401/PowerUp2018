@@ -74,6 +74,7 @@ public class OI {
 	
 	/**Method Naming: 'read' = Analog; 'get' = Digital **/
 	
+	//Driver Controls
 	public double readXboxLeftX_Driver(){
 		return xboxController_Driver.getRawAxis(RobotMap.XBOX_AXIS_LEFT_X);
 	}
@@ -98,37 +99,46 @@ public class OI {
 		return xboxController_Driver.getRawButton(9);
 	}
 	
-	public boolean getDriveInvertButton_Driver() {
-		return xboxController_Driver.getRawButton(2);
-	}
-	
 	//Operator Arm Buttons
 	
 	public int getArmButtons(){
 		
-		if (xboxController_Operator.getRawButton(1));
+		if (xboxController_Operator.getRawButton(6))
 		{
-		return 0;
+		return RobotMap.SETPOINT_HIGH;
 		}
-		if (xboxController_Operator.getRawButton(2));
+		
+		if (xboxController_Operator.getRawButton(2))
 		{
-		return 1;
+		return RobotMap.SETPOINT_PORTAL;
 		}
-		if (xboxController_Operator.getRawButton(3));
+		
+		if (xboxController_Operator.getRawButton(3))
 		{
-		return 2;
+		return RobotMap.SETPOINT_SWITCH;
 		}
-		if (xboxController_Operator.getRawButton(4));
+		
+		if (xboxController_Operator.getRawButton(1))
 		{
-		return 3;
+		return RobotMap.SETPOINT_GROUND;
 		}
-		if (xboxController_Operator.getRawButton(5));
+		
+		if (xboxController_Operator.getRawButton(5))
 		{
-		return 4;
+		return RobotMap.SETPOINT_SCALE;
 		}
 		return -1;
 	}
 	
+	public boolean getOperatorOverride_Driver() {
+		return xboxController_Operator.getRawButton(7);
+	}
+	
+	public double getXboxRightStickY_Operator(){
+		return xboxController_Operator.getRawAxis(RobotMap.XBOX_AXIS_RIGHT_Y);
+	}
+	
+	/*
 	//For GearMechanism
 	public int getXboxRightStickY_Driver(){ //TODO remove
 		double value = xboxController_Driver.getRawAxis(RobotMap.XBOX_AXIS_RIGHT_Y);
@@ -173,4 +183,5 @@ public class OI {
 	public boolean getXboxStart_Driver(){
 		return xboxController_Driver.getRawButton(8);
 	}
+	*/
 }
