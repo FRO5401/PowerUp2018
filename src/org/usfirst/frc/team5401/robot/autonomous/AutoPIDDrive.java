@@ -10,11 +10,15 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  */
 public class AutoPIDDrive extends Command {
-
-    public AutoPIDDrive() {
+	
+	double distance;
+	
+    public AutoPIDDrive(double desiredDistance) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.drivebase);
+    	
+    	distance = desiredDistance;
     }
 
     // Called just before this Command runs the first time
@@ -22,7 +26,7 @@ public class AutoPIDDrive extends Command {
     	Robot.drivebase.shiftGearHighToLow();
     	Robot.drivebase.encoderReset();
     	
-    	double distance = SmartDashboard.getNumber("DriveStraight Distance", 0);
+    	//double distance = SmartDashboard.getNumber("DriveStraight Distance", 0);
     	Robot.drivebase.setSetpoint(distance);
     	Robot.drivebase.enablePID();
     }
