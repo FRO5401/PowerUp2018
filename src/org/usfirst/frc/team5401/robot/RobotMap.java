@@ -14,6 +14,7 @@ public class RobotMap {
 	public static final double LOW_GEAR_RIGHT_DPP = .15345;
 	public static final double HIGH_GEAR_LEFT_DPP = 0;
 	public static final double HIGH_GEAR_RIGHT_DPP = 0;
+	public static final double PID_ABSOLUTE_TOLERANCE = .5; //threshold
 	
 	//This is for XboxMove
 	public static final double MINIMUM_VELOCITY_FOR_HIGH_GEAR = 0; //Experimentally Determined, REMEMBER inches per second
