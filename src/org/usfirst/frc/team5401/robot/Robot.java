@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc.team5401.robot.autonomous.*;
+import org.usfirst.frc.team5401.robot.autonomous.AutoDrive;
 import org.usfirst.frc.team5401.robot.subsystems.*;
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -47,13 +47,6 @@ public class Robot extends IterativeRobot {
 		//chooser.addDefault("Default Auto", new ExampleCommand());
 		chooser.addDefault("Do Nothing", new AutoDrive(0 , 0));
 		chooser.addObject("Drive Straight", new AutoDrive(55, .5));
-		chooser.addObject("Auto Center Switch", new AutoCenterSwitch());
-		chooser.addObject("Auto Left Switch", new AutoLeftSwitch());
-		chooser.addObject("Auto Right Switch", new AutoRightSwitch());
-		chooser.addObject("Auto Scale Center", new AutoScaleCenter());
-		chooser.addObject("Auto Scale Left", new AutoScaleLeft());
-		chooser.addObject("Auto Right Right", new AutoScaleRight());
-		
 		SmartDashboard.putData("Auto mode", chooser);
 	}
 
