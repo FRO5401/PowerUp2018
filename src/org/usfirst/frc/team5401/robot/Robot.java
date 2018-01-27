@@ -1,5 +1,5 @@
 package org.usfirst.frc.team5401.robot;
-//import org.usfirst.frc.team5401.robot.autonomous.*;
+import org.usfirst.frc.team5401.robot.autonomous.*;
 import edu.wpi.first.wpilibj.IterativeRobot;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -47,6 +47,11 @@ public class Robot extends IterativeRobot {
 		//chooser.addDefault("Default Auto", new ExampleCommand());
 		chooser.addDefault("Do Nothing", new AutoDrive(0 , 0));
 		chooser.addObject("Drive Straight", new AutoDrive(55, .5));
+		chooser.addObject("AutoCenterSwitch", new AutoCenterSwitch());
+		chooser.addObject("AutoLeftSwitch", new AutoLeftSwitch());
+		chooser.addObject("AutoRightSwitch", new AutoRightSwitch());
+		chooser.addObject("AutoScaleLeft", new AutoScaleLeft());
+		chooser.addObject("AutoScaleRight", new AutoScaleRight());
 		SmartDashboard.putData("Auto mode", chooser);
 	}
 

@@ -10,7 +10,8 @@ public class AutoScaleRight extends CommandGroup {
 
     public AutoScaleRight() {
     	//Start at Auto Position #6
-    	String gameData = DriverStation.getInstance().getGameSpecificMessage();
+    	//The following is a ternary operator, which is similar to a condensed if else statement
+    	String gameData = (DriverStation.getInstance().getGameSpecificMessage() == null) ? "X" : DriverStation.getInstance().getGameSpecificMessage();
     	if(gameData.charAt(1) == 'L')
     	{ 
     	//This will be putting block on left side (Closer to Left)

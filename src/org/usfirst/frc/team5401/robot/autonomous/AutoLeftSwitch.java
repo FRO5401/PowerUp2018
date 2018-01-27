@@ -9,7 +9,8 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class AutoLeftSwitch extends CommandGroup {
 
     public AutoLeftSwitch() {
-    	String gameData = DriverStation.getInstance().getGameSpecificMessage();
+    	//The following is a ternary operator, which is similar to a condensed if else statement
+    	String gameData = (DriverStation.getInstance().getGameSpecificMessage() == null) ? "X" : DriverStation.getInstance().getGameSpecificMessage();
     	if(gameData.charAt(0) == 'L')
     	{
     	//Start at Auto Position #2. Drive Forward 140 inches, place block on switch

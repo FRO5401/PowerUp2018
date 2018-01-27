@@ -9,7 +9,10 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class AutoCenterSwitch extends CommandGroup {
 
     public AutoCenterSwitch() {
-    	String gameData = DriverStation.getInstance().getGameSpecificMessage();
+    	//The following is a ternary operator, which is similar to a condensed if else statement
+    	String gameData = (DriverStation.getInstance().getGameSpecificMessage() == null) ? "X" : DriverStation.getInstance().getGameSpecificMessage();
+    	
+    	
     	if(gameData.charAt(0) == 'L')
     	{
     	//Start at Auto Position #3. Drive Forward 55 inches
@@ -21,7 +24,7 @@ public class AutoCenterSwitch extends CommandGroup {
     		addSequential(new AutoDrive(70, 1));
     		//addSequential(new xxxx());
     	}
-    	else 
+    	else if(gameData.charAt(0) == 'R')
     	{    	
     	//Start at Auto Position #3. Drive Forward 55 inches
     	//This will be putting block the right side
@@ -31,6 +34,10 @@ public class AutoCenterSwitch extends CommandGroup {
     		addSequential(new AutoTurnAngle(-90));
     		addSequential(new AutoDrive(70, 1));
     		//addSequential(new xxxx());
+    	}
+    	else if(gameData.charAt(0) == 'X')
+    	{
+    		
     	}
     }
 }
