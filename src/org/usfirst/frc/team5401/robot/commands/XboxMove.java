@@ -33,7 +33,7 @@ public class XboxMove extends Command {
     protected void execute() {
 //    	double angle = Robot.drivebase.getGyroAngle();
     	
-    	double  slew      = Robot.oi.readXboxLeftX_Driver();
+    	double  slew      = Robot.oi.readXboxLeftX_Driver() * -1;
 
     	double 	throttle  = Robot.oi.readRightTrigger_Driver();
     	double 	reverse   = Robot.oi.readLeftTrigger_Driver();
