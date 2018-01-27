@@ -10,8 +10,8 @@ public class RobotMap {
 	
 	//Global Constants that are not locations
 	//This is for DriveBase
-	public static final double LOW_GEAR_LEFT_DPP = 0;
-	public static final double LOW_GEAR_RIGHT_DPP = 0;
+	public static final double LOW_GEAR_LEFT_DPP = -.149926;
+	public static final double LOW_GEAR_RIGHT_DPP = .15345;
 	public static final double HIGH_GEAR_LEFT_DPP = 0;
 	public static final double HIGH_GEAR_RIGHT_DPP = 0;
 	

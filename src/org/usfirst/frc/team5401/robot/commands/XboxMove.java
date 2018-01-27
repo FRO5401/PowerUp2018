@@ -13,8 +13,6 @@ public class XboxMove extends Command {
 	double velocitySample1;
 	double velocitySample2;
 
-	//1/23/17 1/23/17 NOT NEEDED because the time for acceleration equation is no longer necessary
-	//double deltaTime;
 	
 	public XboxMove() {
 		velocitySample1 = 0;
@@ -33,7 +31,7 @@ public class XboxMove extends Command {
     protected void execute() {
 //    	double angle = Robot.drivebase.getGyroAngle();
     	
-    	double  slew      = Robot.oi.readXboxLeftX_Driver() * -1;
+    	double  slew      = Robot.oi.readXboxLeftX_Driver();
 
     	double 	throttle  = Robot.oi.readRightTrigger_Driver();
     	double 	reverse   = Robot.oi.readLeftTrigger_Driver();
@@ -44,10 +42,6 @@ public class XboxMove extends Command {
     	
     	boolean gearShiftLow  = Robot.oi.getXboxBack_Driver();
     	boolean gearShiftHigh = Robot.oi.getXboxStart_Driver();
-    	
-    	System.out.println("Throttle " + throttle + " ");
-    	System.out.println("Reverse " + reverse + " ");
-    	System.out.println("Turn " + turn + " ");
     	
     	//Manual Gear Shift
 /*    	if (gearShiftHigh){
@@ -76,22 +70,12 @@ public class XboxMove extends Command {
     			Robot.drivebase.shiftGearHighToLow();
     		}
 
-    		//Alternative Downshift Due to release in Thottle
-    		//if(Math.abs(thottle) <= 0 + RobotMap.DRIVE_THRESHHOLD) {
-    		//	Robot.drivebase.shiftGearHighToLow();
-    		//}
 */    		
     	//Gear Shift Done
     	
 
     	//Driving Code
     	double right = 0, left = 0, sensitivity;
-    	/*
-    	System.out.println("LEFT STICK X: " + slew + "\n"
-    					 + "RIGHT TRIGGER: " + throttle + "\n"
-    					 + "LEFT TRIGGER: " + reverse + "\n"
-    					 + "BRAKE: " + brake);
-    	*/
     	
     	if (precision) { //Sets drive precision based on RobotMap and Precision Mode
     		sensitivity	=	RobotMap.DRIVE_SENSITIVITY_PRECISE;
@@ -122,9 +106,6 @@ public class XboxMove extends Command {
     			right = RobotMap.DRIVE_SPIN_SENSITIVITY * slew * -1;
     		}
     	}
-    	
-    	System.out.println("LEFT: " + left);
-    	System.out.println("RIGHT: " + right);
     	
     	Robot.drivebase.drive(left, right);
     
