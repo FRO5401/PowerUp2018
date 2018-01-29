@@ -8,10 +8,11 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
  */
 public class Wrist extends Subsystem {
 
-	private DoubleSolenoid wristMover;
+	private DoubleSolenoid wristMove1;
+	private DoubleSolenoid wristMove2;
 
 	public Wrist(){
-		wristMover = new DoubleSolenoid(RobotMap.WRIST_MOVER_FWD_CHANNEL,RobotMap.WRIST_MOVER_BACK_CHANNEL); 
+		wristMove1 = new DoubleSolenoid(RobotMap.WRIST_MOVER_FWD_CHANNEL,RobotMap.WRIST_MOVER_BACK_CHANNEL); 
 	}
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
