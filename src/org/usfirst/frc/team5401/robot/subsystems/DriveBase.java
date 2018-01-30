@@ -37,7 +37,6 @@ public class DriveBase extends PIDSubsystem {
 	
 	public DriveBase(){
 		super(0,0,0);
-		setAbsoluteTolerance(.5);
 		getPIDController().setContinuous(false);
 		
 		leftDrive1   = new VictorSP(RobotMap.DRIVE_LEFT_MOTOR_1);
@@ -148,6 +147,7 @@ public class DriveBase extends PIDSubsystem {
     	SmartDashboard.putNumber("Left Enc Adj", leftDistance);
     	SmartDashboard.putNumber("Right Enc Adj", rightDistance);
     	double encoderDistance = (leftDistance + rightDistance)/2;
+    	SmartDashboard.putNumber("Mean Enc Adj", encoderDistance);
     	return encoderDistance;
     }
     
