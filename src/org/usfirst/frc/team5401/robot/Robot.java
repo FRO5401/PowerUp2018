@@ -19,7 +19,7 @@ import org.usfirst.frc.team5401.robot.subsystems.*;
 public class Robot extends IterativeRobot {
 
 	//OI has to be last
-	public static Arm arm;
+	public static ArmWrist armwrist;
 	public static Climber climber;
 	public static DriveBase drivebase;
 	public static RollerClaw rollerclaw;
@@ -36,7 +36,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		//OI has to be last
-		arm = new Arm();
+		armwrist = new ArmWrist();
 		climber = new Climber();
 		drivebase = new DriveBase();
 		rollerclaw = new RollerClaw();

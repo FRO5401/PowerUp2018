@@ -102,6 +102,47 @@ public class OI {
 		return xboxController_Driver.getRawButton(2);
 	}
 	
+	public int getWristState(){
+		int POV = xboxController_Operator.getPOV();//gets the POV of the D-pad on the Operator Controller, an unpressed D-pad is -1, otherwise its the angle at which it is pressed
+		//Use specific values, not inequalities
+		if (POV == 0 || POV == 45 || POV == 315){
+			//Possible SmartDashboard values?
+			return 1;	//Up
+		}
+		else if (POV == 180 || POV == 225 || POV == 135){
+			//Possible SmartDashboard values?
+			return -1; 	//Down
+		}
+		else
+		{
+			return 0; 	//not pressed/error or incorrect section is pressed
+						//Does nothing
+		}
+	}
+
+	public int getArmButtons(){
+			int armPosDesired;
+		if (xboxController_Operator.getRawButton(RobotMap.XBOX_BUTTON_A_OPERATOR)){
+			 armPosDesired = 0;
+		}
+		else if (xboxController_Operator.getRawButton(RobotMap.XBOX_BUTTON_B_OPERATOR)){
+			armPosDesired = 1;
+		}
+		else if (xboxController_Operator.getRawButton(RobotMap.XBOX_BUTTON_X_OPERATOR)){
+			armPosDesired = 2;
+		}
+		else if (xboxController_Operator.getRawButton(RobotMap.XBOX_BUTTON_Y_OPERATOR)){
+			armPosDesired = 3;
+		}
+		else if (xboxController_Operator.getRawButton(RobotMap.XBOX_BUTTON_LEFT_BUMPER_OPERATOR)){
+			armPosDesired = 4;
+		}
+		else {
+			armPosDesired = -1;
+		}
+			return armPosDesired;
+		}
+	
 	//For GearMechanism
 	public int getXboxRightStickY_Driver(){ //TODO remove
 		double value = xboxController_Driver.getRawAxis(RobotMap.XBOX_AXIS_RIGHT_Y);
