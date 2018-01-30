@@ -10,7 +10,7 @@ public class AutoLeftSwitch extends CommandGroup {
 
     public AutoLeftSwitch() {
     	//The following is a ternary operator, which is similar to a condensed if else statement
-    	String gameData = (DriverStation.getInstance().getGameSpecificMessage() == null) ? "XXX" : DriverStation.getInstance().getGameSpecificMessage();
+    	String gameData = (DriverStation.getInstance().getGameSpecificMessage() == null) ? "X" : DriverStation.getInstance().getGameSpecificMessage();
     	if(gameData.charAt(0) == 'L')
     	{
     	//Start at Auto Position #2. Drive Forward 140 inches, place block on switch

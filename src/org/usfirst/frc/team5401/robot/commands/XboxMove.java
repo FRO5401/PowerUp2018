@@ -43,9 +43,6 @@ public class XboxMove extends Command {
     	boolean gearShiftLow  = Robot.oi.getXboxBack_Driver();
     	boolean gearShiftHigh = Robot.oi.getXboxStart_Driver();
     	
-    	
-    	System.out.println("Throttle" + throttle);
-    	System.out.println("Reverse" + reverse);
     	//Manual Gear Shift
 /*    	if (gearShiftHigh){
     		Robot.drivebase.shiftGearLowToHigh();;
