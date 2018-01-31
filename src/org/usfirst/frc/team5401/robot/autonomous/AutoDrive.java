@@ -13,8 +13,10 @@ import org.usfirst.frc.team5401.robot.commands.XboxMove;
 
 
 /**
- * This command is also used as a "BaselineOnly" command 
+ * This command is also used as a "BaselineOnly" command
+ * @deprecated use AutoPIDDrive
  */
+@Deprecated
 public class AutoDrive extends Command {
 
 	private double desiredDistance;
