@@ -24,7 +24,7 @@ public class WristMove extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	wristChangePoint = Robot.oi.getWristState();
+    	wristChangePoint = Robot.oi.getDPad_Operator();
     	Robot.armwrist.wristUpDown(wristChangePoint);
     }
 

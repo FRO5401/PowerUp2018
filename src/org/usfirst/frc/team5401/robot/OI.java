@@ -87,22 +87,22 @@ public class OI {
 	}
 	
 	public boolean getPrecision_Driver(){
-		return xboxController_Driver.getRawButton(5);
+		return xboxController_Driver.getRawButton(RobotMap.XBOX_BUTTON_LEFT_BUMPER_DRIVER);
 	}
 	
 	public boolean getBrake_Driver(){
-		return xboxController_Driver.getRawButton(6);
+		return xboxController_Driver.getRawButton(RobotMap.XBOX_BUTTON_RIGHT_BUMPER_DRIVER);
 	}
 	
 	public boolean getTurnButton_Driver(){
-		return xboxController_Driver.getRawButton(9);
+		return xboxController_Driver.getRawButton(RobotMap.XBOX_BUTTON_L3_DRIVER);
 	}
 	
 	public boolean getDriveInvertButton_Driver() {
-		return xboxController_Driver.getRawButton(2);
+		return xboxController_Driver.getRawButton(RobotMap.XBOX_BUTTON_B_DRIVER);
 	}
 	
-	public int getWristState(){
+	public int getDPad_Operator(){
 		int POV = xboxController_Operator.getPOV();//gets the POV of the D-pad on the Operator Controller, an unpressed D-pad is -1, otherwise its the angle at which it is pressed
 		//Use specific values, not inequalities
 		if (POV == 0 || POV == 45 || POV == 315){
@@ -183,11 +183,11 @@ public class OI {
 	
 	//Gear Shift to Low
 	public boolean getXboxBack_Driver(){
-		return xboxController_Driver.getRawButton(7);
+		return xboxController_Driver.getRawButton(RobotMap.XBOX_BUTTON_BACK_DRIVER);
 	}
 	
 	//Gear Shift to High
 	public boolean getXboxStart_Driver(){
-		return xboxController_Driver.getRawButton(8);
+		return xboxController_Driver.getRawButton(RobotMap.XBOX_BUTTON_START_DRIVER);
 	}
 }
