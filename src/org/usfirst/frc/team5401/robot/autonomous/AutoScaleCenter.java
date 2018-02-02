@@ -15,21 +15,21 @@ public class AutoScaleCenter extends CommandGroup {
     	if(gameData.charAt(1) == 'L')
     	{ 
     	//This will be putting block on left side (Closer to Left)
-    		addSequential(new AutoDrive(70, 1));
+    		addSequential(new AutoPIDDrive(70));
     		addSequential(new AutoTurnAngle(-90));
-    		addSequential(new AutoDrive(145, 1));
+    		addSequential(new AutoPIDDrive(145));
     		addSequential(new AutoTurnAngle(90));
-    		addSequential(new AutoDrive(261.155, 1));
+    		addSequential(new AutoPIDDrive(261.155));
     		//addSequential(new xxxx());
     	}
     	else 
     	{    	
     	//This will be putting block the right side
-    		addSequential(new AutoDrive(70, 1));
+    		addSequential(new AutoPIDDrive(70));
     		addSequential(new AutoTurnAngle(90));
-    		addSequential(new AutoDrive(150, 1));
+    		addSequential(new AutoPIDDrive(150));
     		addSequential(new AutoTurnAngle(-90));
-    		addSequential(new AutoDrive(261.155, 1));
+    		addSequential(new AutoPIDDrive(261.155));
     		//addSequential(new xxxx());
     	}
     }

@@ -14,7 +14,7 @@ public class AutoLeftSwitch extends CommandGroup {
     	if(gameData.charAt(0) == 'L')
     	{
     	//Start at Auto Position #2. Drive Forward 140 inches, place block on switch
-    		addSequential(new AutoDrive(140.595, 1));
+    		addSequential(new AutoPIDDrive(140.595));
     	  //addSequential(new xxxx());
     
     	}
@@ -22,7 +22,7 @@ public class AutoLeftSwitch extends CommandGroup {
     	{    	
     	//Start at Auto Position #2. Drive Forward 55 inches, turn right 
     	//(Figure out specifics later)
-    		addSequential(new AutoDrive(55, 1));
+    		addSequential(new AutoPIDDrive(55));
     		addSequential(new AutoTurnAngle(90));
     		//addSequential(new xxxx());
     	}

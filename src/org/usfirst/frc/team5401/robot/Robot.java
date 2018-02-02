@@ -45,7 +45,7 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		
 		//chooser.addDefault("Default Auto", new ExampleCommand());
-		chooser.addDefault("Do Nothing", new AutoDrive(0 , 0));
+		chooser.addDefault("Do Nothing", new AutoPIDDrive(0));
 		//chooser.addObject("Drive Straight", new AutoDrive(55, .5)); //non pid
 		chooser.addObject("Baseline Only", new AutoPIDDrive(97));
 		chooser.addObject("AutoCenterSwitch", new AutoCenterSwitch());
@@ -53,6 +53,7 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("AutoRightSwitch", new AutoRightSwitch());
 		chooser.addObject("AutoScaleLeft", new AutoScaleLeft());
 		chooser.addObject("AutoScaleRight", new AutoScaleRight());
+		chooser.addObject("AutoTurnTest", new AutoTurnAngle(360));
 		SmartDashboard.putData("Auto mode", chooser);
 	}
 
