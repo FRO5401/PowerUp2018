@@ -37,8 +37,7 @@ public class AutoPIDDrive extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        if (Math.abs(Robot.drivebase.getSetpoint() - Robot.drivebase.getPosition()) < RobotMap.PID_ABSOLUTE_TOLERANCE) {
-        	Robot.drivebase.disablePID();
+        if (Math.abs(Robot.drivebase.getSetpoint() - Robot.drivebase.getEncoderDistance()) < RobotMap.PID_ABSOLUTE_TOLERANCE) {
         	return true;
         } else {
         	return false;

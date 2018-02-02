@@ -5,9 +5,9 @@ import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 
+import edu.wpi.first.wpilibj.PIDController;
+import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.SerialPort;
-import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.I2C;
 import com.kauailabs.navx.frc.AHRS;
 
@@ -18,7 +18,7 @@ import org.usfirst.frc.team5401.robot.commands.XboxMove;
 /**
  *
  */
-public class DriveBase extends PIDSubsystem {
+public class DriveBase extends Subsystem {
 	//All constants are now in RobotMap
 	
 	private VictorSP leftDrive1;
@@ -26,6 +26,11 @@ public class DriveBase extends PIDSubsystem {
 	private VictorSP leftDrive2;
 	private VictorSP rightDrive2;
 
+	PIDController leftPID1;
+	PIDController leftPID2;
+	PIDController rightPID1;
+	PIDController rightPID2;
+	
 //	private DoubleSolenoid gearShifter;
 	
 	private Encoder leftEncoder;
@@ -35,18 +40,26 @@ public class DriveBase extends PIDSubsystem {
 	double p, i, d;
 	
 	public DriveBase(){
-		super(0,0,0);
-		getPIDController().setContinuous(false);
 		
-		leftDrive1   = new VictorSP(RobotMap.DRIVE_LEFT_MOTOR_1);
-		rightDrive1  = new VictorSP(RobotMap.DRIVE_RIGHT_MOTOR_1);
-		leftDrive2  = new VictorSP(RobotMap.DRIVE_LEFT_MOTOR_2);
-		rightDrive2 = new VictorSP(RobotMap.DRIVE_RIGHT_MOTOR_2);
+		leftDrive1   	= new VictorSP(RobotMap.DRIVE_LEFT_MOTOR_1);
+		leftDrive2  	= new VictorSP(RobotMap.DRIVE_LEFT_MOTOR_2);
+		rightDrive1  	= new VictorSP(RobotMap.DRIVE_RIGHT_MOTOR_1);
+		rightDrive2 	= new VictorSP(RobotMap.DRIVE_RIGHT_MOTOR_2);
+		
+		leftPID1 	= new PIDController(RobotMap.DRIVE_P,RobotMap.DRIVE_I,RobotMap.DRIVE_D, leftEncoder, leftDrive1);
+		leftPID2 	= new PIDController(RobotMap.DRIVE_P,RobotMap.DRIVE_I,RobotMap.DRIVE_D, leftEncoder, leftDrive2);		
+		rightPID1 	= new PIDController(RobotMap.DRIVE_P,RobotMap.DRIVE_I,RobotMap.DRIVE_D, rightEncoder, rightDrive1);
+		rightPID2 	= new PIDController(RobotMap.DRIVE_P,RobotMap.DRIVE_I,RobotMap.DRIVE_D, rightEncoder, rightDrive2);
+		
 //		gearShifter = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.DRIVE_SHIFT_IN, RobotMap.DRIVE_SHIFT_OUT);
 		leftEncoder = new Encoder(RobotMap.DRIVE_ENC_LEFT_A, RobotMap.DRIVE_ENC_LEFT_B, true, Encoder.EncodingType.k4X);
 		//																					vvv if this was false, DPP doesn't have to be negative
 		rightEncoder = new Encoder(RobotMap.DRIVE_ENC_RIGHT_A, RobotMap.DRIVE_ENC_RIGHT_B, true, Encoder.EncodingType.k4X);
-
+		
+		leftEncoder.setPIDSourceType(PIDSourceType.kDisplacement);
+		rightEncoder.setPIDSourceType(PIDSourceType.kDisplacement);
+		
+		
 		navxGyro = new AHRS(I2C.Port.kMXP);
 		navxGyro.reset();
 		
@@ -60,10 +73,6 @@ public class DriveBase extends PIDSubsystem {
 		SmartDashboard.putNumber("Left Enc Adj" , leftEncoder.getDistance());
 		SmartDashboard.putNumber("Right Enc Adj", rightEncoder.getDistance());
 		SmartDashboard.putNumber("Mean Enc Adj", getEncoderDistance());
-
-		p = RobotMap.DRIVE_P;
-		i = RobotMap.DRIVE_I;
-		d = RobotMap.DRIVE_D;
 		
 	}
 	
@@ -171,12 +180,17 @@ public class DriveBase extends PIDSubsystem {
     }
     
     public void enablePID () {
-    	getPIDController().setPID(p, i, d);
-    	enable();
+    	leftPID1.enable();
+    	leftPID2.enable();
+    	rightPID1.enable();
+    	rightPID2.enable();
     }
     
     public void disablePID () {
-    	disable();
+    	leftPID1.disable();
+    	leftPID2.disable();
+    	rightPID1.disable();
+    	rightPID2.disable();
     }
     
     public double returnPIDInput () {
@@ -191,5 +205,19 @@ public class DriveBase extends PIDSubsystem {
     	// e.g. yourMotor.set(output);
     	SmartDashboard.putNumber("PIDOutput", output);
     	drive(output, output);
+    }
+    
+    public void setSetpoint(double setpoint)	{
+    	leftPID1.setSetpoint(setpoint);
+    	leftPID2.setSetpoint(setpoint);
+    	rightPID1.setSetpoint(setpoint);
+    	rightPID2.setSetpoint(setpoint);
+    }
+    
+    public double getSetpoint()	{
+    	//setpoint is only set with the above function setSetpoint()
+    	//So all set points are the same so only one setpoint needs to be sent
+    	double setpoint = leftPID1.getSetpoint();
+    	return setpoint;
     }
 }
