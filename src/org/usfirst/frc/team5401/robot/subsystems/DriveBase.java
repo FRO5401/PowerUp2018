@@ -60,18 +60,11 @@ public class DriveBase extends PIDSubsystem {
 		SmartDashboard.putNumber("Left Enc Adj" , leftEncoder.getDistance());
 		SmartDashboard.putNumber("Right Enc Adj", rightEncoder.getDistance());
 		SmartDashboard.putNumber("Mean Enc Adj", getEncoderDistance());
-		
-		//p = SmartDashboard.getNumber("DriveStraight P", 0);
-		//i = SmartDashboard.getNumber("DriveStraight I", 0);
-		//d = SmartDashboard.getNumber("DriveStraight D", 0);
+
 		p = RobotMap.DRIVE_P;
 		i = RobotMap.DRIVE_I;
 		d = RobotMap.DRIVE_D;
 		
-		SmartDashboard.putNumber("DriveStraight Distance", 0);
-		SmartDashboard.putNumber("DriveStraight P", p);
-		SmartDashboard.putNumber("DriveStraight I", i);
-		SmartDashboard.putNumber("DriveStraight D", d);
 	}
 	
     public void initDefaultCommand() {
@@ -178,9 +171,6 @@ public class DriveBase extends PIDSubsystem {
     }
     
     public void enablePID () {
-    	double p = SmartDashboard.getNumber("DriveStraight P", 0);
-    	double i = SmartDashboard.getNumber("DriveStraight I", 0);
-    	double d = SmartDashboard.getNumber("DriveStraight D", 0);
     	getPIDController().setPID(p, i, d);
     	enable();
     }
