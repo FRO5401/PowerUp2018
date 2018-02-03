@@ -54,7 +54,7 @@ public class AutoTurnAngle extends Command {
     			Robot.drivebase.drive(RobotMap.AUTO_TURN_SPEED * RobotMap.AUTO_TURN_PRECISION, -RobotMap.AUTO_TURN_SPEED * RobotMap.AUTO_TURN_PRECISION);
     			finished = false;
     		} else if (desiredTurnAngleRelativeToInitAngle < 0 && (currentAngleRelativeToInitAngle > RobotMap.ANGLE_THRESHOLD - Math.abs(desiredTurnAngleRelativeToInitAngle))) {
-    			Robot.drivebase.drive(-RobotMap.AUTO_TURN_SPEED * RobotMap.ANGLE_THRESHOLD, RobotMap.AUTO_TURN_SPEED * RobotMap.ANGLE_THRESHOLD);
+    			Robot.drivebase.drive(-RobotMap.AUTO_TURN_SPEED * RobotMap.AUTO_TURN_PRECISION, RobotMap.AUTO_TURN_SPEED * RobotMap.AUTO_TURN_PRECISION);
     			finished = false;
     		} else { //error or exactly 0
     			//Finished 
