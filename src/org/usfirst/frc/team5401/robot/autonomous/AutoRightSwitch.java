@@ -12,15 +12,16 @@ public class AutoRightSwitch extends CommandGroup {
     	String gameData = DriverStation.getInstance().getGameSpecificMessage();
     	if(gameData.charAt(0) == 'R')
     	{
-    	//Start at Auto Position #5. Drive Forward 140 inches, place block on switch
+    	//Start at Auto Position #5 
+    	//Drive to right side, place block on switch
     		addSequential(new AutoDrive(140.595, 1));
     		//addSequential(new xxxx());
     
     	}
     	else 
     	{    	
-    	//Start at Auto Position #5. Drive Forward 55 inches, turn left 
-    	//(Figure out specifics later)
+    	//Start at Auto Position #5
+    	//Drive Forward 55 inches, turn left. Do not want to interfere 
     		addSequential(new AutoDrive(55, 1));
     		addSequential(new AutoTurnAngle(-90));
     		//addSequential(new xxxx());
