@@ -20,6 +20,11 @@ public class RobotMap {
 	public static final double DRIVE_I = 0;
 	public static final double DRIVE_D = 0;
 	
+	public static final double TURN_P = 0;
+	public static final double TURN_I = 0;
+	public static final double TURN_D = 0;
+	public static final double TURN_F = 0;
+	
 	//This is for XboxMove
 	public static final double MINIMUM_VELOCITY_FOR_HIGH_GEAR = 0; //Experimentally Determined, REMEMBER inches per second
 	public static final double MAXIMUM_VELOCITY_FOR_LOW_GEAR = 0;

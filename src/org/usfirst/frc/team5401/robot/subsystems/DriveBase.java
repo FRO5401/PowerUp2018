@@ -5,6 +5,8 @@ import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 
+import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.Encoder;
@@ -26,10 +28,18 @@ public class DriveBase extends Subsystem {
 	private VictorSP leftDrive2;
 	private VictorSP rightDrive2;
 
+	private SpeedControllerGroup leftDriveGroup;
+	private SpeedControllerGroup rightDriveGroup;
+	
+	private DifferentialDrive driveForAutoPIDTurn;
+	
 	private PIDController leftPID1;
 	private PIDController leftPID2;
 	private PIDController rightPID1;
 	private PIDController rightPID2;
+	
+	private PIDController leftTurnController;
+	private PIDController rightTurnController;
 	
 //	private DoubleSolenoid gearShifter;
 	
@@ -45,11 +55,17 @@ public class DriveBase extends Subsystem {
 		rightDrive1  	= new VictorSP(RobotMap.DRIVE_RIGHT_MOTOR_1);
 		rightDrive2 	= new VictorSP(RobotMap.DRIVE_RIGHT_MOTOR_2);
 		
+		leftDriveGroup = new SpeedControllerGroup(leftDrive1, leftDrive2);
+		rightDriveGroup = new SpeedControllerGroup(rightDrive1, rightDrive2);
+		
+		driveForAutoPIDTurn = new DifferentialDrive(leftDriveGroup, rightDriveGroup);
+		
 //		gearShifter = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.DRIVE_SHIFT_IN, RobotMap.DRIVE_SHIFT_OUT);
 		leftEncoder = new Encoder(RobotMap.DRIVE_ENC_LEFT_A, RobotMap.DRIVE_ENC_LEFT_B, true, Encoder.EncodingType.k4X);
 		//																					vvv if this was false, DPP doesn't have to be negative
 		rightEncoder = new Encoder(RobotMap.DRIVE_ENC_RIGHT_A, RobotMap.DRIVE_ENC_RIGHT_B, true, Encoder.EncodingType.k4X);
 		
+		//Jason - I think the following is unnecessary because the initEncoder method, which called in the encoder constructor sets the PIDSourceType to displacement
 		leftEncoder.setPIDSourceType(PIDSourceType.kDisplacement);
 		rightEncoder.setPIDSourceType(PIDSourceType.kDisplacement);
 		
@@ -58,9 +74,12 @@ public class DriveBase extends Subsystem {
 		rightPID1 	= new PIDController(RobotMap.DRIVE_P,RobotMap.DRIVE_I,RobotMap.DRIVE_D, rightEncoder, rightDrive1);
 		rightPID2 	= new PIDController(RobotMap.DRIVE_P,RobotMap.DRIVE_I,RobotMap.DRIVE_D, rightEncoder, rightDrive2);
 		
-		
 		navxGyro = new AHRS(I2C.Port.kMXP);
 		navxGyro.reset();
+
+		leftTurnController = new PIDController(RobotMap.TURN_P, RobotMap.TURN_I, RobotMap.TURN_D, RobotMap.TURN_F, navxGyro, leftDriveGroup);
+		rightTurnController = new PIDController(RobotMap.TURN_P, RobotMap.TURN_I, RobotMap.TURN_D, RobotMap.TURN_F, navxGyro, rightDriveGroup);
+		
 		
 		SmartDashboard.putNumber("navx Angle", 	getGyroAngle());
 		SmartDashboard.putNumber("navx Pitch", 	getGyroPitch());
@@ -188,42 +207,28 @@ public class DriveBase extends Subsystem {
     	return currentRoll;
     }
     
-    public void enablePID () {
+    public void enableDriveStraightPID () {
     	leftPID1.enable();
     	leftPID2.enable();
     	rightPID1.enable();
     	rightPID2.enable();
     }
     
-    public void disablePID () {
+    public void disableDriveStraightPID () {
     	leftPID1.disable();
     	leftPID2.disable();
     	rightPID1.disable();
     	rightPID2.disable();
     }
-    
-    public double returnPIDInput () {
-    	// Return your input value for the PID loop
-    	// e.g. a sensor, like a potentiometer
-    	// yourPot.getAverageVoltage() / kYourMaxVoltage;
-    	return getEncoderDistance(3);
-    }
-    
-    public void usePIDOutput (double output) {
-    	// Use output to drive your system, like a motor
-    	// e.g. yourMotor.set(output);
-    	SmartDashboard.putNumber("PIDOutput", output);
-    	drive(output, output);
-    }
-    
-    public void setSetpoint(double setpoint)	{
+
+    public void setDriveStraightSetpoint(double setpoint)	{
     	leftPID1.setSetpoint(setpoint);
     	leftPID2.setSetpoint(setpoint);
     	rightPID1.setSetpoint(-setpoint);
     	rightPID2.setSetpoint(-setpoint);
     }
     
-    public double getSetpoint(double leftOrRight)	{
+    public double getDriveStraightSetpoint(double leftOrRight)	{
     	//setpoint is only set with the above function setSetpoint()
     	//So all set points are the same so only one setpoint needs to be sent
     	double setpoint = 0;
