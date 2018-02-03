@@ -17,11 +17,11 @@ public class AutoCenterSwitch extends CommandGroup {
     	{
     	//Start at Auto Position #3. Drive Forward 55 inches
     	//This will be putting block on left side (Closer to Left)
-    		addSequential(new AutoPIDDrive(70));
+    		addSequential(new AutoPIDDrive(50));
     		addSequential(new AutoTurnAngle(-90));
-    		addSequential(new AutoPIDDrive(44));
+    		addSequential(new AutoPIDDrive(40));
     		addSequential(new AutoTurnAngle(90));
-    		addSequential(new AutoPIDDrive(70));
+    		addSequential(new AutoPIDDrive(45));
     		//addSequential(new xxxx());
     	}
     	else if(gameData.charAt(0) == 'R')

@@ -26,10 +26,10 @@ public class DriveBase extends Subsystem {
 	private VictorSP leftDrive2;
 	private VictorSP rightDrive2;
 
-	PIDController leftPID1;
-	PIDController leftPID2;
-	PIDController rightPID1;
-	PIDController rightPID2;
+	private PIDController leftPID1;
+	private PIDController leftPID2;
+	private PIDController rightPID1;
+	private PIDController rightPID2;
 	
 //	private DoubleSolenoid gearShifter;
 	
@@ -37,19 +37,13 @@ public class DriveBase extends Subsystem {
 	private Encoder rightEncoder;
 	private AHRS navxGyro;
 	
-	double p, i, d;
-	
+
 	public DriveBase(){
 		
 		leftDrive1   	= new VictorSP(RobotMap.DRIVE_LEFT_MOTOR_1);
 		leftDrive2  	= new VictorSP(RobotMap.DRIVE_LEFT_MOTOR_2);
 		rightDrive1  	= new VictorSP(RobotMap.DRIVE_RIGHT_MOTOR_1);
 		rightDrive2 	= new VictorSP(RobotMap.DRIVE_RIGHT_MOTOR_2);
-		
-		leftPID1 	= new PIDController(RobotMap.DRIVE_P,RobotMap.DRIVE_I,RobotMap.DRIVE_D, leftEncoder, leftDrive1);
-		leftPID2 	= new PIDController(RobotMap.DRIVE_P,RobotMap.DRIVE_I,RobotMap.DRIVE_D, leftEncoder, leftDrive2);		
-		rightPID1 	= new PIDController(RobotMap.DRIVE_P,RobotMap.DRIVE_I,RobotMap.DRIVE_D, rightEncoder, rightDrive1);
-		rightPID2 	= new PIDController(RobotMap.DRIVE_P,RobotMap.DRIVE_I,RobotMap.DRIVE_D, rightEncoder, rightDrive2);
 		
 //		gearShifter = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.DRIVE_SHIFT_IN, RobotMap.DRIVE_SHIFT_OUT);
 		leftEncoder = new Encoder(RobotMap.DRIVE_ENC_LEFT_A, RobotMap.DRIVE_ENC_LEFT_B, true, Encoder.EncodingType.k4X);
@@ -58,6 +52,11 @@ public class DriveBase extends Subsystem {
 		
 		leftEncoder.setPIDSourceType(PIDSourceType.kDisplacement);
 		rightEncoder.setPIDSourceType(PIDSourceType.kDisplacement);
+		
+		leftPID1 	= new PIDController(RobotMap.DRIVE_P,RobotMap.DRIVE_I,RobotMap.DRIVE_D, leftEncoder, leftDrive1);
+		leftPID2 	= new PIDController(RobotMap.DRIVE_P,RobotMap.DRIVE_I,RobotMap.DRIVE_D, leftEncoder, leftDrive2);		
+		rightPID1 	= new PIDController(RobotMap.DRIVE_P,RobotMap.DRIVE_I,RobotMap.DRIVE_D, rightEncoder, rightDrive1);
+		rightPID2 	= new PIDController(RobotMap.DRIVE_P,RobotMap.DRIVE_I,RobotMap.DRIVE_D, rightEncoder, rightDrive2);
 		
 		
 		navxGyro = new AHRS(I2C.Port.kMXP);
@@ -72,7 +71,7 @@ public class DriveBase extends Subsystem {
 		SmartDashboard.putNumber("Right Enc Raw", rightEncoder.get());
 		SmartDashboard.putNumber("Left Enc Adj" , leftEncoder.getDistance());
 		SmartDashboard.putNumber("Right Enc Adj", rightEncoder.getDistance());
-		SmartDashboard.putNumber("Mean Enc Adj", getEncoderDistance());
+		SmartDashboard.putNumber("Mean Enc Adj", getEncoderDistance(3));
 		
 	}
 	
@@ -96,8 +95,6 @@ public class DriveBase extends Subsystem {
 		SmartDashboard.putNumber("navx Angle", 	getGyroAngle());
 		SmartDashboard.putNumber("navx Pitch", 	getGyroPitch());
 		SmartDashboard.putNumber("navx Roll", 	getGyroRoll());
-		
-		System.out.println(getGyroAngle() + " " + getGyroPitch() + " " + getGyroRoll());
     }
 
     public void stop(){
@@ -141,7 +138,7 @@ public class DriveBase extends Subsystem {
     	rightEncoder.setDistancePerPulse(RobotMap.HIGH_GEAR_RIGHT_DPP);
     }
     
-    public double getEncoderDistance(){
+    public double getEncoderDistance(double encoderNumber){
     	double leftDistanceRaw = leftEncoder.get();
     	double rightDistanceRaw = rightEncoder.get();
     	SmartDashboard.putNumber("Left Enc Raw", leftDistanceRaw);
@@ -152,7 +149,19 @@ public class DriveBase extends Subsystem {
     	SmartDashboard.putNumber("Right Enc Adj", rightDistance);
     	double encoderDistance = (leftDistance + rightDistance)/2;
     	SmartDashboard.putNumber("Mean Enc Adj", encoderDistance);
-    	return encoderDistance;
+    	
+    	if(encoderNumber == 1)
+    	{
+    		return leftDistance;
+    	}
+    	else if(encoderNumber == 2)
+    	{
+    		return rightDistance;
+    	}
+    	else
+    	{
+    		return encoderDistance;
+    	}
     }
     
     public void encoderReset(){
@@ -197,7 +206,7 @@ public class DriveBase extends Subsystem {
     	// Return your input value for the PID loop
     	// e.g. a sensor, like a potentiometer
     	// yourPot.getAverageVoltage() / kYourMaxVoltage;
-    	return getEncoderDistance();
+    	return getEncoderDistance(3);
     }
     
     public void usePIDOutput (double output) {
@@ -210,14 +219,20 @@ public class DriveBase extends Subsystem {
     public void setSetpoint(double setpoint)	{
     	leftPID1.setSetpoint(setpoint);
     	leftPID2.setSetpoint(setpoint);
-    	rightPID1.setSetpoint(setpoint);
-    	rightPID2.setSetpoint(setpoint);
+    	rightPID1.setSetpoint(-setpoint);
+    	rightPID2.setSetpoint(-setpoint);
     }
     
-    public double getSetpoint()	{
+    public double getSetpoint(double leftOrRight)	{
     	//setpoint is only set with the above function setSetpoint()
     	//So all set points are the same so only one setpoint needs to be sent
-    	double setpoint = leftPID1.getSetpoint();
+    	double setpoint = 0;
+    	if(leftOrRight == 1){
+    		setpoint = leftPID1.getSetpoint();
+    	}
+    	else if(leftOrRight == 2){
+    		setpoint = rightPID1.getSetpoint();
+    	}
     	return setpoint;
     }
 }
