@@ -78,13 +78,10 @@ public class RobotMap {
 	 
 	//Motors
 		//Drive Motors
+	public static final int DRIVE_LEFT_MOTOR_1 	= 0;
 	public static final int DRIVE_RIGHT_MOTOR_1 = 0;
-	public static final int DRIVE_RIGHT_MOTOR_2 = 1;
-	public static final int DRIVE_RIGHT_MOTOR_3 = 2;
-	public static final int DRIVE_LEFT_MOTOR_1 	= 3;
-	public static final int DRIVE_LEFT_MOTOR_2 	= 4;
-	public static final int DRIVE_LEFT_MOTOR_3  = 5;
-	
+	public static final int DRIVE_LEFT_MOTOR_2 	= 0;
+	public static final int DRIVE_RIGHT_MOTOR_2 = 0;
 	
 	//PCM ID
 	public static final int PCM_ID 				= 0;
