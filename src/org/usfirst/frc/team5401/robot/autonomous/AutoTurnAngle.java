@@ -63,12 +63,13 @@ public class AutoTurnAngle extends Command {
     		}
     	currentAngleRelativeToInitAngle = Robot.drivebase.getGyroAngle() - initAngle;
     	}
-    	double angle = Robot.drivebase.getGyroAngle();
-    	SmartDashboard.putNumber("Relative to Inital Angle", currentAngleRelativeToInitAngle);
+
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
+    	double angle = Robot.drivebase.getGyroAngle();
+    	SmartDashboard.putNumber("Relative to Inital Angle", currentAngleRelativeToInitAngle);
         return finished;
     }
 
