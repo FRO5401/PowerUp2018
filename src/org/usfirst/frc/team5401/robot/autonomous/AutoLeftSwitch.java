@@ -22,7 +22,7 @@ public class AutoLeftSwitch extends CommandGroup {
     	//Start at Auto Position #2. Drive Forward 55 inches, turn right 
     	//(Figure out specifics later)
     		addSequential(new AutoDrive(55, 1));
-    		addSequential(new AutoTurnAngle(90, true, false));
+    		addSequential(new AutoTurnAngle(90));
     		//addSequential(new xxxx());
     	}
     }

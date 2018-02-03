@@ -15,9 +15,9 @@ public class AutoScaleCenter extends CommandGroup {
     	{ 
     	//This will be putting block on left side (Closer to Left)
     		addSequential(new AutoDrive(70, 1));
-    		addSequential(new AutoTurnAngle(-90, true, false));
+    		addSequential(new AutoTurnAngle(-90));
     		addSequential(new AutoDrive(145, 1));
-    		addSequential(new AutoTurnAngle(90, true, false));
+    		addSequential(new AutoTurnAngle(90));
     		addSequential(new AutoDrive(261.155, 1));
     		//addSequential(new xxxx());
     	}
@@ -25,9 +25,9 @@ public class AutoScaleCenter extends CommandGroup {
     	{    	
     	//This will be putting block the right side
     		addSequential(new AutoDrive(70, 1));
-    		addSequential(new AutoTurnAngle(90, true, false));
+    		addSequential(new AutoTurnAngle(90));
     		addSequential(new AutoDrive(150, 1));
-    		addSequential(new AutoTurnAngle(-90, true, false));
+    		addSequential(new AutoTurnAngle(-90));
     		addSequential(new AutoDrive(261.155, 1));
     		//addSequential(new xxxx());
     	}
