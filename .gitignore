@@ -62,3 +62,7 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 /bin/
+
+# Github Templates
+issues_template.md
+pull_request_template.md
