@@ -20,9 +20,9 @@ public class AutoCenterSwitch extends CommandGroup {
     		addSequential(new AutoPIDDrive(21));
     		addSequential(new AutoTurnAngle(-37));
     		//2/2/18 Was fine until next turn
-    		addSequential(new AutoPIDDrive(75));
+    		addSequential(new AutoPIDDrive(85));
     		addSequential(new AutoTurnAngle(37));
-    		addSequential(new AutoPIDDrive(24));
+    		addSequential(new AutoPIDDrive(20));
     		//Left Works as of 2/3/18
     		//addSequential(new xxxx());
     	}
@@ -32,7 +32,7 @@ public class AutoCenterSwitch extends CommandGroup {
     	//This will be putting block the right side
     		addSequential(new AutoPIDDrive(21));
     		addSequential(new AutoTurnAngle(37));
-    		addSequential(new AutoPIDDrive(75));
+    		addSequential(new AutoPIDDrive(85));
     		addSequential(new AutoTurnAngle(-37));
     		addSequential(new AutoPIDDrive(24));
     		//Right Works as of 2/3/18
