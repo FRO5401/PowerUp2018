@@ -48,8 +48,7 @@ public class DriveBase extends Subsystem {
 	private AHRS navxGyro;
 	
 
-	public DriveBase(){
-		
+	public DriveBase(){		
 		leftDrive1   	= new VictorSP(RobotMap.DRIVE_LEFT_MOTOR_1);
 		leftDrive2  	= new VictorSP(RobotMap.DRIVE_LEFT_MOTOR_2);
 		rightDrive1  	= new VictorSP(RobotMap.DRIVE_RIGHT_MOTOR_1);
@@ -61,6 +60,7 @@ public class DriveBase extends Subsystem {
 		driveForAutoPIDTurn = new DifferentialDrive(leftDriveGroup, rightDriveGroup);
 		
 //		gearShifter = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.DRIVE_SHIFT_IN, RobotMap.DRIVE_SHIFT_OUT);
+
 		leftEncoder = new Encoder(RobotMap.DRIVE_ENC_LEFT_A, RobotMap.DRIVE_ENC_LEFT_B, true, Encoder.EncodingType.k4X);
 		//																					vvv if this was false, DPP doesn't have to be negative
 		rightEncoder = new Encoder(RobotMap.DRIVE_ENC_RIGHT_A, RobotMap.DRIVE_ENC_RIGHT_B, true, Encoder.EncodingType.k4X);
