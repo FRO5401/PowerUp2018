@@ -31,8 +31,7 @@ public class DriveBase extends Subsystem {
 	private SpeedControllerGroup leftDriveGroup;
 	private SpeedControllerGroup rightDriveGroup;
 	
-	private DifferentialDrive driveForAutoPIDTurn;
-	
+
 	private PIDController leftPID1;
 	private PIDController leftPID2;
 	private PIDController rightPID1;
@@ -56,9 +55,7 @@ public class DriveBase extends Subsystem {
 		
 		leftDriveGroup = new SpeedControllerGroup(leftDrive1, leftDrive2);
 		rightDriveGroup = new SpeedControllerGroup(rightDrive1, rightDrive2);
-		
-		driveForAutoPIDTurn = new DifferentialDrive(leftDriveGroup, rightDriveGroup);
-		
+				
 //		gearShifter = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.DRIVE_SHIFT_IN, RobotMap.DRIVE_SHIFT_OUT);
 
 		leftEncoder = new Encoder(RobotMap.DRIVE_ENC_LEFT_A, RobotMap.DRIVE_ENC_LEFT_B, true, Encoder.EncodingType.k4X);
@@ -77,6 +74,7 @@ public class DriveBase extends Subsystem {
 		navxGyro = new AHRS(I2C.Port.kMXP);
 		navxGyro.reset();
 
+//		navxGyro.setPIDSourceType(PIDSourceType.kDisplacement);
 		leftTurnController = new PIDController(RobotMap.TURN_P, RobotMap.TURN_I, RobotMap.TURN_D, RobotMap.TURN_F, navxGyro, leftDriveGroup);
 		rightTurnController = new PIDController(RobotMap.TURN_P, RobotMap.TURN_I, RobotMap.TURN_D, RobotMap.TURN_F, navxGyro, rightDriveGroup);
 		
@@ -188,8 +186,12 @@ public class DriveBase extends Subsystem {
     	rightEncoder.reset();
     }
     
+    public void gyroReset(){
+    	navxGyro.reset();
+    }
     public double getGyroAngle() {
     	double currentAngle = navxGyro.getAngle();
+    	SmartDashboard.putBoolean("NavX Connection", navxGyro.isConnected());
     	SmartDashboard.putNumber("navx Angle", currentAngle);
     	return currentAngle;
     }
@@ -198,12 +200,14 @@ public class DriveBase extends Subsystem {
     {
     	double currentPitch = navxGyro.getPitch();
     	SmartDashboard.putNumber("navx Pitch", currentPitch);
+    	SmartDashboard.putBoolean("NavX Connection", navxGyro.isConnected());
     	return currentPitch;
     }	
     
     public double getGyroRoll(){
     	double currentRoll = navxGyro.getRoll();
     	SmartDashboard.putNumber("navx Roll", currentRoll);
+    	SmartDashboard.putBoolean("NavX Connection", navxGyro.isConnected());
     	return currentRoll;
     }
     
@@ -239,5 +243,30 @@ public class DriveBase extends Subsystem {
     		setpoint = rightPID1.getSetpoint();
     	}
     	return setpoint;
+    }
+    
+
+    public void enableTurnPID () {
+    	leftTurnController.enable();
+    	rightTurnController.enable();
+    }
+    
+    public void disableTurnPID () {
+    	leftTurnController.disable();
+    	rightTurnController.disable();
+    }
+
+    public void setTurnSetpoint(double setpoint)	{
+    	//If both motors are used to turn, the motor are both positive or both negative
+    	leftTurnController.setSetpoint(setpoint);
+    	rightTurnController.setSetpoint(setpoint);
+    }
+    
+    public double getLeftTurnPIDError()	{
+    	return leftTurnController.getError();
+    }
+    
+    public double getRightTurnPIDError()	{
+    	return rightTurnController.getError();
     }
 }
