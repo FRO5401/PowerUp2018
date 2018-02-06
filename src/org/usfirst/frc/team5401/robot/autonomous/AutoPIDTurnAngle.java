@@ -24,18 +24,30 @@ public class AutoPIDTurnAngle extends Command {
     	System.out.println("AutoTurnAngle Constructed");
     }
 
-    // Called just before this Command runs the first time
+// Called just before this Command runs the first time
     protected void initialize() {
     	Robot.drivebase.gyroReset();
     	Robot.drivebase.enableTurnPID();
     	Robot.drivebase.setTurnSetpoint(desiredTurnAngleRelativeToInitAnglePID);
     	System.out.println("Initializing Auto PID Angle Turn");
+	boolean doneTurn = false;							//Initialize finish flag
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	currentAngleRelativeToInitAngle = Robot.drivebase.getGyroAngle();
+        currentAngleRelativeToInitAngle = Robot.drivebase.getGyroAngle();
     	SmartDashboard.putNumber("Relative to Inital Angle", currentAngleRelativeToInitAngle);
+	    
+//New Code block kjm 020618
+	if(Robot.drivebase.getTurnPIDOnTarget("left") && Robot.drivebase.getTurnPIDOnTarget("right"))
+    	{
+	    Robot.drivebase.disableTurnPID();
+    	    Robot.drivebase.stop();
+	    doneTurn = true;
+	    }	else	{
+    		doneTurn false;
+    	    }
+//End new code block kjm 020618
     	
     	System.out.println("Executing Auto PID Angle Turn");
     	System.out.println("Left Error: " + Robot.drivebase.getLeftTurnPIDError() + " Right Error: " + Robot.drivebase.getRightTurnPIDError());
@@ -43,12 +55,7 @@ public class AutoPIDTurnAngle extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if(Robot.drivebase.getTurnPIDOnTarget("left") && Robot.drivebase.getTurnPIDOnTarget("right"))
-    	{
-    		return true;
-    	}	else	{
-    		return false;
-    	}
+	return doneTurn;
     }
 
     // Called once after isFinished returns true
