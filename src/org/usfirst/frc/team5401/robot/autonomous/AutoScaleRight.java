@@ -11,27 +11,27 @@ public class AutoScaleRight extends CommandGroup {
     public AutoScaleRight() {
     	//Start at Auto Position #6
     	//The following is a ternary operator, which is similar to a condensed if else statement
-    	String gameData = (DriverStation.getInstance().getGameSpecificMessage() == null) ? "XXX" : DriverStation.getInstance().getGameSpecificMessage();
-    	if(gameData.charAt(1) == 'L')
-    	{ 
-    	//This will be putting block on left side (Closer to Left)
-    		addSequential(new AutoPIDDrive(331.549));
-    		addSequential(new AutoTurnAngle(-90));
-    		addSequential(new AutoPIDDrive(40));
-
-    		//addSequential(new xxxx());
+	String gameData = DriverStation.getInstance().getGameSpecificMessage();
+    	
+    	if(gameData.isEmpty()){
+    		gameData = "XXX";
+    	} 
+    	
+    	if(gameData.charAt(0) == 'L')
+    	{
+    		addSequential(new AutoPIDDrive(97));
     	}
-    	else 
-    	{    	
-    	//This will be putting block the right side
-    		addSequential(new AutoPIDDrive(70));
-    		addSequential(new AutoTurnAngle(-90));
-    		addSequential(new AutoPIDDrive(280));
-    		addSequential(new AutoTurnAngle(90));
-    		addSequential(new AutoPIDDrive(261.549));
-    		addSequential(new AutoTurnAngle(90));
-    		addSequential(new AutoPIDDrive(40));
+    	//Start at Auto Position #5. Drive Forward to the switch, place block on switch
+    		
+    	else if(gameData.charAt(0) == 'R')
+    	{
+    		//Arm deploy
+    		addSequential(new AutoPIDDrive(97));
     		//addSequential(new xxxx());
+    
+    	}else if(gameData.charAt(0) == 'X')
+    	{
+    		addSequential(new AutoPIDDrive(10));
     	}
     }
 }
