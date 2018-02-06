@@ -44,7 +44,9 @@ public class AutoCenterSwitch extends CommandGroup {
     		//addSequential(new xxxx());
     	}else if(gameData.charAt(0) == 'X')
     	{
-    		addSequential(new AutoPIDDrive(10));
+    		addSequential(new AutoPIDDrive(50));
+    		addSequential(new AutoTurnAngle(90));
+    		addSequential(new AutoTurnAngle(-90));
     	}
     }
 }

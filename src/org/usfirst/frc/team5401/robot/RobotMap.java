@@ -46,10 +46,10 @@ public class RobotMap {
 	 
 	//Motors
 		//Drive Motors
-	public static final int DRIVE_LEFT_MOTOR_1 	= 0;
-	public static final int DRIVE_LEFT_MOTOR_2 	= 7;
-	public static final int DRIVE_RIGHT_MOTOR_1 = 1;
-	public static final int DRIVE_RIGHT_MOTOR_2 = 8;
+	public static final int DRIVE_LEFT_MOTOR_1 	= 2;
+	public static final int DRIVE_LEFT_MOTOR_2 	= 3;
+	public static final int DRIVE_RIGHT_MOTOR_1 = 0;
+	public static final int DRIVE_RIGHT_MOTOR_2 = 1;
 
 	
 	//PCM ID
