@@ -78,6 +78,8 @@ public class DriveBase extends Subsystem {
 		leftTurnController = new PIDController(RobotMap.TURN_P, RobotMap.TURN_I, RobotMap.TURN_D, RobotMap.TURN_F, navxGyro, leftDriveGroup);
 		rightTurnController = new PIDController(RobotMap.TURN_P, RobotMap.TURN_I, RobotMap.TURN_D, RobotMap.TURN_F, navxGyro, rightDriveGroup);
 		
+		leftTurnController.setAbsoluteTolerance(RobotMap.ANGLE_THRESHOLD);
+		rightTurnController.setAbsoluteTolerance(RobotMap.ANGLE_THRESHOLD);
 		
 		SmartDashboard.putNumber("navx Angle", 	getGyroAngle());
 		SmartDashboard.putNumber("navx Pitch", 	getGyroPitch());
@@ -268,5 +270,14 @@ public class DriveBase extends Subsystem {
     
     public double getRightTurnPIDError()	{
     	return rightTurnController.getError();
+    }
+    
+    public boolean getTurnPIDOnTarget(String leftOrRight)	{
+    	if(leftOrRight == "left")
+    	{
+    		return leftTurnController.onTarget();
+    	}	else	{
+    		return rightTurnController.onTarget();
+    	}
     }
 }

@@ -43,11 +43,11 @@ public class AutoPIDTurnAngle extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if(Math.abs(Robot.drivebase.getGyroAngle()) - Math.abs(desiredTurnAngleRelativeToInitAnglePID) < RobotMap.ANGLE_THRESHOLD)
+    	if(Robot.drivebase.getTurnPIDOnTarget("left") && Robot.drivebase.getTurnPIDOnTarget("right"))
     	{
-    		return false;
-    	}	else 	{
     		return true;
+    	}	else	{
+    		return false;
     	}
     }
 
