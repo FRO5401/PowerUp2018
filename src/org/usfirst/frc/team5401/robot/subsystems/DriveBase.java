@@ -20,6 +20,7 @@ import org.usfirst.frc.team5401.robot.commands.XboxMove;
 /**
  *
  */
+//TODO We should probably use setTolerance and setContinuous
 public class DriveBase extends Subsystem {
 	//All constants are now in RobotMap
 	
