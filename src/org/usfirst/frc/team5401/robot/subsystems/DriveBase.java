@@ -20,7 +20,6 @@ import org.usfirst.frc.team5401.robot.commands.XboxMove;
 /**
  *
  */
-//TODO We should probably use setTolerance and setContinuous
 public class DriveBase extends Subsystem {
 	//All constants are now in RobotMap
 	
@@ -81,6 +80,7 @@ public class DriveBase extends Subsystem {
 		
 		leftTurnController.setAbsoluteTolerance(RobotMap.ANGLE_THRESHOLD);
 		rightTurnController.setAbsoluteTolerance(RobotMap.ANGLE_THRESHOLD);
+		//TODO We should probably also setContinuous
 		
 		SmartDashboard.putNumber("navx Angle", 	getGyroAngle());
 		SmartDashboard.putNumber("navx Pitch", 	getGyroPitch());
