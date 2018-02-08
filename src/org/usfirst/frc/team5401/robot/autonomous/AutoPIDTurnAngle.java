@@ -15,6 +15,7 @@ public class AutoPIDTurnAngle extends Command {
 	
 	private double desiredTurnAngleRelativeToInitAnglePID;
 	private double currentAngleRelativeToInitAngle;
+	private boolean doneTurn;
 	
     public AutoPIDTurnAngle(double angle) {
     	//Units are degrees
@@ -30,7 +31,7 @@ public class AutoPIDTurnAngle extends Command {
     	Robot.drivebase.enableTurnPID();
     	Robot.drivebase.setTurnSetpoint(desiredTurnAngleRelativeToInitAnglePID);
     	System.out.println("Initializing Auto PID Angle Turn");
-	boolean doneTurn = false;							//Initialize finish flag
+	    doneTurn = false;							//Initialize finish flag
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -39,14 +40,13 @@ public class AutoPIDTurnAngle extends Command {
     	SmartDashboard.putNumber("Relative to Inital Angle", currentAngleRelativeToInitAngle);
 	    
 //New Code block kjm 020618
-	if(Robot.drivebase.getTurnPIDOnTarget("left") && Robot.drivebase.getTurnPIDOnTarget("right"))
+	if(Robot.drivebase.getTurnPIDOnTarget())
     	{
-	    Robot.drivebase.disableTurnPID();
+			Robot.drivebase.disableTurnPID();
     	    Robot.drivebase.stop();
-	    doneTurn = true;
-	    }	else	{
-    		doneTurn false;
-    	    }
+    	    doneTurn = true;
+	    }	
+
 //End new code block kjm 020618
     	
     	System.out.println("Executing Auto PID Angle Turn");
