@@ -273,12 +273,6 @@ public class DriveBase extends Subsystem {
     }
     
     public boolean getTurnPIDOnTarget()	{
-//    	if(leftOrRight == "left")
-//    	{
-//    		return leftTurnController.onTarget();
-//    	}	else	{
-//    		return rightTurnController.onTarget();
-//    	}
     	return (leftTurnController.onTarget() && rightTurnController.onTarget());
     }
 }
