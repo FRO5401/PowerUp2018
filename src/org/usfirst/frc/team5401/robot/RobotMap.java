@@ -109,4 +109,7 @@ public class RobotMap {
 	
 	//Analog Sensors
 	public static final int ARM_POT_CHANNEL = 0;
+	
+	//TalonSRX
+	public static final int ARM_TALON_CHANNEL = 0;
 }

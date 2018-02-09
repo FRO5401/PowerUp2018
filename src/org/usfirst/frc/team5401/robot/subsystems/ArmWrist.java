@@ -1,3 +1,5 @@
+//TalonSRX integrated encoder does not have DPP
+//Don't know the why loopIndex is used vs slotIndex
 package org.usfirst.frc.team5401.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -23,23 +25,27 @@ public class ArmWrist extends Subsystem {
 	private DoubleSolenoid wristMoveLeft2;
 	private DoubleSolenoid wristMoveRight2;
 	private Solenoid brake;
-	private Encoder armEncoder;
+	//Encoder not needed for TalonSRX due to VS Encoders
 	private TalonSRX armTalon;
-	private AnalogPotentiometer armPot;//Probably will not be used
+	//private AnalogPotentiometer armPot; Probably will not be used
 
 
 	private double armAngle;
 	private boolean armPidEnabled;
 	private int loopIndex;
+	private int slotIndex;
 	private int setArrayPoint[] =  {0, 0 ,0 , 0};
 
 	public ArmWrist(){
 
 		loopIndex = 0;
+		slotIndex = 0;
+		//This is for the ConfigSelectedFeedbackSensor whose second parameter is PID index, this loop index is the ACTUAL parameter of PID index and is zero for a primary closed loop, or one per cascade coasting. 
+		//Zero is used as it is used within the example code.
 
 		//Object instantiation
-		armTalon = new TalonSRX(0);//TODO need to check on RoboRIO  //TODO Make this a constant ref to robot map, move other todo to robotmap
-		armPot = new AnalogPotentiometer(RobotMap.ARM_POT_CHANNEL, RobotMap.ARM_RANGE, RobotMap.ARM_OFFSET);
+		armTalon = new TalonSRX(RobotMap.ARM_TALON_CHANNEL);//TODO need to check on RoboRIO  //TODO Make this a constant ref to robot map, move other todo to robotmap
+		//armPot = new AnalogPotentiometer(RobotMap.ARM_POT_CHANNEL, RobotMap.ARM_RANGE, RobotMap.ARM_OFFSET);
 		
 		wristMoveLeft1 = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.WRIST_MOVE_LEFT_FORWARD_1, RobotMap.WRIST_MOVE_LEFT_BACKWARD_1);
 		wristMoveRight1 = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.WRIST_MOVE_RIGHT_FORWARD_1, RobotMap.WRIST_MOVE_RIGHT_BACKWARD_1);
@@ -51,15 +57,17 @@ public class ArmWrist extends Subsystem {
 		//0 is the output value, possibly position wanted? in encoder tick or analog value, not sure native value
 
 		//Sets up the Control mode to PID position
-		armTalon.set(ControlMode.Position, 0);	
+		//armTalon.set(ControlMode.Position, 0);	this runs in the constructor which means on start-up the robot will start moving (BAD)
 		
 		//Sets up feedback device for PID
+		//May have to change the QuadEncoder to something else.
 		armTalon.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, loopIndex, RobotMap.TIMEOUT_LIMIT_IN_Ms);//10 is a timeout that waits for successful conection to sensor
 		armTalon.setSensorPhase(true);//true if sensor value is positive if the motor controller output is negative. False if both are positive or negative
 		
 		//Sets allowable error, which is how far the actual value is off from intended value
 		//0 is slot index, which is parameter slot for the constant. Not sure what this actually does
-		armTalon.configAllowableClosedloopError(loopIndex, RobotMap.ARM_THRESHOLD_FOR_PID, RobotMap.TIMEOUT_LIMIT_IN_Ms);
+		//This was in the example not sure why it was zero
+		armTalon.configAllowableClosedloopError(slotIndex, RobotMap.ARM_THRESHOLD_FOR_PID, RobotMap.TIMEOUT_LIMIT_IN_Ms);
 		
 		//Sets max and min reverse and forward. First number is max/min output in percent 1 = 100%
         armTalon.configNominalOutputForward(0, 	RobotMap.TIMEOUT_LIMIT_IN_Ms);
@@ -69,10 +77,11 @@ public class ArmWrist extends Subsystem {
        
         //Sets F, P, I, and D
         //Middle parameter is the corresponding value for F, P, I, or D
-        armTalon.config_kF(loopIndex, RobotMap.ARM_kF, RobotMap.TIMEOUT_LIMIT_IN_Ms);
-        armTalon.config_kP(loopIndex, RobotMap.ARM_kP, RobotMap.TIMEOUT_LIMIT_IN_Ms);
-        armTalon.config_kI(loopIndex, RobotMap.ARM_kI, RobotMap.TIMEOUT_LIMIT_IN_Ms);
-        armTalon.config_kD(loopIndex, RobotMap.ARM_kD, RobotMap.TIMEOUT_LIMIT_IN_Ms);        
+        //In the example the loopIndex variable is in the slotIndex parameter(not quite sure why, perhaps loopIndex is slotIndex) -Jason L.
+        armTalon.config_kF(slotIndex, RobotMap.ARM_kF, RobotMap.TIMEOUT_LIMIT_IN_Ms);
+        armTalon.config_kP(slotIndex, RobotMap.ARM_kP, RobotMap.TIMEOUT_LIMIT_IN_Ms);
+        armTalon.config_kI(slotIndex, RobotMap.ARM_kI, RobotMap.TIMEOUT_LIMIT_IN_Ms);
+        armTalon.config_kD(slotIndex, RobotMap.ARM_kD, RobotMap.TIMEOUT_LIMIT_IN_Ms);        
 	}
 	
     public void initDefaultCommand() {
@@ -93,11 +102,12 @@ public class ArmWrist extends Subsystem {
     	}
     }
     public void checkWrist(){
-    	if(armEncoder.getDistance() > 89){
+    	//You do this as you do not need to create an Encoder Object for VP Encoders with the TalonSRX
+    	if(armTalon.getSensorCollection().getQuadraturePosition() > 89){
     		wristMoveLeft2.set(DoubleSolenoid.Value.kForward);
     		wristMoveRight2.set(DoubleSolenoid.Value.kForward);
     	}
-    	else if(armEncoder.getDistance() < 89){
+    	else if(armTalon.getSensorCollection().getQuadraturePosition() < 89){
     		wristMoveLeft2.set(DoubleSolenoid.Value.kReverse);
     		wristMoveRight2.set(DoubleSolenoid.Value.kReverse);
     	}
@@ -130,6 +140,12 @@ public class ArmWrist extends Subsystem {
 	public void overrideMove(double operatorJoystick){
 		armTalon.set(ControlMode.PercentOutput, operatorJoystick);
 		//Like DriveBase, sends out a direction to move to speed controller
+	}
+	
+	public boolean onTarget(){
+		boolean onTarget = Math.abs(armTalon.getSensorCollection().getQuadraturePosition() - armTalon.getClosedLoopTarget(loopIndex)) < 1;
+		return onTarget;
+		//getClosedLoopT gets the SetPoint already set (or moving to)
 	}
 	
     // Put methods for controlling this subsystem
