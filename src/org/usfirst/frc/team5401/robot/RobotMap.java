@@ -10,10 +10,15 @@ public class RobotMap {
 	
 	//Global Constants that are not locations
 	//This is for DriveBase
-	public static final double LOW_GEAR_LEFT_DPP = 0;
-	public static final double LOW_GEAR_RIGHT_DPP = 0;
+	public static final double LOW_GEAR_LEFT_DPP = -.149926;//-.149926
+	public static final double LOW_GEAR_RIGHT_DPP = -.149926;//-.15345
 	public static final double HIGH_GEAR_LEFT_DPP = 0;
 	public static final double HIGH_GEAR_RIGHT_DPP = 0;
+	public static final double PID_ABSOLUTE_TOLERANCE = 0.5; //threshold
+	
+	public static final double DRIVE_P = .11;
+	public static final double DRIVE_I = 0;
+	public static final double DRIVE_D = 0;
 	
 
 	
@@ -32,29 +37,20 @@ public class RobotMap {
 	//This is for XboxMove
 	public static final double MINIMUM_VELOCITY_FOR_HIGH_GEAR = 0; //Experimentally Determined, REMEMBER inches per second
 	public static final double MAXIMUM_VELOCITY_FOR_LOW_GEAR = 0;
-	public static final double DRIVE_SENSITIVITY_PRECISE = 0;
-	public static final double DRIVE_SENSITIVITY_DEFAULT = 0;
-	public static final double DRIVE_THRESHHOLD = 0;
-	public static final double DRIVE_SPIN_SENSITIVITY = 0;
+	public static final double DRIVE_SENSITIVITY_PRECISE = 1;
+	public static final double DRIVE_SENSITIVITY_DEFAULT = 1;
+	public static final double DRIVE_THRESHHOLD = 0.2;
+	public static final double DRIVE_SPIN_SENSITIVITY = 1;
 	
 	//This is for AutoTurnAngle
 	public static final double ANGLE_THRESHOLD = 1;//in degrees
 	public static final double AUTO_TURN_SPEED = 0.95;
-	public static final double AUTO_TURN_PRECISION = 0.5;
+	public static final double AUTO_TURN_PRECISION = 0.75;
 	
 	//This is for Angles
 	public static final double MAX_ARM_ANGLE_BEFORE_SOLENOIDS_FIRE = 89;
 	
-	//This is for OI
-	public static final int ARM_POSITION_DESIRED   = 0;
-	public static final int XBOX_CONTROLLER_DRIVER = 0;
-	public static final int XBOX_CONTROLLER_OPERATOR = 1;
-	public static final int XBOX_AXIS_LEFT_X = 0;
-	public static final int XBOX_AXIS_LEFT_TRIGGER = 0;
-	public static final int XBOX_AXIS_RIGHT_TRIGGER = 0;
-	public static final int XBOX_AXIS_RIGHT_Y = 0;
-	public static final int XBOX_AXIS_LEFT_Y = 0;
-	
+	//This is for OI	
 	//OI Buttons
 	public static final int XBOX_BUTTON_A_DRIVER	   		 = 1;
 	public static final int XBOX_BUTTON_B_DRIVER		     = 2;
@@ -77,17 +73,17 @@ public class RobotMap {
 	public static final int XBOX_BUTTON_START_OPERATOR	  	  = 8;
 	public static final int XBOX_BUTTON_L3_OPERATOR		  	  = 9;
 	public static final int XBOX_BUTTON_R3_OPERATOR		  	  = 10;
+
 	 
 	 
 	//Motors
 		//Drive Motors
+	public static final int DRIVE_LEFT_MOTOR_1 	= 2;
+	public static final int DRIVE_LEFT_MOTOR_2 	= 3;
 	public static final int DRIVE_RIGHT_MOTOR_1 = 0;
 	public static final int DRIVE_RIGHT_MOTOR_2 = 1;
-	public static final int DRIVE_RIGHT_MOTOR_3 = 2;
-	public static final int DRIVE_LEFT_MOTOR_1 	= 3;
-	public static final int DRIVE_LEFT_MOTOR_2 	= 4;
-	public static final int DRIVE_LEFT_MOTOR_3  = 5;
-	
+
+
 	
 	//PCM ID
 	public static final int PCM_ID 				= 0;
@@ -102,9 +98,9 @@ public class RobotMap {
 	
 	//DIO Sensors
 	public static final int DRIVE_ENC_LEFT_A 	= 0;
-	public static final int DRIVE_ENC_LEFT_B 	= 0;
-	public static final int DRIVE_ENC_RIGHT_A 	= 0;
-	public static final int DRIVE_ENC_RIGHT_B 	= 0;
+	public static final int DRIVE_ENC_LEFT_B 	= 1;
+	public static final int DRIVE_ENC_RIGHT_A 	= 2;
+	public static final int DRIVE_ENC_RIGHT_B 	= 3;
 	
 	//Analog Sensors
 	public static final int ARM_POT_CHANNEL = 0;
@@ -120,4 +116,5 @@ public class RobotMap {
 	public static final int SET_SWITCH_SETPOINT = 0;
 	public static final int SCALE_SETPOINT = 0;
 	public static final int HIGHEST_RUNG_SETPOINT = 0;
+
 }
