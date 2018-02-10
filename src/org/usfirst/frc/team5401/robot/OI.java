@@ -74,10 +74,32 @@ public class OI {
 	
 	/**Method Naming: 'read' = Analog; 'get' = Digital **/
 	
+	/*
+	 public boolean getExample_Button(){
+		return xboxController_Button.getRawButton(#);
+	}
+		BUTTON EXAMPLE^^ 
+	 */
+	
+	//Controller Axis Driver
 	public double readXboxLeftX_Driver(){
 		return xboxController_Driver.getRawAxis(RobotMap.XBOX_AXIS_LEFT_X);
 	}
 	
+	public double readXboxLeftY_Driver(){
+		return xboxController_Driver.getRawAxis(RobotMap.XBOX_AXIS_LEFT_Y);
+	}
+	
+	public double readXboxRightX_Driver(){
+		return xboxController_Driver.getRawAxis(RobotMap.XBOX_AXIS_RIGHT_X);
+	}
+	
+	public double readXboxRightY_Driver(){
+		return xboxController_Driver.getRawAxis(RobotMap.XBOX_AXIS_RIGHT_Y);
+	}
+	
+	
+	//Controller Triggers Driver
 	public double readLeftTrigger_Driver(){
 		return xboxController_Driver.getRawAxis(RobotMap.XBOX_AXIS_LEFT_TRIGGER);		
 	}
@@ -86,67 +108,138 @@ public class OI {
 		return xboxController_Driver.getRawAxis(RobotMap.XBOX_AXIS_RIGHT_TRIGGER);
 	}
 	
-	public boolean getPrecision_Driver(){
-		return xboxController_Driver.getRawButton(5);
+	//Controller Buttons Driver
+	
+	public boolean getButtonA_Driver(){
+		return xboxController_Driver.getRawButton(1);
 	}
 	
-	public boolean getBrake_Driver(){
-		return xboxController_Driver.getRawButton(6);
-	}
-	
-	public boolean getTurnButton_Driver(){
-		return xboxController_Driver.getRawButton(9);
-	}
-	
-	public boolean getDriveInvertButton_Driver() {
+	public boolean getButtonB_Driver(){
 		return xboxController_Driver.getRawButton(2);
 	}
 	
-	//For GearMechanism
-	public int getXboxRightStickY_Driver(){ //TODO remove
-		double value = xboxController_Driver.getRawAxis(RobotMap.XBOX_AXIS_RIGHT_Y);
-		if (value > .5){
-			return 1;
-		} else if (value < -.5){
-			return -1;
-		} else {
-			return 0;
-		}
+	public boolean getButtonX_Driver(){
+		return xboxController_Driver.getRawButton(3);
 	}
 	
-
-	//For Feeder Up/Down
-	public int getXboxLeftStickY_Operator(){
-		double value = xboxController_Operator.getRawAxis(RobotMap.XBOX_AXIS_LEFT_Y);
-		if (value > .5){//this is controller down
-			return -1;// so down as in negative
-		} else if (value < -.5){//this is controller up
-			return 1;// so up as in positive
-		} else {
-			return 0;
-		}
+	public boolean getButtonY_Driver(){
+		return xboxController_Driver.getRawButton(4);
 	}
 	
-	//For Feeder In/Out
-	public int getXboxTriggers_Operator(){
-		double left  = xboxController_Operator.getRawAxis(RobotMap.XBOX_AXIS_LEFT_TRIGGER);
-		double right = xboxController_Operator.getRawAxis(RobotMap.XBOX_AXIS_RIGHT_TRIGGER);
-		if (right > .1){ 
-			return 1;
-		} else if (left > .1){//<--left is in
-			return -1;
-		} else {
-			return 0;
-		}
+	public boolean getButtonLB_Driver(){
+		return xboxController_Driver.getRawButton(5);
 	}
 	
-	//Gear Shift to Low
-	public boolean getXboxBack_Driver(){
+	public boolean getButtonRB_Driver(){
+		return xboxController_Driver.getRawButton(6);
+	}
+	
+	public boolean getButtonBack_Driver(){
 		return xboxController_Driver.getRawButton(7);
 	}
 	
-	//Gear Shift to High
-	public boolean getXboxStart_Driver(){
+	public boolean getButtonStart_Driver(){
 		return xboxController_Driver.getRawButton(8);
+	}
+	
+	public boolean getButtonL3_Driver(){
+		return xboxController_Driver.getRawButton(9);
+	}
+	
+	public boolean getButtonR3_Driver(){
+		return xboxController_Driver.getRawButton(10);
+	}
+	
+	//Controller D-Pad Driver
+	
+	public int getDPad_Driver(){
+		int POV = xboxController_Operator.getPOV();
+		return POV;
+		
+		//Center == -1
+		//Everything else relates to corresponding angle!
+	}
+	
+	//Controller Axis Operator
+	public double getXboxLeftStickY_Operator(){
+		double value = xboxController_Operator.getRawAxis(RobotMap.XBOX_AXIS_LEFT_Y);
+		return value;
+	}
+	
+	public double getXboxLeftStickX_Operator(){
+		double value = xboxController_Operator.getRawAxis(RobotMap.XBOX_AXIS_LEFT_X);
+		return value;
+	}
+	
+	public double getXboxRightStickY_Operator(){
+		double value = xboxController_Operator.getRawAxis(RobotMap.XBOX_AXIS_RIGHT_Y);
+		return value;
+	}
+	
+	public double getXboxRightStickX_Operator(){
+		double value = xboxController_Operator.getRawAxis(RobotMap.XBOX_AXIS_RIGHT_X);
+		return value;
+	}
+	
+	//Controller Triggers Operator
+	public double getXboxTriggerRight_Operator(){
+		double right = xboxController_Operator.getRawAxis(RobotMap.XBOX_AXIS_RIGHT_TRIGGER);
+		return right;
+	}
+	
+	public double getXboxTriggerLeft_Operator(){
+		double left  = xboxController_Operator.getRawAxis(RobotMap.XBOX_AXIS_LEFT_TRIGGER);
+		return left;
+	}
+	
+	//Controller Buttons Operator
+	
+	public boolean getButtonA_Operator(){
+		return xboxController_Operator.getRawButton(1);
+	}
+		
+	public boolean getButtonB_Operator(){
+		return xboxController_Operator.getRawButton(2);
+	}
+		
+	public boolean getButtonX_Operator(){
+		return xboxController_Operator.getRawButton(3);
+	}
+		
+	public boolean getButtonY_Operator(){
+		return xboxController_Operator.getRawButton(4);
+	}
+		
+	public boolean getButtonLB_Operator(){
+		return xboxController_Operator.getRawButton(5);
+	}
+		
+	public boolean getButtonRB_Operator(){
+		return xboxController_Operator.getRawButton(6);
+	}
+		
+	public boolean getButtonBack_Operator(){
+		return xboxController_Operator.getRawButton(7);
+	}
+		
+	public boolean getButtonStart_Operator(){
+		return xboxController_Operator.getRawButton(8);
+	}
+		
+	public boolean getButtonL3_Operator(){
+		return xboxController_Operator.getRawButton(9);
+	}
+		
+	public boolean getButtonR3_Operator(){
+		return xboxController_Operator.getRawButton(10);
+	}
+	
+	//Controller D-Pad Operator
+	public int getDPad_Operator(){
+		int POV = xboxController_Operator.getPOV();
+		return POV;
+		
+		//Center == -1
+		//Everything else relates to corresponding angle!
 	}
 }

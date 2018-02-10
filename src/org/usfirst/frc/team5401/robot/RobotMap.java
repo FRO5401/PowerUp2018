@@ -32,6 +32,7 @@ public class RobotMap {
 	 public static final int XBOX_CONTROLLER_DRIVER = 0;
 	 public static final int XBOX_CONTROLLER_OPERATOR = 1;
 	 public static final int XBOX_AXIS_LEFT_X = 0;
+	 public static final int XBOX_AXIS_RIGHT_X = 0;
 	 public static final int XBOX_AXIS_LEFT_TRIGGER = 0;
 	 public static final int XBOX_AXIS_RIGHT_TRIGGER = 0;
 	 public static final int XBOX_AXIS_RIGHT_Y = 0;
