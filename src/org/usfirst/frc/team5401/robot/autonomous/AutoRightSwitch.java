@@ -9,21 +9,28 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class AutoRightSwitch extends CommandGroup {
 
     public AutoRightSwitch() {
+    	//The following is a ternary operator, which is similar to a condensed if else statement
     	String gameData = DriverStation.getInstance().getGameSpecificMessage();
-    	if(gameData.charAt(0) == 'R')
+    	
+    	if(gameData.isEmpty()){
+    		gameData = "XXX";
+    	} 
+    	
+    	if(gameData.charAt(0) == 'L')
     	{
-    	//Start at Auto Position #5. Drive Forward 140 inches, place block on switch
-    		addSequential(new AutoDrive(140.595, 1));
+    		addSequential(new AutoPIDDrive(97));
+    	}
+    	//Start at Auto Position #5. Drive Forward to the switch, place block on switch
+    		
+    	else if(gameData.charAt(0) == 'R')
+    	{
+    		//Arm deploy
+    		addSequential(new AutoPIDDrive(97));
     		//addSequential(new xxxx());
     
-    	}
-    	else 
-    	{    	
-    	//Start at Auto Position #5. Drive Forward 55 inches, turn left 
-    	//(Figure out specifics later)
-    		addSequential(new AutoDrive(55, 1));
-    		addSequential(new AutoTurnAngle(-90));
-    		//addSequential(new xxxx());
+    	}else if(gameData.charAt(0) == 'X')
+    	{
+    		addSequential(new AutoPIDDrive(10));
     	}
     }
 }
