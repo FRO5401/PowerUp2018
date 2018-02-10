@@ -81,7 +81,7 @@ public class OI {
 	/**Method Naming: 'read' = Analog; 'get' = Digital **/
 	
 	public double readXboxLeftX_Driver(){
-		return xboxController_Driver.getRawAxis(RobotMap.XBOX_AXIS_LEFT_X);
+		return xboxController_Driver.getRawAxis(RobotMap.XBOX_AXIS_LEFT_X_DRIVER);
 	}
 	
 	public double readLeftTrigger_Driver(){
@@ -90,6 +90,21 @@ public class OI {
 	
 	public double readRightTrigger_Driver(){
 		return xboxController_Driver.getRawAxis(RobotMap.XBOX_AXIS_RIGHT_TRIGGER);
+	}
+	
+	public int readXboxLeftY_Operator(){
+		if(xboxController_Operator.getRawAxis(RobotMap.XBOX_AXIS_LEFT_Y) > 0)
+		{
+			return 1;
+		}
+		if(xboxController_Operator.getRawAxis(RobotMap.XBOX_AXIS_LEFT_Y) < 0)
+		{
+			return -1;
+		}
+		else
+		{
+			return 0;
+		}
 	}
 	
 	public boolean getPrecision_Driver(){
@@ -199,5 +214,9 @@ public class OI {
 	
 	public boolean getXboxOperator_R3(){
 		return xboxController_Operator.getRawButton(RobotMap.XBOX_BUTTON_R3_OPERATOR);
+	}
+	
+	public boolean getXboxOperatorL3(){
+		return xboxController_Operator.getRawButton(RobotMap.XBOX_BUTTON_L3_OPERATOR);
 	}
 }

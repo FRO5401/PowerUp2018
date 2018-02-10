@@ -12,11 +12,11 @@ public class ArmPIDMove extends Command {
 
 	private boolean done; 
 	private double setPoint;
-	
+	//Setpoint input in degrees
     public ArmPIDMove(double setPointInput) {
     	
     	requires(Robot.armwrist);
-    	setPoint = setPointInput / RobotMap.ANGLE_PER_PULSE;
+    	setPoint = setPointInput;
     	
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);

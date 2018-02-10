@@ -87,14 +87,23 @@ public class ArmWrist extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     }
     
-    public void wristUpDown(int wristDirection){
-    	if(wristDirection == 1) {
+    public void longWristUpDown(int longWristDirection){
+    	if(longWristDirection == 1) {
     		wristMoveLong.set(DoubleSolenoid.Value.kForward);
-    		wristMoveShort.set(DoubleSolenoid.Value.kForward);
-    		//Wrist will be extending outwards
+    		//Long wrist will be extending outwards
     	} 
-    	else if(wristDirection == -1) {
+    	else if(longWristDirection == -1) {
     		wristMoveLong.set(DoubleSolenoid.Value.kReverse);
+    		//Wrist will be coming back inward
+    	}
+    }
+    
+    public void shortWristUpDown(int shortWristDirection){
+    	if(shortWristDirection == 1) {
+    		wristMoveShort.set(DoubleSolenoid.Value.kForward);
+    		//Short wrist will be extending outwards
+    	} 
+    	else if(shortWristDirection == -1) {
     		wristMoveShort.set(DoubleSolenoid.Value.kReverse);
     		//Wrist will be coming back inward
     	}
@@ -119,9 +128,10 @@ public class ArmWrist extends Subsystem {
 
 	
 
-	public void setPoint(double setPointIndex){
+	public void setPoint(double setPointIndexInDegrees){
+		double setPointNativeUnits = setPointIndexInDegrees / RobotMap.ANGLE_PER_PULSE;
 		armTalon.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Brake);
-		armTalon.set(ControlMode.Position, setPointIndex);
+		armTalon.set(ControlMode.Position, setPointNativeUnits);
 		brake.set(false);
 		armPidEnabled = true;
 		//Finds set point
@@ -141,7 +151,7 @@ public class ArmWrist extends Subsystem {
 	}
 	
 	public boolean onTarget(){
-		boolean onTarget = Math.abs(armTalon.getSensorCollection().getQuadraturePosition() - armTalon.getClosedLoopTarget(loopIndex)) < 1;
+		boolean onTarget = Math.abs(armTalon.getSensorCollection().getQuadraturePosition() - armTalon.getClosedLoopTarget(loopIndex)) < RobotMap.ARM_THRESHOLD_FOR_PID;
 		return onTarget;
 		//getClosedLoopT gets the SetPoint already set (or moving to)
 	}

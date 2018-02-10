@@ -1,6 +1,7 @@
 package org.usfirst.frc.team5401.robot.commands;
 
 import org.usfirst.frc.team5401.robot.Robot;
+import org.usfirst.frc.team5401.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -15,6 +16,7 @@ public class WristMove extends Command {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.armwrist);
+    	wristChangePoint = 0;
     }
 
     // Called just before this Command runs the first time
@@ -24,8 +26,9 @@ public class WristMove extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	wristChangePoint = Robot.oi.getDPad_Operator();
-    	Robot.armwrist.wristUpDown(wristChangePoint);
+    	wristChangePoint = Robot.oi.readXboxLeftY_Operator();
+    	Robot.armwrist.longWristUpDown(wristChangePoint);
+    	Robot.armwrist.shortWristUpDown(wristChangePoint);
     }
 
     // Make this return true when this Command no longer needs to run execute()
