@@ -25,8 +25,6 @@ public class DriveBase extends Subsystem {
 	private VictorSP rightDrive1;
 	private VictorSP leftDrive2;
 	private VictorSP rightDrive2;
-	private VictorSP leftDrive3;
-	private VictorSP rightDrive3;
 
 	private PIDController leftPID1;
 	private PIDController leftPID2;
@@ -89,8 +87,6 @@ public class DriveBase extends Subsystem {
     	rightDrive1.set(-1* rightDriveDesired);
     	leftDrive2.set(leftDriveDesired);
     	rightDrive2.set(-1 * rightDriveDesired);
-    	leftDrive3.set(leftDriveDesired);
-    	rightDrive3.set(-1 * rightDriveDesired);
     	
     	SmartDashboard.putNumber("Left Enc Raw" , leftEncoder.get());
 		SmartDashboard.putNumber("Right Enc Raw", rightEncoder.get());
@@ -107,8 +103,6 @@ public class DriveBase extends Subsystem {
     	rightDrive1.set(0);
     	leftDrive2.set(0);
     	rightDrive2.set(0);
-    	leftDrive3.set(0);
-    	rightDrive3.set(0);
     }
 
     public void shiftGearLowToHigh(){
