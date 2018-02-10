@@ -171,6 +171,7 @@ public class ArmWrist extends Subsystem {
 	}
 	
 	public double getArmAngle(){
+		//Shows degrees. Converts native units to degrees
 		double armAngle = armTalon.getSensorCollection().getQuadraturePosition() * RobotMap.ANGLE_PER_PULSE;
 		SmartDashboard.putNumber("Arm Angle", armAngle);
 		return armAngle;
