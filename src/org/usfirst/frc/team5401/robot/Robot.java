@@ -44,7 +44,7 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		
 		//chooser.addDefault("Default Auto", new ExampleCommand());
-		chooser.addDefault("AutoDrive", new AutoDrive( 127 , 1));
+		//chooser.addDefault("AutoDrive", new AutoDrive( 127 , 1));
 		SmartDashboard.putData("Auto mode", chooser);
 	}
 

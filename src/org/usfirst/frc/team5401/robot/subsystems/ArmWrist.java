@@ -151,6 +151,7 @@ public class ArmWrist extends Subsystem {
 	}
 	
 	public boolean onTarget(){
+		//Method returns true if on target
 		boolean onTarget = Math.abs(armTalon.getSensorCollection().getQuadraturePosition() - armTalon.getClosedLoopTarget(loopIndex)) < RobotMap.ARM_THRESHOLD_FOR_PID;
 		return onTarget;
 		//getClosedLoopT gets the SetPoint already set (or moving to)

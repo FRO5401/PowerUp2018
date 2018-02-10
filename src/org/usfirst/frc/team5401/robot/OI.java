@@ -81,7 +81,7 @@ public class OI {
 	/**Method Naming: 'read' = Analog; 'get' = Digital **/
 	
 	public double readXboxLeftX_Driver(){
-		return xboxController_Driver.getRawAxis(RobotMap.XBOX_AXIS_LEFT_X_DRIVER);
+		return xboxController_Driver.getRawAxis(RobotMap.XBOX_AXIS_LEFT_X);
 	}
 	
 	public double readLeftTrigger_Driver(){

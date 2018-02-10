@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry excluding="org/usfirst/frc/team5401/robot/commands/ArmMove.java" kind="src" path="src"/>
+	<classpathentry excluding="org/usfirst/frc/team5401/robot/commands/ArmMove.java|org/usfirst/frc/team5401/robot/autonomous/AutoCenterSwitch.java|org/usfirst/frc/team5401/robot/autonomous/AutoDrive.java|org/usfirst/frc/team5401/robot/autonomous/AutoLeftSwitch.java|org/usfirst/frc/team5401/robot/autonomous/AutoRightSwitch.java|org/usfirst/frc/team5401/robot/autonomous/AutoScaleCenter.java|org/usfirst/frc/team5401/robot/autonomous/AutoScaleLeft.java|org/usfirst/frc/team5401/robot/autonomous/AutoScaleRight.java|org/usfirst/frc/team5401/robot/autonomous/AutoTurnAngle.java" kind="src" path="src"/>
 	<classpathentry kind="var" path="wpilib" sourcepath="wpilib.sources"/>
 	<classpathentry kind="var" path="networktables" sourcepath="networktables.sources"/>
 	<classpathentry kind="var" path="opencv" sourcepath="opencv.sources"/>
@@ -10,5 +10,7 @@
 	<classpathentry kind="var" path="USERLIBS_DIR/CTRE_Phoenix-sources.jar"/>
 	<classpathentry kind="var" path="USERLIBS_DIR/CTRE_Phoenix.jar"/>
 	<classpathentry kind="lib" path="C:/Users/racer/Documents/navx-mxp/java/lib/navx_frc.jar"/>
+	<classpathentry kind="var" path="USERLIBS_DIR/CTRLib.jar"/>
+	<classpathentry kind="var" path="USERLIBS_DIR/navx_frc.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
