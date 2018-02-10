@@ -22,10 +22,8 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 public class ArmWrist extends Subsystem {
 
-	private DoubleSolenoid wristMoveLeft1;
-	private DoubleSolenoid wristMoveRight1;
-	private DoubleSolenoid wristMoveLeft2;
-	private DoubleSolenoid wristMoveRight2;
+	private DoubleSolenoid wristMoveLong;
+	private DoubleSolenoid wristMoveShort;
 	private Solenoid brake;
 	//Encoder not needed for TalonSRX due to VS Encoders
 	private TalonSRX armTalon;
@@ -48,10 +46,9 @@ public class ArmWrist extends Subsystem {
 		armTalon = new TalonSRX(RobotMap.ARM_TALON_CHANNEL);//TODO need to check on RoboRIO  //TODO Make this a constant ref to robot map, move other todo to robotmap
 		//armPot = new AnalogPotentiometer(RobotMap.ARM_POT_CHANNEL, RobotMap.ARM_RANGE, RobotMap.ARM_OFFSET);
 		
-		wristMoveLeft1 = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.WRIST_MOVE_LEFT_FORWARD_1, RobotMap.WRIST_MOVE_LEFT_BACKWARD_1);
-		wristMoveRight1 = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.WRIST_MOVE_RIGHT_FORWARD_1, RobotMap.WRIST_MOVE_RIGHT_BACKWARD_1);
-		wristMoveLeft2 = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.WRIST_MOVE_LEFT_FOWARD_2, RobotMap.WRIST_MOVE_LEFT_BACKWARD_2);
-		wristMoveRight2 = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.WRIST_MOVE_RIGHT_FORWARD_2, RobotMap.WRIST_MOVE_RIGHT_BACKWARD_2);
+		wristMoveLong = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.WRIST_MOVE_LONG_FORWARD, RobotMap.WRIST_MOVE_LONG_BACKWARD);
+		wristMoveShort = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.WRIST_MOVE_SHORT_FORWARD, RobotMap.WRIST_MOVE_SHORT_BACKWARD);
+
 
 		/******REPEAT THE FOLLOWING LINE TO MAKE SET POINTS*********/
 
@@ -92,25 +89,25 @@ public class ArmWrist extends Subsystem {
     
     public void wristUpDown(int wristDirection){
     	if(wristDirection == 1) {
-    		wristMoveLeft1.set(DoubleSolenoid.Value.kForward);
-    		wristMoveRight1.set(DoubleSolenoid.Value.kForward);
+    		wristMoveLong.set(DoubleSolenoid.Value.kForward);
+    		wristMoveShort.set(DoubleSolenoid.Value.kForward);
     		//Wrist will be extending outwards
     	} 
     	else if(wristDirection == -1) {
-    		wristMoveLeft1.set(DoubleSolenoid.Value.kReverse);
-    		wristMoveRight1.set(DoubleSolenoid.Value.kReverse);
+    		wristMoveLong.set(DoubleSolenoid.Value.kReverse);
+    		wristMoveShort.set(DoubleSolenoid.Value.kReverse);
     		//Wrist will be coming back inward
     	}
     }
     public void checkWrist(){
     	//You do this as you do not need to create an Encoder Object for VP Encoders with the TalonSRX
     	if(armTalon.getSensorCollection().getQuadraturePosition() > 89){
-    		wristMoveLeft2.set(DoubleSolenoid.Value.kForward);
-    		wristMoveRight2.set(DoubleSolenoid.Value.kForward);
+    		wristMoveLong.set(DoubleSolenoid.Value.kForward);
+    		wristMoveShort.set(DoubleSolenoid.Value.kForward);
     	}
     	else if(armTalon.getSensorCollection().getQuadraturePosition() < 89){
-    		wristMoveLeft2.set(DoubleSolenoid.Value.kReverse);
-    		wristMoveRight2.set(DoubleSolenoid.Value.kReverse);
+    		wristMoveLong.set(DoubleSolenoid.Value.kReverse);
+    		wristMoveShort.set(DoubleSolenoid.Value.kReverse);
     	}
     }
 
