@@ -119,9 +119,9 @@ public class ArmWrist extends Subsystem {
 
 	
 
-	public void setPoint(int setPointIndex){
+	public void setPoint(double setPointIndex){
 		armTalon.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Brake);
-		armTalon.set(ControlMode.Position, Robot.oi.getArmButtons());
+		armTalon.set(ControlMode.Position, setPointIndex);
 		brake.set(false);
 		armPidEnabled = true;
 		//Finds set point
@@ -157,8 +157,14 @@ public class ArmWrist extends Subsystem {
 		
 		armPidEnabled = false;
 		armTalon.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Coast);
+		
 	}
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
+	
+	public double getArmAngle(){
+		
+		return armTalon.getSensorCollection().getQuadraturePosition() * RobotMap.ANGLE_PER_PULSE;
+		
+		
+	}
 }
 

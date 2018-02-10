@@ -42,6 +42,9 @@ public class RobotMap {
 	public static final double AUTO_TURN_SPEED = 0.95;
 	public static final double AUTO_TURN_PRECISION = 0.5;
 	
+	//This is for Angles
+	public static final double MAX_ARM_ANGLE_BEFORE_SOLENOIDS_FIRE = 89;
+	
 	//This is for OI
 	public static final int ARM_POSITION_DESIRED   = 0;
 	public static final int XBOX_CONTROLLER_DRIVER = 0;
@@ -108,9 +111,10 @@ public class RobotMap {
 	
 	//TalonSRX
 	public static final int ARM_TALON_CHANNEL = 0;
+	public static final int ANGLE_PER_PULSE = 0;
 	
 	//Setpoints
-	
+	// This is in Degrees
 	public static final int FLOOR_SETPOINT = 0;
 	public static final int PORTAL_SETPOINT = 0;
 	public static final int SET_SWITCH_SETPOINT = 0;

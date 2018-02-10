@@ -33,7 +33,7 @@ public class ArmOverRide extends Command {
     	double overRideMoving = Robot.oi.getXboxRightStickY_Operator();
     	boolean overRideButton = Robot.oi.getXboxOperator_R3();
     	//calling to the button as well as the joystick
-    	
+    	Robot.armwrist.getArmAngle();
     	
     	if(overRideButton == true)
     	{

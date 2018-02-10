@@ -1,6 +1,7 @@
 package org.usfirst.frc.team5401.robot.commands;
 
 import org.usfirst.frc.team5401.robot.Robot;
+import org.usfirst.frc.team5401.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -10,10 +11,13 @@ import edu.wpi.first.wpilibj.command.Command;
 public class ArmPIDMove extends Command {
 
 	private boolean done; 
+	private double setPoint;
 	
-    public ArmPIDMove(double setPoint) {
+    public ArmPIDMove(double setPointInput) {
     	
     	requires(Robot.armwrist);
+    	setPoint = setPointInput / RobotMap.ANGLE_PER_PULSE;
+    	
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -22,13 +26,14 @@ public class ArmPIDMove extends Command {
     protected void initialize() {
     	
     	done = (Robot.oi.getArmButtons() == -1);
-    	Robot.armwrist.setPoint(Robot.oi.getArmButtons());
+    	Robot.armwrist.setPoint(setPoint);
 
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	
+    	Robot.armwrist.getArmAngle();
     	done = (Robot.oi.getArmButtons() !=-1);
     	
     }
