@@ -11,7 +11,7 @@ public class ArmPIDMove extends Command {
 
 	private boolean done; 
 	
-    public ArmPIDMove(double ArrayIndex) {
+    public ArmPIDMove(double setPoint) {
     	
     	requires(Robot.armwrist);
         // Use requires() here to declare subsystem dependencies
@@ -29,7 +29,6 @@ public class ArmPIDMove extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	
-    	Robot.armwrist.setPoint(Robot.oi.getArmButtons());
     	done = (Robot.oi.getArmButtons() !=-1);
     	
     }
