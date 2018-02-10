@@ -1,6 +1,8 @@
 # PowerUp2018
 
-## Robot files
+## Robot Files
+
+Robot files are an important part of the code that are called back to/ call to other things often. They hold a lot of information that is used in other parts of the code, and help to serve as a place to organize the bulk of things like variables, buttons, or parts
 
 ### Robot.java
 
@@ -86,7 +88,24 @@ For buttons, there can be a `whenPressed` that will do something when the button
 
 ## Autnomous Files
 
-ALL MAIN AUTNOMOUS FILES USE GAMEDATA. Game Data is layout on the field of which side of the two Alliance switches and the scale is which color, either red or blue. Different combinations of 3 characters using "L" and "R" (Left and Right) are given. For example, if the combination is "LRL", when looking down at the field from the Driver Station, the side of the switches and scale that will be your color are left, right, then left. If your alliance is blue, the left side of *your Switch* will be blue, the right side of the *Scale* will be blue, and the left side of the *opposite Switch* will be blue (LRL). Game Data is received upon the match's start, after the "3...2...1...Go!" This is represented through  "String gameData = DriverStation.getInstance().getGameSpecificMessage();", where the Game Data is received. Most autonomous files will have Game Data input, and require Game Data. All Auto files are command groups that run a list of commands
+ALL MAIN AUTNOMOUS FILES USE GAMEDATA. Game Data is layout on the field of which side of the two Alliance switches and the scale is which color, either red or blue. Different combinations of 3 characters using "L" and "R" (Left and Right) are given. For example, if the combination is "LRL", when looking down at the field from the Driver Station, the side of the switches and scale that will be your color are left, right, then left. If your alliance is blue, the left side of *your Switch* will be blue, the right side of the *Scale* will be blue, and the left side of the *opposite Switch* will be blue (LRL). Game Data is received upon the match's start, after the "3...2...1...Go!" This is represented through  "String gameData = DriverStation.getInstance().getGameSpecificMessage();", where the Game Data is received. Most autonomous files will have Game Data input, and require Game Data. All Main Auto files are command groups that run a list of commands. ALL AUTO FILES will have a "Catch/Try" for when the Game Data is empty, and tell the robot just to drive forward to the baseline.
+
+### AutoDrive.java
+
+#### Imported Files
+Imports from Wpilib.command
+- Commands
+
+#### Methods/Uses
+
+`AutoDrive.java` is the main place for the Autonomous information, and holds all of the commands and methods for all of the autonomous codes.
+It holds important variabled used in Auto such as desiredDistance, autoDriveSpeed, doneTraveling, distanceTraveled, heading, drift, kP_Drift and velocitySample2. These variables are used to control what the robot will do in each Auto, and control how it does it. `AutoDrive.java` will also serve as the "Drive to Baseline" code for when the Robot is just going to drive to the baseline.
+
+##### AutoDrive(double DistanceInput, double SpeedInput)
+`AutoDrive` requires `DistanceInput` and `SpeedInput` to determine what the robot will do.
+
+##### initialize()
+`initialize` is called before the command runs for the first time.
 
 ### AutoCenterSwitch.java
 
@@ -95,13 +114,22 @@ Imports `Wpilibj.DriverStation`
 
 #### Methods/Uses
 
-In this auto, the robot starts against the wall, to the right of the Exchange area on the field. This way, it is centered. `AutoCenterSwitch.java` uses "If/Else" statements to determine what the robot is going to do based on the Game Data that is received. `AutocenterSwitch.java` has a series of "AddSequentials" that either tell the robot to move forward a certain distance, or tell the robot to turn a certain angle left or right. If the Game Data returns the side of the switch that is our alliance color is the left, the robot will go through the commands that get it in front of the switch, then place the block down using `ArmDeploy`. If the Game Data returns the side of the switch that is our alliance color is the right, because the robot is in the middle, the commands from the AddSequentials will just be reversed, and the Power Cube will be placed on the right side.
+In `AutoCenterSwitch.java`, the robot starts against the wall, to the right of the Exchange area on the field. This way, it is centered. `AutoCenterSwitch.java` uses "If/Else" statements to determine what the robot is going to do based on the Game Data that is received. `AutocenterSwitch.java` has a series of "AddSequentials" that either tell the robot to move forward a certain distance, or tell the robot to turn a certain angle left or right. If the Game Data returns the side of the switch that is our alliance color is the left, the robot will go through the commands that get it in front of the switch, then place the block down using `ArmDeploy`. Else, if the Game Data returns the side of the switch that is our alliance color is the right, because the robot is in the middle, the commands from the AddSequentials will just be reversed, and the Power Cube will be placed on the right side.
 
-### AutoLeftSwitch.Java
+### AutoLeftSwitch.java
 
 #### Imported Files
 Imports `Wpilib.DriverStation`
 
-#### Methods/uses
+#### Methods/Uses
 
-In this auto, the robot starts against the wall, to the left of the Exchange area on the field. This way it is on the left side of the field. `AutoLeftSwitch.java` uses "If/Else" statements to determine what the robot is going to do based on the Game Dates that is received. `AutoLeftSwitch.java` has a series of "AddSequentials" that either tell the robot to move forward a certain distance, or tell the robot to turn a certain angle left or right. If the Game Data returns the side of the switch that is our alliance color is the left, the robot will go 
+In `AutoLeftSwitch.java`, the robot starts against the wall, to the left of the Exchange area on the field. This way it is on the left side of the field. `AutoLeftSwitch.java` uses "If/Else" statements to determine what the robot is going to do based on the Game Dates that is received. `AutoLeftSwitch.java` has a series of "AddSequentials" that either tell the robot to move forward a certain distance, or tell the robot to turn a certain angle left or right. If the Game Data returns the side of the switch that is our alliance color is the left, the robot will go through its commands that get it in front of the left side of the switch, then place the block down using `ArmDeploy`. Else, if the Game Data returns the side of the switch that is our alliance color is the right, the robot will not go for the right side of the switch. Instead, it will just drive forward to the baseline, which is all that is needed for all of the alliance members to get a ranking point, and just stop. This is to make sure the robot does not interfere with other alliance members, as they will most likely be starting on that side if we are not.
+
+### AutoRightSwitch.java
+
+#### Imported Files
+Imports `Wpilibj.DriverStation`
+
+#### Methods/Uses
+
+In `AutoRightSwitch`, the robot starts against the wall, and will ideally be aligned directly in front of the right side of the switch. This way it will just be a straight drive up to the switch. `AutoRightSwitch` uses "If/Else" statements to determine what the robot is going to do based on the Game Data that is received. `AutoRightSwitch` has only two "AddSequentials" that will be used. No matter what the Game Data is, the robot will go all the way up to the switch. Because it is all the way up to the switch, it is past the baseline too, so it can be used whether the robot will be putting a Power Cube on the switch or not. If the Game Data returns that the side of the switch that is our alliance color is the right, the robot will stay in position, along with putting the Power Cube on the switch through `ArmDeploy`. Else, if the Game Data returns that the side of the switch that is our alliance color is the left, the robot will only stay in place. This is to make sure the robot does not interfere with other alliance members, as they will most likely be starting on that side if we are not.
