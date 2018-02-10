@@ -123,19 +123,19 @@ public class OI {
 	public int getArmButtons(){
 			int armPosDesired;
 		if (xboxController_Operator.getRawButton(RobotMap.XBOX_BUTTON_A_OPERATOR)){
-			 armPosDesired = 0;
+			 armPosDesired = RobotMap.FLOOR_SETPOINT;
 		}
 		else if (xboxController_Operator.getRawButton(RobotMap.XBOX_BUTTON_B_OPERATOR)){
-			armPosDesired = 1;
+			armPosDesired = RobotMap.PORTAL_SETPOINT;
 		}
 		else if (xboxController_Operator.getRawButton(RobotMap.XBOX_BUTTON_X_OPERATOR)){
-			armPosDesired = 2;
+			armPosDesired = RobotMap.SET_SWITCH_SETPOINT;
 		}
-		else if (xboxController_Operator.getRawButton(RobotMap.XBOX_BUTTON_Y_OPERATOR)){
-			armPosDesired = 3;
-		}
+		//else if (xboxController_Operator.getRawButton(RobotMap.XBOX_BUTTON_Y_OPERATOR)){
+		//	armPosDesired = Robotmap.;
+		//}
 		else if (xboxController_Operator.getRawButton(RobotMap.XBOX_BUTTON_LEFT_BUMPER_OPERATOR)){
-			armPosDesired = 4;
+			armPosDesired = RobotMap.HIGHEST_RUNG_SETPOINT;
 		}
 		else {
 			armPosDesired = -1;
@@ -157,8 +157,8 @@ public class OI {
 	
 
 	//For Feeder Up/Down
-	public int getXboxLeftStickY_Operator(){
-		double value = xboxController_Operator.getRawAxis(RobotMap.XBOX_AXIS_LEFT_Y);
+	public int getXboxRightStickY_Operator(){
+		double value = xboxController_Operator.getRawAxis(RobotMap.XBOX_AXIS_RIGHT_Y);
 		if (value > .5){//this is controller down
 			return -1;// so down as in negative
 		} else if (value < -.5){//this is controller up
@@ -189,5 +189,9 @@ public class OI {
 	//Gear Shift to High
 	public boolean getXboxStart_Driver(){
 		return xboxController_Driver.getRawButton(RobotMap.XBOX_BUTTON_START_DRIVER);
+	}
+	
+	public boolean getXboxOperator_R3(){
+		return xboxController_Operator.getRawButton(RobotMap.XBOX_BUTTON_R3_OPERATOR);
 	}
 }

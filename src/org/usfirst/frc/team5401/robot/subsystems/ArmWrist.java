@@ -9,6 +9,8 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+import org.usfirst.frc.team5401.robot.Robot;
 import org.usfirst.frc.team5401.robot.RobotMap;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
@@ -34,8 +36,7 @@ public class ArmWrist extends Subsystem {
 	private boolean armPidEnabled;
 	private int loopIndex;
 	private int slotIndex;
-	private int setArrayPoint[] =  {0, 0 ,0 , 0};
-
+	
 	public ArmWrist(){
 
 		loopIndex = 0;
@@ -123,7 +124,7 @@ public class ArmWrist extends Subsystem {
 
 	public void setPoint(int setPointIndex){
 		armTalon.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Brake);
-		armTalon.set(ControlMode.Position, setArrayPoint[setPointIndex]);
+		armTalon.set(ControlMode.Position, Robot.oi.getArmButtons());
 		brake.set(false);
 		armPidEnabled = true;
 		//Finds set point
@@ -148,6 +149,18 @@ public class ArmWrist extends Subsystem {
 		//getClosedLoopT gets the SetPoint already set (or moving to)
 	}
 	
+	public void overrideStopped(){
+		
+		armTalon.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Coast);
+		brake.set(true);
+		armPidEnabled = false;
+	}
+	
+	public void armInterrupted(){
+		
+		armPidEnabled = false;
+		armTalon.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Coast);
+	}
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 }
