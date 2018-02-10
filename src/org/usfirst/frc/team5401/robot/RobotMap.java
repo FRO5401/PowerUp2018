@@ -118,5 +118,6 @@ public class RobotMap {
 	public static final int FLOOR_SETPOINT = 0;
 	public static final int PORTAL_SETPOINT = 0;
 	public static final int SET_SWITCH_SETPOINT = 0;
+	public static final int SCALE_SETPOINT = 0;
 	public static final int HIGHEST_RUNG_SETPOINT = 0;
 }
