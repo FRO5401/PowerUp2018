@@ -24,7 +24,7 @@ public class ArmWrist extends Subsystem {
 
 //	private DoubleSolenoid wristMoveLong;
 //	private DoubleSolenoid wristMoveShort;
-	private Solenoid brake;
+//	private Solenoid brake;
 	//Encoder not needed for TalonSRX due to VS Encoders
 	private TalonSRX armTalon;
 	//private AnalogPotentiometer armPot; Probably will not be used
@@ -123,7 +123,7 @@ public class ArmWrist extends Subsystem {
 	public void setBrake(boolean brakeSet){
 		//Controlled by either override or reaching end of PID setpoint
 		//Disabled once override is engaged
-		brake.set(brakeSet);
+//		brake.set(brakeSet);
 	}
 
 	
@@ -132,7 +132,7 @@ public class ArmWrist extends Subsystem {
 		double setPointNativeUnits = setPointIndexInDegrees / RobotMap.ANGLE_PER_PULSE;
 		armTalon.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Brake);
 		armTalon.set(ControlMode.Position, setPointNativeUnits);
-		brake.set(false);
+//		brake.set(false);
 		armPidEnabled = true;
 		//Finds set point
 		//Calls to command for which set point
@@ -140,7 +140,7 @@ public class ArmWrist extends Subsystem {
 	}
 
 	public void pidStop(){
-		brake.set(true);
+//		brake.set(true);
 		armPidEnabled = false;
 		armTalon.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Coast);
 	}
@@ -159,7 +159,7 @@ public class ArmWrist extends Subsystem {
 	public void overrideStopped(){
 		
 		armTalon.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Coast);
-		brake.set(true);
+//		brake.set(true);
 		armPidEnabled = false;
 	}
 	
@@ -174,8 +174,21 @@ public class ArmWrist extends Subsystem {
 		//Shows degrees. Converts native units to degrees
 		double armAngle = armTalon.getSensorCollection().getQuadraturePosition() * RobotMap.ANGLE_PER_PULSE;
 		SmartDashboard.putNumber("Arm Angle", armAngle);
-		return armAngle;
-		
+		SmartDashboard.putNumber("Native Units for Arm", armTalon.getSensorCollection().getQuadraturePosition());
+		return armAngle;	
+	}
+	
+	//1 for mode is coast. 2 for mode is brake
+	public void setTalonSRXNeutralMode(int mode)
+	{
+		if(mode == 1)
+		{
+			armTalon.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Coast);
+		}
+		if(mode == 2)
+		{
+			armTalon.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Brake);
+		}
 	}
 }
 

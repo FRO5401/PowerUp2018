@@ -75,6 +75,7 @@ public class OI {
 		xboxLeftBumper_Operator.whenPressed(new ArmPIDMove(RobotMap.SCALE_SETPOINT));
 		xboxRightBumper_Operator.whenPressed(new ArmPIDMove(RobotMap.HIGHEST_RUNG_SETPOINT));
 
+		xboxR3_Operator	.whenPressed(new ArmOverRide());
 		
 	}
 	
@@ -165,28 +166,16 @@ public class OI {
 		}
 	
 	//For GearMechanism
-	public int getXboxRightStickY_Driver(){ //TODO remove
+	public double getXboxRightStickY_Driver(){ //TODO remove
 		double value = xboxController_Driver.getRawAxis(RobotMap.XBOX_AXIS_RIGHT_Y);
-		if (value > .5){
-			return 1;
-		} else if (value < -.5){
-			return -1;
-		} else {
-			return 0;
-		}
+		return value;
 	}
 	
 
 	//For Feeder Up/Down
-	public int getXboxRightStickY_Operator(){
+	public double getXboxRightStickY_Operator(){
 		double value = xboxController_Operator.getRawAxis(RobotMap.XBOX_AXIS_RIGHT_Y);
-		if (value > .5){//this is controller down
-			return -1;// so down as in negative
-		} else if (value < -.5){//this is controller up
-			return 1;// so up as in positive
-		} else {
-			return 0;
-		}
+		return value;
 	}
 	
 	//For Feeder In/Out

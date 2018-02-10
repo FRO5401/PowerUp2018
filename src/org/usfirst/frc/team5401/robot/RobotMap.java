@@ -33,6 +33,8 @@ public class RobotMap {
 	public static final double ARM_OFFSET = 0;
 	public static final int TIMEOUT_LIMIT_IN_Ms = 10;//Might change. 10 is default in sample code
 	public static final int ARM_THRESHOLD_FOR_PID = 2;
+	public static final double ARM_OVERRIDE_JOYSTICK_THRESHOLD = 0.2; 
+	public static final double ARM_OVERRIDE_PRECISION = 0.3;
 	
 	//This is for XboxMove
 	public static final double MINIMUM_VELOCITY_FOR_HIGH_GEAR = 0; //Experimentally Determined, REMEMBER inches per second
@@ -54,11 +56,13 @@ public class RobotMap {
 	public static final int ARM_POSITION_DESIRED   = 0;
 	public static final int XBOX_CONTROLLER_DRIVER = 0;
 	public static final int XBOX_CONTROLLER_OPERATOR = 1;
+	
 	public static final int XBOX_AXIS_LEFT_X = 0;
-	public static final int XBOX_AXIS_LEFT_TRIGGER = 0;
-	public static final int XBOX_AXIS_RIGHT_TRIGGER = 0;
-	public static final int XBOX_AXIS_RIGHT_Y = 0;
-	public static final int XBOX_AXIS_LEFT_Y = 0;
+	public static final int XBOX_AXIS_LEFT_Y = 1;
+	public static final int XBOX_AXIS_LEFT_TRIGGER = 2;
+	public static final int XBOX_AXIS_RIGHT_TRIGGER = 3;
+	public static final int XBOX_AXIS_RIGHT_X = 4;
+	public static final int XBOX_AXIS_RIGHT_Y = 5;
 	
 	//OI Buttons
 	public static final int XBOX_BUTTON_A_DRIVER	   		 = 1;
