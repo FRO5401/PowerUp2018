@@ -101,11 +101,11 @@ public class ArmWrist extends Subsystem {
     }
     public void checkWrist(){
     	//You do this as you do not need to create an Encoder Object for VP Encoders with the TalonSRX
-    	if(armTalon.getSensorCollection().getQuadraturePosition() > 89){
+    	if(armTalon.getSensorCollection().getQuadraturePosition() > RobotMap.MAX_ARM_ANGLE_BEFORE_SOLENOIDS_FIRE){
     		wristMoveLong.set(DoubleSolenoid.Value.kForward);
     		wristMoveShort.set(DoubleSolenoid.Value.kForward);
     	}
-    	else if(armTalon.getSensorCollection().getQuadraturePosition() < 89){
+    	else if(armTalon.getSensorCollection().getQuadraturePosition() < RobotMap.MAX_ARM_ANGLE_BEFORE_SOLENOIDS_FIRE){
     		wristMoveLong.set(DoubleSolenoid.Value.kReverse);
     		wristMoveShort.set(DoubleSolenoid.Value.kReverse);
     	}
@@ -161,9 +161,9 @@ public class ArmWrist extends Subsystem {
 	}
 	
 	public double getArmAngle(){
-		
-		return armTalon.getSensorCollection().getQuadraturePosition() * RobotMap.ANGLE_PER_PULSE;
-		
+		double armAngle = armTalon.getSensorCollection().getQuadraturePosition() * RobotMap.ANGLE_PER_PULSE;
+		SmartDashboard.putNumber("Arm Angle", armAngle);
+		return armAngle;
 		
 	}
 }
