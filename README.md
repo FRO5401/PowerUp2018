@@ -105,7 +105,10 @@ It holds important variabled used in Auto such as desiredDistance, autoDriveSpee
 `AutoDrive` requires `DistanceInput` and `SpeedInput` to determine what the robot will do.
 
 ##### initialize()
-`initialize` is called before the command runs for the first time.
+`initialize` is called before the command runs for the first time. It resets all of the Encoders and angles to make them back to the default to help prepare for the Auto to run.
+
+##### execute()
+`execute` is called and runs continuously when the robot is supposed to run. 
 
 ### AutoCenterSwitch.java
 
