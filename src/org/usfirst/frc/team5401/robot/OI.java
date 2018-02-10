@@ -68,6 +68,11 @@ public class OI {
 	
 	//Buttons
 	public OI(){
+		
+		xboxA_Operator.whenPressed(new ArmPIDMove(RobotMap.FLOOR_SETPOINT));
+		xboxB_Operator.whenPressed(new ArmPIDMove(RobotMap.PORTAL_SETPOINT));
+		xboxX_Operator.whenPressed(new ArmPIDMove(RobotMap.SET_SWITCH_SETPOINT));
+		xboxLeftBumper_Operator.whenPressed(new ArmPIDMove(RobotMap.HIGHEST_RUNG_SETPOINT));
 
 		
 	}
@@ -121,7 +126,7 @@ public class OI {
 	}
 
 	public int getArmButtons(){
-			int armPosDesired;
+		int armPosDesired;
 		if (xboxController_Operator.getRawButton(RobotMap.XBOX_BUTTON_A_OPERATOR)){
 			 armPosDesired = RobotMap.FLOOR_SETPOINT;
 		}
