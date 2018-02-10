@@ -74,7 +74,8 @@ public class OI {
 		xboxX_Operator.whenPressed(new ArmPIDMove(RobotMap.SET_SWITCH_SETPOINT));
 		xboxLeftBumper_Operator.whenPressed(new ArmPIDMove(RobotMap.SCALE_SETPOINT));
 		xboxRightBumper_Operator.whenPressed(new ArmPIDMove(RobotMap.HIGHEST_RUNG_SETPOINT));
-
+		
+		xboxL3_Operator.whenPressed(new WristMove());
 		
 	}
 	

@@ -29,6 +29,7 @@ public class WristMove extends Command {
     	wristChangePoint = Robot.oi.readXboxLeftY_Operator();
     	Robot.armwrist.longWristUpDown(wristChangePoint);
     	Robot.armwrist.shortWristUpDown(wristChangePoint);
+    	System.out.println("WristMove Executing");
     }
 
     // Make this return true when this Command no longer needs to run execute()
