@@ -51,7 +51,6 @@ public class RobotMap {
 	public static final double MAX_ARM_ANGLE_BEFORE_SOLENOIDS_FIRE = 89;
 	
 	//This is for OI
-<<<<<<< HEAD
 	public static final int ARM_POSITION_DESIRED   = 0;
 	public static final int XBOX_CONTROLLER_DRIVER = 0;
 	public static final int XBOX_CONTROLLER_OPERATOR = 1;
