@@ -161,22 +161,22 @@ public class OI {
 	}
 	
 	//Controller Axis Operator
-	public double getXboxLeftStickY_Operator(){
+	public double readXboxLeftStickY_Operator(){
 		double value = xboxController_Operator.getRawAxis(RobotMap.XBOX_AXIS_LEFT_Y);
 		return value;
 	}
 	
-	public double getXboxLeftStickX_Operator(){
+	public double readXboxLeftStickX_Operator(){
 		double value = xboxController_Operator.getRawAxis(RobotMap.XBOX_AXIS_LEFT_X);
 		return value;
 	}
 	
-	public double getXboxRightStickY_Operator(){
+	public double readXboxRightStickY_Operator(){
 		double value = xboxController_Operator.getRawAxis(RobotMap.XBOX_AXIS_RIGHT_Y);
 		return value;
 	}
 	
-	public double getXboxRightStickX_Operator(){
+	public double readXboxRightStickX_Operator(){
 		double value = xboxController_Operator.getRawAxis(RobotMap.XBOX_AXIS_RIGHT_X);
 		return value;
 	}
