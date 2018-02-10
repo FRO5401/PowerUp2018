@@ -50,7 +50,16 @@ public class RobotMap {
 	//This is for Angles
 	public static final double MAX_ARM_ANGLE_BEFORE_SOLENOIDS_FIRE = 89;
 	
-	//This is for OI	
+	//This is for OI
+	public static final int ARM_POSITION_DESIRED   = 0;
+	public static final int XBOX_CONTROLLER_DRIVER = 0;
+	public static final int XBOX_CONTROLLER_OPERATOR = 1;
+	public static final int XBOX_AXIS_LEFT_X = 0;
+	public static final int XBOX_AXIS_LEFT_TRIGGER = 0;
+	public static final int XBOX_AXIS_RIGHT_TRIGGER = 0;
+	public static final int XBOX_AXIS_RIGHT_Y = 0;
+	public static final int XBOX_AXIS_LEFT_Y = 0;
+	
 	//OI Buttons
 	public static final int XBOX_BUTTON_A_DRIVER	   		 = 1;
 	public static final int XBOX_BUTTON_B_DRIVER		     = 2;
@@ -82,7 +91,6 @@ public class RobotMap {
 	public static final int DRIVE_LEFT_MOTOR_2 	= 3;
 	public static final int DRIVE_RIGHT_MOTOR_1 = 0;
 	public static final int DRIVE_RIGHT_MOTOR_2 = 1;
-
 
 	
 	//PCM ID
