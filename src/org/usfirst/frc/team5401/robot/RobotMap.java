@@ -20,6 +20,11 @@ public class RobotMap {
 	public static final double DRIVE_I = 0;
 	public static final double DRIVE_D = 0;
 	
+	public static final double TURN_P = .02;
+	public static final double TURN_I = 0;
+	public static final double TURN_D = 0;
+	public static final double TURN_F = 0;
+	
 	//This is for XboxMove
 	public static final double MINIMUM_VELOCITY_FOR_HIGH_GEAR = 0; //Experimentally Determined, REMEMBER inches per second
 	public static final double MAXIMUM_VELOCITY_FOR_LOW_GEAR = 0;
@@ -29,7 +34,7 @@ public class RobotMap {
 	public static final double DRIVE_SPIN_SENSITIVITY = 1;
 	
 	//This is for AutoTurnAngle
-	public static final double ANGLE_THRESHOLD = 1;//in degrees
+	public static final double ANGLE_THRESHOLD = 0.5;//in degrees
 	public static final double AUTO_TURN_SPEED = 0.95;
 	public static final double AUTO_TURN_PRECISION = 0.75;
 	
@@ -46,12 +51,11 @@ public class RobotMap {
 	 
 	//Motors
 		//Drive Motors
-	public static final int DRIVE_LEFT_MOTOR_1 	= 2;
-	public static final int DRIVE_LEFT_MOTOR_2 	= 3;
-	public static final int DRIVE_RIGHT_MOTOR_1 = 0;
+	 public static final int DRIVE_RIGHT_MOTOR_1 = 0;
 	public static final int DRIVE_RIGHT_MOTOR_2 = 1;
+	public static final int DRIVE_LEFT_MOTOR_1 	= 2;
+	public static final int DRIVE_LEFT_MOTOR_2 	= 3;	
 
-	
 	//PCM ID
 	public static final int PCM_ID 				= 0;
 	//Solenoids

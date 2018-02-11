@@ -5,6 +5,8 @@ import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 
+import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.Encoder;
@@ -26,10 +28,17 @@ public class DriveBase extends Subsystem {
 	private VictorSP leftDrive2;
 	private VictorSP rightDrive2;
 
+	private SpeedControllerGroup leftDriveGroup;
+	private SpeedControllerGroup rightDriveGroup;
+	
+
 	private PIDController leftPID1;
 	private PIDController leftPID2;
 	private PIDController rightPID1;
 	private PIDController rightPID2;
+	
+	private PIDController leftTurnController;
+	private PIDController rightTurnController;
 	
 //	private DoubleSolenoid gearShifter;
 	
@@ -38,19 +47,23 @@ public class DriveBase extends Subsystem {
 	private AHRS navxGyro;
 	
 
-	public DriveBase(){
-		
+
+	public DriveBase(){		
 		leftDrive1   	= new VictorSP(RobotMap.DRIVE_LEFT_MOTOR_1);
 		leftDrive2  	= new VictorSP(RobotMap.DRIVE_LEFT_MOTOR_2);
 		rightDrive1  	= new VictorSP(RobotMap.DRIVE_RIGHT_MOTOR_1);
 		rightDrive2 	= new VictorSP(RobotMap.DRIVE_RIGHT_MOTOR_2);
 		
+		leftDriveGroup = new SpeedControllerGroup(leftDrive1, leftDrive2);
+		rightDriveGroup = new SpeedControllerGroup(rightDrive1, rightDrive2);
+				
 //		gearShifter = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.DRIVE_SHIFT_IN, RobotMap.DRIVE_SHIFT_OUT);
 
 		leftEncoder = new Encoder(RobotMap.DRIVE_ENC_LEFT_A, RobotMap.DRIVE_ENC_LEFT_B, true, Encoder.EncodingType.k4X);
 		//																					vvv if this was false, DPP doesn't have to be negative
 		rightEncoder = new Encoder(RobotMap.DRIVE_ENC_RIGHT_A, RobotMap.DRIVE_ENC_RIGHT_B, true, Encoder.EncodingType.k4X);
 		
+		//Jason - I think the following is unnecessary because the initEncoder method, which called in the encoder constructor sets the PIDSourceType to displacement
 		leftEncoder.setPIDSourceType(PIDSourceType.kDisplacement);
 		rightEncoder.setPIDSourceType(PIDSourceType.kDisplacement);
 		
@@ -59,9 +72,16 @@ public class DriveBase extends Subsystem {
 		rightPID1 	= new PIDController(RobotMap.DRIVE_P,RobotMap.DRIVE_I,RobotMap.DRIVE_D, rightEncoder, rightDrive1);
 		rightPID2 	= new PIDController(RobotMap.DRIVE_P,RobotMap.DRIVE_I,RobotMap.DRIVE_D, rightEncoder, rightDrive2);
 		
-		
 		navxGyro = new AHRS(I2C.Port.kMXP);
 		navxGyro.reset();
+
+//		navxGyro.setPIDSourceType(PIDSourceType.kDisplacement);
+		leftTurnController = new PIDController(RobotMap.TURN_P, RobotMap.TURN_I, RobotMap.TURN_D, RobotMap.TURN_F, navxGyro, leftDriveGroup);
+		rightTurnController = new PIDController(RobotMap.TURN_P, RobotMap.TURN_I, RobotMap.TURN_D, RobotMap.TURN_F, navxGyro, rightDriveGroup);
+		
+		leftTurnController.setAbsoluteTolerance(RobotMap.ANGLE_THRESHOLD);
+		rightTurnController.setAbsoluteTolerance(RobotMap.ANGLE_THRESHOLD);
+		//TODO We should probably also setContinuous
 		
 		SmartDashboard.putNumber("navx Angle", 	getGyroAngle());
 		SmartDashboard.putNumber("navx Pitch", 	getGyroPitch());
@@ -170,8 +190,12 @@ public class DriveBase extends Subsystem {
     	rightEncoder.reset();
     }
     
+    public void gyroReset(){
+    	navxGyro.reset();
+    }
     public double getGyroAngle() {
     	double currentAngle = navxGyro.getAngle();
+    	SmartDashboard.putBoolean("NavX Connection", navxGyro.isConnected());
     	SmartDashboard.putNumber("navx Angle", currentAngle);
     	return currentAngle;
     }
@@ -180,51 +204,39 @@ public class DriveBase extends Subsystem {
     {
     	double currentPitch = navxGyro.getPitch();
     	SmartDashboard.putNumber("navx Pitch", currentPitch);
+    	SmartDashboard.putBoolean("NavX Connection", navxGyro.isConnected());
     	return currentPitch;
     }	
     
     public double getGyroRoll(){
     	double currentRoll = navxGyro.getRoll();
     	SmartDashboard.putNumber("navx Roll", currentRoll);
+    	SmartDashboard.putBoolean("NavX Connection", navxGyro.isConnected());
     	return currentRoll;
     }
     
-    public void enablePID () {
+    public void enableDriveStraightPID () {
     	leftPID1.enable();
     	leftPID2.enable();
     	rightPID1.enable();
     	rightPID2.enable();
     }
     
-    public void disablePID () {
+    public void disableDriveStraightPID () {
     	leftPID1.disable();
     	leftPID2.disable();
     	rightPID1.disable();
     	rightPID2.disable();
     }
-    
-    public double returnPIDInput () {
-    	// Return your input value for the PID loop
-    	// e.g. a sensor, like a potentiometer
-    	// yourPot.getAverageVoltage() / kYourMaxVoltage;
-    	return getEncoderDistance(3);
-    }
-    
-    public void usePIDOutput (double output) {
-    	// Use output to drive your system, like a motor
-    	// e.g. yourMotor.set(output);
-    	SmartDashboard.putNumber("PIDOutput", output);
-    	drive(output, output);
-    }
-    
-    public void setSetpoint(double setpoint)	{
+
+    public void setDriveStraightSetpoint(double setpoint)	{
     	leftPID1.setSetpoint(setpoint);
     	leftPID2.setSetpoint(setpoint);
     	rightPID1.setSetpoint(-setpoint);
     	rightPID2.setSetpoint(-setpoint);
     }
     
-    public double getSetpoint(double leftOrRight)	{
+    public double getDriveStraightSetpoint(double leftOrRight)	{
     	//setpoint is only set with the above function setSetpoint()
     	//So all set points are the same so only one setpoint needs to be sent
     	double setpoint = 0;
@@ -235,5 +247,34 @@ public class DriveBase extends Subsystem {
     		setpoint = rightPID1.getSetpoint();
     	}
     	return setpoint;
+    }
+    
+
+    public void enableTurnPID () {
+    	leftTurnController.enable();
+    	rightTurnController.enable();
+    }
+    
+    public void disableTurnPID () {
+    	leftTurnController.disable();
+    	rightTurnController.disable();
+    }
+
+    public void setTurnSetpoint(double setpoint)	{
+    	//If both motors are used to turn, the motor are both positive or both negative
+    	leftTurnController.setSetpoint(setpoint);
+    	rightTurnController.setSetpoint(setpoint);
+    }
+    
+    public double getLeftTurnPIDError()	{
+    	return leftTurnController.getError();
+    }
+    
+    public double getRightTurnPIDError()	{
+    	return rightTurnController.getError();
+    }
+    
+    public boolean getTurnPIDOnTarget()	{
+    	return (leftTurnController.onTarget() && rightTurnController.onTarget());
     }
 }
