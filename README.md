@@ -129,13 +129,42 @@ Subsystems are all of the different physical parts of the robot, and the code in
 
 #### Imported Files
 From Wpilibj
+- VictorSP
+- DoubleSolenoid
 - SpeedControllerGroup
 - PIDController
 - PIDSourceType
 - Encoder
 - I2C
-From - driv
+
+From Wpilibj.smartdashboard
+- SmartDashboard
+
+From Wpilibj.command
+- Subsystem
+- PIDSubsystem
+
+From - Wpilibj.drive
 - DifferentialDrive
+
+Import kauailabs.navx.frc.AHRS
+
+From team5401.robot
+- RobotMap
+- command.XboxMove
+
+#### Methods/Uses
+`DriveBase.java` holds the information for all parts that drive the base of the robot. The beginning of `DriveBase.java` contains constants that control the robot such as the VictorSP motor controllers for the wheels, speed controllers, PID controllers, Encoders, and the navxGyro.
+
+#### `DriveBase()`
+`DriveBase()` creates and names all of the new motor/speed controllers, PID controllers, Encoders, and the navxGyro, calling back to `RobotMap.java`. It also resets the current angle of the robot. `DriveBase()` puts all of the information of the robot such as encoder readings, and angles onto the SmartDashboard.
+
+#### `initDefaultCommand()`
+This sets the default command for the subsystem. It pulls the information from XboxMove to control the robot.
+
+#### ``
+
+
 
 ## **Autnomous Files**
 
