@@ -1,5 +1,7 @@
 package org.usfirst.frc.team5401.robot;
 import org.usfirst.frc.team5401.robot.autonomous.*;
+
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -87,6 +89,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
+		SmartDashboard.putString("Auto Side in INIT", DriverStation.getInstance().getGameSpecificMessage());
 		autonomousCommand = chooser.getSelected();
 
 		/*
@@ -106,6 +109,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousPeriodic() {
+		SmartDashboard.putString("Auto Side PERIODIC", DriverStation.getInstance().getGameSpecificMessage());
 		Scheduler.getInstance().run();
 	}
 
