@@ -12,6 +12,7 @@ If any files contained merge conflicts after pulling down staging, list them her
 -
 
 ### TO DO
+- [ ] On Robot testing
 - [ ] Resolved Merge Conflicts
 - [ ] Reviewed by Peers
 - [ ] Reviewed by Senior Dev
