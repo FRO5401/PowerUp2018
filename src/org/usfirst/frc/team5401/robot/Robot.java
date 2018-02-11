@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.CameraServer;
 
 import org.usfirst.frc.team5401.robot.subsystems.*;
 /**
@@ -46,6 +47,9 @@ public class Robot extends IterativeRobot {
 		//chooser.addDefault("Default Auto", new ExampleCommand());
 		chooser.addDefault("AutoDrive", new AutoDrive( 127 , 1));
 		SmartDashboard.putData("Auto mode", chooser);
+		//Camera
+		CameraServer.getInstance().startAutomaticCapture();
+		
 	}
 
 	/**
