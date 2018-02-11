@@ -205,4 +205,18 @@ From team5401.robot
 Creates a variable for the distance that the robot will drive. Requires `Robot.drivebase`.
 
 #### initialize()
-`initialize` is called before the robot runs for the first time. It resets the encoders on the drive base to refresh the values and get more accurate readings. 
+`initialize` is called before the robot runs for the first time. It resets the encoders on the drive base to refresh the values and get more accurate readings. Then, it sets the distance the robot is supposed to drive, setting the set point to the `desiredDistance`/`distance`.
+
+#### execute()
+`execute` is called continuously when the robot is supposed to run. The execute first reads the angle of the robot. Then, it gets the position of the left and right sides of the robot. After it runs, it returns the amount of error on the left and right sides by subtracting the distance the robot is supposed to go by the encoder distances.
+
+#### isFinished()
+`isFinished` will return true when the robot does not need to travel anymore. It does this by seeing if the left and right sides are where they need to be. If the values of the distance traveled on both sides relative to desired distances are less than the tolerance (the amount of distance that the robot can be off of its target), it will return true. If they are off, it will return false.
+
+#### end()
+When the `isFinished` returns true, `end` will activate `disableDriveStraightPID`, stopping the robot in place.    
+
+#### interrupted()
+`interrupted` is called when another command which requires one or more of the same subsystems is scheduled to run, activating `disableDriveStraightPID`.
+
+## ADD SCALE AUTOS WHEN DONE
