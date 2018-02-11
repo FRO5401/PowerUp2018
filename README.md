@@ -121,7 +121,21 @@ When the `isFinished` returns true, `end` will activate `disableDriveStraightPID
 #### interrupted()
 `interrupted` is called when another command which requires one or more of the same subsystems is scheduled to run, activating `disableDriveStraightPID`.**
 
+## **Subsystem Files**
 
+Subsystems are all of the different physical parts of the robot, and the code in them are all of the commands and controls that go with them.
+
+### `DriveBase.java`
+
+#### Imported Files
+From Wpilibj
+- SpeedControllerGroup
+- PIDController
+- PIDSourceType
+- Encoder
+- I2C
+From - driv
+- DifferentialDrive
 
 ## **Autnomous Files**
 
