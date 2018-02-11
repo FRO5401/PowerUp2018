@@ -88,7 +88,7 @@ For buttons, there can be a `whenPressed` that will do something when the button
 
 ## Autnomous Files
 
-ALL MAIN AUTNOMOUS FILES USE GAMEDATA. Game Data is layout on the field of which side of the two Alliance switches and the scale is which color, either red or blue. Different combinations of 3 characters using "L" and "R" (Left and Right) are given. For example, if the combination is "LRL", when looking down at the field from the Driver Station, the side of the switches and scale that will be your color are left, right, then left. If your alliance is blue, the left side of *your Switch* will be blue, the right side of the *Scale* will be blue, and the left side of the *opposite Switch* will be blue (LRL). Game Data is received upon the match's start, after the "3...2...1...Go!" This is represented through  "String gameData = DriverStation.getInstance().getGameSpecificMessage();", where the Game Data is received. Most autonomous files will have Game Data input, and require Game Data. All Main Auto files are command groups that run a list of commands. ALL AUTO FILES will have a "Catch/Try" for when the Game Data is empty, and tell the robot just to drive forward to the baseline.
+ALL MAIN AUTNOMOUS FILES USE GAMEDATA (those that will have many commands). Game Data is layout on the field of which side of the two Alliance switches and the scale is which color, either red or blue. Different combinations of 3 characters using "L" and "R" (Left and Right) are given. For example, if the combination is "LRL", when looking down at the field from the Driver Station, the side of the switches and scale that will be your color are left, right, then left. If your alliance is blue, the left side of *your Switch* will be blue, the right side of the *Scale* will be blue, and the left side of the *opposite Switch* will be blue (LRL). Game Data is received upon the match's start, after the "3...2...1...Go!" This is represented through  "String gameData = DriverStation.getInstance().getGameSpecificMessage();", where the Game Data is received. Most autonomous files will have Game Data input, and require Game Data. All Main Auto files are command groups that run a list of commands. ALL MAIN AUTO FILES will have a "Catch/Try" for when the Game Data is empty, and tell the robot just to drive forward to the baseline.
 
 ### AutoDrive.java
 
@@ -102,13 +102,22 @@ Imports from Wpilib.command
 It holds important variabled used in Auto such as desiredDistance, autoDriveSpeed, doneTraveling, distanceTraveled, heading, drift, kP_Drift and velocitySample2. These variables are used to control what the robot will do in each Auto, and control how it does it. `AutoDrive.java` will also serve as the "Drive to Baseline" code for when the Robot is just going to drive to the baseline.
 
 ##### AutoDrive(double DistanceInput, double SpeedInput)
-`AutoDrive` requires `DistanceInput` and `SpeedInput` to determine what the robot will do.
+`AutoDrive` requires `DistanceInput` and `SpeedInput` to determine what the robot will do. It uses the `DistanceInput` to determine the distance, and the `SpeedInput` to determine the percent of full power will be used.
 
 ##### initialize()
 `initialize` is called before the command runs for the first time. It resets all of the Encoders and angles to make them back to the default to help prepare for the Auto to run.
 
 ##### execute()
-`execute` is called and runs continuously when the robot is supposed to run. 
+`execute` is called and runs continuously when the robot is supposed to run.
+
+#### isfinished()
+`isFinished` will return true when the robot does not need to travel anymore.
+
+#### end()
+`end` is called after the `isFinished` returns true, and ends the command, stopping the drivebase.
+
+#### interrupted()
+`interrupted` is called when another command which requires one or more of the same subsystems is scheduled to run.
 
 ### AutoCenterSwitch.java
 
