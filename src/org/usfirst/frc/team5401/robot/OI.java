@@ -11,44 +11,49 @@ import org.usfirst.frc.team5401.robot.commands.*;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
+	
+	//Assign values from RobotMap here
+	int leftStickX = RobotMap.XBOX_AXIS_LEFT_X;
+	int leftStickY = RobotMap.XBOX_AXIS_LEFT_Y;
 
-  //User Maps
-  Joystick xboxController_Driver = new Joystick(RobotMap.XBOX_CONTROLLER_DRIVER);
-  Joystick xboxController_Operator = new Joystick(RobotMap.XBOX_CONTROLLER_OPERATOR);
+	int rightStickX = RobotMap.XBOX_AXIS_RIGHT_X;
+	int rightStickY = RobotMap.XBOX_AXIS_RIGHT_Y;
 
-  //Assign values from RobotMap here
-  int leftStickX = RobotMap.XBOX_AXIS_LEFT_X
-  int leftStickY = RobotMap.XBOX_AXIS_LEFT_Y
+	int leftTrigger = RobotMap.XBOX_AXIS_LEFT_TRIGGER;
+	int rightTrigger = RobotMap.XBOX_AXIS_RIGHT_TRIGGER;
 
-  int rightStickX = RobotMap.XBOX_AXIS_RIGHT_X
-  int rightStickY = RobotMap.XBOX_AXIS_RIGHT_Y
+	int buttonA = 1;
+	int buttonB = 2;
+	int buttonX = 3;
+	int buttonY = 4;
+	int buttonLB = 5;
+	int buttonRB = 6;
+	int buttonBack = 7;
+	int buttonStart = 8;
+	int buttonL3 = 9;
+	int buttonR3 = 10;
+	
+	public OI()
+	{
+		
+	}
+	
+	//User Maps
+	Joystick xboxController_Driver = new Joystick(RobotMap.XBOX_CONTROLLER_DRIVER);
+	Joystick xboxController_Operator = new Joystick(RobotMap.XBOX_CONTROLLER_OPERATOR);
 
-  int leftTrigger = RobotMap.XBOX_AXIS_LEFT_TRIGGER
-  int rightTrigger = RobotMap.XBOX_AXIS_RIGHT_TRIGGER
+	//Controller Axis
+	public double xboxAxis(int input, Joystick userMap) {
+		return userMap.getRawAxis(input);
+	}	
 
-  int buttonA = 1
-  int buttonB = 2
-  int buttonX = 3
-  int buttonY = 4
-  int buttonLB = 5
-  int buttonRB = 6
-  int buttonBack = 7
-  int buttonStart = 8
-  int buttonL3 = 9
-  int buttonR3 = 10
+	//Controller Button
+	public boolean xboxButton(int button, Joystick userMap) {
+		return userMap.getRawButton(button);
+	}
 
-  //Controller Axis
-  public double xboxAxis(input, userMap) {
-    return userMap.getRawAxis(input)
-  }
-
-  //Controller Button
-  public double xboxButton(button, userMap) {
-    return userMap.getRawButton(button)
-  }
-
-  //DPad
-  public double xboxDPad(userMap){
-    return userMap.getPOV()
-  }
+	//DPad
+	public double xboxDPad(Joystick userMap){
+		return userMap.getPOV();
+	}
 }
