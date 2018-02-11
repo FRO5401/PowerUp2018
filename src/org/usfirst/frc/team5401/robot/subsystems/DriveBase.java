@@ -30,7 +30,7 @@ public class DriveBase extends Subsystem {
 	private PIDController leftPID2;
 	private PIDController rightPID1;
 	private PIDController rightPID2;
-	
+
 //	private DoubleSolenoid gearShifter;
 	
 	private Encoder leftEncoder;
@@ -39,7 +39,6 @@ public class DriveBase extends Subsystem {
 	
 
 	public DriveBase(){
-
 		
 		leftDrive1   	= new VictorSP(RobotMap.DRIVE_LEFT_MOTOR_1);
 		leftDrive2  	= new VictorSP(RobotMap.DRIVE_LEFT_MOTOR_2);

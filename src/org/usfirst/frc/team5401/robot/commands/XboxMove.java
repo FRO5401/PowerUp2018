@@ -31,17 +31,17 @@ public class XboxMove extends Command {
     protected void execute() {
     	SmartDashboard.putNumber("Angle XboxDrive", Robot.drivebase.getGyroAngle());
     	
-    	double  slew      = Robot.oi.readXboxLeftX_Driver();
+    	double  slew      = Robot.oi.xboxAxis(RobotMap.XBOX_AXIS_LEFT_X, Robot.oi.xboxController_Driver) * -1;
 
-    	double 	throttle  = Robot.oi.readRightTrigger_Driver();
-    	double 	reverse   = Robot.oi.readLeftTrigger_Driver();
-    	boolean precision = Robot.oi.getPrecision_Driver();
-    	boolean brake	  = Robot.oi.getBrake_Driver();
-    	boolean turn	  = Robot.oi.getTurnButton_Driver();
-    	boolean invert	  = Robot.oi.getDriveInvertButton_Driver();
+    	double 	throttle  = Robot.oi.xboxAxis(RobotMap.XBOX_AXIS_RIGHT_TRIGGER, Robot.oi.xboxController_Driver);
+    	double 	reverse   = Robot.oi.xboxAxis(RobotMap.XBOX_AXIS_LEFT_TRIGGER, Robot.oi.xboxController_Driver);
+    	boolean precision = Robot.oi.xboxButton(RobotMap.XBOX_BUTTON_LEFT_BUMPER_DRIVER, Robot.oi.xboxController_Driver);
+    	boolean brake	  = Robot.oi.xboxButton(RobotMap.XBOX_BUTTON_RIGHT_BUMPER_DRIVER, Robot.oi.xboxController_Driver);
+    	boolean turn	  = Robot.oi.xboxButton(RobotMap.XBOX_BUTTON_L3_DRIVER, Robot.oi.xboxController_Driver);
+    	boolean invert	  = Robot.oi.xboxButton(RobotMap.XBOX_BUTTON_B_DRIVER, Robot.oi.xboxController_Driver);
     	
-    	boolean gearShiftLow  = Robot.oi.getXboxBack_Driver();
-    	boolean gearShiftHigh = Robot.oi.getXboxStart_Driver();
+    	boolean gearShiftLow  = Robot.oi.xboxButton(RobotMap.XBOX_BUTTON_BACK_DRIVER, Robot.oi.xboxController_Driver);
+    	boolean gearShiftHigh = Robot.oi.xboxButton(RobotMap.XBOX_BUTTON_START_DRIVER, Robot.oi.xboxController_Driver);
     	
     	//Manual Gear Shift
 /*    	if (gearShiftHigh){
