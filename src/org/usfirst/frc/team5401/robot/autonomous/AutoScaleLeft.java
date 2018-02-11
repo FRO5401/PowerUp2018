@@ -11,27 +11,28 @@ public class AutoScaleLeft extends CommandGroup {
     public AutoScaleLeft() {
     	//Start at Auto Position #1
     	//The following is a ternary operator, which is similar to a condensed if else statement
-    	String gameData = (DriverStation.getInstance().getGameSpecificMessage() == null) ? "XXX" : DriverStation.getInstance().getGameSpecificMessage();
-    	if(gameData.charAt(1) == 'L')
-    	{ 
-    	//This will be putting block on left side (Closer to Left)
-    		addSequential(new AutoPIDDrive(331.549));
-    		addSequential(new AutoTurnAngle(90));
-    		addSequential(new AutoPIDDrive(40));
-
-    		//addSequential(new xxxx());
+String gameData = DriverStation.getInstance().getGameSpecificMessage();
+    	
+    	if(gameData.isEmpty()){
+    		gameData = "XXX";
     	}
-    	else 
-    	{    	
-    	//This will be putting block the right side
-    		addSequential(new AutoPIDDrive(70));
-    		addSequential(new AutoTurnAngle(90));
-    		addSequential(new AutoPIDDrive(280));
-    		addSequential(new AutoTurnAngle(-90));
-    		addSequential(new AutoPIDDrive(261.549));
-    		addSequential(new AutoTurnAngle(-90));
+    		if(gameData.charAt(0) == 'R'){
+    	//Start at Auto Position #2. Drive to front of switch, place block on switch
+    		addSequential(new AutoPIDDrive(21));
+    		addSequential(new AutoTurnAngle(7));
     		addSequential(new AutoPIDDrive(40));
-    		//addSequential(new xxxx());
+    		addSequential(new AutoTurnAngle(-6));
+    	    addSequential(new AutoPIDDrive(37));
+    	}
+    	else if(gameData.charAt(0) == 'R')
+    	{    	
+    	//Start at Auto Position #2. Drive Forward 85 inches to base line 
+    	//(Figure out specifics later)
+    		addSequential(new AutoPIDDrive(85));
+ 
+    	}else if(gameData.charAt(0) == 'X')
+    	{
+    		addSequential(new AutoPIDDrive(10));
     	}
     }
-}
+  }

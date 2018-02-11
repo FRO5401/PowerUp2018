@@ -36,7 +36,7 @@ public class RobotMap {
 	//This is for AutoTurnAngle
 	public static final double ANGLE_THRESHOLD = 0.5;//in degrees
 	public static final double AUTO_TURN_SPEED = 0.95;
-	public static final double AUTO_TURN_PRECISION = 0.5;
+	public static final double AUTO_TURN_PRECISION = 0.75;
 	
 	//This is for OI
 	 public static final int XBOX_CONTROLLER_DRIVER = 0;
@@ -51,10 +51,11 @@ public class RobotMap {
 	 
 	//Motors
 		//Drive Motors
-	public static final int DRIVE_RIGHT_MOTOR_1 = 0;
+	 public static final int DRIVE_RIGHT_MOTOR_1 = 0;
 	public static final int DRIVE_RIGHT_MOTOR_2 = 1;
 	public static final int DRIVE_LEFT_MOTOR_1 	= 2;
 	public static final int DRIVE_LEFT_MOTOR_2 	= 3;	
+
 	//PCM ID
 	public static final int PCM_ID 				= 0;
 	//Solenoids

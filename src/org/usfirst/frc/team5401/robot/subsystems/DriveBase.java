@@ -47,6 +47,7 @@ public class DriveBase extends Subsystem {
 	private AHRS navxGyro;
 	
 
+
 	public DriveBase(){		
 		leftDrive1   	= new VictorSP(RobotMap.DRIVE_LEFT_MOTOR_1);
 		leftDrive2  	= new VictorSP(RobotMap.DRIVE_LEFT_MOTOR_2);
@@ -80,6 +81,7 @@ public class DriveBase extends Subsystem {
 		
 		leftTurnController.setAbsoluteTolerance(RobotMap.ANGLE_THRESHOLD);
 		rightTurnController.setAbsoluteTolerance(RobotMap.ANGLE_THRESHOLD);
+		//TODO We should probably also setContinuous
 		
 		SmartDashboard.putNumber("navx Angle", 	getGyroAngle());
 		SmartDashboard.putNumber("navx Pitch", 	getGyroPitch());
@@ -272,12 +274,7 @@ public class DriveBase extends Subsystem {
     	return rightTurnController.getError();
     }
     
-    public boolean getTurnPIDOnTarget(String leftOrRight)	{
-    	if(leftOrRight == "left")
-    	{
-    		return leftTurnController.onTarget();
-    	}	else	{
-    		return rightTurnController.onTarget();
-    	}
+    public boolean getTurnPIDOnTarget()	{
+    	return (leftTurnController.onTarget() && rightTurnController.onTarget());
     }
 }
