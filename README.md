@@ -1,6 +1,6 @@
 # PowerUp2018
 
-## Robot Files
+## **Robot Files**
 
 Robot files are an important part of the code that are called back to/ call to other things often. They hold a lot of information that is used in other parts of the code, and help to serve as a place to organize the bulk of things like variables, buttons, or parts
 
@@ -86,7 +86,44 @@ Sample:
 When using a button in a command, you can perform a task. Using `whenPressed`, `whileHeld`, and `whenReleased` this is possible and easy to understand what each button does.
 For buttons, there can be a `whenPressed` that will do something when the button is pressed down once, and continue doing that on its own until the task is completed. However, for a trigger or joystick, depending on how hard or how far you push in the button, it will change what the robot does, meaning a `whileHeld` can be used using axes With the joysticks, a value is given based on how far the stick is being pushed on the X or Y axis, and if it is a certain value, it will go. `whenReleased` is used to end the task the button is performing, and then possibly performing a task afterwards.
 
-## Autnomous Files
+## **Command FILES**
+
+### `XboxMove.java` **WON'T BE FINISHED YET
+
+#### Imported Files
+From Wpilib.command
+- Command
+From Wpilibj.smartdashboard
+- SmartDashboard
+
+From team5401.robot
+- Robot
+- RobotMap
+
+#### Methods/Uses
+`XboxMove.java` is the file that holds all of the variables that control movement from the controllers. This includes moving forward and backward, the throttle, reverse, braking, turning, and inverting along with gear shifts.
+
+#### XboxMove()
+`XboxMove()` constructs `XboxMove.java`. It creates `velocitySample1` and `velocitySample2` to use later in the code. Requires the drive base to move.
+
+#### initialize()
+`initialize` is called before the robot runs for the first time. It shifts the gear from high to low for increased accuracy.
+
+#### execute()
+`execute` is called continuously when the robot is supposed to run. The execute first reads the angle of the robot. After it runs, it returns the amount of error on the left and right sides by subtracting the distance the robot is supposed to go by the encoder distances.
+
+#### isFinished()
+`isFinished` will return true when the robot does not need to travel anymore. It does this by seeing if the left and right sides are where they need to be. If the values of the distance traveled on both sides relative to desired distances are less than the tolerance (the amount of distance that the robot can be off of its target), it will return true. If they are off, it will return false.
+
+#### end()
+When the `isFinished` returns true, `end` will activate `disableDriveStraightPID`, stopping the robot in place.    
+
+#### interrupted()
+`interrupted` is called when another command which requires one or more of the same subsystems is scheduled to run, activating `disableDriveStraightPID`.**
+
+
+
+## **Autnomous Files**
 
 ALL MAIN AUTNOMOUS FILES USE GAMEDATA (those that will have many commands). Game Data is layout on the field of which side of the two Alliance switches and the scale is which color, either red or blue. Different combinations of 3 characters using "L" and "R" (Left and Right) are given. For example, if the combination is "LRL", when looking down at the field from the Driver Station, the side of the switches and scale that will be your color are left, right, then left. If your alliance is blue, the left side of *your Switch* will be blue, the right side of the *Scale* will be blue, and the left side of the *opposite Switch* will be blue (LRL). Game Data is received upon the match's start, after the "3...2...1...Go!" This is represented through  "String gameData = DriverStation.getInstance().getGameSpecificMessage();", where the Game Data is received. Most autonomous files will have Game Data input, and require Game Data. All Main Auto files are command groups that run a list of commands. ALL MAIN AUTO FILES will have a "Catch/Try" for when the Game Data is empty, and tell the robot just to drive forward to the baseline.
 
