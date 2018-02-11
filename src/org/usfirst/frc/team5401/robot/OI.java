@@ -11,15 +11,11 @@ import org.usfirst.frc.team5401.robot.commands.*;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-    //// CREATING BUTTONS
-    // One type of button is a joystick button which is any button on a joystick.
-    // You create one by telling it which joystick it's on and which button
-    // number it is.
-    // Joystick stick = new Joystick(port);
-    // Button button = new JoystickButton(stick, buttonNumber);
-    
-	Joystick xboxController_Driver = new Joystick(RobotMap.XBOX_CONTROLLER_DRIVER);
-	Joystick xboxController_Operator = new Joystick(RobotMap.XBOX_CONTROLLER_OPERATOR);
+	
+	//User Maps
+	//These objects must be public for other classes to access when calling methods from OI
+	public Joystick xboxController_Driver = new Joystick(RobotMap.XBOX_CONTROLLER_DRIVER);
+	public Joystick xboxController_Operator = new Joystick(RobotMap.XBOX_CONTROLLER_OPERATOR);
 	
 	//Buttons
 	Button xboxA_Driver			  = new JoystickButton(xboxController_Driver, 1);
@@ -44,109 +40,23 @@ public class OI {
 	Button xboxL3_Operator		  	= new JoystickButton(xboxController_Operator, 9);
 	Button xboxR3_Operator		  	= new JoystickButton(xboxController_Operator, 10);
 	
-	
-	
-    // There are a few additional built in buttons you can use. Additionally,
-    // by subclassing Button you can create custom triggers and bind those to
-    // commands the same as any other Button.
-    
-    //// TRIGGERING COMMANDS WITH BUTTONS
-    // Once you have a button, it's trivial to bind it to a button in one of
-    // three ways:
-    
-    // Start the command when the button is pressed and let it run the command
-    // until it is finished as determined by it's isFinished method.
-    // button.whenPressed(new ExampleCommand());
-    
-    // Run the command while the button is being held down and interrupt it once
-    // the button is released.
-    // button.whileHeld(new ExampleCommand());
-    
-    // Start the command when the button is released  and let it run the command
-    // until it is finished as determined by it's isFinished method.
-    // button.whenReleased(new ExampleCommand());
-	
-	//Buttons
-	public OI(){
-
+	public OI()
+	{
 		
 	}
 	
-	/**Method Naming: 'read' = Analog; 'get' = Digital **/
-	
-	public double readXboxLeftX_Driver(){
-		return xboxController_Driver.getRawAxis(RobotMap.XBOX_AXIS_LEFT_X);
-	}
-	
-	public double readLeftTrigger_Driver(){
-		return xboxController_Driver.getRawAxis(RobotMap.XBOX_AXIS_LEFT_TRIGGER);		
-	}
-	
-	public double readRightTrigger_Driver(){
-		return xboxController_Driver.getRawAxis(RobotMap.XBOX_AXIS_RIGHT_TRIGGER);
-	}
-	
-	public boolean getPrecision_Driver(){
-		return xboxController_Driver.getRawButton(5);
-	}
-	
-	public boolean getBrake_Driver(){
-		return xboxController_Driver.getRawButton(6);
-	}
-	
-	public boolean getTurnButton_Driver(){
-		return xboxController_Driver.getRawButton(9);
-	}
-	
-	public boolean getDriveInvertButton_Driver() {
-		return xboxController_Driver.getRawButton(2);
-	}
-	
-	//For GearMechanism
-	public int getXboxRightStickY_Driver(){ //TODO remove
-		double value = xboxController_Driver.getRawAxis(RobotMap.XBOX_AXIS_RIGHT_Y);
-		if (value > .5){
-			return 1;
-		} else if (value < -.5){
-			return -1;
-		} else {
-			return 0;
-		}
-	}
-	
+	//Controller Axis
+	public double xboxAxis(int input, Joystick userMap) {
+		return userMap.getRawAxis(input);
+	}	
 
-	//For Feeder Up/Down
-	public int getXboxLeftStickY_Operator(){
-		double value = xboxController_Operator.getRawAxis(RobotMap.XBOX_AXIS_LEFT_Y);
-		if (value > .5){//this is controller down
-			return -1;// so down as in negative
-		} else if (value < -.5){//this is controller up
-			return 1;// so up as in positive
-		} else {
-			return 0;
-		}
+	//Controller Button
+	public boolean xboxButton(int button, Joystick userMap) {
+		return userMap.getRawButton(button);
 	}
-	
-	//For Feeder In/Out
-	public int getXboxTriggers_Operator(){
-		double left  = xboxController_Operator.getRawAxis(RobotMap.XBOX_AXIS_LEFT_TRIGGER);
-		double right = xboxController_Operator.getRawAxis(RobotMap.XBOX_AXIS_RIGHT_TRIGGER);
-		if (right > .1){ 
-			return 1;
-		} else if (left > .1){//<--left is in
-			return -1;
-		} else {
-			return 0;
-		}
-	}
-	
-	//Gear Shift to Low
-	public boolean getXboxBack_Driver(){
-		return xboxController_Driver.getRawButton(7);
-	}
-	
-	//Gear Shift to High
-	public boolean getXboxStart_Driver(){
-		return xboxController_Driver.getRawButton(8);
+
+	//DPad
+	public double xboxDPad(Joystick userMap){
+		return userMap.getPOV();
 	}
 }
