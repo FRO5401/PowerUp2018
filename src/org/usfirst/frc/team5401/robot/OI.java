@@ -13,6 +13,7 @@ import org.usfirst.frc.team5401.robot.commands.*;
 public class OI {
 	
 	//User Maps
+	//These objects must be public for other classes to access when calling methods from OI
 	public Joystick xboxController_Driver = new Joystick(RobotMap.XBOX_CONTROLLER_DRIVER);
 	public Joystick xboxController_Operator = new Joystick(RobotMap.XBOX_CONTROLLER_OPERATOR);
 	
