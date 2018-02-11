@@ -16,9 +16,9 @@ public class AutoLeftSwitch extends CommandGroup {
     		if(gameData.charAt(0) == 'R'){
     	//Start at Auto Position #2. Drive to front of switch, place block on switch
     		addSequential(new AutoPIDDrive(21));
-    		addSequential(new AutoTurnAngle(7));
+    		addSequential(new AutoPIDTurnAngle(7));
     		addSequential(new AutoPIDDrive(40));
-    		addSequential(new AutoTurnAngle(-6));
+    		addSequential(new AutoPIDTurnAngle(-6));
     	    addSequential(new AutoPIDDrive(37));
     	}
     	else if(gameData.charAt(0) == 'R')

@@ -9,8 +9,9 @@ import org.usfirst.frc.team5401.robot.commands.XboxMove;
 import edu.wpi.first.wpilibj.command.Scheduler;
 
 /**
- * 
+ * @Deprecated use AutoPIDTurnAngle
  */
+@Deprecated
 public class AutoTurnAngle extends Command {
 	
 	private double desiredTurnAngleRelativeToInitAngle;
