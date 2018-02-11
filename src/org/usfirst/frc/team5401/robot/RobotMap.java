@@ -29,16 +29,40 @@ public class RobotMap {
 	public static final double AUTO_TURN_PRECISION = 0.5;
 	
 	//This is for OI
-	 public static final int XBOX_CONTROLLER_DRIVER = 0;
-	 public static final int XBOX_CONTROLLER_OPERATOR = 1;
-	 public static final int XBOX_AXIS_LEFT_X = 0;
-	 public static final int XBOX_AXIS_RIGHT_X = 0;
-	 public static final int XBOX_AXIS_LEFT_TRIGGER = 0;
-	 public static final int XBOX_AXIS_RIGHT_TRIGGER = 0;
-	 public static final int XBOX_AXIS_RIGHT_Y = 0;
-	 public static final int XBOX_AXIS_LEFT_Y = 0;
-	 
-	 
+	public static final int ARM_POSITION_DESIRED   = 0;
+	public static final int XBOX_CONTROLLER_DRIVER = 0;
+	public static final int XBOX_CONTROLLER_OPERATOR = 1;
+	
+	public static final int XBOX_AXIS_LEFT_X = 0;
+	public static final int XBOX_AXIS_LEFT_Y = 1;
+	public static final int XBOX_AXIS_LEFT_TRIGGER = 2;
+	public static final int XBOX_AXIS_RIGHT_TRIGGER = 3;
+	public static final int XBOX_AXIS_RIGHT_X = 4;
+	public static final int XBOX_AXIS_RIGHT_Y = 5;
+	
+	//OI Buttons
+	public static final int XBOX_BUTTON_A_DRIVER	   		 = 1;
+	public static final int XBOX_BUTTON_B_DRIVER		     = 2;
+	public static final int XBOX_BUTTON_X_DRIVER		     = 3;
+	public static final int XBOX_BUTTON_Y_DRIVER		   	 = 4;
+	public static final int XBOX_BUTTON_LEFT_BUMPER_DRIVER   = 5;
+	public static final int XBOX_BUTTON_RIGHT_BUMPER_DRIVER  = 6;
+	public static final int XBOX_BUTTON_BACK_DRIVER		     = 7;
+	public static final int XBOX_BUTTON_START_DRIVER	  	 = 8;
+	public static final int XBOX_BUTTON_L3_DRIVER		  	 = 9;
+	public static final int XBOX_BUTTON_R3_DRIVER		  	 = 10;
+	
+	public static final int XBOX_BUTTON_A_OPERATOR	   		  = 1;
+	public static final int XBOX_BUTTON_B_OPERATOR		      = 2;
+	public static final int XBOX_BUTTON_X_OPERATOR		      = 3;
+	public static final int XBOX_BUTTON_Y_OPERATOR		   	  = 4;
+	public static final int XBOX_BUTTON_LEFT_BUMPER_OPERATOR  = 5;
+	public static final int XBOX_BUTTON_RIGHT_BUMPER_OPERATOR = 6;
+	public static final int XBOX_BUTTON_BACK_OPERATOR		  = 7;
+	public static final int XBOX_BUTTON_START_OPERATOR	  	  = 8;
+	public static final int XBOX_BUTTON_L3_OPERATOR		  	  = 9;
+	public static final int XBOX_BUTTON_R3_OPERATOR		  	  = 10;
+
 	//Motors
 		//Drive Motors
 	public static final int DRIVE_LEFT_MOTOR_1 	= 0;
