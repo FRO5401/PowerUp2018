@@ -27,7 +27,7 @@ public class DriveBase extends Subsystem {
 	private VictorSP rightDrive1;
 	private VictorSP leftDrive2;
 	private VictorSP rightDrive2;
-
+	
 	private SpeedControllerGroup leftDriveGroup;
 	private SpeedControllerGroup rightDriveGroup;
 	
@@ -46,7 +46,6 @@ public class DriveBase extends Subsystem {
 	private Encoder rightEncoder;
 	private AHRS navxGyro;
 	
-
 
 	public DriveBase(){		
 		leftDrive1   	= new VictorSP(RobotMap.DRIVE_LEFT_MOTOR_1);
