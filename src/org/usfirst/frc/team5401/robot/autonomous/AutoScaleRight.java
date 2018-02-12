@@ -16,22 +16,33 @@ public class AutoScaleRight extends CommandGroup {
     	if(gameData.isEmpty()){
     		gameData = "XXX";
     	} 
-    	
-    	if(gameData.charAt(0) == 'L')
+    	if(gameData.charAt(0) == 'R')
     	{
-    		addSequential(new AutoPIDDrive(97));
+    	//Start at Auto Position #5.
+    	//This will be putting block on left side 
+    		addSequential(new AutoPIDDrive(100));
+    		/*addSequential(new AutoTurnAngle(-37));
+    		addSequential(new AutoPIDDrive(85));
+    		addSequential(new AutoTurnAngle(37));
+    		addSequential(new AutoPIDDrive(20));
+    		addSequential(new xxxxARM());*/
+   
     	}
-    	//Start at Auto Position #5. Drive Forward to the switch, place block on switch
+    	else if(gameData.charAt(0) == 'L')
+    	{    	
+    	//Start at Auto Position #5. 
+    	//This will be putting block the right side
+    		addSequential(new AutoPIDDrive(85));
+    		/*addSequential(new AutoTurnAngle(37));
+    		addSequential(new AutoPIDDrive(85));
+    		addSequential(new AutoTurnAngle(-37));
+    		addSequential(new AutoPIDDrive(24));
+    		addSequential(new xxxxARM());*/
     		
-    	else if(gameData.charAt(0) == 'R')
+    	}
+    	else if(gameData.charAt(0) == 'X')
     	{
-    		//Arm deploy
-    		addSequential(new AutoPIDDrive(97));
-    		//addSequential(new xxxx());
-    
-    	}else if(gameData.charAt(0) == 'X')
-    	{
-    		addSequential(new AutoPIDDrive(10));
+    		addSequential(new AutoPIDDrive(85));
     	}
     }
 }
