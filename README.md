@@ -202,6 +202,12 @@ These enable/disable the PID turn.
 Receives setpoint for the turning. When both motors are used to turn, they will both be negative or positive, depending on the direction of the turn.
 
 #### `getLeft/RightTurnPIDError()`
+This gets the left and right turn PID error
+
+#### `getTurnPIDOnTarget()`
+This ensures the PID turn is on target on both sides.
+
+##
 
 
 
