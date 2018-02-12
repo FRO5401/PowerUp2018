@@ -86,7 +86,7 @@ Sample:
 When using a button in a command, you can perform a task. Using `whenPressed`, `whileHeld`, and `whenReleased` this is possible and easy to understand what each button does.
 For buttons, there can be a `whenPressed` that will do something when the button is pressed down once, and continue doing that on its own until the task is completed. However, for a trigger or joystick, depending on how hard or how far you push in the button, it will change what the robot does, meaning a `whileHeld` can be used using axes With the joysticks, a value is given based on how far the stick is being pushed on the X or Y axis, and if it is a certain value, it will go. `whenReleased` is used to end the task the button is performing, and then possibly performing a task afterwards.
 
-## **Command FILES**
+## **Command File**
 
 ### `XboxMove.java` **WON'T BE FINISHED YET
 
@@ -162,7 +162,46 @@ From team5401.robot
 #### `initDefaultCommand()`
 This sets the default command for the subsystem. It pulls the information from XboxMove to control the robot.
 
-#### ``
+#### `stop()`
+This stops all of the motors and sets them to zero.
+
+#### `shiftGearLowToHigh()`
+`shiftgearLowToHigh()` uses pneumatics to shift from low speed to high speed. Then, the left and right encoders are set to high gear DPP.
+
+#### `shiftGearHighToLow()`
+`shiftgearHighToLow()` uses pneumatics to shift from high speed to low speed. Then, the left and right encoders are set to low gear DPP.
+
+#### `getVeloctiyOfRobot()`
+This gets the velocity of the robot by getting the absolute value of the encoder rates. It also displays the velocity on the SmartDashboard.
+
+#### `setDPPLowGear/HighGear()`
+These set the DPP for the encoders to low and high gear.
+
+#### `getEncoderDistance(double encoderNumber)`
+This gets the raw and actual distance of the encoders, and displays them on the SmartDashboard, and then gets the mean distance of the encoders by averaging the actual distances of the left and right.
+
+#### `encoder/gyroReset()`
+Resets the value of the encoders and gyros.
+
+#### `getGyroPitch/Roll/Angle()`
+Receives the value of the gyro pitch, roll and angle, and displays them on the SmartDashboard.
+
+#### `enable/disableDriveStraightPID()`
+Enables or disables PID for driving.
+
+#### `setDriveStraightSetpoint(double setpoint)`
+This sets the setpoint for the PID to drive to.
+
+#### `getDriveStraightSetpoint(double leftOrRight)`
+Setpoints are set by `setDriveStraightSetpoint`, and they are all going to be the same, so only one setpoint needs to be sent.
+
+#### `enable/disableTurnPID()`
+These enable/disable the PID turn.
+
+#### `setTurnSetpoint`
+Receives setpoint for the turning. When both motors are used to turn, they will both be negative or positive, depending on the direction of the turn.
+
+#### `getLeft/RightTurnPIDError()`
 
 
 
