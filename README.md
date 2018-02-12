@@ -7,18 +7,18 @@ Robot files are an important part of the code that are called back to/ call to o
 ### `Robot.java`
 
 #### Imported Files
-From `Wpilibj.command`
+From `wpilibj.command`
  - Command
  - Scheduler
 
-From `Wpilibj.livewindow`
+From `wpilibj.livewindow`
  - livewindow
 
 From `wpilibj.SmartDashboard`:
  - SendableChooser
  - SmartDashboard
 
-Import `Wpilibj.Subsystems`
+Import `wpilibj.Subsystems`
 
 ### Methods/Uses
 
@@ -68,10 +68,10 @@ From `Wpliibj.button`
 - Button
 - Joystick Button
 
-From `Wpilibj.Joystick`
+From `wpilibj.Joystick`
 - Joystick
 
-Import `Wpilibj.Joystick`
+Import `wpilibj.Joystick`
 Import `Wpilibl.Subsystems`
 
 ### Methods/Uses
@@ -93,7 +93,7 @@ For buttons, there can be a `whenPressed` that will do something when the button
 #### Imported Files
 From Wpilib.command
 - Command
-From Wpilibj.smartdashboard
+From wpilibj.smartdashboard
 - SmartDashboard
 
 From team5401.robot
@@ -128,7 +128,7 @@ Subsystems are all of the different physical parts of the robot, and the code in
 ### `DriveBase.java`
 
 #### Imported Files
-From Wpilibj
+From wpilibj
 - VictorSP
 - DoubleSolenoid
 - SpeedControllerGroup
@@ -137,14 +137,14 @@ From Wpilibj
 - Encoder
 - I2C
 
-From Wpilibj.smartdashboard
+From wpilibj.smartdashboard
 - SmartDashboard
 
-From Wpilibj.command
+From wpilibj.command
 - Subsystem
 - PIDSubsystem
 
-From - Wpilibj.drive
+From - wpilibj.drive
 - DifferentialDrive
 
 Import kauailabs.navx.frc.AHRS
@@ -199,7 +199,7 @@ Setpoints are set by `setDriveStraightSetpoint`, and they are all going to be th
 These enable/disable the PID turn.
 
 #### `setTurnSetpoint`
-Receives setpoint for the turning. When both motors are used to turn, they will both be negative or positive, depending on the direction of the turn.
+Receives set point for the turning. When both motors are used to turn, they will both be negative or positive, depending on the direction of the turn.
 
 #### `getLeft/RightTurnPIDError()`
 This gets the left and right turn PID error
@@ -207,9 +207,62 @@ This gets the left and right turn PID error
 #### `getTurnPIDOnTarget()`
 This ensures the PID turn is on target on both sides.
 
-##
+### `Arm-Wrist.java`
 
+#### Imported Files
+From wpilibj
+- VictorSP
+- Solenoid
+- Encoder
+- AnalogPotentiometer
+- DoubleSolenoid
 
+From wpilibj.command
+- Subsystem
+
+From wpilibj.smartdashboard
+- SmartDashboard
+
+From com.ctre.phoenix.motorcontrol
+- ControlMode
+- FeedbackDevice
+- can.TalonSRX
+
+#### Methods/Uses
+`Arm-Wrist.java` holds all of the information and commands for the Arm and Wrist, which work together when picking up a cube. It has the variables for the movements in the arm, such as the armTalon, angle, PID and brake.
+
+#### `ArmWrist()`
+`ArmWrist()` holds the main information and the instantiations for the movements of the arm through the TalonSRX, has PID information, and the DoubleSolenoids for the Wrist's movements, allowing them to be moved later on.
+
+#### `short/longWristUpDown()`
+Tells the robot to move the Double Solenoid for the short or long wrist either up or down depending on the value being sent in. If it is postive then they will move out, and if it is negative they will move in.
+
+#### `checkWrist()`
+`checkWrist()` tells the wrist to look at the angle of the arm, and change based on what the angle of the arm is by getting values from the sensor. If it is above a certain angle, then it will tell the wrists to move out, and if it is below the angle, then the wrist will go back in.
+
+#### `setBrake(boolean brakeSet)`
+This brakes the arm, and is activated by either the override or the completion of the task (getting to a PID set point). The arm is held in place.
+
+#### `setPoint(double setPointIndexInDegrees)`
+This method receives the set point that needs to be reached. It calls to the commands that receives it, and enables the arm PID.
+
+#### `pidStop()`
+Stops the PID in the arm when the set point is reached. It sets the brake, and enters the arm motor into neutral mode.
+
+#### `overrideMove(double operatorJoystick)`
+Controls the arm override through the operator joystick.
+
+#### `onTarget()`
+This returns true if the arm is on target. It gets the position of the arm and subtracts the distance it is needed to go. If it is in proper position, `onTarget` will be returned, and then arm will stop.
+
+#### `overrideStopped()`
+Sets the armTalon to neutral, disabling the arm, and enabling the brake.
+
+#### `armInterrupted()`
+Disables the armPID, neutralizing the armTalon.
+
+#### `getArmAngle()`
+This receives the sensor values for the angle of the arm, and displays them on SmartDashboard.
 
 ## **Autnomous Files**
 
@@ -220,7 +273,7 @@ ALL MAIN AUTNOMOUS FILES USE GAMEDATA (those that will have many commands). Game
 #### Imported Files
 From Wpilib.command
 - Commands
-From Wpilibj.smartdashboard
+From wpilibj.smartdashboard
 - SmartDashboard
 
 From team5401.robot
@@ -255,7 +308,7 @@ It holds important variabled used in Auto such as desiredDistance, autoDriveSpee
 ### `AutoCenterSwitch.java`
 
 #### Imported Files
-Imports `Wpilibj.DriverStation`
+Imports `wpilibj.DriverStation`
 
 #### Methods/Uses
 
@@ -273,7 +326,7 @@ In `AutoLeftSwitch.java`, the robot starts against the wall, to the left of the 
 ### `AutoRightSwitch.java`
 
 #### Imported Files
-Imports `Wpilibj.DriverStation`
+Imports `wpilibj.DriverStation`
 
 #### Methods/Uses
 
@@ -285,7 +338,7 @@ In `AutoRightSwitch`, the robot starts against the wall, and will ideally be ali
 From Wpilib.command
 - Command
 - Scheduler
-From Wpilibj.smartdashboard
+From wpilibj.smartdashboard
 - SmartDashboard
 
 From team5401.robot
@@ -317,9 +370,9 @@ From team5401.robot
 ### `AutoPIDDrive.java`
 
 #### Imported Files
-From Wpilib.command
+From wpilibj.command
 - Command
-From Wpilibj.smartdashboard
+From wpilibj.smartdashboard
 - SmartDashboard
 
 From team5401.robot
