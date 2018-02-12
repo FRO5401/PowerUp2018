@@ -19,6 +19,7 @@ public class AutoRightSwitch extends CommandGroup {
     	if(gameData.charAt(0) == 'L')
     	{
     		addSequential(new AutoPIDDrive(97));
+    		//addSequential(new xxxxARM());
     		addSequential(new AutoPIDDrive(-15));
     		addSequential(new AuoPIDTurnAngle(90));
     		//addSequential(new xxxxARM());
@@ -29,6 +30,7 @@ public class AutoRightSwitch extends CommandGroup {
     	{
     		//Arm deploy
     		addSequential(new AutoPIDDrive(97));
+    		//addSequential(new xxxxARM());
     		addSequential(new AutoPIDDrive(-15));
     		addSequential(new AuoPIDTurnAngle(-90));
     		//addSequential(new xxxx());

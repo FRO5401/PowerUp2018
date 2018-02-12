@@ -20,6 +20,7 @@ public class AutoLeftSwitch extends CommandGroup {
     		addSequential(new AutoPIDDrive(40));
     		addSequential(new AutoPIDTurnAngle(-6));
     	    addSequential(new AutoPIDDrive(37));
+    	    //addSequential(new xxxxARM());
     	    addSequential(new AutoPIDDrive(-15));
     		addSequential(new AuoPIDTurnAngle(90));
     		//addSequential(new xxxxARM());
@@ -29,6 +30,7 @@ public class AutoLeftSwitch extends CommandGroup {
     	//Start at Auto Position #2. Drive Forward 85 inches to base line 
     	//(Figure out specifics later)
     		addSequential(new AutoPIDDrive(85));
+    		//addSequential(new xxxxARM());
     		addSequential(new AutoPIDDrive(-15));
     		addSequential(new AuoPIDTurnAngle(-90));
  
