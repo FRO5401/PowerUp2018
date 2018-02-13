@@ -25,6 +25,7 @@ public class Robot extends IterativeRobot {
 	public static DriveBase drivebase;
 	public static RollerClaw rollerclaw;
 	public static Wrist wrist;
+	public static DumbCamera camera;
 	public static OI oi;
 
 	Command autonomousCommand;
@@ -42,13 +43,13 @@ public class Robot extends IterativeRobot {
 		drivebase = new DriveBase();
 		rollerclaw = new RollerClaw();
 		wrist = new Wrist();
+		camera = new DumbCamera();
 		oi = new OI();
 		
 		//chooser.addDefault("Default Auto", new ExampleCommand());
 		chooser.addDefault("AutoDrive", new AutoDrive( 127 , 1));
 		SmartDashboard.putData("Auto mode", chooser);
-		//Camera
-		CameraServer.getInstance().startAutomaticCapture();
+
 		
 	}
 
