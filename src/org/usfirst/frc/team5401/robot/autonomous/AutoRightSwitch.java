@@ -21,7 +21,7 @@ public class AutoRightSwitch extends CommandGroup {
     		addSequential(new AutoPIDDrive(97));
     		//addSequential(new xxxxARM());
     		addSequential(new AutoPIDDrive(-15));
-    		addSequential(new AuoPIDTurnAngle(90));
+    		addSequential(new AutoPIDTurnAngle(90));
     		//addSequential(new xxxxARM());
     	}
     	//Start at Auto Position #5. Drive Forward to the switch, place block on switch
@@ -32,7 +32,7 @@ public class AutoRightSwitch extends CommandGroup {
     		addSequential(new AutoPIDDrive(97));
     		//addSequential(new xxxxARM());
     		addSequential(new AutoPIDDrive(-15));
-    		addSequential(new AuoPIDTurnAngle(-90));
+    		addSequential(new AutoPIDTurnAngle(-90));
     		//addSequential(new xxxx());
     
     	}else if(gameData.charAt(0) == 'X')

@@ -22,7 +22,7 @@ public class AutoLeftSwitch extends CommandGroup {
     	    addSequential(new AutoPIDDrive(37));
     	    //addSequential(new xxxxARM());
     	    addSequential(new AutoPIDDrive(-15));
-    		addSequential(new AuoPIDTurnAngle(90));
+    		addSequential(new AutoPIDTurnAngle(90));
     		//addSequential(new xxxxARM());
     	}
     	else if(gameData.charAt(0) == 'R')
@@ -32,7 +32,7 @@ public class AutoLeftSwitch extends CommandGroup {
     		addSequential(new AutoPIDDrive(85));
     		//addSequential(new xxxxARM());
     		addSequential(new AutoPIDDrive(-15));
-    		addSequential(new AuoPIDTurnAngle(-90));
+    		addSequential(new AutoPIDTurnAngle(-90));
  
     	}else if(gameData.charAt(0) == 'X')
     	{

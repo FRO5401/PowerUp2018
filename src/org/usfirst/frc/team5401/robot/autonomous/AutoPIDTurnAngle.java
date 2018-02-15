@@ -40,12 +40,12 @@ public class AutoPIDTurnAngle extends Command {
     	SmartDashboard.putNumber("Relative to Inital Angle", currentAngleRelativeToInitAngle);
 	    
 //New Code block kjm 020618
-	if(Robot.drivebase.getTurnPIDOnTarget())
-    	{
-			Robot.drivebase.disableTurnPID();
-    	    Robot.drivebase.stop();
-    	    doneTurn = true;
-	    }	
+    	if(Robot.drivebase.getTurnPIDOnTarget())
+    		{
+				Robot.drivebase.disableTurnPID();
+				Robot.drivebase.stop();
+				doneTurn = true;
+    		}	
 
 //End new code block kjm 020618
     	

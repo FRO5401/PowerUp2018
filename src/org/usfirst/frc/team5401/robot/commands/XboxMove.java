@@ -31,7 +31,7 @@ public class XboxMove extends Command {
     protected void execute() {
     	SmartDashboard.putNumber("Angle XboxDrive", Robot.drivebase.getGyroAngle());
     	
-    	double  slew      = Robot.oi.xboxAxis(RobotMap.XBOX_AXIS_LEFT_X, Robot.oi.xboxController_Driver) * -1;
+    	double  slew      = Robot.oi.xboxAxis(RobotMap.XBOX_AXIS_LEFT_X, Robot.oi.xboxController_Driver);
 
     	double 	throttle  = Robot.oi.xboxAxis(RobotMap.XBOX_AXIS_RIGHT_TRIGGER, Robot.oi.xboxController_Driver);
     	double 	reverse   = Robot.oi.xboxAxis(RobotMap.XBOX_AXIS_LEFT_TRIGGER, Robot.oi.xboxController_Driver);
