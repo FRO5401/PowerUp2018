@@ -42,7 +42,7 @@ public class OI {
 
 	public OI()
 	{
-		
+		xboxY_Driver.whenPressed(new CompressorToggle());
 	}
 	
 	//Controller Axis
