@@ -24,6 +24,7 @@ public class Robot extends IterativeRobot {
 	public static DriveBase drivebase;
 	public static RollerClaw rollerclaw;
 	public static Wrist wrist;
+	public static CompressorSubsystem compressorsubsystem;
 	public static OI oi;
 
 	Command autonomousCommand;
