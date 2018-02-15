@@ -26,7 +26,7 @@ public class WristMove extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	wristChangePoint = Robot.oi.readXboxLeftY_Operator();
+    	wristChangePoint = Robot.oi.readXboxLeftY_Axis();
     	Robot.armwrist.longWristUpDown(wristChangePoint);
     	Robot.armwrist.shortWristUpDown(wristChangePoint);
     }
