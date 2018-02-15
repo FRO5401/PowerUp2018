@@ -1,5 +1,7 @@
 package org.usfirst.frc.team5401.robot;
 import org.usfirst.frc.team5401.robot.autonomous.*;
+
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -8,6 +10,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.usfirst.frc.team5401.robot.autonomous.AutoDrive;
 import org.usfirst.frc.team5401.robot.subsystems.*;
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -19,7 +22,7 @@ import org.usfirst.frc.team5401.robot.subsystems.*;
 public class Robot extends IterativeRobot {
 
 	//OI has to be last
-	public static Arm arm;
+	public static ArmWrist armwrist;
 	public static Climber climber;
 	public static DriveBase drivebase;
 	public static RollerClaw rollerclaw;
@@ -38,7 +41,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		//OI has to be last
-		arm = new Arm();
+		armwrist = new ArmWrist();
 		climber = new Climber();
 		drivebase = new DriveBase();
 		rollerclaw = new RollerClaw();
@@ -47,7 +50,16 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		
 		//chooser.addDefault("Default Auto", new ExampleCommand());
-		chooser.addDefault("AutoDrive", new AutoDrive( 127 , 1));
+		chooser.addDefault("Do Nothing", new AutoPIDDrive(0));
+		//chooser.addObject("Drive Straight", new AutoDrive(55, .5)); //non pid
+		chooser.addObject("Baseline Only", new AutoPIDDrive(97));
+		chooser.addObject("PID Drive with Wait", new AutoPIDDriveWithWait());
+		chooser.addObject("AutoCenterSwitch", new AutoCenterSwitch());
+		chooser.addObject("AutoLeftSwitch", new AutoLeftSwitch());
+		chooser.addObject("AutoRightSwitch", new AutoRightSwitch());
+		chooser.addObject("AutoScaleLeft", new AutoScaleLeft());
+		chooser.addObject("AutoScaleRight", new AutoScaleRight());
+		chooser.addObject("AutoTurnTest", new AutoTurnAngle(360));
 		SmartDashboard.putData("Auto mode", chooser);
 	}
 
@@ -79,6 +91,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
+		SmartDashboard.putString("Auto Side in INIT", DriverStation.getInstance().getGameSpecificMessage());
 		autonomousCommand = chooser.getSelected();
 
 		/*
@@ -98,6 +111,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousPeriodic() {
+		SmartDashboard.putString("Auto Side PERIODIC", DriverStation.getInstance().getGameSpecificMessage());
 		Scheduler.getInstance().run();
 	}
 

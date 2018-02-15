@@ -39,7 +39,7 @@ public class OI {
 	Button xboxStart_Operator		= new JoystickButton(xboxController_Operator, 8);
 	Button xboxL3_Operator		  	= new JoystickButton(xboxController_Operator, 9);
 	Button xboxR3_Operator		  	= new JoystickButton(xboxController_Operator, 10);
-	
+
 	public OI()
 	{
 		xboxY_Driver.whenPressed(new CompressorToggle());
