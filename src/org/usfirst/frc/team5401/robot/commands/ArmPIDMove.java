@@ -25,7 +25,7 @@ public class ArmPIDMove extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	
-    	done = (Robot.oi.getArmButtons() == -1);
+    	done = false;
     	Robot.armwrist.setPoint(setPoint);
 
     }
@@ -34,7 +34,7 @@ public class ArmPIDMove extends Command {
     protected void execute() {
     	
     	Robot.armwrist.getArmAngle();
-    	done = (Robot.oi.getArmButtons() !=-1);
+    	done = (Robot.armwrist.onTarget());
     	
     }
 
