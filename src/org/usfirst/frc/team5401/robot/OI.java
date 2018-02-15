@@ -59,38 +59,4 @@ public class OI {
 	public double xboxDPad(Joystick userMap){
 		return userMap.getPOV();
 	}
-	
-	public int readXboxLeftY_Axis(){
-		if(xboxController_Operator.getRawAxis(RobotMap.XBOX_AXIS_LEFT_Y) < -0.2){
-			return -1;
-		} else if (xboxController_Operator.getRawAxis(RobotMap.XBOX_AXIS_LEFT_Y) > 0.2){
-			return 1;
-		} else {
-			return 0;
-		}
-	}
-	
-	public int getArmButtons(){
-			int armPosDesired;
-			if (xboxController_Operator.getRawButton(RobotMap.XBOX_BUTTON_A_OPERATOR)){
-				 armPosDesired = RobotMap.FLOOR_SETPOINT;
-			}
-			else if (xboxController_Operator.getRawButton(RobotMap.XBOX_BUTTON_B_OPERATOR)){
-				armPosDesired = RobotMap.PORTAL_SETPOINT;
-			}
-			else if (xboxController_Operator.getRawButton(RobotMap.XBOX_BUTTON_X_OPERATOR)){
-				armPosDesired = RobotMap.SET_SWITCH_SETPOINT;
-			}
-			//else if (xboxController_Operator.getRawButton(RobotMap.XBOX_BUTTON_Y_OPERATOR)){
-			//	armPosDesired = Robotmap.;
-			//}
-			else if (xboxController_Operator.getRawButton(RobotMap.XBOX_BUTTON_LEFT_BUMPER_OPERATOR)){
-				armPosDesired = RobotMap.HIGHEST_RUNG_SETPOINT;
-			}
-			else {
-				armPosDesired = -1;
-			}
-				return armPosDesired;
-			}
-		
-	}
+}
