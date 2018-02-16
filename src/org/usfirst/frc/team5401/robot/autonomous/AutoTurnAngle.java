@@ -51,20 +51,20 @@ public class AutoTurnAngle extends Command {
     		finished = true;
     	} else {
     		if (desiredTurnAngleRelativeToInitAngle > 0 && (currentAngleRelativeToInitAngle < Math.abs(desiredTurnAngleRelativeToInitAngle) - RobotMap.ANGLE_THRESHOLD)){
-    			Robot.drivebase.drive(-RobotMap.AUTO_TURN_SPEED * RobotMap.AUTO_TURN_PRECISION, RobotMap.AUTO_TURN_SPEED * RobotMap.AUTO_TURN_PRECISION);
+    			Robot.drivebase.drive(RobotMap.AUTO_TURN_SPEED * RobotMap.AUTO_TURN_PRECISION, -RobotMap.AUTO_TURN_SPEED * RobotMap.AUTO_TURN_PRECISION);
     			finished = false;
     		} else if (desiredTurnAngleRelativeToInitAngle < 0 && (currentAngleRelativeToInitAngle > RobotMap.ANGLE_THRESHOLD - Math.abs(desiredTurnAngleRelativeToInitAngle))) {
-    			Robot.drivebase.drive(RobotMap.AUTO_TURN_SPEED * RobotMap.ANGLE_THRESHOLD, -RobotMap.AUTO_TURN_SPEED * RobotMap.ANGLE_THRESHOLD);
+    			Robot.drivebase.drive(-RobotMap.AUTO_TURN_SPEED * RobotMap.AUTO_TURN_PRECISION, RobotMap.AUTO_TURN_SPEED * RobotMap.AUTO_TURN_PRECISION);
     			finished = false;
     		} else { //error or exactly 0
-    			//Finished
+    			//Finished 
     			finished = true;
     			System.out.println("AutoTurnAngle should stop2");
     		}
     	currentAngleRelativeToInitAngle = Robot.drivebase.getGyroAngle() - initAngle;
     	}
     	double angle = Robot.drivebase.getGyroAngle();
-    	SmartDashboard.putNumber("Gyro Angle", currentAngleRelativeToInitAngle);
+    	SmartDashboard.putNumber("Relative to Inital Angle", currentAngleRelativeToInitAngle);
     }
 
     // Make this return true when this Command no longer needs to run execute()
