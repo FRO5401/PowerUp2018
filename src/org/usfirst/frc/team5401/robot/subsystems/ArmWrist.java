@@ -9,7 +9,6 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.usfirst.frc.team5401.robot.commands.*;
 
 import org.usfirst.frc.team5401.robot.Robot;
 import org.usfirst.frc.team5401.robot.RobotMap;
@@ -86,7 +85,6 @@ public class ArmWrist extends Subsystem {
     public void initDefaultCommand() {
         //Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
-    	setDefaultCommand(new ArmOverRide());
     }
     
     public void longWristUpDown(int longWristDirection){
@@ -174,10 +172,8 @@ public class ArmWrist extends Subsystem {
 	
 	public double getArmAngle(){
 		//Shows degrees. Converts native units to degrees
-		double armAngle = (armTalon.getSensorCollection().getQuadraturePosition() * RobotMap.ANGLE_PER_PULSE);
-		double armAngleWithOffset = armAngle		+ RobotMap.ANGLE_OFFSET;
+		double armAngle = (armTalon.getSensorCollection().getQuadraturePosition() * RobotMap.ANGLE_PER_PULSE) + RobotMap.ANGLE_OFFSET;
 		SmartDashboard.putNumber("Arm Angle", armAngle);
-		SmartDashboard.putNumber("Arm Angle with Offset", armAngleWithOffset);
 		SmartDashboard.putNumber("Native Units for Arm", armTalon.getSensorCollection().getQuadraturePosition());
 		return armAngle;	
 	}
