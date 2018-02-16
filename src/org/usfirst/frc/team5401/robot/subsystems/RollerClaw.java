@@ -15,8 +15,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class RollerClaw extends Subsystem {
 	
 	private DigitalInput limitSwitch;
-	private Solenoid clawLinkFar;
-	private Solenoid clawLinkClose;
+	private DoubleSolenoid clawLinkFar;
+	private DoubleSolenoid clawLinkClose;
 	
 	private VictorSP topRoller;
 	private VictorSP bottomRoller;
@@ -24,8 +24,8 @@ public class RollerClaw extends Subsystem {
 	public RollerClaw(){
 		topRoller = new VictorSP(RobotMap.ROLLER_CLAW_TOP_ROLLER);
 		bottomRoller = new VictorSP(RobotMap.ROLLER_CLAW_BOTTOM_ROLLER);
-		clawLinkFar = new Solenoid(RobotMap.ROLLER_CLAW_FAR);
-		clawLinkClose = new Solenoid(RobotMap.ROLLER_CLAW_CLOSE);
+		clawLinkFar = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.ROLLER_CLAW_FAR_IN, RobotMap.ROLLER_CLAW_FAR_OUT);
+		clawLinkClose = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.ROLLER_CLAW_CLOSE_IN, RobotMap.ROLLER_CLAW_CLOSE_OUT);
 		limitSwitch = new DigitalInput(RobotMap.ROLLER_CLAW_LIMIT_SWITCH);
 		
 	}
@@ -54,21 +54,21 @@ public class RollerClaw extends Subsystem {
     	bottomRoller.set(0);
     }
     
-    public void clawFar(boolean clawFarDirection){
-    	if (clawFarDirection) {
-    		clawLinkFar.set(true);
+    public void clawFar(int clawFarDirection){
+    	if (clawFarDirection == 1) {
+    		clawLinkFar.set(DoubleSolenoid.Value.kForward);
     	} 
     	else {
-    		clawLinkFar.set(false);
+    		clawLinkFar.set(DoubleSolenoid.Value.kReverse);
     	}
     }
     
-    public void clawClose(boolean clawCloseDirection){
-    	if (clawCloseDirection){
-    		clawLinkClose.set(true);
+    public void clawClose(int clawCloseDirection){
+    	if (clawCloseDirection == 1){
+    		clawLinkClose.set(DoubleSolenoid.Value.kForward);
     	}
     	else {
-    		clawLinkClose.set(false);
+    		clawLinkClose.set(DoubleSolenoid.Value.kReverse);
     	}
     }
     	

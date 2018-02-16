@@ -9,9 +9,9 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class RollerClawTopClose extends Command {
 	
-	boolean upDownClose;
+	int upDownClose;
 
-    public RollerClawTopClose(boolean rollerClawCloseDirection) {
+    public RollerClawTopClose(int rollerClawCloseDirection) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.rollerclaw);

@@ -9,9 +9,9 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class RollerClawTopFar extends Command {
 	
-	boolean upDownFar;
+	int upDownFar;
 
-    public RollerClawTopFar(boolean rollerClawFarDirection) {
+    public RollerClawTopFar(int rollerClawFarDirection) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.rollerclaw);

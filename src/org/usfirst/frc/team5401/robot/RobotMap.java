@@ -103,11 +103,13 @@ public class RobotMap {
 	//PCM ID
 	public static final int PCM_ID 				= 0;
 	
-	//Solenoids
-	public static final int DRIVE_SHIFT_IN 		= 0;
-	public static final int DRIVE_SHIFT_OUT 	= 0;
-	public static final int ROLLER_CLAW_CLOSE   = 0;
-	public static final int ROLLER_CLAW_FAR     = 0;
+	//Double Solenoids
+	public static final int DRIVE_SHIFT_IN 		   = 0;
+	public static final int DRIVE_SHIFT_OUT 	   = 0;
+	public static final int ROLLER_CLAW_CLOSE_IN   = 4;
+	public static final int ROLLER_CLAW_CLOSE_OUT  = 2;
+	public static final int ROLLER_CLAW_FAR_IN     = 1;
+	public static final int ROLLER_CLAW_FAR_OUT    = 0;
 
 	//DIO Sensors
 	public static final int DRIVE_ENC_LEFT_A 	= 0;

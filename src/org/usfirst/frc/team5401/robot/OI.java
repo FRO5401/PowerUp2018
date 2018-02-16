@@ -43,6 +43,14 @@ public class OI {
 	public OI()
 	{
 		xboxY_Driver.whenPressed(new CompressorToggle());
+		
+		//Roller Claw (Close)
+		xboxLeftBumper_Operator.whenPressed(new RollerClawTopClose(1));
+		xboxLeftBumper_Operator.whenReleased(new RollerClawTopClose(-1));
+		
+		//Roller Claw (Far)
+		xboxRightBumper_Operator.whenPressed(new RollerClawTopFar(1));
+		xboxRightBumper_Operator.whenReleased(new RollerClawTopFar(-1));
 	}
 	
 	//Controller Axis
