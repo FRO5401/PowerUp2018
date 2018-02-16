@@ -1,11 +1,11 @@
 package org.usfirst.frc.team5401.robot;
 
 /**
- * The RobotMap is a mapping from the ports sensors and actuators are wired into
- * to a variable name. This provides flexibility changing wiring, makes checking
- * the wiring easier and significantly reduces the number of magic numbers
- * floating around.
- */
+* The RobotMap is a mapping from the ports sensors and actuators are wired into
+* to a variable name. This provides flexibility changing wiring, makes checking
+* the wiring easier and significantly reduces the number of magic numbers
+* floating around.
+*/
 public class RobotMap {
 	
 	//Global Constants that are not locations
@@ -131,3 +131,4 @@ public class RobotMap {
 	public static final int HIGHEST_RUNG_SETPOINT = 0;
 
 }
+
