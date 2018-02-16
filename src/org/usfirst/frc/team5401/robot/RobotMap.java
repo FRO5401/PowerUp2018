@@ -120,8 +120,8 @@ public class RobotMap {
 	
 	//TalonSRX
 	public static final int ARM_TALON_CHANNEL = 0;
-	public static final double ANGLE_PER_PULSE = 0;
-	public static final int ANGLE_OFFSET = 0;
+	public static final double ANGLE_PER_PULSE = 134.26;
+	public static final int ANGLE_OFFSET = 35;
 	
 	//Setpoints
 	// This is in Degrees
