@@ -22,9 +22,9 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 public class ArmWrist extends Subsystem {
 
-//	private DoubleSolenoid wristMoveLong;
-//	private DoubleSolenoid wristMoveShort;
-//	private Solenoid brake;
+	private DoubleSolenoid wristMoveLong;
+	private DoubleSolenoid wristMoveShort;
+	private Solenoid brake;
 	//Encoder not needed for TalonSRX due to VS Encoders
 	private TalonSRX armTalon;
 	//private AnalogPotentiometer armPot; Probably will not be used
@@ -46,8 +46,8 @@ public class ArmWrist extends Subsystem {
 		armTalon = new TalonSRX(RobotMap.ARM_TALON_CHANNEL);//TODO need to check on RoboRIO  //TODO Make this a constant ref to robot map, move other todo to robotmap
 		//armPot = new AnalogPotentiometer(RobotMap.ARM_POT_CHANNEL, RobotMap.ARM_RANGE, RobotMap.ARM_OFFSET);
 		
-//		wristMoveLong = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.WRIST_MOVE_LONG_FORWARD, RobotMap.WRIST_MOVE_LONG_BACKWARD);
-//		wristMoveShort = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.WRIST_MOVE_SHORT_FORWARD, RobotMap.WRIST_MOVE_SHORT_BACKWARD);
+		wristMoveLong = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.WRIST_MOVE_LONG_FORWARD, RobotMap.WRIST_MOVE_LONG_BACKWARD);
+		wristMoveShort = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.WRIST_MOVE_SHORT_FORWARD, RobotMap.WRIST_MOVE_SHORT_BACKWARD);
 
 
 		/******REPEAT THE FOLLOWING LINE TO MAKE SET POINTS*********/
@@ -88,23 +88,23 @@ public class ArmWrist extends Subsystem {
     }
     
     public void longWristUpDown(int longWristDirection){
-    	if(longWristDirection == 1) {
-//    		wristMoveLong.set(DoubleSolenoid.Value.kForward);
+    	if(longWristDirection > 0.2) {
+    		wristMoveLong.set(DoubleSolenoid.Value.kForward);
     		//Long wrist will be extending outwards
     	} 
-    	else if(longWristDirection == -1) {
-//    		wristMoveLong.set(DoubleSolenoid.Value.kReverse);
+    	else if(longWristDirection < -0.2) {
+    		wristMoveLong.set(DoubleSolenoid.Value.kReverse);
     		//Wrist will be coming back inward
     	}
     }
     
     public void shortWristUpDown(int shortWristDirection){
-    	if(shortWristDirection == 1) {
-//    		wristMoveShort.set(DoubleSolenoid.Value.kForward);
+    	if(shortWristDirection > 0.2) {
+    		wristMoveShort.set(DoubleSolenoid.Value.kForward);
     		//Short wrist will be extending outwards
     	} 
-    	else if(shortWristDirection == -1) {
-//    		wristMoveShort.set(DoubleSolenoid.Value.kReverse);
+    	else if(shortWristDirection < -0.2) {
+    		wristMoveShort.set(DoubleSolenoid.Value.kReverse);
     		//Wrist will be coming back inward
     	}
     }
