@@ -2,11 +2,8 @@ package org.usfirst.frc.team5401.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.VictorSP;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
-
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SerialPort;
-import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import com.kauailabs.navx.frc.AHRS;
 
 import org.usfirst.frc.team5401.robot.RobotMap;
@@ -54,7 +51,8 @@ public class DriveBase extends Subsystem {
 		SmartDashboard.putNumber("Right Enc Adj", rightEncoder.getDistance());
 	}
 	
-    public void initDefaultCommand() {
+    @Override
+	public void initDefaultCommand() {
         // Set the default command for a subsystem here.
     	setDefaultCommand(new XboxMove());
     }
