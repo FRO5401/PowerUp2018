@@ -4,6 +4,7 @@ import org.usfirst.frc.team5401.robot.Robot;
 import org.usfirst.frc.team5401.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.*;
 
 /**
  *
@@ -12,8 +13,6 @@ public class XboxMove extends Command {
 	double velocitySample1;
 	double velocitySample2;
 
-	//1/23/17 1/23/17 NOT NEEDED because the time for acceleration equation is no longer necessary
-	//double deltaTime;
 	
 	public XboxMove() {
 		velocitySample1 = 0;
@@ -32,7 +31,7 @@ public class XboxMove extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
 	protected void execute() {
-    	double angle = Robot.drivebase.getGyroAngle();
+    	SmartDashboard.putNumber("Angle XboxDrive", Robot.drivebase.getGyroAngle());
     	
     	double  slew      = Robot.oi.xboxAxis(RobotMap.XBOX_AXIS_LEFT_X, Robot.oi.xboxController_Driver) * -1;
 
@@ -73,22 +72,12 @@ public class XboxMove extends Command {
     			Robot.drivebase.shiftGearHighToLow();
     		}
 
-    		//Alternative Downshift Due to release in Thottle
-    		//if(Math.abs(thottle) <= 0 + RobotMap.DRIVE_THRESHHOLD) {
-    		//	Robot.drivebase.shiftGearHighToLow();
-    		//}
 */    		
     	//Gear Shift Done
     	
 
     	//Driving Code
     	double right = 0, left = 0, sensitivity;
-    	/*
-    	System.out.println("LEFT STICK X: " + slew + "\n"
-    					 + "RIGHT TRIGGER: " + throttle + "\n"
-    					 + "LEFT TRIGGER: " + reverse + "\n"
-    					 + "BRAKE: " + brake);
-    	*/
     	
     	if (precision) { //Sets drive precision based on RobotMap and Precision Mode
     		sensitivity	=	RobotMap.DRIVE_SENSITIVITY_PRECISE;
@@ -120,16 +109,13 @@ public class XboxMove extends Command {
     		}
     	}
     	
-//    	System.out.println("LEFT: " + left);
-//    	System.out.println("RIGHT: " + right);
-    	
     	Robot.drivebase.drive(left, right);
     
     	
     	
     	
 /*****Shifting Gear Code*********/
-    	Robot.drivebase.getEncoderDistance();
+    	Robot.drivebase.getEncoderDistance(3);
 /*    	//Backlogs the old final velocity (velocity 2) into the new initial velocity (velocity 1)
     	velocitySample1 = velocitySample2;
 */   	
