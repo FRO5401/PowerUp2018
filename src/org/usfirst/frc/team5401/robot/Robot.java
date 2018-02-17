@@ -9,7 +9,6 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.CameraServer;
 
 import org.usfirst.frc.team5401.robot.autonomous.AutoDrive;
 import org.usfirst.frc.team5401.robot.subsystems.*;
@@ -29,7 +28,6 @@ public class Robot extends IterativeRobot {
 	public static RollerClaw rollerclaw;
 	public static Wrist wrist;
 	public static CompressorSubsystem compressorsubsystem;
-	public static DumbCamera camera;
 	public static OI oi;
 	
 
@@ -49,7 +47,6 @@ public class Robot extends IterativeRobot {
 		rollerclaw = new RollerClaw();
 		wrist = new Wrist();
 		compressorsubsystem = new CompressorSubsystem();
-		camera = new DumbCamera();
 		oi = new OI();
 		
 		//chooser.addDefault("Default Auto", new ExampleCommand());
@@ -64,8 +61,6 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("AutoScaleRight", new AutoScaleRight());
 		chooser.addObject("AutoTurnTest", new AutoTurnAngle(360));
 		SmartDashboard.putData("Auto mode", chooser);
-
-		
 	}
 
 	/**
