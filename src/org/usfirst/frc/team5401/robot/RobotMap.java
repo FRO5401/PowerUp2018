@@ -106,11 +106,11 @@ public class RobotMap {
 	//Double Solenoids
 	public static final int DRIVE_SHIFT_IN 		   = 0;
 	public static final int DRIVE_SHIFT_OUT 	   = 0;
-	public static final int ROLLER_CLAW_CLOSE_IN   = 4;
-	public static final int ROLLER_CLAW_CLOSE_OUT  = 2;
-	public static final int ROLLER_CLAW_FAR_IN     = 1;
-	public static final int ROLLER_CLAW_FAR_OUT    = 0;
-
+	public static final int ROLLER_CLAW_SHORT_IN	= 4;
+	public static final int ROLLER_CLAW_SHORT_OUT	= 2;
+	public static final int ROLLER_CLAW_LONG_IN		= 1;
+	public static final int ROLLER_CLAW_LONG_OUT	= 0;
+	
 	//DIO Sensors
 	public static final int DRIVE_ENC_LEFT_A 	= 0;
 	public static final int DRIVE_ENC_LEFT_B 	= 1;

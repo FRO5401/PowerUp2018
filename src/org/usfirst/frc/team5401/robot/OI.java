@@ -44,11 +44,11 @@ public class OI {
 	{
 		xboxY_Driver.whenPressed(new CompressorToggle());
 		
-		//Roller Claw (Close)
+		//Roller Claw (Long)
 		xboxLeftBumper_Operator.whenPressed(new RollerClawLongAcutatorMove(1));
 		xboxLeftBumper_Operator.whenReleased(new RollerClawLongAcutatorMove(-1));
 		
-		//Roller Claw (Far)
+		//Roller Claw (Short)
 		xboxRightBumper_Operator.whenPressed(new RollerClawShortActuatorMove(1));
 		xboxRightBumper_Operator.whenReleased(new RollerClawShortActuatorMove(-1));
 	}
