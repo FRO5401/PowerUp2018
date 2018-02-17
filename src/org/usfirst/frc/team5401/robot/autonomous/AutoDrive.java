@@ -13,8 +13,10 @@ import org.usfirst.frc.team5401.robot.commands.XboxMove;
 
 
 /**
- * This command is also used as a "BaselineOnly" command 
+ * This command is also used as a "BaselineOnly" command
+ * @deprecated use AutoPIDDrive
  */
+@Deprecated
 public class AutoDrive extends Command {
 
 	private double desiredDistance;
@@ -59,7 +61,7 @@ public class AutoDrive extends Command {
     	System.out.println("Angle when starting DriveShift:" + Robot.drivebase.getGyroAngle());
     	SmartDashboard.putNumber("heading", heading);
     	
-    	Robot.drivebase.shiftGearHighToLow();
+//    	Robot.drivebase.shiftGearHighToLow();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -94,7 +96,7 @@ public class AutoDrive extends Command {
     				//Finished
     				doneTraveling = true;
     			}
-    		distanceTraveled = (Robot.drivebase.getEncoderDistance());
+    		distanceTraveled = (Robot.drivebase.getEncoderDistance(3));
     	}
     	
     }
