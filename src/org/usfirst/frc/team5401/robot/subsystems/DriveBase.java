@@ -9,6 +9,7 @@ import com.kauailabs.navx.frc.AHRS;
 import org.usfirst.frc.team5401.robot.RobotMap;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team5401.robot.commands.XboxMove;
+import edu.wpi.first.wpilibj.Solenoid;
 
 /**
  *
@@ -21,7 +22,7 @@ public class DriveBase extends Subsystem {
 	private VictorSP leftDrive2;
 	private VictorSP rightDrive2;
 
-//	private DoubleSolenoid gearShifter;
+    private Solenoid gearShifter;
 	
 	private Encoder leftEncoder;
 	private Encoder rightEncoder;
@@ -32,7 +33,7 @@ public class DriveBase extends Subsystem {
 		rightDrive1  = new VictorSP(RobotMap.DRIVE_RIGHT_MOTOR_1);
 		leftDrive2  = new VictorSP(RobotMap.DRIVE_LEFT_MOTOR_2);
 		rightDrive2 = new VictorSP(RobotMap.DRIVE_RIGHT_MOTOR_2);
-//		gearShifter = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.DRIVE_SHIFT_IN, RobotMap.DRIVE_SHIFT_OUT);
+		gearShifter = new Solenoid(RobotMap.PCM_ID2, RobotMap.DRIVE_SHIFT);
 		leftEncoder = new Encoder(RobotMap.DRIVE_ENC_LEFT_A, RobotMap.DRIVE_ENC_LEFT_B, true, Encoder.EncodingType.k4X);
 		//																					vvv if this was false, DPP doesn't have to be negative
 		rightEncoder = new Encoder(RobotMap.DRIVE_ENC_RIGHT_A, RobotMap.DRIVE_ENC_RIGHT_B, true, Encoder.EncodingType.k4X);
@@ -80,7 +81,7 @@ public class DriveBase extends Subsystem {
     public void shiftGearLowToHigh(){
     	//Meaning Low speed to high speed
     	//Assumes Pneumatic forward/out shifts low to high
-//    	gearShifter.set(DoubleSolenoid.Value.kForward);
+    	gearShifter.set(true);
     	leftEncoder.setDistancePerPulse(RobotMap.HIGH_GEAR_LEFT_DPP);
     	rightEncoder.setDistancePerPulse(RobotMap.HIGH_GEAR_RIGHT_DPP);
     	System.out.println("Shifting Drive Gear to High Gear");
@@ -88,7 +89,7 @@ public class DriveBase extends Subsystem {
 
     public void shiftGearHighToLow(){
     	//Assumes Pneumatic reverse/in shifts high to low
-//    	gearShifter.set(DoubleSolenoid.Value.kReverse);
+    	gearShifter.set(false);
     	leftEncoder.setDistancePerPulse(RobotMap.LOW_GEAR_LEFT_DPP);
     	rightEncoder.setDistancePerPulse(RobotMap.LOW_GEAR_RIGHT_DPP);
     	System.out.println("Shifting Drive Gear to Low Gear");

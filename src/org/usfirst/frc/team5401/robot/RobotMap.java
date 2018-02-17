@@ -99,14 +99,14 @@ public class RobotMap {
 	
 	//PCM ID
 	public static final int PCM_ID 				= 0;
+	public static final int PCM_ID2 			= 1;
 	
 	//Solenoids
-	public static final int DRIVE_SHIFT_IN 		= 0;
-	public static final int DRIVE_SHIFT_OUT 	= 0;	
-	public static final int WRIST_MOVE_LONG_FORWARD   = 0;
-	public static final int WRIST_MOVE_LONG_BACKWARD  = 0;
-	public static final int WRIST_MOVE_SHORT_FORWARD  = 0;
-	public static final int WRIST_MOVE_SHORT_BACKWARD = 0;
+	public static final int DRIVE_SHIFT 		= 0;
+	public static final int WRIST_MOVE_LONG_FORWARD   = 7;
+	public static final int WRIST_MOVE_LONG_BACKWARD  = 3;
+	public static final int WRIST_MOVE_SHORT_FORWARD  = 5;
+	public static final int WRIST_MOVE_SHORT_BACKWARD = 6;
 	
 	//DIO Sensors
 	public static final int DRIVE_ENC_LEFT_A 	= 0;
@@ -119,7 +119,8 @@ public class RobotMap {
 	
 	//TalonSRX
 	public static final int ARM_TALON_CHANNEL = 0;
-	public static final int ANGLE_PER_PULSE = 0;
+	public static final double ANGLE_PER_PULSE = 134.26;
+	public static final int ANGLE_OFFSET = 35;
 	
 	//Setpoints
 	// This is in Degrees
