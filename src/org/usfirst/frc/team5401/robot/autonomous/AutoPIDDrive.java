@@ -22,7 +22,8 @@ public class AutoPIDDrive extends Command {
     }
 
     // Called just before this Command runs the first time
-    protected void initialize() {
+    @Override
+	protected void initialize() {
     	Robot.drivebase.shiftGearHighToLow();
     	Robot.drivebase.encoderReset();
     	
@@ -32,7 +33,8 @@ public class AutoPIDDrive extends Command {
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
+    @Override
+	protected void execute() {
     	SmartDashboard.putNumber("navx Angle", Robot.drivebase.getGyroAngle());
     	SmartDashboard.putNumber("Right SetPOINT", Robot.drivebase.getSetpoint(2));
     	SmartDashboard.putNumber("LEFT SetPOINT", Robot.drivebase.getSetpoint(1));
@@ -43,7 +45,8 @@ public class AutoPIDDrive extends Command {
     }
 
     // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
+    @Override
+	protected boolean isFinished() {
     	//Need verification that left and right side are at where it is needed																		vv Right set point is negative. Negative sign cancels it out
         if ((Math.abs(Robot.drivebase.getSetpoint(1) - Robot.drivebase.getEncoderDistance(1)) < RobotMap.PID_ABSOLUTE_TOLERANCE) 	&&	(Math.abs(Robot.drivebase.getSetpoint(2) - Robot.drivebase.getEncoderDistance(2)) < RobotMap.PID_ABSOLUTE_TOLERANCE)) {
         	return true;
@@ -53,13 +56,15 @@ public class AutoPIDDrive extends Command {
     }
 
     // Called once after isFinished returns true
-    protected void end() {
+    @Override
+	protected void end() {
     	Robot.drivebase.disablePID();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
-    protected void interrupted() {
+    @Override
+	protected void interrupted() {
     	Robot.drivebase.disablePID();
     }
 }

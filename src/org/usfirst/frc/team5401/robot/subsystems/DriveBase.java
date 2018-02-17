@@ -1,10 +1,7 @@
 package org.usfirst.frc.team5401.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.VictorSP;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
-
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.Encoder;
@@ -76,7 +73,8 @@ public class DriveBase extends Subsystem {
 		
 	}
 	
-    public void initDefaultCommand() {
+    @Override
+	public void initDefaultCommand() {
         // Set the default command for a subsystem here.
     	setDefaultCommand(new XboxMove());
     }

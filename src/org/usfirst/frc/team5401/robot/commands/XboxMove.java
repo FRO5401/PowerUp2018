@@ -22,16 +22,18 @@ public class XboxMove extends Command {
     }
 
     // Called just before this Command runs the first time
-    protected void initialize() {
+    @Override
+	protected void initialize() {
     	Robot.drivebase.shiftGearHighToLow();
     	//Robot.drivebase.shiftGearLowToHigh();
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
+    @Override
+	protected void execute() {
     	SmartDashboard.putNumber("Angle XboxDrive", Robot.drivebase.getGyroAngle());
     	
-    	double  slew      = Robot.oi.xboxAxis(RobotMap.XBOX_AXIS_LEFT_X, Robot.oi.xboxController_Driver) * -1;
+    	double  slew      = Robot.oi.xboxAxis(RobotMap.XBOX_AXIS_LEFT_X, Robot.oi.xboxController_Driver) * 1;
 
     	double 	throttle  = Robot.oi.xboxAxis(RobotMap.XBOX_AXIS_RIGHT_TRIGGER, Robot.oi.xboxController_Driver);
     	double 	reverse   = Robot.oi.xboxAxis(RobotMap.XBOX_AXIS_LEFT_TRIGGER, Robot.oi.xboxController_Driver);
@@ -153,12 +155,14 @@ public class XboxMove extends Command {
 */    }
 
     // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
+    @Override
+	protected boolean isFinished() {
         return false;
     }
 
     // Called once after isFinished returns true
-    protected void end() { //SHOULD never run
+    @Override
+	protected void end() { //SHOULD never run
     	Robot.drivebase.stop();
     	System.out.println("XboxMove end()");
 //    	this.cancel(); //not needed
@@ -166,7 +170,8 @@ public class XboxMove extends Command {
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
-    protected void interrupted() {
+    @Override
+	protected void interrupted() {
     	Robot.drivebase.stop();
     	System.out.println("XboxMove Interrupted");
 //    	this.cancel(); //not needed

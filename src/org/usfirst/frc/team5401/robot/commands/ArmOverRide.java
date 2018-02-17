@@ -1,11 +1,9 @@
 package org.usfirst.frc.team5401.robot.commands;
 
-import org.usfirst.frc.team5401.robot.OI;
 import org.usfirst.frc.team5401.robot.Robot;
 import org.usfirst.frc.team5401.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 /**
@@ -25,12 +23,14 @@ public class ArmOverRide extends Command {
     }
 
     // Called just before this Command runs the first time
-    protected void initialize() {
+    @Override
+	protected void initialize() {
     	Robot.armwrist.setTalonSRXNeutralMode(1);
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
+    @Override
+	protected void execute() {
     	//Joystick up gives a negative value. The negative sign swtiches that.
     	double overRideMoving = Robot.oi.getXboxRightStickY_Operator() * RobotMap.ARM_OVERRIDE_PRECISION;
     	System.out.println(overRideMoving);
@@ -42,8 +42,8 @@ public class ArmOverRide extends Command {
     	{	
     		if(Math.abs(overRideMoving) > RobotMap.ARM_OVERRIDE_JOYSTICK_THRESHOLD)
     		{
-    			Robot.armwrist.setBrake(false);
-    			Robot.armwrist.overrideMove(overRideMoving);
+    			//Robot.armwrist.setBrake(false);
+    			//Robot.armwrist.overrideMove(overRideMoving);
     		}
     		else
     		{	
@@ -57,19 +57,22 @@ public class ArmOverRide extends Command {
     }
 
     // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
+    @Override
+	protected boolean isFinished() {
         return overrideEnabled;
     }
 
     // Called once after isFinished returns true
-    protected void end() {
+    @Override
+	protected void end() {
     	System.out.println("Arm Override End");
     	Robot.armwrist.overrideStopped();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
-    protected void interrupted() {
+    @Override
+	protected void interrupted() {
     	System.out.println("Arm Override Interrupted");
     	Robot.armwrist.armInterrupted();
     }

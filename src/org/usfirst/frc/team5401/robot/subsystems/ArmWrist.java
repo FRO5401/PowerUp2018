@@ -3,14 +3,10 @@
 package org.usfirst.frc.team5401.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.Solenoid;
-import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc.team5401.robot.Robot;
 import org.usfirst.frc.team5401.robot.RobotMap;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
@@ -82,7 +78,8 @@ public class ArmWrist extends Subsystem {
         armTalon.config_kD(slotIndex, RobotMap.ARM_kD, RobotMap.TIMEOUT_LIMIT_IN_Ms);        
 	}
 	
-    public void initDefaultCommand() {
+    @Override
+	public void initDefaultCommand() {
         //Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
@@ -175,6 +172,7 @@ public class ArmWrist extends Subsystem {
 		double armAngle = (armTalon.getSensorCollection().getQuadraturePosition() * RobotMap.ANGLE_PER_PULSE) + RobotMap.ANGLE_OFFSET;
 		SmartDashboard.putNumber("Arm Angle", armAngle);
 		SmartDashboard.putNumber("Native Units for Arm", armTalon.getSensorCollection().getQuadraturePosition());
+		System.out.println(armAngle + "\t " + armTalon.getSensorCollection().getQuadraturePosition());
 		return armAngle;	
 	}
 	
