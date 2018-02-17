@@ -19,7 +19,8 @@ public class CompressorSubsystem extends Subsystem {
 		SmartDashboard.putBoolean("Compressor On/Off", true);
 	}
 	
-    public void initDefaultCommand() {
+    @Override
+	public void initDefaultCommand() {
         // Set the default command for a subsystem here.
     }
     
