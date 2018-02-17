@@ -52,7 +52,6 @@ public class Robot extends IterativeRobot {
 		
 		//chooser.addDefault("Default Auto", new ExampleCommand());
 		chooser.addDefault("Do Nothing", new AutoPIDDrive(0));
-		//chooser.addObject("Drive Straight", new AutoDrive(55, .5)); //non pid
 		chooser.addObject("Baseline Only", new AutoPIDDrive(97));
 		chooser.addObject("PID Drive with Wait", new AutoPIDDriveWithWait());
 		chooser.addObject("AutoCenterSwitch", new AutoCenterSwitch());

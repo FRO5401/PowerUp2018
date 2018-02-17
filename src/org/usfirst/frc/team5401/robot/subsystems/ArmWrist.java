@@ -24,13 +24,13 @@ public class ArmWrist extends Subsystem {
 	//private AnalogPotentiometer armPot; Probably will not be used
 
 
-	private double armAngle;
 	private boolean armPidEnabled;
 	private int loopIndex;
 	private int slotIndex;
 	
 	public ArmWrist(){
-
+		
+		armPidEnabled = false;
 		loopIndex = 0;
 		slotIndex = 0;
 		//This is for the ConfigSelectedFeedbackSensor whose second parameter is PID index, this loop index is the ACTUAL parameter of PID index and is zero for a primary closed loop, or one per cascade coasting. 
