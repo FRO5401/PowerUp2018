@@ -33,7 +33,7 @@ public class DriveBase extends Subsystem {
 		rightDrive1  = new VictorSP(RobotMap.DRIVE_RIGHT_MOTOR_1);
 		leftDrive2  = new VictorSP(RobotMap.DRIVE_LEFT_MOTOR_2);
 		rightDrive2 = new VictorSP(RobotMap.DRIVE_RIGHT_MOTOR_2);
-		gearShifter = new Solenoid(RobotMap.PCM_ID2, RobotMap.DRIVE_SHIFT);
+		gearShifter = new Solenoid(RobotMap.PCM_ID, RobotMap.DRIVE_SHIFT);
 		leftEncoder = new Encoder(RobotMap.DRIVE_ENC_LEFT_A, RobotMap.DRIVE_ENC_LEFT_B, true, Encoder.EncodingType.k4X);
 		//																					vvv if this was false, DPP doesn't have to be negative
 		rightEncoder = new Encoder(RobotMap.DRIVE_ENC_RIGHT_A, RobotMap.DRIVE_ENC_RIGHT_B, true, Encoder.EncodingType.k4X);
@@ -100,7 +100,10 @@ public class DriveBase extends Subsystem {
     	SmartDashboard.putNumber("Robot Velocity", velocity);
     	return velocity;
     }
-
+    
+    public boolean getGearShifterValue () {
+    	return gearShifter.get();
+    }
     
     public void setDPPLowGear(){
     	leftEncoder.setDistancePerPulse(RobotMap.LOW_GEAR_LEFT_DPP);

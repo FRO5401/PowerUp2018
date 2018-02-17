@@ -48,10 +48,11 @@ public class XboxMove extends Command {
     	
     	//Manual Gear Shift
     	if (gearShiftHigh){
-    		Robot.drivebase.shiftGearLowToHigh();;
+    		Robot.drivebase.shiftGearLowToHigh();
     	} else if (gearShiftLow){
     		Robot.drivebase.shiftGearHighToLow();
     	}
+    	System.out.println(Robot.drivebase.getGearShifterValue());
     	
     	//Inverts Drive
     	if (invert){
