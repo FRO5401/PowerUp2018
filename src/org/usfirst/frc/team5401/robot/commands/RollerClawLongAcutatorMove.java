@@ -7,21 +7,21 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class RollerClawTopClose extends Command {
+public class RollerClawLongAcutatorMove extends Command {
 	
-	int upDownClose;
+	int upDownLong;
 
-    public RollerClawTopClose(int rollerClawCloseDirection) {
+    public RollerClawLongAcutatorMove(int rollerClawCloseDirection) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.rollerclaw);
     	
-    	upDownClose = rollerClawCloseDirection;    	
+    	upDownLong = rollerClawCloseDirection;    	
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.rollerclaw.clawClose(upDownClose);
+    	Robot.rollerclaw.rollerClawLongChange(upDownLong);
     }
 
     // Called repeatedly when this Command is scheduled to run

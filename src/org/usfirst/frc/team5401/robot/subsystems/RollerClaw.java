@@ -15,19 +15,18 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class RollerClaw extends Subsystem {
 	
 	private DigitalInput limitSwitch;
-	private DoubleSolenoid clawLinkFar;
-	private DoubleSolenoid clawLinkClose;
+	private DoubleSolenoid rollerClawShort;
+	private DoubleSolenoid rollerClawLong;
 	
 	private VictorSP topRoller;
 	private VictorSP bottomRoller;
 	
 	public RollerClaw(){
-		topRoller = new VictorSP(RobotMap.ROLLER_CLAW_TOP_ROLLER);
-		bottomRoller = new VictorSP(RobotMap.ROLLER_CLAW_BOTTOM_ROLLER);
-		clawLinkFar = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.ROLLER_CLAW_FAR_IN, RobotMap.ROLLER_CLAW_FAR_OUT);
-		clawLinkClose = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.ROLLER_CLAW_CLOSE_IN, RobotMap.ROLLER_CLAW_CLOSE_OUT);
-		limitSwitch = new DigitalInput(RobotMap.ROLLER_CLAW_LIMIT_SWITCH);
-		
+//		topRoller = new VictorSP(RobotMap.ROLLER_CLAW_TOP_ROLLER);
+//		bottomRoller = new VictorSP(RobotMap.ROLLER_CLAW_BOTTOM_ROLLER);
+		rollerClawShort = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.ROLLER_CLAW_FAR_IN, RobotMap.ROLLER_CLAW_FAR_OUT);
+		rollerClawLong = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.ROLLER_CLAW_CLOSE_IN, RobotMap.ROLLER_CLAW_CLOSE_OUT);
+//		limitSwitch = new DigitalInput(RobotMap.ROLLER_CLAW_LIMIT_SWITCH);
 	}
 
     // Put methods for controlling this subsystem
@@ -54,21 +53,21 @@ public class RollerClaw extends Subsystem {
     	bottomRoller.set(0);
     }
     
-    public void clawFar(int clawFarDirection){
+    public void rollerClawShortChange(int clawFarDirection){
     	if (clawFarDirection == 1) {
-    		clawLinkFar.set(DoubleSolenoid.Value.kForward);
+    		rollerClawShort.set(DoubleSolenoid.Value.kForward);
     	} 
     	else {
-    		clawLinkFar.set(DoubleSolenoid.Value.kReverse);
+    		rollerClawShort.set(DoubleSolenoid.Value.kReverse);
     	}
     }
     
-    public void clawClose(int clawCloseDirection){
+    public void rollerClawLongChange(int clawCloseDirection){
     	if (clawCloseDirection == 1){
-    		clawLinkClose.set(DoubleSolenoid.Value.kForward);
+    		rollerClawLong.set(DoubleSolenoid.Value.kForward);
     	}
     	else {
-    		clawLinkClose.set(DoubleSolenoid.Value.kReverse);
+    		rollerClawLong.set(DoubleSolenoid.Value.kReverse);
     	}
     }
     	

@@ -23,7 +23,7 @@ public class RollerClawDirectionControl extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	inOut = Robot.oi.getXboxTriggers_Operator();
+//    	inOut = Robot.oi.getXboxTriggers_Operator();
     	
     	Robot.rollerclaw.rollerInOut(inOut);
     }
