@@ -21,7 +21,7 @@ public class RobotMap {
 	public static final double DRIVE_D = 0;
 	
 	public static final double TURN_P = .02;
-	public static final double TURN_I = 0;
+	public static final double TURN_I = 0.048;
 	public static final double TURN_D = 0;
 	public static final double TURN_F = 0;
 
