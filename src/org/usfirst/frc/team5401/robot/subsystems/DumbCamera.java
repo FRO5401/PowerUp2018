@@ -13,8 +13,8 @@ public class DumbCamera extends Subsystem {
 	public DumbCamera(){
 	
 		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
-		camera.setResolution(640, 480);
-		camera.setFPS(29);
+		camera.setResolution(320, 240);
+		camera.setFPS(10);
 	
 	}
 		
