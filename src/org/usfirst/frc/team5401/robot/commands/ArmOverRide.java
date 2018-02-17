@@ -42,8 +42,8 @@ public class ArmOverRide extends Command {
     	{	
     		if(Math.abs(overRideMoving) > RobotMap.ARM_OVERRIDE_JOYSTICK_THRESHOLD)
     		{
-    			//Robot.armwrist.setBrake(false);
-    			//Robot.armwrist.overrideMove(overRideMoving);
+    			Robot.armwrist.setBrake(false);
+    			Robot.armwrist.overrideMove(overRideMoving);
     		}
     		else
     		{	
