@@ -30,11 +30,14 @@ public class RobotMap {
 	public static final double ARM_kD = 0;
 	public static final double ARM_kF = 0;
 	public static final double ARM_RANGE = 0;
-	public static final double ARM_OFFSET = 0;
 	public static final int TIMEOUT_LIMIT_IN_Ms = 10;//Might change. 10 is default in sample code
 	public static final int ARM_THRESHOLD_FOR_PID = 2;
 	public static final double ARM_OVERRIDE_JOYSTICK_THRESHOLD = 0.2; 
 	public static final double ARM_OVERRIDE_PRECISION = 0.3;
+	//TalonSRX
+	public static final int ARM_TALON_CHANNEL = 0;
+	public static final double ANGLE_PER_PULSE = .0071180006;
+	public static final double ANGLE_OFFSET = 25;
 	
 	//This is for XboxMove
 	public static final double MINIMUM_VELOCITY_FOR_HIGH_GEAR = 0; //Experimentally Determined, REMEMBER inches per second
@@ -117,11 +120,6 @@ public class RobotMap {
 	
 	//Analog Sensors
 	public static final int ARM_POT_CHANNEL = 0;
-	
-	//TalonSRX
-	public static final int ARM_TALON_CHANNEL = 0;
-	public static final double ANGLE_PER_PULSE = .0071180006;
-	public static final double ANGLE_OFFSET = 37;
 	
 	//Setpoints
 	// This is in Degrees
