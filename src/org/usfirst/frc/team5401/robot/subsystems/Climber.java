@@ -17,26 +17,26 @@ import org.usfirst.frc.team5401.robot.RobotMap;
  */
 public class Climber extends Subsystem {
 	
-	private Solenoid rollerStablizer;
+	private Solenoid climberStablizer;
 	private DigitalInput climberSwitchTop;
 	private DigitalInput climberSwitchBottom;
 	private TalonSRX climberMotor;
-	private DoubleSolenoid climbPlatforms;
+	private DoubleSolenoid climberPlatforms;
 	
 	private boolean stablizerEnabled;
 	private boolean platformEnabled;
 	
 	
 	public Climber(){
-		rollerStablizer    = new Solenoid(RobotMap.CLIMBER_STABILIZER);
-		climbPlatforms      = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.CLIMBER_PLATFORM_IN, RobotMap.CLIMBER_PLATFORM_OUT);
+		climberStablizer    = new Solenoid(RobotMap.CLIMBER_STABLIZER);
+		climberPlatforms      = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.CLIMBER_PLATFORM_IN, RobotMap.CLIMBER_PLATFORM_OUT);
 		climberSwitchTop    = new DigitalInput (RobotMap.CLIMBER_SWITCH_TOP);
 		climberSwitchBottom = new DigitalInput (RobotMap.CLIMBER_SWITCH_BOTTOM);
 		climberMotor        = new TalonSRX (RobotMap.CLIMBER_MOTOR);
 		
 		stablizerEnabled = false;
 		platformEnabled = false;
-		SmartDashboard.putBoolean("Stablizer State", stabilizerEnabled);
+		SmartDashboard.putBoolean("Stablizer State", stablizerEnabled);
 		SmartDashboard.putBoolean("Climb Platforms State", platformEnabled);
 	}
 	
@@ -45,20 +45,21 @@ public class Climber extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     }
 	
-	//Stabilizer
+	//Stablizer
 	public void changeStablizer(boolean stablizerState){
-		rollerStablizer.set(stablizerState);
+		climberStablizer.set(stablizerState);
 		stablizerEnabled = stablizerState;
 	}
 	
-	public void changeClimbPlatforms(boolean platformState){
-		if(platformState == true)
+	//1 is out, everything else is in
+	public void changeClimberPlatforms(int platformState){
+		if(platformState == 1)
 		{
-			climbPlatform.set(DoubleSolenoid.kForward);
+			climberPlatforms.set(DoubleSolenoid.Value.kForward);
 		}
 		else
 		{
-			climbPlatform.set(DoubleSolenoid.kBackward);
+			climberPlatforms.set(DoubleSolenoid.Value.kReverse);
 		}
 		
 	}

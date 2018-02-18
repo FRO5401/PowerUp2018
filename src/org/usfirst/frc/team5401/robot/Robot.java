@@ -25,7 +25,6 @@ public class Robot extends IterativeRobot {
 	public static Climber climber;
 	public static DriveBase drivebase;
 	public static RollerClaw rollerclaw;
-	public static Wrist wrist;
 	public static CompressorSubsystem compressorsubsystem;
 	public static DumbCamera dumbcamera;
 	public static OI oi;
@@ -45,7 +44,6 @@ public class Robot extends IterativeRobot {
 		climber = new Climber();
 		drivebase = new DriveBase();
 		rollerclaw = new RollerClaw();
-		wrist = new Wrist();
 		compressorsubsystem = new CompressorSubsystem();
 		dumbcamera = new DumbCamera();
 		oi = new OI();

@@ -42,18 +42,6 @@ public class OI {
 	public OI()
 	{
 		xboxY_Driver.whenPressed(new CompressorToggle());
-		  //Stabilizer Deploy
-		  xboxStart_Operator.whenPressed(new StabilizerDeploy());
-		  
-		  //Climber Extender
-		  xboxStart_Operator.whenPressed(new ClimberExtender());
-		  
-		  //Climber Platforms
-		  xboxStart_Operator.whenPressed(new ClimberPlatforms());
-		  
-		  //Climb
-		  xboxY_Operator.whenPressed(new Climb(1));
-		  xboxY_Operator.whenReleased(new Climb(0));		
 	}
 	
 	//Controller Axis
