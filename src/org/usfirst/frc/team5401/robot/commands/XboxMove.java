@@ -79,9 +79,9 @@ public class XboxMove extends Command {
     	double right = 0, left = 0, sensitivity;
     	
     	if (precision) { //Sets drive precision based on RobotMap and Precision Mode
-    		sensitivity	=	RobotMap.DRIVE_SENSITIVITY_PRECISE * -1;
+    		sensitivity	=	RobotMap.DRIVE_SENSITIVITY_PRECISE;
     	} else {
-    		sensitivity	=	RobotMap.DRIVE_SENSITIVITY_DEFAULT * -1;
+    		sensitivity	=	RobotMap.DRIVE_SENSITIVITY_DEFAULT;
     	}
     	
     	if (brake){
@@ -103,8 +103,8 @@ public class XboxMove extends Command {
     			slew *= -1;
     		}
     		if (Math.abs(slew) > RobotMap.DRIVE_THRESHHOLD){
-    			left  = RobotMap.DRIVE_SPIN_SENSITIVITY * slew * -1;
-    			right = RobotMap.DRIVE_SPIN_SENSITIVITY * slew;
+    			left  = RobotMap.DRIVE_SPIN_SENSITIVITY * slew;
+    			right = RobotMap.DRIVE_SPIN_SENSITIVITY * slew * -1;
     		}
     	}
     	
