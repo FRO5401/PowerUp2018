@@ -80,10 +80,10 @@ public class DriveBase extends Subsystem {
     
     //TODO need to verify the negatives are in right place
     public void drive(double leftDriveDesired, double rightDriveDesired){
-    	leftDrive1 .set(-1 * leftDriveDesired);
-    	rightDrive1.set(rightDriveDesired);
-    	leftDrive2.set(-1 * leftDriveDesired);
-    	rightDrive2.set(rightDriveDesired);
+    	leftDrive1 .set(leftDriveDesired);
+    	rightDrive1.set(-1* rightDriveDesired);
+    	leftDrive2.set(leftDriveDesired);
+    	rightDrive2.set(-1 * rightDriveDesired);
     	
     	SmartDashboard.putNumber("Left Enc Raw" , leftEncoder.get());
 		SmartDashboard.putNumber("Right Enc Raw", rightEncoder.get());
@@ -218,10 +218,10 @@ public class DriveBase extends Subsystem {
     }
     
     public void setSetpoint(double setpoint)	{
-    	leftPID1.setSetpoint(-setpoint);
-    	leftPID2.setSetpoint(-setpoint);
-    	rightPID1.setSetpoint(setpoint);
-    	rightPID2.setSetpoint(setpoint);
+    	leftPID1.setSetpoint(setpoint);
+    	leftPID2.setSetpoint(setpoint);
+    	rightPID1.setSetpoint(-setpoint);
+    	rightPID2.setSetpoint(-setpoint);
     }
     
     public double getSetpoint(double leftOrRight)	{
