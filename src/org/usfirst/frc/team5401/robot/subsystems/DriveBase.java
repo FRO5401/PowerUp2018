@@ -82,8 +82,8 @@ public class DriveBase extends Subsystem {
 		rightTurnController.setAbsoluteTolerance(RobotMap.ANGLE_THRESHOLD);
 		//TODO We should probably also setContinuous
 		
-		leftTurnController.setOutputRange(-0.6, 0.6);
-		rightTurnController.setOutputRange(-0.6, 0.6);
+		leftTurnController.setOutputRange(-RobotMap.OUTPUT_RANGE, RobotMap.OUTPUT_RANGE);
+		rightTurnController.setOutputRange(-RobotMap.OUTPUT_RANGE, RobotMap.OUTPUT_RANGE);
 		
 		SmartDashboard.putNumber("navx Angle", 	getGyroAngle());
 		SmartDashboard.putNumber("navx Pitch", 	getGyroPitch());

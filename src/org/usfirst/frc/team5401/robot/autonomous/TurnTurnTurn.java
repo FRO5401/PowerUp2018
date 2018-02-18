@@ -10,7 +10,7 @@ public class TurnTurnTurn extends CommandGroup {
 
     public TurnTurnTurn() {
     	
-    	addSequential(new AutoPIDTurnAngle(90));
+    	addSequential(new AutoPIDTurnAngle(45));
     	System.out.print("90 Degrees");
     	addSequential(new WaitCommand(5));
     	addSequential(new AutoPIDTurnAngle(-45));
