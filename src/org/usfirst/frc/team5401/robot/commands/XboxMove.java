@@ -4,7 +4,7 @@ import org.usfirst.frc.team5401.robot.Robot;
 import org.usfirst.frc.team5401.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.smartdashboard.*;
 
 /**
  *
@@ -13,8 +13,6 @@ public class XboxMove extends Command {
 	double velocitySample1;
 	double velocitySample2;
 
-	//1/23/17 1/23/17 NOT NEEDED because the time for acceleration equation is no longer necessary
-	//double deltaTime;
 	
 	public XboxMove() {
 		velocitySample1 = 0;
@@ -24,30 +22,32 @@ public class XboxMove extends Command {
     }
 
     // Called just before this Command runs the first time
-    protected void initialize() {
+    @Override
+	protected void initialize() {
     	Robot.drivebase.shiftGearHighToLow();
     	//Robot.drivebase.shiftGearLowToHigh();
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
-    	double angle = Robot.drivebase.getGyroAngle();
+    @Override
+	protected void execute() {
+    	SmartDashboard.putNumber("Angle XboxDrive", Robot.drivebase.getGyroAngle());
     	
-    	double  slew      = Robot.oi.readXboxLeftX_Driver() * -1;
+    	double  slew      = Robot.oi.xboxAxis(RobotMap.XBOX_AXIS_LEFT_X, Robot.oi.xboxController_Driver) * -1;
 
-    	double 	throttle  = Robot.oi.readRightTrigger_Driver();
-    	double 	reverse   = Robot.oi.readLeftTrigger_Driver();
-    	boolean precision = Robot.oi.getPrecision_Driver();
-    	boolean brake	  = Robot.oi.getBrake_Driver();
-    	boolean turn	  = Robot.oi.getTurnButton_Driver();
-    	boolean invert	  = Robot.oi.getDriveInvertButton_Driver();
+    	double 	throttle  = Robot.oi.xboxAxis(RobotMap.XBOX_AXIS_RIGHT_TRIGGER, Robot.oi.xboxController_Driver);
+    	double 	reverse   = Robot.oi.xboxAxis(RobotMap.XBOX_AXIS_LEFT_TRIGGER, Robot.oi.xboxController_Driver);
+    	boolean precision = Robot.oi.xboxButton(RobotMap.XBOX_BUTTON_LEFT_BUMPER_DRIVER, Robot.oi.xboxController_Driver);
+    	boolean brake	  = Robot.oi.xboxButton(RobotMap.XBOX_BUTTON_RIGHT_BUMPER_DRIVER, Robot.oi.xboxController_Driver);
+    	boolean turn	  = Robot.oi.xboxButton(RobotMap.XBOX_BUTTON_L3_DRIVER, Robot.oi.xboxController_Driver);
+    	boolean invert	  = Robot.oi.xboxButton(RobotMap.XBOX_BUTTON_B_DRIVER, Robot.oi.xboxController_Driver);
     	
-    	boolean gearShiftLow  = Robot.oi.getXboxBack_Driver();
-    	boolean gearShiftHigh = Robot.oi.getXboxStart_Driver();
+    	boolean gearShiftLow  = Robot.oi.xboxButton(RobotMap.XBOX_BUTTON_BACK_DRIVER, Robot.oi.xboxController_Driver);
+    	boolean gearShiftHigh = Robot.oi.xboxButton(RobotMap.XBOX_BUTTON_START_DRIVER, Robot.oi.xboxController_Driver);
     	
     	//Manual Gear Shift
     	if (gearShiftHigh){
-    		Robot.drivebase.shiftGearLowToHigh();;
+    		Robot.drivebase.shiftGearLowToHigh();
     	} else if (gearShiftLow){
     		Robot.drivebase.shiftGearHighToLow();
     	}
@@ -71,22 +71,12 @@ public class XboxMove extends Command {
     			Robot.drivebase.shiftGearHighToLow();
     		}
 
-    		//Alternative Downshift Due to release in Thottle
-    		//if(Math.abs(thottle) <= 0 + RobotMap.DRIVE_THRESHHOLD) {
-    		//	Robot.drivebase.shiftGearHighToLow();
-    		//}
 */    		
     	//Gear Shift Done
     	
 
     	//Driving Code
     	double right = 0, left = 0, sensitivity;
-    	/*
-    	System.out.println("LEFT STICK X: " + slew + "\n"
-    					 + "RIGHT TRIGGER: " + throttle + "\n"
-    					 + "LEFT TRIGGER: " + reverse + "\n"
-    					 + "BRAKE: " + brake);
-    	*/
     	
     	if (precision) { //Sets drive precision based on RobotMap and Precision Mode
     		sensitivity	=	RobotMap.DRIVE_SENSITIVITY_PRECISE;
@@ -118,16 +108,13 @@ public class XboxMove extends Command {
     		}
     	}
     	
-//    	System.out.println("LEFT: " + left);
-//    	System.out.println("RIGHT: " + right);
-    	
     	Robot.drivebase.drive(left, right);
     
     	
     	
     	
 /*****Shifting Gear Code*********/
-    	Robot.drivebase.getEncoderDistance();
+    	Robot.drivebase.getEncoderDistance(3);
 /*    	//Backlogs the old final velocity (velocity 2) into the new initial velocity (velocity 1)
     	velocitySample1 = velocitySample2;
 */   	
@@ -167,12 +154,14 @@ public class XboxMove extends Command {
 */    }
 
     // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
+    @Override
+	protected boolean isFinished() {
         return false;
     }
 
     // Called once after isFinished returns true
-    protected void end() { //SHOULD never run
+    @Override
+	protected void end() { //SHOULD never run
     	Robot.drivebase.stop();
     	System.out.println("XboxMove end()");
 //    	this.cancel(); //not needed
@@ -180,7 +169,8 @@ public class XboxMove extends Command {
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
-    protected void interrupted() {
+    @Override
+	protected void interrupted() {
     	Robot.drivebase.stop();
     	System.out.println("XboxMove Interrupted");
 //    	this.cancel(); //not needed
