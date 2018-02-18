@@ -17,95 +17,53 @@ import org.usfirst.frc.team5401.robot.RobotMap;
  */
 public class Climber extends Subsystem {
 	
-	private Solenoid rollerStabilizer;
-	private DoubleSolenoid climberExtender;
+	private Solenoid rollerStablizer;
 	private DigitalInput climberSwitchTop;
 	private DigitalInput climberSwitchBottom;
 	private TalonSRX climberMotor;
 	private DoubleSolenoid climbPlatforms;
 	
-	private boolean stabilizerEnabled;
-	private boolean extenderEnabled;
+	private boolean stablizerEnabled;
 	private boolean platformEnabled;
 	
 	
 	public Climber(){
-		rollerStabilizer    = new Solenoid(RobotMap.STABILIZER_OUT);
-		climberExtender     = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.CLIMBER_EXTENDER_IN, RobotMap.CLIMBER_EXTENDER_OUT);
-		climbPlatforms      = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.CLIMBER_PLATFORM_UP, RobotMap.CLIMBER_PLATFORM_DOWN);
+		rollerStablizer    = new Solenoid(RobotMap.CLIMBER_STABILIZER);
+		climbPlatforms      = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.CLIMBER_PLATFORM_IN, RobotMap.CLIMBER_PLATFORM_OUT);
 		climberSwitchTop    = new DigitalInput (RobotMap.CLIMBER_SWITCH_TOP);
 		climberSwitchBottom = new DigitalInput (RobotMap.CLIMBER_SWITCH_BOTTOM);
 		climberMotor        = new TalonSRX (RobotMap.CLIMBER_MOTOR);
 		
-		stabilizerEnabled = false;
-		extenderEnabled = false;
+		stablizerEnabled = false;
 		platformEnabled = false;
-		SmartDashboard.putBoolean("Stabilizer State", stabilizerEnabled);
-		SmartDashboard.putBoolean("Climb Extender State", extenderEnabled);
+		SmartDashboard.putBoolean("Stablizer State", stabilizerEnabled);
 		SmartDashboard.putBoolean("Climb Platforms State", platformEnabled);
 	}
 	
+	public void initDefaultCommand() {
+        // Set the default command for a subsystem here.
+        //setDefaultCommand(new MySpecialCommand());
+    }
+	
 	//Stabilizer
-	public void deployStabilizer(){
-		rollerStabilizer.set(true);
-		stabilizerEnabled = true;
+	public void changeStablizer(boolean stablizerState){
+		rollerStablizer.set(stablizerState);
+		stablizerEnabled = stablizerState;
 	}
 	
-	public void retractStabilizer(){
-		rollerStabilizer.set(false);
-		stabilizerEnabled = false;
-	}
-	
-	public void switchStabilizerState(){
-		if (stabilizerEnabled){
-			deployStabilizer();
+	public void changeClimbPlatforms(boolean platformState){
+		if(platformState == true)
+		{
+			climbPlatform.set(DoubleSolenoid.kForward);
 		}
-		else {
-			retractStabilizer();
+		else
+		{
+			climbPlatform.set(DoubleSolenoid.kBackward);
 		}
+		
 	}
 	
-	//Climb Extender
-	public void climbExtenderUp(){
-		climberExtender.set(DoubleSolenoid.Value.kForward);
-		extenderEnabled = true;
-	}
-	
-	public void climbExtenderDown(){
-		climberExtender.set(DoubleSolenoid.Value.kReverse);
-		extenderEnabled = false;
-	}
-	
-	public void switchExtenderState(){
-		if (extenderEnabled){
-			climbExtenderUp();
-		}
-		else {
-			climbExtenderDown();
-		}
-	}
-	
-	//Climb Platforms
-	public void platformUp(){
-		climbPlatforms.set(DoubleSolenoid.Value.kForward);
-		platformEnabled = true;
-	}
-	
-	public void platformDown(){
-		climbPlatforms.set(DoubleSolenoid.Value.kReverse);
-		platformEnabled = false;		
-	}
-	
-	public void switchPlatformState(){
-		if (platformEnabled){
-			platformUp();
-		}
-		else{
-			platformDown();
-		}
-	}
-	
-    //XXX Switches are all reversed because they default to true and go false when tripped
+	//XXX Switches are all reversed because they default to true and go false when tripped
 	public boolean reportTopClimbSwitch(){
 		SmartDashboard.putBoolean("Climber Top Switch", !(climberSwitchTop.get()));
 		return  !climberSwitchTop.get();
@@ -117,24 +75,6 @@ public class Climber extends Subsystem {
 		return  !climberSwitchBottom.get();
 		
 	}
-	//Climb Motors
-	public void climberStartMotors(double input){
-		if(reportTopClimbSwitch() && input > 0){
-			input = 0;
-		}
-		if(reportBottomClimbSwitch() && input < 0){
-			input = 0;
-		}
-				
-		climberMotor.set(ControlMode.PercentOutput, (input * RobotMap.CLIMB_PRECISION));
-	}
-	public void stopClimber(){
-		climberMotor.set(ControlMode.PercentOutput, 0);
-	}
 	
-    public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
-    }
 }
 
