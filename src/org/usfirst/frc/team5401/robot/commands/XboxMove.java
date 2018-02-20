@@ -53,7 +53,7 @@ public class XboxMove extends Command {
     	}
 
     	//Driving Code
-    	double right = 0, left = 0, sensitivity;
+    	double right = 0, left = 0, sensitivity = 0;
     	
     	if (precision) { //Sets drive precision based on RobotMap and Precision Mode
     		sensitivity	=	RobotMap.DRIVE_SENSITIVITY_PRECISE;

@@ -59,17 +59,14 @@ public class DriveBase extends Subsystem {
 		navxGyro = new AHRS(I2C.Port.kMXP);
 		navxGyro.reset();
 		
-		SmartDashboard.putNumber("navx Angle", 	getGyroAngle());
-		SmartDashboard.putNumber("navx Pitch", 	getGyroPitch());
-		SmartDashboard.putNumber("navx Roll", 	getGyroRoll());
-		
-		
-		SmartDashboard.putNumber("Left Enc Raw" , leftEncoder.get());
+    	SmartDashboard.putNumber("Left Enc Raw" , leftEncoder.get());
 		SmartDashboard.putNumber("Right Enc Raw", rightEncoder.get());
 		SmartDashboard.putNumber("Left Enc Adj" , leftEncoder.getDistance());
 		SmartDashboard.putNumber("Right Enc Adj", rightEncoder.getDistance());
-		SmartDashboard.putNumber("Mean Enc Adj", getEncoderDistance(3));
 		
+		SmartDashboard.putNumber("navx Angle", 	getGyroAngle());
+		SmartDashboard.putNumber("navx Pitch", 	getGyroPitch());
+		SmartDashboard.putNumber("navx Roll", 	getGyroRoll());
 	}
 	
     @Override
@@ -118,12 +115,6 @@ public class DriveBase extends Subsystem {
     	rightEncoder.setDistancePerPulse(RobotMap.LOW_GEAR_RIGHT_DPP);
     	System.out.println("Shifting Drive Gear to Low Gear");
     }
-    public double getVelocityOfRobot(){
-    	double velocity = (Math.abs(leftEncoder.getRate()) + Math.abs(rightEncoder.getRate()))/2;
-    	//For testing
-    	SmartDashboard.putNumber("Robot Velocity", velocity);
-    	return velocity;
-    }
     
     public boolean getGearShifterValue () {
     	return gearShifter.get();
@@ -139,30 +130,15 @@ public class DriveBase extends Subsystem {
     	rightEncoder.setDistancePerPulse(RobotMap.HIGH_GEAR_RIGHT_DPP);
     }
     
-    public double getEncoderDistance(double encoderNumber){
-    	double leftDistanceRaw = leftEncoder.get();
-    	double rightDistanceRaw = rightEncoder.get();
-    	SmartDashboard.putNumber("Left Enc Raw", leftDistanceRaw);
-    	SmartDashboard.putNumber("Right Enc Raw", rightDistanceRaw);
-    	double leftDistance = leftEncoder.getDistance();
-    	double rightDistance = rightEncoder.getDistance();
-    	SmartDashboard.putNumber("Left Enc Adj", leftDistance);
-    	SmartDashboard.putNumber("Right Enc Adj", rightDistance);
-    	double encoderDistance = (leftDistance + rightDistance)/2;
+    public double getEncoderDistance(){
+    	SmartDashboard.putNumber("Left Enc Raw", leftEncoder.get());
+    	SmartDashboard.putNumber("Right Enc Raw", rightEncoder.get());
+    	SmartDashboard.putNumber("Left Enc Adj", leftEncoder.getDistance());
+    	SmartDashboard.putNumber("Right Enc Adj", rightEncoder.getDistance());
+    	double encoderDistance = (leftEncoder.getDistance() +  rightEncoder.getDistance())/2;
     	SmartDashboard.putNumber("Mean Enc Adj", encoderDistance);
     	
-    	if(encoderNumber == 1)
-    	{
-    		return leftDistance;
-    	}
-    	else if(encoderNumber == 2)
-    	{
-    		return rightDistance;
-    	}
-    	else
-    	{
-    		return encoderDistance;
-    	}
+    	return encoderDistance;
     }
     
     public void encoderReset(){
