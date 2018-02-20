@@ -78,7 +78,7 @@ public class DriveBase extends Subsystem {
     	setDefaultCommand(new XboxMove());
     }
     
-    //TODO need to verify the negatives are in right place
+
     public void drive(double leftDriveDesired, double rightDriveDesired){
     	leftDrive1 .set(leftDriveDesired);
     	rightDrive1.set(-1* rightDriveDesired);
