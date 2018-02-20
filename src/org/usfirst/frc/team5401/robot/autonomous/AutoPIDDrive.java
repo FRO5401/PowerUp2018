@@ -48,7 +48,7 @@ public class AutoPIDDrive extends Command {
     @Override
 	protected boolean isFinished() {
     	//Need verification that left and right side are at where it is needed																		vv Right set point is negative. Negative sign cancels it out
-        if ((Math.abs(Robot.drivebase.getSetpoint(1) - Robot.drivebase.getEncoderDistance(1)) < RobotMap.PID_ABSOLUTE_TOLERANCE) 	&&	(Math.abs(Robot.drivebase.getSetpoint(2) - Robot.drivebase.getEncoderDistance(2)) < RobotMap.PID_ABSOLUTE_TOLERANCE)) {
+        if ((Math.abs(Robot.drivebase.getSetpoint(1) - Robot.drivebase.getEncoderDistance(1)) < RobotMap.DRIVE_PID_ABSOLUTE_TOLERANCE) 	&&	(Math.abs(Robot.drivebase.getSetpoint(2) - Robot.drivebase.getEncoderDistance(2)) < RobotMap.DRIVE_PID_ABSOLUTE_TOLERANCE)) {
         	return true;
         } else {
         	return false;
