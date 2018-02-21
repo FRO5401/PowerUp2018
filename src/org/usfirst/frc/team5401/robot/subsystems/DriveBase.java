@@ -130,15 +130,26 @@ public class DriveBase extends Subsystem {
     	rightEncoder.setDistancePerPulse(RobotMap.HIGH_GEAR_RIGHT_DPP);
     }
     
-    public double getEncoderDistance(){
+    //Type Average for encoderDistance
+    public double getEncoderDistance(String whichEncoder){
     	SmartDashboard.putNumber("Left Enc Raw", leftEncoder.get());
     	SmartDashboard.putNumber("Right Enc Raw", rightEncoder.get());
     	SmartDashboard.putNumber("Left Enc Adj", leftEncoder.getDistance());
     	SmartDashboard.putNumber("Right Enc Adj", rightEncoder.getDistance());
     	double encoderDistance = (leftEncoder.getDistance() +  rightEncoder.getDistance())/2;
     	SmartDashboard.putNumber("Mean Enc Adj", encoderDistance);
-    	
-    	return encoderDistance;
+    	if(whichEncoder.equals("left"))
+    	{
+    		return leftEncoder.getDistance();
+    	}
+    	else if(whichEncoder.equals("right"))
+    	{
+    		return rightEncoder.getDistance();
+    	}
+    	else
+    	{
+    		return encoderDistance;
+    	}
     }
     
     public void encoderReset(){
