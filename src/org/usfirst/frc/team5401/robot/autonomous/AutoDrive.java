@@ -92,7 +92,7 @@ public class AutoDrive extends Command {
     				//Finished
     				doneTraveling = true;
     			}
-    		distanceTraveled = (Robot.drivebase.getEncoderDistance("Average"));
+    		distanceTraveled = (Robot.drivebase.getEncoderDistance(3));
     	}
     	
     }
