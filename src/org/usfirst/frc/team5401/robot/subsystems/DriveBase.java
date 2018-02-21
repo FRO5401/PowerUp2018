@@ -190,19 +190,6 @@ public class DriveBase extends Subsystem {
     	rightPID2.disable();
     }
     
-    public double returnPIDInput () {
-    	// Return your input value for the PID loop
-    	// e.g. a sensor, like a potentiometer
-    	// yourPot.getAverageVoltage() / kYourMaxVoltage;
-    	return getEncoderDistance(3);
-    }
-    
-    public void usePIDOutput (double output) {
-    	// Use output to drive your system, like a motor
-    	// e.g. yourMotor.set(output);
-    	SmartDashboard.putNumber("PIDOutput", output);
-    	drive(output, output);
-    }
     
     public void setSetpoint(double setpoint)	{
     	leftPID1.setSetpoint(setpoint);
