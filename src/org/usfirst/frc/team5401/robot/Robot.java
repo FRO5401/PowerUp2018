@@ -1,5 +1,6 @@
 package org.usfirst.frc.team5401.robot;
 import org.usfirst.frc.team5401.robot.autonomous.*;
+import org.usfirst.frc.team5401.robot.commands.*;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;

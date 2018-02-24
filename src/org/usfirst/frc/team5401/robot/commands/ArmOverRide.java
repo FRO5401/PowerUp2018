@@ -33,7 +33,7 @@ public class ArmOverRide extends Command {
     @Override
 	protected void execute() {
     	//Joystick up gives a negative value. The negative sign swtiches that.
-    	double overRideMoving = Robot.oi.xboxAxis(RobotMap.XBOX_AXIS_RIGHT_Y, Robot.oi.xboxController_Operator) * RobotMap.ARM_OVERRIDE_PRECISION;
+    	double overRideMoving = -Robot.oi.xboxAxis(RobotMap.XBOX_AXIS_RIGHT_Y, Robot.oi.xboxController_Operator) * RobotMap.ARM_OVERRIDE_PRECISION;
     	System.out.println(overRideMoving);
     	boolean overRideButton = Robot.oi.xboxButton(RobotMap.XBOX_BUTTON_R3_OPERATOR, Robot.oi.xboxController_Operator);
     	//calling to the button as well as the joystick
@@ -46,7 +46,7 @@ public class ArmOverRide extends Command {
     			Robot.armwrist.setBrake(false);
     			Robot.armwrist.overrideMove(overRideMoving);
     		}
-    		else if(overRideMoving < RobotMap.ARM_OVERRIDE_JOYSTICK_THRESHOLD && Robot.armwrist.getArmAngle() > 24)
+    		else if(overRideMoving < RobotMap.ARM_OVERRIDE_JOYSTICK_THRESHOLD && Robot.armwrist.getArmAngle() > 37)
     		{
     			Robot.armwrist.setBrake(false);
     			Robot.armwrist.overrideMove(overRideMoving);
@@ -74,7 +74,8 @@ public class ArmOverRide extends Command {
     @Override
 	protected void end() {
     	System.out.println("Arm Override End");
-    	Robot.armwrist.overrideStopped();
+    	Robot.armwrist.setBrake(true);
+    	//Robot.armwrist.overrideStopped();
     }
 
     // Called when another command which requires one or more of the same
@@ -82,6 +83,7 @@ public class ArmOverRide extends Command {
     @Override
 	protected void interrupted() {
     	System.out.println("Arm Override Interrupted");
-    	Robot.armwrist.armInterrupted();
+    	Robot.armwrist.setBrake(true);
+    	//Robot.armwrist.armInterrupted();
     }
 }
