@@ -33,9 +33,9 @@ public class ArmOverRide extends Command {
     @Override
 	protected void execute() {
     	//Joystick up gives a negative value. The negative sign swtiches that.
-    	double overRideMoving = Robot.oi.getXboxRightStickY_Operator() * RobotMap.ARM_OVERRIDE_PRECISION;
+    	double overRideMoving = Robot.oi.xboxAxis(RobotMap.XBOX_AXIS_RIGHT_Y, Robot.oi.xboxController_Operator) * RobotMap.ARM_OVERRIDE_PRECISION;
     	System.out.println(overRideMoving);
-    	boolean overRideButton = Robot.oi.getXboxOperator_R3();
+    	boolean overRideButton = Robot.oi.xboxButton(RobotMap.XBOX_BUTTON_R3_OPERATOR, Robot.oi.xboxController_Operator);
     	//calling to the button as well as the joystick
     	Robot.armwrist.getArmAngle();
     	
