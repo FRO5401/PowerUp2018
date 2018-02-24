@@ -25,6 +25,7 @@ public class Robot extends IterativeRobot {
 	public static RollerClaw rollerclaw;
 	public static Wrist wrist;
 	public static OI oi;
+	public static Infeeder infeeder;
 
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
@@ -42,6 +43,7 @@ public class Robot extends IterativeRobot {
 		rollerclaw = new RollerClaw();
 		wrist = new Wrist();
 		oi = new OI();
+		infeeder = new Infeeder();
 		
 		//chooser.addDefault("Default Auto", new ExampleCommand());
 		chooser.addDefault("AutoDrive", new AutoDrive( 127 , 1));
