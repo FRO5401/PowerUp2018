@@ -40,8 +40,8 @@ public class RollerClaw extends Subsystem {
     }
     
     public void rollerInOut(int inOutDirection){
-    	topRoller.set(RobotMap.ROLLER_SPEED * inOutDirection);
-    	bottomRoller.set(RobotMap.ROLLER_SPEED * -inOutDirection);
+    	topRoller.set(RobotMap.ROLLER_SPEED * -inOutDirection);
+    	bottomRoller.set(RobotMap.ROLLER_SPEED * inOutDirection);
     }
 
     //XXX Switches are all reversed because they default to true and go false when tripped
@@ -72,6 +72,10 @@ public class RollerClaw extends Subsystem {
     	else {
     		rollerClawLong.set(DoubleSolenoid.Value.kReverse);
     	}
+    }
+    public void checkVictor(){
+    	System.out.println("Bottom: "  + bottomRoller.isAlive());
+    	System.out.println("Top: "  + topRoller.isAlive());
     }
     	
 }

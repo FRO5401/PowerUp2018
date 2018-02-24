@@ -37,7 +37,7 @@ public class RobotMap {
 	public static final double ARM_OVERRIDE_PRECISION = 0.3;
 	
 	//This is for RollerClaw
-	public static final double ROLLER_SPEED = 0.9;
+	public static final double ROLLER_SPEED = 0.35;
 	
 	//This is for XboxMove
 	public static final double MINIMUM_VELOCITY_FOR_HIGH_GEAR = 0; //Experimentally Determined, REMEMBER inches per second
