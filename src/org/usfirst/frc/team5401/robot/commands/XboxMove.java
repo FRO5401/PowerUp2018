@@ -4,7 +4,7 @@ import org.usfirst.frc.team5401.robot.Robot;
 import org.usfirst.frc.team5401.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.smartdashboard.*;
 
 /**
  *
@@ -46,12 +46,11 @@ public class XboxMove extends Command {
     	boolean gearShiftHigh = Robot.oi.xboxButton(RobotMap.XBOX_BUTTON_START_DRIVER, Robot.oi.xboxController_Driver);
     	
     	//Manual Gear Shift
-/*    	if (gearShiftHigh){
-    		Robot.drivebase.shiftGearLowToHigh();;
+    	if (gearShiftHigh){
+    		Robot.drivebase.shiftGearLowToHigh();
     	} else if (gearShiftLow){
     		Robot.drivebase.shiftGearHighToLow();
-		}
-*/
+    	}
     	
     	//Inverts Drive
     	if (invert){
