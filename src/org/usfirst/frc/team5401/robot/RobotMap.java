@@ -39,6 +39,9 @@ public class RobotMap {
 	public static final double ANGLE_PER_PULSE = .0071180006;
 	public static final double ANGLE_OFFSET = 25;
 	
+	//This is for RollerClaw
+	public static final double ROLLER_SPEED = 0.9;
+	
 	//This is for XboxMove
 	public static final double MINIMUM_VELOCITY_FOR_HIGH_GEAR = 0; //Experimentally Determined, REMEMBER inches per second
 	public static final double MAXIMUM_VELOCITY_FOR_LOW_GEAR = 0;
@@ -48,7 +51,7 @@ public class RobotMap {
 	public static final double DRIVE_SPIN_SENSITIVITY = 1;
 	
 	//This is for AutoTurnAngle
-	public static final double ANGLE_THRESHOLD = 1;//in degrees
+	public static final double ANGLE_THRESHOLD = 1; //in degrees
 	public static final double AUTO_TURN_SPEED = 0.95;
 	public static final double AUTO_TURN_PRECISION = 0.75;
 	
@@ -115,20 +118,19 @@ public class RobotMap {
 	public static final int ROLLER_CLAW_SHORT_IN		= 4;
 	public static final int ROLLER_CLAW_LONG_OUT		= 0;
 	public static final int ROLLER_CLAW_LONG_IN			= 1;
+
 	
 	//DIO Sensors
 	public static final int DRIVE_ENC_LEFT_A 	= 0;
 	public static final int DRIVE_ENC_LEFT_B 	= 1;
 	public static final int DRIVE_ENC_RIGHT_A 	= 2;
 	public static final int DRIVE_ENC_RIGHT_B 	= 3;
-	
-	//Analog Sensors
-	public static final int ARM_POT_CHANNEL = 0;
-	
-	//TalonSRX
-	public static final int ARM_TALON_CHANNEL = 0;
-	public static final double ANGLE_PER_PULSE = 134.26;
-	public static final int ANGLE_OFFSET = 35;
+	public static final int ROLLER_CLAW_LIMIT_SWITCH   = 0;
+  
+	//RollerClaw
+	public static final int ROLLER_CLAW_TOP_ROLLER    = 0;
+	public static final int ROLLER_CLAW_BOTTOM_ROLLER   = 0;
+
 	
 	//Setpoints
 	// This is in Degrees
