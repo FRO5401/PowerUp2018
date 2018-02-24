@@ -32,7 +32,6 @@ public class XboxMove extends Command {
     	boolean precision = Robot.oi.xboxButton(RobotMap.XBOX_BUTTON_LEFT_BUMPER_DRIVER, Robot.oi.xboxController_Driver);
     	boolean brake	  = Robot.oi.xboxButton(RobotMap.XBOX_BUTTON_RIGHT_BUMPER_DRIVER, Robot.oi.xboxController_Driver);
     	boolean turn	  = Robot.oi.xboxButton(RobotMap.XBOX_BUTTON_L3_DRIVER, Robot.oi.xboxController_Driver);
-    	boolean invert	  = Robot.oi.xboxButton(RobotMap.XBOX_BUTTON_B_DRIVER, Robot.oi.xboxController_Driver);
     	
     	boolean gearShiftLow  = Robot.oi.xboxButton(RobotMap.XBOX_BUTTON_BACK_DRIVER, Robot.oi.xboxController_Driver);
     	boolean gearShiftHigh = Robot.oi.xboxButton(RobotMap.XBOX_BUTTON_START_DRIVER, Robot.oi.xboxController_Driver);
@@ -42,14 +41,6 @@ public class XboxMove extends Command {
     		Robot.drivebase.shiftGearLowToHigh();
     	} else if (gearShiftLow){
     		Robot.drivebase.shiftGearHighToLow();
-    	}
-    	
-    	//Inverts Drive
-    	if (invert){
-    		slew *= -1;
-    		double temp = throttle;
-    		throttle = reverse;
-    		reverse = temp;
     	}
 
     	//Driving Code
@@ -76,9 +67,6 @@ public class XboxMove extends Command {
     			right = (throttle - reverse) * sensitivity;
     		}
     	} else {
-    		if (invert){
-    			slew *= -1;
-    		}
     		if (Math.abs(slew) > RobotMap.DRIVE_THRESHHOLD){
     			left  = RobotMap.DRIVE_SPIN_SENSITIVITY * slew;
     			right = RobotMap.DRIVE_SPIN_SENSITIVITY * slew * -1;
