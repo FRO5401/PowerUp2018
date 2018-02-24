@@ -22,6 +22,7 @@ public class ArmOverRide extends Command {
         // eg. requires(chassis);
     }
 
+    
     // Called just before this Command runs the first time
     @Override
 	protected void initialize() {
@@ -40,17 +41,24 @@ public class ArmOverRide extends Command {
     	
     	if(overRideButton == true)
     	{	
-    		if(Math.abs(overRideMoving) > RobotMap.ARM_OVERRIDE_JOYSTICK_THRESHOLD)
+    		if(overRideMoving > RobotMap.ARM_OVERRIDE_JOYSTICK_THRESHOLD && Robot.armwrist.getArmAngle() < 175)
     		{
     			Robot.armwrist.setBrake(false);
     			Robot.armwrist.overrideMove(overRideMoving);
     		}
-    		else
-    		{	
+    		else if(overRideMoving < RobotMap.ARM_OVERRIDE_JOYSTICK_THRESHOLD && Robot.armwrist.getArmAngle() > 24)
+    		{
     			Robot.armwrist.setBrake(false);
+    			Robot.armwrist.overrideMove(overRideMoving);
+    		}
+    		
+    		if(Math.abs(overRideMoving) < RobotMap.ARM_OVERRIDE_JOYSTICK_THRESHOLD)
+    		{	
+    			Robot.armwrist.setBrake(true);
+    			System.out.println("Override Button + Brake on");
     			Robot.armwrist.overrideMove(0);
     		}
-    	}
+    	}  
     	//Calling for the overridemove button from the subsystem and the value of the left joystick form OI. This is executed.
     	overrideEnabled = (!overRideButton);
     	Robot.armwrist.getArmAngle();

@@ -42,6 +42,8 @@ public class ArmWrist extends Subsystem {
 		armTalon = new TalonSRX(RobotMap.ARM_TALON_CHANNEL);//TODO need to check on RoboRIO  //TODO Make this a constant ref to robot map, move other todo to robotmap
 		//armPot = new AnalogPotentiometer(RobotMap.ARM_POT_CHANNEL, RobotMap.ARM_RANGE, RobotMap.ARM_OFFSET);
 		
+		brake = new Solenoid(RobotMap.PCM_ID, RobotMap.ARM_BRAKE);
+		
 		wristMoveLong = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.WRIST_MOVE_LONG_FORWARD, RobotMap.WRIST_MOVE_LONG_BACKWARD);
 		wristMoveShort = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.WRIST_MOVE_SHORT_FORWARD, RobotMap.WRIST_MOVE_SHORT_BACKWARD);
 
@@ -120,7 +122,7 @@ public class ArmWrist extends Subsystem {
 	public void setBrake(boolean brakeSet){
 		//Controlled by either override or reaching end of PID setpoint
 		//Disabled once override is engaged
-//		brake.set(brakeSet);
+		brake.set(brakeSet);
 	}
 
 	
@@ -129,7 +131,7 @@ public class ArmWrist extends Subsystem {
 		double setPointNativeUnits = setPointIndexInDegrees / RobotMap.ANGLE_PER_PULSE;
 		armTalon.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Brake);
 		armTalon.set(ControlMode.Position, setPointNativeUnits);
-//		brake.set(false);
+		brake.set(false);
 		armPidEnabled = true;
 		//Finds set point
 		//Calls to command for which set point
@@ -137,7 +139,7 @@ public class ArmWrist extends Subsystem {
 	}
 
 	public void pidStop(){
-//		brake.set(true);
+		brake.set(true);
 		armPidEnabled = false;
 		armTalon.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Coast);
 	}
@@ -156,13 +158,14 @@ public class ArmWrist extends Subsystem {
 	public void overrideStopped(){
 		
 		armTalon.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Coast);
-//		brake.set(true);
+		brake.set(true);
 		armPidEnabled = false;
 	}
 	
 	public void armInterrupted(){
 		
 		armPidEnabled = false;
+		brake.set(true);
 		armTalon.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Coast);
 		
 	}
@@ -172,7 +175,6 @@ public class ArmWrist extends Subsystem {
 		double armAngle = (armTalon.getSensorCollection().getQuadraturePosition() * RobotMap.ANGLE_PER_PULSE) + RobotMap.ANGLE_OFFSET;
 		SmartDashboard.putNumber("Arm Angle", armAngle);
 		SmartDashboard.putNumber("Native Units for Arm", armTalon.getSensorCollection().getQuadraturePosition());
-		System.out.println(armAngle + "\t " + armTalon.getSensorCollection().getQuadraturePosition());
 		return armAngle;	
 	}
 	

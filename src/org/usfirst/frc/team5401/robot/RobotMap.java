@@ -111,6 +111,7 @@ public class RobotMap {
 	public static final int WRIST_MOVE_LONG_BACKWARD  = 3;
 	public static final int WRIST_MOVE_SHORT_FORWARD  = 5;
 	public static final int WRIST_MOVE_SHORT_BACKWARD = 6;
+	public static final int ARM_BRAKE = 4;
 	
 	//DIO Sensors
 	public static final int DRIVE_ENC_LEFT_A 	= 0;
