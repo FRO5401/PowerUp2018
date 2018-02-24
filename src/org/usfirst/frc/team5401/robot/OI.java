@@ -45,12 +45,13 @@ public class OI {
 		xboxY_Driver.whenPressed(new CompressorToggle());
 		
 		//Roller Claw (Long)
-		xboxLeftBumper_Operator.whenPressed(new RollerClawLongAcutatorMove(1));
-		xboxLeftBumper_Operator.whenReleased(new RollerClawLongAcutatorMove(-1));
+		//xboxLeftBumper_Operator.whenPressed(new RollerClawLongAcutatorMove(1));
+		//xboxLeftBumper_Operator.whenReleased(new RollerClawLongAcutatorMove(-1));
 		
 		//Roller Claw (Short)
-		xboxRightBumper_Operator.whenPressed(new RollerClawShortActuatorMove(1));
-		xboxRightBumper_Operator.whenReleased(new RollerClawShortActuatorMove(-1));
+		//xboxRightBumper_Operator.whenPressed(new RollerClawShortActuatorMove(1));
+		//xboxRightBumper_Operator.whenReleased(new RollerClawShortActuatorMove(-1));
+		
 	}
 	
 	//Controller Axis
@@ -66,5 +67,21 @@ public class OI {
 	//DPad
 	public double xboxDPad(Joystick userMap){
 		return userMap.getPOV();
+	}
+	
+	public int xboxAxisAsDigitalInput(int axisInput, Joystick userMap)
+	{
+		if(userMap.getRawAxis(axisInput) > RobotMap.AXIS_THRESHOLD)
+		{
+			return 1;
+		}
+		else if(userMap.getRawAxis(axisInput) < RobotMap.AXIS_THRESHOLD)
+		{
+			return -1;
+		}
+		else
+		{
+			return 0;
+		}
 	}
 }

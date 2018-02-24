@@ -1,6 +1,7 @@
 package org.usfirst.frc.team5401.robot.subsystems;
 
 import org.usfirst.frc.team5401.robot.RobotMap;
+import org.usfirst.frc.team5401.robot.commands.*;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -14,7 +15,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class RollerClaw extends Subsystem {
 	
-	private DigitalInput limitSwitch;
+//	private DigitalInput limitSwitch;
 	private DoubleSolenoid rollerClawShort;
 	private DoubleSolenoid rollerClawLong;
 	
@@ -22,8 +23,8 @@ public class RollerClaw extends Subsystem {
 	private VictorSP bottomRoller;
 	
 	public RollerClaw(){
-//		topRoller = new VictorSP(RobotMap.ROLLER_CLAW_TOP_ROLLER);
-//		bottomRoller = new VictorSP(RobotMap.ROLLER_CLAW_BOTTOM_ROLLER);
+		topRoller = new VictorSP(RobotMap.ROLLER_CLAW_TOP_ROLLER);
+		bottomRoller = new VictorSP(RobotMap.ROLLER_CLAW_BOTTOM_ROLLER);
 		rollerClawShort = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.ROLLER_CLAW_SHORT_IN, RobotMap.ROLLER_CLAW_SHORT_OUT);
 		rollerClawLong = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.ROLLER_CLAW_LONG_IN, RobotMap.ROLLER_CLAW_LONG_OUT);
 //		limitSwitch = new DigitalInput(RobotMap.ROLLER_CLAW_LIMIT_SWITCH);
@@ -35,6 +36,7 @@ public class RollerClaw extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
+    	setDefaultCommand(new RollerClawMove());
     }
     
     public void rollerInOut(int inOutDirection){
@@ -44,8 +46,9 @@ public class RollerClaw extends Subsystem {
 
     //XXX Switches are all reversed because they default to true and go false when tripped
     public boolean getLimitSwitch(){
-    	SmartDashboard.putBoolean("Cube in", !limitSwitch.get());
-    	return !limitSwitch.get();
+//    	SmartDashboard.putBoolean("Cube in", !limitSwitch.get());
+//    	return !limitSwitch.get();
+    	return false;
     }
     
     public void stopMotors(){

@@ -67,6 +67,8 @@ public class RobotMap {
 	public static final int XBOX_AXIS_RIGHT_X = 4;
 	public static final int XBOX_AXIS_RIGHT_Y = 5;
 	
+	public static final double AXIS_THRESHOLD = 0.2;
+	
 	//OI Buttons
 	public static final int XBOX_BUTTON_A_DRIVER	   		 = 1;
 	public static final int XBOX_BUTTON_B_DRIVER		     = 2;
@@ -119,8 +121,8 @@ public class RobotMap {
 	public static final int ROLLER_CLAW_LIMIT_SWITCH   = 0;
   
 	//RollerClaw
-	public static final int ROLLER_CLAW_TOP_ROLLER    = 0;
-	public static final int ROLLER_CLAW_BOTTOM_ROLLER   = 0;
+	public static final int ROLLER_CLAW_TOP_ROLLER    = 4;
+	public static final int ROLLER_CLAW_BOTTOM_ROLLER   = 5;
 
 	public static final int WRIST_MOVE_LONG_FORWARD   = 0;
 	public static final int WRIST_MOVE_LONG_BACKWARD  = 0;
