@@ -43,6 +43,7 @@ public class OI {
 	{
 		xboxY_Driver.whenPressed(new CompressorToggle());
 		xboxR3_Operator.whenPressed(new ArmOverRide());
+
 	}
 	
 	//Controller Axis
@@ -59,6 +60,7 @@ public class OI {
 	public double xboxDPad(Joystick userMap){
 		return userMap.getPOV();
 	}
+<<<<<<< HEAD
 	public int readXboxLeftY_Axis(){
 		if(xboxController_Operator.getRawAxis(RobotMap.XBOX_AXIS_LEFT_Y) < -0.2){
 			return -1;
@@ -107,4 +109,22 @@ public class OI {
 		return xboxController_Operator.getRawButton(RobotMap.XBOX_BUTTON_R3_OPERATOR);
 	}
 		
+=======
+	
+	public int xboxAxisAsDigitalInput(int axisInput, Joystick userMap)
+	{
+		if(userMap.getRawAxis(axisInput) > RobotMap.AXIS_THRESHOLD)
+		{
+			return 1;
+		}
+		else if(userMap.getRawAxis(axisInput) < RobotMap.AXIS_THRESHOLD)
+		{
+			return -1;
+		}
+		else
+		{
+			return 0;
+		}
+	}
+>>>>>>> 6432cabf4834aac6c5e1fa5d83f85d40f55d10dc
 }

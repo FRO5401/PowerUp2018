@@ -40,7 +40,7 @@ public class RobotMap {
 	public static final double ANGLE_OFFSET = 25;
 	
 	//This is for RollerClaw
-	public static final double ROLLER_SPEED = 0.9;
+	public static final double ROLLER_SPEED = 0.35;
 	
 	//This is for XboxMove
 	public static final double MINIMUM_VELOCITY_FOR_HIGH_GEAR = 0; //Experimentally Determined, REMEMBER inches per second
@@ -69,6 +69,8 @@ public class RobotMap {
 	public static final int XBOX_AXIS_RIGHT_TRIGGER = 3;
 	public static final int XBOX_AXIS_RIGHT_X = 4;
 	public static final int XBOX_AXIS_RIGHT_Y = 5;
+	
+	public static final double AXIS_THRESHOLD = 0.2;
 	
 	//OI Buttons
 	public static final int XBOX_BUTTON_A_DRIVER	   		 = 1;
@@ -128,8 +130,8 @@ public class RobotMap {
 	public static final int ROLLER_CLAW_LIMIT_SWITCH   = 0;
   
 	//RollerClaw
-	public static final int ROLLER_CLAW_TOP_ROLLER    = 0;
-	public static final int ROLLER_CLAW_BOTTOM_ROLLER   = 0;
+	public static final int ROLLER_CLAW_TOP_ROLLER    = 4;
+	public static final int ROLLER_CLAW_BOTTOM_ROLLER   = 5;
 
 	
 	//Setpoints
