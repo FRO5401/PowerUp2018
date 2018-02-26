@@ -39,22 +39,24 @@ public class ArmOverRide extends Command {
     	//calling to the button as well as the joystick
     	Robot.armwrist.getArmAngle();
     	
+    	//True means brake is released
+    	Robot.armwrist.setBrake(overRideButton);
+    	
     	if(overRideButton == true)
     	{	
+    		
     		if(overRideMoving > RobotMap.ARM_OVERRIDE_JOYSTICK_THRESHOLD && Robot.armwrist.getArmAngle() < 175)
     		{
-    			Robot.armwrist.setBrake(false);
     			Robot.armwrist.overrideMove(overRideMoving);
     		}
-    		else if(overRideMoving < RobotMap.ARM_OVERRIDE_JOYSTICK_THRESHOLD && Robot.armwrist.getArmAngle() > 37)
+    		else if(overRideMoving < RobotMap.ARM_OVERRIDE_JOYSTICK_THRESHOLD && Robot.armwrist.getArmAngle() > 24)
     		{
-    			Robot.armwrist.setBrake(false);
     			Robot.armwrist.overrideMove(overRideMoving);
     		}
     		
     		if(Math.abs(overRideMoving) < RobotMap.ARM_OVERRIDE_JOYSTICK_THRESHOLD)
     		{	
-    			Robot.armwrist.setBrake(true);
+//    			Robot.armwrist.setBrake(true);
     			System.out.println("Override Button + Brake on");
     			Robot.armwrist.overrideMove(0);
     		}
@@ -74,8 +76,7 @@ public class ArmOverRide extends Command {
     @Override
 	protected void end() {
     	System.out.println("Arm Override End");
-    	Robot.armwrist.setBrake(true);
-    	//Robot.armwrist.overrideStopped();
+    	Robot.armwrist.overrideStopped();
     }
 
     // Called when another command which requires one or more of the same
@@ -83,7 +84,6 @@ public class ArmOverRide extends Command {
     @Override
 	protected void interrupted() {
     	System.out.println("Arm Override Interrupted");
-    	Robot.armwrist.setBrake(true);
-    	//Robot.armwrist.armInterrupted();
+    	Robot.armwrist.armInterrupted();
     }
 }

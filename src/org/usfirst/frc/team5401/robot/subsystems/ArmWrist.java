@@ -140,9 +140,9 @@ public class ArmWrist extends Subsystem {
 	}
 
 	public void pidStop(){
-		brake.set(true);
+		brake.set(false);
 		armPidEnabled = false;
-		armTalon.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Coast);
+		armTalon.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Brake);
 	}
 
 	public void overrideMove(double operatorJoystick){
@@ -158,16 +158,16 @@ public class ArmWrist extends Subsystem {
 	
 	public void overrideStopped(){
 		
-		armTalon.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Coast);
-		brake.set(true);
+		armTalon.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Brake);
+		brake.set(false);
 		armPidEnabled = false;
 	}
 	
 	public void armInterrupted(){
 		
 		armPidEnabled = false;
-		brake.set(true);
-		armTalon.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Coast);
+		brake.set(false);
+		armTalon.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Brake);
 		
 	}
 	

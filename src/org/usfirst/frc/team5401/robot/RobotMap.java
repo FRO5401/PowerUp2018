@@ -24,7 +24,6 @@ public class RobotMap {
 	
 
 	//This is for Arm
-	public static final double ARM_MOTOR_SPEED = 0;
 	public static final double ARM_kP = 0;
 	public static final double ARM_kI = 0;
 	public static final double ARM_kD = 0;
@@ -33,7 +32,7 @@ public class RobotMap {
 	public static final int TIMEOUT_LIMIT_IN_Ms = 10;//Might change. 10 is default in sample code
 	public static final int ARM_THRESHOLD_FOR_PID = 2;
 	public static final double ARM_OVERRIDE_JOYSTICK_THRESHOLD = 0.2; 
-	public static final double ARM_OVERRIDE_PRECISION = 0.3;
+	public static final double ARM_OVERRIDE_PRECISION = 0.75;
 	//TalonSRX
 	public static final int ARM_TALON_CHANNEL = 0;
 	public static final double ANGLE_PER_PULSE = .0071180006;
@@ -70,7 +69,7 @@ public class RobotMap {
 	public static final int XBOX_AXIS_RIGHT_X = 4;
 	public static final int XBOX_AXIS_RIGHT_Y = 5;
 	
-	public static final double AXIS_THRESHOLD = 0.2;
+	public static final double AXIS_THRESHOLD = 0;
 	
 	//OI Buttons
 	public static final int XBOX_BUTTON_A_DRIVER	   		 = 1;
