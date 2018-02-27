@@ -25,8 +25,8 @@ public class RollerClaw extends Subsystem {
 	public RollerClaw(){
 		topRoller = new VictorSP(RobotMap.ROLLER_CLAW_TOP_ROLLER);
 		bottomRoller = new VictorSP(RobotMap.ROLLER_CLAW_BOTTOM_ROLLER);
-		rollerClawShort = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.ROLLER_CLAW_SHORT_IN, RobotMap.ROLLER_CLAW_SHORT_OUT);
-		rollerClawLong = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.ROLLER_CLAW_LONG_IN, RobotMap.ROLLER_CLAW_LONG_OUT);
+//		rollerClawShort = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.ROLLER_CLAW_SHORT_IN, RobotMap.ROLLER_CLAW_SHORT_OUT);
+//		rollerClawLong = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.ROLLER_CLAW_LONG_IN, RobotMap.ROLLER_CLAW_LONG_OUT);
 //		limitSwitch = new DigitalInput(RobotMap.ROLLER_CLAW_LIMIT_SWITCH);
 	}
 
