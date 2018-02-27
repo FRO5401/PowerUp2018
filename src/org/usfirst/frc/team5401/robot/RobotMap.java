@@ -61,6 +61,7 @@ public class RobotMap {
 	public static final int ARM_POSITION_DESIRED   = 0;
 	public static final int XBOX_CONTROLLER_DRIVER = 0;
 	public static final int XBOX_CONTROLLER_OPERATOR = 1;
+	public static final int XBOX_CONTROLLER_TESTER = 2;
 	
 	public static final int XBOX_AXIS_LEFT_X = 0;
 	public static final int XBOX_AXIS_LEFT_Y = 1;
@@ -94,7 +95,16 @@ public class RobotMap {
 	public static final int XBOX_BUTTON_L3_OPERATOR		  	  = 9;
 	public static final int XBOX_BUTTON_R3_OPERATOR		  	  = 10;
 
-	 
+	public static final int XBOX_BUTTON_A_TESTER   		  	  = 1;
+	public static final int XBOX_BUTTON_B_TESTER		      = 2;
+	public static final int XBOX_BUTTON_X_TESTER		      = 3;
+	public static final int XBOX_BUTTON_Y_TESTER		   	  = 4;
+	public static final int XBOX_BUTTON_LEFT_BUMPER_TESTER    = 5;
+	public static final int XBOX_BUTTON_RIGHT_BUMPER_TESTER   = 6;
+	public static final int XBOX_BUTTON_BACK_TESTER		      = 7;
+	public static final int XBOX_BUTTON_START_TESTER	  	  = 8;
+	public static final int XBOX_BUTTON_L3_TESTER		  	  = 9;
+	public static final int XBOX_BUTTON_R3_TESTER		  	  = 10;
 	 
 	//Motors
 		//Drive Motors

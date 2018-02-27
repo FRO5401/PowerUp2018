@@ -15,6 +15,7 @@ public class OI {
 	//These objects must be public for other classes to access when calling methods from OI
 	public Joystick xboxController_Driver = new Joystick(RobotMap.XBOX_CONTROLLER_DRIVER);
 	public Joystick xboxController_Operator = new Joystick(RobotMap.XBOX_CONTROLLER_OPERATOR);
+	public Joystick xboxController_Tester = new Joystick(RobotMap.XBOX_CONTROLLER_TESTER);
 	
 	//Buttons
 	Button xboxA_Driver			  = new JoystickButton(xboxController_Driver, 1);
@@ -39,6 +40,17 @@ public class OI {
 	Button xboxL3_Operator		  	= new JoystickButton(xboxController_Operator, 9);
 	Button xboxR3_Operator		  	= new JoystickButton(xboxController_Operator, 10);
 
+	Button xboxA_Tester			  = new JoystickButton(xboxController_Tester, 1);
+	Button xboxB_Tester			  = new JoystickButton(xboxController_Tester, 2);
+	Button xboxX_Tester			  = new JoystickButton(xboxController_Tester, 3);
+	Button xboxY_Tester			  = new JoystickButton(xboxController_Tester, 4);
+	Button xboxLeftBumper_Tester  = new JoystickButton(xboxController_Tester, 5);
+	Button xboxRightBumper_Tester = new JoystickButton(xboxController_Tester, 6);
+	Button xboxBack_Tester		  = new JoystickButton(xboxController_Tester, 7);
+	Button xboxStart_Tester		  = new JoystickButton(xboxController_Tester, 8);
+	Button xboxL3_Tester		  = new JoystickButton(xboxController_Tester, 9);
+	Button xboxR3_Tester		  = new JoystickButton(xboxController_Tester, 10);
+	
 	public OI()
 	{
 		xboxY_Driver.whenPressed(new CompressorToggle());
@@ -47,6 +59,12 @@ public class OI {
 		xboxB_Operator.whenPressed(new ArmPIDMove(56.5));
 		xboxY_Operator.whenPressed(new ArmPIDMove(122));
 		xboxX_Operator.whenPressed(new ArmPIDMove(100.5));
+		
+		xboxX_Tester.whenPressed(new WristOverrideTesting("Long", true));
+		xboxX_Tester.whenReleased(new WristOverrideTesting("Long", false));
+		xboxY_Tester.whenPressed(new WristOverrideTesting("Short", true));
+		xboxY_Tester.whenReleased(new WristOverrideTesting("Short", false));
+		
 	}
 	
 	//Controller Axis
