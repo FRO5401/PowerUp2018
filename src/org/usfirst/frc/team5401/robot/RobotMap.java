@@ -24,7 +24,7 @@ public class RobotMap {
 	
 
 	//This is for Arm
-	public static final double ARM_kP = 0;
+	public static final double ARM_kP = 0.001;
 	public static final double ARM_kI = 0;
 	public static final double ARM_kD = 0;
 	public static final double ARM_kF = 0;
@@ -32,7 +32,7 @@ public class RobotMap {
 	public static final int TIMEOUT_LIMIT_IN_Ms = 10;//Might change. 10 is default in sample code
 	public static final int ARM_THRESHOLD_FOR_PID = 2;
 	public static final double ARM_OVERRIDE_JOYSTICK_THRESHOLD = 0.2; 
-	public static final double ARM_OVERRIDE_PRECISION = 0.75;
+	public static final double ARM_OVERRIDE_PRECISION = 0.9;
 	//TalonSRX
 	public static final int ARM_TALON_CHANNEL = 0;
 	public static final double ANGLE_PER_PULSE = .0071180006;
@@ -119,16 +119,16 @@ public class RobotMap {
 	public static final int PCM_ID2 			= 1;
 	
 	//Solenoids
-	public static final int DRIVE_SHIFT 		= 0;
+	public static final int DRIVE_SHIFT 		= 0;//Currently 0 because physically not allocated and commented out in code
 	public static final int WRIST_MOVE_LONG_FORWARD   = 7;
 	public static final int WRIST_MOVE_LONG_BACKWARD  = 3;
 	public static final int WRIST_MOVE_SHORT_FORWARD  = 5;
 	public static final int WRIST_MOVE_SHORT_BACKWARD = 6;
 	public static final int ARM_BRAKE = 0;
 	public static final int ROLLER_CLAW_SHORT_OUT		= 2;
-	public static final int ROLLER_CLAW_SHORT_IN		= 4;
-	public static final int ROLLER_CLAW_LONG_OUT		= 0;
-	public static final int ROLLER_CLAW_LONG_IN			= 1;
+	public static final int ROLLER_CLAW_SHORT_IN		= 1;
+	public static final int ROLLER_CLAW_LONG_OUT		= 0;//Currently 0 because physically not allocated and commented out in code
+	public static final int ROLLER_CLAW_LONG_IN			= 0;//Currently 0 because physically not allocated and commented out in code
 
 	
 	//DIO Sensors
@@ -145,11 +145,10 @@ public class RobotMap {
 	
 	//Setpoints
 	// This is in Degrees
-	public static final int FLOOR_SETPOINT = 0;
-	public static final int PORTAL_SETPOINT = 0;
-	public static final int SET_SWITCH_SETPOINT = 0;
-	public static final int SCALE_SETPOINT = 0;
-	public static final int HIGHEST_RUNG_SETPOINT = 0;
+	public static final int FLOOR_SETPOINT = 25;
+	public static final int SET_SWITCH_PORTAL_SETPOINT = 56;
+	public static final int SCALE_HIGH = 122;
+	public static final int SCALE_MID = 101;
 
 }
 

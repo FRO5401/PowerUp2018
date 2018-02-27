@@ -28,8 +28,6 @@ public class RollerClawMove extends Command {
     	
     	int expandOrContractClaw = Robot.oi.xboxAxisAsDigitalInput(RobotMap.XBOX_AXIS_LEFT_Y, Robot.oi.xboxController_Operator);
     	
-    	Robot.rollerclaw.checkVictor();
-    	
     	if(rollerClawMotorIn)
     	{
     		Robot.rollerclaw.rollerInOut(1);

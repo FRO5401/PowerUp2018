@@ -147,6 +147,7 @@ public class ArmWrist extends Subsystem {
 
 	public void overrideMove(double operatorJoystick){
 		armTalon.set(ControlMode.PercentOutput, operatorJoystick);
+		System.out.println("overrideMove");
 		//Like DriveBase, sends out a direction to move to speed controller
 	}
 	
@@ -182,23 +183,24 @@ public class ArmWrist extends Subsystem {
 	public void getWristAngle(){
 		
 		if(getArmAngle() <= 34)/*Ground and or Reset*/{
-			wristMoveLong.set(DoubleSolenoid.Value.kReverse);
-    		wristMoveShort.set(DoubleSolenoid.Value.kForward);
+			//Forward is Currently In and Reverse is Out (Don't know why)
+			wristMoveLong.set(DoubleSolenoid.Value.kForward);
+    		wristMoveShort.set(DoubleSolenoid.Value.kReverse);
 			
-		} else if(getArmAngle() >= 34 && getArmAngle() <= 60)/*Portal/Switch*/{
-			wristMoveLong.set(DoubleSolenoid.Value.kReverse);
-    		wristMoveShort.set(DoubleSolenoid.Value.kForward);
+		} else if(getArmAngle() >= 34  && getArmAngle() <= 60)/*Portal/Switch*/{
+			wristMoveLong.set(DoubleSolenoid.Value.kForward);
+    		wristMoveShort.set(DoubleSolenoid.Value.kReverse);
 			
 		}else if(getArmAngle() >= 60 && getArmAngle() <= 105)/*ScaleMidAndLow*/{
-			wristMoveLong.set(DoubleSolenoid.Value.kReverse);
-    		wristMoveShort.set(DoubleSolenoid.Value.kForward);
+			wristMoveLong.set(DoubleSolenoid.Value.kForward);
+    		wristMoveShort.set(DoubleSolenoid.Value.kReverse);
 			
 		}else if(getArmAngle() >= 105 && getArmAngle() <= 122)/*ScaleHigh*/{
-			wristMoveLong.set(DoubleSolenoid.Value.kForward);
-    		wristMoveShort.set(DoubleSolenoid.Value.kForward);
+			wristMoveLong.set(DoubleSolenoid.Value.kReverse);
+    		wristMoveShort.set(DoubleSolenoid.Value.kReverse);
 		}else{
-			wristMoveLong.set(DoubleSolenoid.Value.kForward);
-			wristMoveShort.set(DoubleSolenoid.Value.kForward);
+			wristMoveLong.set(DoubleSolenoid.Value.kReverse);
+			wristMoveShort.set(DoubleSolenoid.Value.kReverse);
 		}
 	}
 	

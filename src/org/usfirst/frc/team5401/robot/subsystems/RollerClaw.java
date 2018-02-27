@@ -25,7 +25,7 @@ public class RollerClaw extends Subsystem {
 	public RollerClaw(){
 		topRoller = new VictorSP(RobotMap.ROLLER_CLAW_TOP_ROLLER);
 		bottomRoller = new VictorSP(RobotMap.ROLLER_CLAW_BOTTOM_ROLLER);
-//		rollerClawShort = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.ROLLER_CLAW_SHORT_IN, RobotMap.ROLLER_CLAW_SHORT_OUT);
+		rollerClawShort = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.ROLLER_CLAW_SHORT_IN, RobotMap.ROLLER_CLAW_SHORT_OUT);
 //		rollerClawLong = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.ROLLER_CLAW_LONG_IN, RobotMap.ROLLER_CLAW_LONG_OUT);
 //		limitSwitch = new DigitalInput(RobotMap.ROLLER_CLAW_LIMIT_SWITCH);
 	}
@@ -68,10 +68,10 @@ public class RollerClaw extends Subsystem {
     
     public void rollerClawLongChange(int clawCloseDirection){
     	if (clawCloseDirection == 1){
-    		rollerClawLong.set(DoubleSolenoid.Value.kForward);
+//    		rollerClawLong.set(DoubleSolenoid.Value.kForward);
     	}
     	else {
-    		rollerClawLong.set(DoubleSolenoid.Value.kReverse);
+//    		rollerClawLong.set(DoubleSolenoid.Value.kReverse);
     	}
     }
     public void checkVictor(){
