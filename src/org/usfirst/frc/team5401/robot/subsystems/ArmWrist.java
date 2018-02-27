@@ -181,15 +181,19 @@ public class ArmWrist extends Subsystem {
 	
 	public void getWristAngle(){
 		
+		if(getArmAngle() <= 34)/*Ground and or Reset*/{
 			wristMoveLong.set(DoubleSolenoid.Value.kReverse);
     		wristMoveShort.set(DoubleSolenoid.Value.kForward);
 			
+		} else if(getArmAngle() >= 34 && getArmAngle() <= 60)/*Portal/Switch*/{
 			wristMoveLong.set(DoubleSolenoid.Value.kReverse);
     		wristMoveShort.set(DoubleSolenoid.Value.kForward);
 			
+		}else if(getArmAngle() >= 60 && getArmAngle() <= 105)/*ScaleMidAndLow*/{
 			wristMoveLong.set(DoubleSolenoid.Value.kReverse);
     		wristMoveShort.set(DoubleSolenoid.Value.kForward);
 			
+		}else if(getArmAngle() >= 105 && getArmAngle() <= 122)/*ScaleHigh*/{
 			wristMoveLong.set(DoubleSolenoid.Value.kForward);
     		wristMoveShort.set(DoubleSolenoid.Value.kForward);
 		}else{
