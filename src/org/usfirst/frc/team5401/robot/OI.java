@@ -43,7 +43,10 @@ public class OI {
 	{
 		xboxY_Driver.whenPressed(new CompressorToggle());
 		xboxR3_Operator.whenPressed(new ArmOverRide());
-
+		xboxA_Operator.whenPressed(new ArmPIDMove(25));
+		xboxB_Operator.whenPressed(new ArmPIDMove(56.5));
+		xboxY_Operator.whenPressed(new ArmPIDMove(122));
+		xboxX_Operator.whenPressed(new ArmPIDMove(100.5));
 	}
 	
 	//Controller Axis

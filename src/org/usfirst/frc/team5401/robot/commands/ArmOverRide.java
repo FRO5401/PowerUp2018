@@ -38,6 +38,7 @@ public class ArmOverRide extends Command {
     	boolean overRideButton = Robot.oi.xboxButton(RobotMap.XBOX_BUTTON_R3_OPERATOR, Robot.oi.xboxController_Operator);
     	//calling to the button as well as the joystick
     	Robot.armwrist.getArmAngle();
+    	Robot.armwrist.getWristAngle();
     	
     	//True means brake is released
     	Robot.armwrist.setBrake(overRideButton);

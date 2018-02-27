@@ -111,12 +111,12 @@ public class ArmWrist extends Subsystem {
     public void checkWrist(){
     	//You do this as you do not need to create an Encoder Object for VP Encoders with the TalonSRX
     	if(armTalon.getSensorCollection().getQuadraturePosition() > RobotMap.MAX_ARM_ANGLE_BEFORE_SOLENOIDS_FIRE){
- //   		wristMoveLong.set(DoubleSolenoid.Value.kForward);
- //   		wristMoveShort.set(DoubleSolenoid.Value.kForward);
+    		wristMoveLong.set(DoubleSolenoid.Value.kForward);
+//    		wristMoveShort.set(DoubleSolenoid.Value.kForward);
     	}
     	else if(armTalon.getSensorCollection().getQuadraturePosition() < RobotMap.MAX_ARM_ANGLE_BEFORE_SOLENOIDS_FIRE){
- //  		wristMoveLong.set(DoubleSolenoid.Value.kReverse);
- //   		wristMoveShort.set(DoubleSolenoid.Value.kReverse);
+    		wristMoveLong.set(DoubleSolenoid.Value.kReverse);
+//    		wristMoveShort.set(DoubleSolenoid.Value.kReverse);
     	}
     }
 
@@ -177,6 +177,26 @@ public class ArmWrist extends Subsystem {
 		SmartDashboard.putNumber("Arm Angle", armAngle);
 		SmartDashboard.putNumber("Native Units for Arm", armTalon.getSensorCollection().getQuadraturePosition());
 		return armAngle;	
+	}
+	
+	public void getWristAngle(){
+		
+		if(Robot.armwrist.getArmAngle <= 34)/*Ground and or Reset*/{
+			wristMoveLong.set(DoubleSolenoid.Value.kForward);
+    		wristMoveShort.set(DoubleSolenoid.Value.kForward);
+			
+		} else if(Robot.armwrist.getArmAngle >= 34 && Robot.armwrist.getArmAngle <= 60)/*Portal/Switch*/{
+			wristMoveLong.set(DoubleSolenoid.Value.kForward);
+    		wristMoveShort.set(DoubleSolenoid.Value.kForward);
+			
+		}else if(Robot.armwrist.getArmAngle >= 60 && Robot.armwrist.getArmAngle <= 105)/*ScaleMidAndLow*/{
+			wristMoveLong.set(DoubleSolenoid.Value.kForward);
+    		wristMoveShort.set(DoubleSolenoid.Value.kForward);
+			
+		}else if(Robot.armwrist.getArmAngle >= 105 && Robot.armwrist.getArmAngle <= 122)/*ScaleHigh*/{
+			wristMoveLong.set(DoubleSolenoid.Value.kForward);
+    		wristMoveShort.set(DoubleSolenoid.Value.kForward);
+		}
 	}
 	
 	//1 for mode is coast. 2 for mode is brake

@@ -39,7 +39,7 @@ public class RobotMap {
 	public static final double ANGLE_OFFSET = 25;
 	
 	//This is for RollerClaw
-	public static final double ROLLER_SPEED = 0.35;
+	public static final double ROLLER_SPEED = 0.75;
 	
 	//This is for XboxMove
 	public static final double MINIMUM_VELOCITY_FOR_HIGH_GEAR = 0; //Experimentally Determined, REMEMBER inches per second
