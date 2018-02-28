@@ -16,7 +16,7 @@ public class RobotMap {
 	public static final double HIGH_GEAR_RIGHT_DPP = 0;
 	public static final double PID_ABSOLUTE_TOLERANCE = 0.5; //threshold
 	
-	public static final double DRIVE_P = .11;
+	public static final double DRIVE_P = 0.01;
 	public static final double DRIVE_I = 0;
 	public static final double DRIVE_D = 0;
 	
@@ -24,10 +24,13 @@ public class RobotMap {
 	
 
 	//This is for Arm
-	public static final double ARM_kP = 0;
+	public static final double ARM_kP = 0.1;
 	public static final double ARM_kI = 0;
 	public static final double ARM_kD = 0;
 	public static final double ARM_kF = 0;
+	public static final double ARM_PEAK_OUTPUT = 0.75;
+	public static final double ARM_NOM_OUTPUT = 0;
+	
 	public static final double ARM_RANGE = 0;
 	public static final int TIMEOUT_LIMIT_IN_Ms = 10;//Might change. 10 is default in sample code
 	public static final int ARM_THRESHOLD_FOR_PID = 2;
@@ -127,8 +130,8 @@ public class RobotMap {
 	public static final int ARM_BRAKE = 4;
 	public static final int ROLLER_CLAW_SHORT_OUT		= 2;
 	public static final int ROLLER_CLAW_SHORT_IN		= 4;
-	public static final int ROLLER_CLAW_LONG_OUT		= 0;
-	public static final int ROLLER_CLAW_LONG_IN			= 1;
+//	public static final int ROLLER_CLAW_LONG_OUT		= 0;
+//	public static final int ROLLER_CLAW_LONG_IN			= 1;
 
 	
 	//DIO Sensors

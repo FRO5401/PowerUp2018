@@ -48,12 +48,12 @@ public class RollerClawMove extends Command {
     		if(expandOrContractClaw == 1)
     		{
     			Robot.rollerclaw.rollerClawShortChange(expandOrContractClaw);
-    			Robot.rollerclaw.rollerClawLongChange(expandOrContractClaw);
+ //   			Robot.rollerclaw.rollerClawLongChange(expandOrContractClaw);
     		}
     		else if(expandOrContractClaw == -1)
     		{
     			Robot.rollerclaw.rollerClawShortChange(expandOrContractClaw);
-    			Robot.rollerclaw.rollerClawLongChange(expandOrContractClaw);
+   // 			Robot.rollerclaw.rollerClawLongChange(expandOrContractClaw);
     		}
     	}
     }

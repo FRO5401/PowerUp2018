@@ -67,10 +67,10 @@ public class ArmWrist extends Subsystem {
 		armTalon.configAllowableClosedloopError(slotIndex, RobotMap.ARM_THRESHOLD_FOR_PID, RobotMap.TIMEOUT_LIMIT_IN_Ms);
 		
 		//Sets max and min reverse and forward. First number is max/min output in percent 1 = 100%
-        armTalon.configNominalOutputForward(0, 	RobotMap.TIMEOUT_LIMIT_IN_Ms);
-        armTalon.configNominalOutputReverse(0, 	RobotMap.TIMEOUT_LIMIT_IN_Ms);
-        armTalon.configPeakOutputForward(1, 	RobotMap.TIMEOUT_LIMIT_IN_Ms);
-        armTalon.configPeakOutputReverse(-1, 	RobotMap.TIMEOUT_LIMIT_IN_Ms);
+        armTalon.configNominalOutputForward(RobotMap.ARM_NOM_OUTPUT, 	RobotMap.TIMEOUT_LIMIT_IN_Ms);
+        armTalon.configNominalOutputReverse(RobotMap.ARM_NOM_OUTPUT, 	RobotMap.TIMEOUT_LIMIT_IN_Ms);
+        armTalon.configPeakOutputForward(RobotMap.ARM_PEAK_OUTPUT, 	RobotMap.TIMEOUT_LIMIT_IN_Ms);
+        armTalon.configPeakOutputReverse(-1* RobotMap.ARM_PEAK_OUTPUT, 	RobotMap.TIMEOUT_LIMIT_IN_Ms);
        
         //Sets F, P, I, and D
         //Middle parameter is the corresponding value for F, P, I, or D
@@ -81,14 +81,14 @@ public class ArmWrist extends Subsystem {
         armTalon.config_kD(slotIndex, RobotMap.ARM_kD, RobotMap.TIMEOUT_LIMIT_IN_Ms);        
 	}
 	
-    @Override
+//    @Override
 	public void initDefaultCommand() {
         //Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
     
     public void longWristUpDown(int longWristDirection){
-    	if(longWristDirection > 0.2) {
+    	if(longWristDirection > 0.2) { //TODO What is this and why is the number hard coded?
     		wristMoveLong.set(DoubleSolenoid.Value.kForward);
     		//Long wrist will be extending outwards
     	} 

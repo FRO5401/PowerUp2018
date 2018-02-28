@@ -63,7 +63,7 @@ public class ArmOverRide extends Command {
     		}
     	}  
     	//Calling for the overridemove button from the subsystem and the value of the left joystick form OI. This is executed.
-    	overrideEnabled = (!overRideButton);
+    	overrideEnabled = (overRideButton);
     	Robot.armwrist.getArmAngle();
     }
 
@@ -77,6 +77,7 @@ public class ArmOverRide extends Command {
     @Override
 	protected void end() {
     	System.out.println("Arm Override End");
+		Robot.armwrist.overrideMove(0);
     	Robot.armwrist.overrideStopped();
     }
 
@@ -84,6 +85,7 @@ public class ArmOverRide extends Command {
     // subsystems is scheduled to run
     @Override
 	protected void interrupted() {
+		Robot.armwrist.overrideMove(0);
     	System.out.println("Arm Override Interrupted");
     	Robot.armwrist.armInterrupted();
     }

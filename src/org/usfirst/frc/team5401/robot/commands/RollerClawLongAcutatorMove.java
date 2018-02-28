@@ -21,7 +21,7 @@ public class RollerClawLongAcutatorMove extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.rollerclaw.rollerClawLongChange(upDownLong);
+//    	Robot.rollerclaw.rollerClawLongChange(upDownLong);
     }
 
     // Called repeatedly when this Command is scheduled to run

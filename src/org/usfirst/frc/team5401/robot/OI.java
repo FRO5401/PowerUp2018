@@ -50,13 +50,14 @@ public class OI {
 	Button xboxStart_Tester		  = new JoystickButton(xboxController_Tester, 8);
 	Button xboxL3_Tester		  = new JoystickButton(xboxController_Tester, 9);
 	Button xboxR3_Tester		  = new JoystickButton(xboxController_Tester, 10);
+
+	public static final double FLOOR_SETPOINT = 25;
+	public static final double PORTAL_SETPOINT = 56.5;
+	public static final double SCALE_SETPOINT = 100.5;
+	public static final double CLIMB_SETPOINT = 122;
 	
 	public OI()
 	{
-		double const FLOOR_SETPOINT = 25;
-		double const PORTAL_SETPOINT = 56.5;
-		double const SCALE_SETPOINT = 100.5;
-		double const CLIMB_SETPOINT = 122;
 		
 		xboxY_Driver.whenPressed(new CompressorToggle());
 		xboxR3_Operator.whenPressed(new ArmOverRide());
