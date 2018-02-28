@@ -26,12 +26,16 @@ public class ArmOverRide extends Command {
     // Called just before this Command runs the first time
     @Override
 	protected void initialize() {
+    	boolean overRideButton = Robot.oi.xboxButton(RobotMap.XBOX_BUTTON_R3_OPERATOR, Robot.oi.xboxController_Operator);
+    	overrideEnabled = (overRideButton);
     	Robot.armwrist.setTalonSRXNeutralMode(1);
-    }
+       	System.out.println("Arm Override Start");
+   }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
 	protected void execute() {
+       	System.out.println("Arm Override Running");
     	//Joystick up gives a negative value. The negative sign swtiches that.
     	double overRideMoving = -Robot.oi.xboxAxis(RobotMap.XBOX_AXIS_RIGHT_Y, Robot.oi.xboxController_Operator) * RobotMap.ARM_OVERRIDE_PRECISION;
     	System.out.println(overRideMoving);
@@ -42,6 +46,7 @@ public class ArmOverRide extends Command {
     	
     	//True means brake is released
     	Robot.armwrist.setBrake(overRideButton);
+       	System.out.println("OverRide Button: " + overRideButton);
     	
     	if(overRideButton == true)
     	{	
@@ -70,7 +75,9 @@ public class ArmOverRide extends Command {
     // Make this return true when this Command no longer needs to run execute()
     @Override
 	protected boolean isFinished() {
-        return overrideEnabled;
+       	System.out.println("OverRide Enabled: " + overrideEnabled);
+    	
+        return !overrideEnabled;
     }
 
     // Called once after isFinished returns true

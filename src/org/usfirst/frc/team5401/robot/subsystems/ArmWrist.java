@@ -132,7 +132,7 @@ public class ArmWrist extends Subsystem {
 		double setPointNativeUnits = setPointIndexInDegrees / RobotMap.ANGLE_PER_PULSE;
 		armTalon.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Brake);
 		armTalon.set(ControlMode.Position, setPointNativeUnits);
-		brake.set(false);
+		brake.set(true);  //TODO brake is reversed, we should refactor this to only reverse it once
 		armPidEnabled = true;
 		//Finds set point
 		//Calls to command for which set point
@@ -150,8 +150,10 @@ public class ArmWrist extends Subsystem {
 		//Like DriveBase, sends out a direction to move to speed controller
 	}
 	
-	public boolean onTarget(){
-		boolean onTarget = Math.abs(armTalon.getSensorCollection().getQuadraturePosition() - armTalon.getClosedLoopTarget(loopIndex)) < RobotMap.ARM_THRESHOLD_FOR_PID;
+	public boolean onTarget(double setPointDegrees){
+		SmartDashboard.putNumber("Set point", setPointDegrees);
+		SmartDashboard.putNumber("Arm Error", Math.abs(getArmAngle() - setPointDegrees));
+		boolean onTarget = (Math.abs(getArmAngle() - setPointDegrees)) < RobotMap.ARM_THRESHOLD_FOR_PID;//TODO may want to make this bombproof because i think right now negative angles will confuse it
 		return onTarget;
 		//getClosedLoopT gets the SetPoint already set (or moving to)
 	}

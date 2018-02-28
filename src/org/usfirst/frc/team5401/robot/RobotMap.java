@@ -24,7 +24,7 @@ public class RobotMap {
 	
 
 	//This is for Arm
-	public static final double ARM_kP = 0.1;
+	public static final double ARM_kP = 0.05;
 	public static final double ARM_kI = 0;
 	public static final double ARM_kD = 0;
 	public static final double ARM_kF = 0;
@@ -127,7 +127,7 @@ public class RobotMap {
 	public static final int WRIST_MOVE_LONG_BACKWARD  = 3;
 	public static final int WRIST_MOVE_SHORT_FORWARD  = 5;
 	public static final int WRIST_MOVE_SHORT_BACKWARD = 6;
-	public static final int ARM_BRAKE = 4;
+	public static final int ARM_BRAKE = 1;
 	public static final int ROLLER_CLAW_SHORT_OUT		= 2;
 	public static final int ROLLER_CLAW_SHORT_IN		= 4;
 //	public static final int ROLLER_CLAW_LONG_OUT		= 0;

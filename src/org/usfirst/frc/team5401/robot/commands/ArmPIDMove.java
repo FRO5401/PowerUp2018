@@ -32,10 +32,16 @@ public class ArmPIDMove extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
 	protected void execute() {
-    	
+    	if (Robot.armwrist.onTarget(setPoint)){
+    		//desiredTurnAngleRelativeToInitAngle too small
+    		System.out.println("ArmPID should stop1");
+        	Robot.armwrist.pidStop();
+    		done = true;
+    	} 
+
     	Robot.armwrist.getArmAngle();
     	Robot.armwrist.getWristAngle();
-    	done = (Robot.armwrist.onTarget());
+//    	done = (Robot.armwrist.onTarget(setPoint));
     	
     }
 
