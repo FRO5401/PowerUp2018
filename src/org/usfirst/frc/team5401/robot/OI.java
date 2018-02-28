@@ -53,12 +53,17 @@ public class OI {
 	
 	public OI()
 	{
+		double const FLOOR_SETPOINT = 25;
+		double const PORTAL_SETPOINT = 56.5;
+		double const SCALE_SETPOINT = 100.5;
+		double const CLIMB_SETPOINT = 122;
+		
 		xboxY_Driver.whenPressed(new CompressorToggle());
 		xboxR3_Operator.whenPressed(new ArmOverRide());
-		xboxA_Operator.whenPressed(new ArmPIDMove(25));
-		xboxB_Operator.whenPressed(new ArmPIDMove(56.5));
-		xboxY_Operator.whenPressed(new ArmPIDMove(122));
-		xboxX_Operator.whenPressed(new ArmPIDMove(100.5));
+		xboxA_Operator.whenReleased(new ArmPIDMove(FLOOR_SETPOINT));
+		xboxB_Operator.whenReleased(new ArmPIDMove(PORTAL_SETPOINT));
+		xboxY_Operator.whenReleased(new ArmPIDMove(SCALE_SETPOINT));
+		xboxX_Operator.whenReleased(new ArmPIDMove(CLIMB_SETPOINT));
 		
 		xboxX_Tester.whenPressed(new WristOverrideTesting("Long", true));
 		xboxX_Tester.whenReleased(new WristOverrideTesting("Long", false));
