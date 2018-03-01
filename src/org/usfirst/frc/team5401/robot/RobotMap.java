@@ -131,20 +131,12 @@ public class RobotMap {
 	public static final int WRIST_MOVE_LONG_BACKWARD  = 3;
 	public static final int WRIST_MOVE_SHORT_FORWARD  = 5;
 	public static final int WRIST_MOVE_SHORT_BACKWARD = 6;
-<<<<<<< HEAD
-	public static final int ARM_BRAKE = 1;
-	public static final int ROLLER_CLAW_SHORT_OUT		= 2;
-	public static final int ROLLER_CLAW_SHORT_IN		= 4;
-//	public static final int ROLLER_CLAW_LONG_OUT		= 0;
-//	public static final int ROLLER_CLAW_LONG_IN			= 1;
-=======
+
 	public static final int ARM_BRAKE = 0;
 	public static final int ROLLER_CLAW_SHORT_OUT		= 2;
 	public static final int ROLLER_CLAW_SHORT_IN		= 1;
 	public static final int ROLLER_CLAW_LONG_OUT		= 0;//Currently 0 because physically not allocated and commented out in code
 	public static final int ROLLER_CLAW_LONG_IN			= 0;//Currently 0 because physically not allocated and commented out in code
->>>>>>> origin/ArmWrist-Testing
-
 	
 	//DIO Sensors
 	public static final int DRIVE_ENC_LEFT_A 	= 0;
