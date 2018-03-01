@@ -55,7 +55,7 @@ public class OI {
 	public static final double PORTAL_SETPOINT = 56.5;
 	public static final double SCALE_SETPOINT = 100.5;
 	public static final double CLIMB_SETPOINT = 122;
-	
+
 	public OI()
 	{
 		

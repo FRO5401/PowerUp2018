@@ -36,7 +36,8 @@ public class RobotMap {
 	public static final int ARM_THRESHOLD_FOR_PID = 2;
 	public static final double ARM_OVERRIDE_JOYSTICK_THRESHOLD = 0.2; 
 	public static final double ARM_OVERRIDE_PRECISION = 0.75;
-	//TalonSRX
+	
+	//Arm
 	public static final int ARM_TALON_CHANNEL = 0;
 	public static final double ANGLE_PER_PULSE = .0071180006;
 	public static final double ANGLE_OFFSET = 25;
@@ -59,6 +60,7 @@ public class RobotMap {
 	
 	//This is for Angles
 	public static final double MAX_ARM_ANGLE_BEFORE_SOLENOIDS_FIRE = 89;
+	
 	
 	//This is for OI
 	public static final int ARM_POSITION_DESIRED   = 0;
@@ -117,6 +119,12 @@ public class RobotMap {
 	public static final int DRIVE_RIGHT_MOTOR_2 = 1;
 
 	
+	//Climber Motor
+	//TODO Subject to change. Based on TalonSRX position on dashboard
+	public static final int CLIMBER_MOTOR = 1;
+	public static final double CLIMB_PRECISION = 1;
+
+	
 	//PCM ID
 	public static final int PCM_ID 				= 0;
 	public static final int PCM_ID2 			= 1;
@@ -133,12 +141,17 @@ public class RobotMap {
 	public static final int ROLLER_CLAW_SHORT_IN		= 1;
 	public static final int ROLLER_CLAW_LONG_OUT		= 0;//Currently 0 because physically not allocated and commented out in code
 	public static final int ROLLER_CLAW_LONG_IN			= 0;//Currently 0 because physically not allocated and commented out in code
+
+	public static final int CLIMBER_STABLIZER		=	0;//Currently 0 because physically not allocated and commented out in code
+	public static final int CLIMBER_PLATFORM_IN		=	0;//Currently 0 because physically not allocated and commented out in code
+	public static final int CLIMBER_PLATFORM_OUT	=	0;//Currently 0 because physically not allocated and commented out in code
 	
 	//DIO Sensors
 	public static final int DRIVE_ENC_LEFT_A 	= 0;
 	public static final int DRIVE_ENC_LEFT_B 	= 1;
 	public static final int DRIVE_ENC_RIGHT_A 	= 2;
 	public static final int DRIVE_ENC_RIGHT_B 	= 3;
+
 	public static final int ROLLER_CLAW_LIMIT_SWITCH   = 0;
   
 	//RollerClaw
@@ -153,5 +166,8 @@ public class RobotMap {
 	public static final int SCALE_HIGH = 122;
 	public static final int SCALE_MID = 101;
 
+	public static final int CLIMBER_SWITCH_TOP		= 0;
+	public static final int CLIMBER_SWITCH_BOTTOM 	= 0;
+	
 }
 
