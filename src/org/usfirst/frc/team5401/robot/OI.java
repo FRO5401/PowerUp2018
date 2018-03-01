@@ -61,17 +61,11 @@ public class OI {
 		
 		xboxY_Driver.whenPressed(new CompressorToggle());
 		xboxR3_Operator.whenPressed(new ArmOverRide());
-<<<<<<< HEAD
-		xboxA_Operator.whenReleased(new ArmPIDMove(FLOOR_SETPOINT));
-		xboxB_Operator.whenReleased(new ArmPIDMove(PORTAL_SETPOINT));
-		xboxY_Operator.whenReleased(new ArmPIDMove(SCALE_SETPOINT));
-		xboxX_Operator.whenReleased(new ArmPIDMove(CLIMB_SETPOINT));
-=======
+
 		xboxA_Operator.whenPressed(new ArmPIDMove(RobotMap.FLOOR_SETPOINT));
 		xboxB_Operator.whenPressed(new ArmPIDMove(RobotMap.SET_SWITCH_PORTAL_SETPOINT));
 		xboxY_Operator.whenPressed(new ArmPIDMove(RobotMap.SCALE_HIGH));
 		xboxX_Operator.whenPressed(new ArmPIDMove(RobotMap.SCALE_MID));
->>>>>>> origin/ArmWrist-Testing
 		
 		xboxX_Tester.whenPressed(new WristOverrideTesting("Long", false));
 		xboxX_Tester.whenReleased(new WristOverrideTesting("Long", true));
