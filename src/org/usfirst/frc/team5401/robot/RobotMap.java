@@ -24,7 +24,11 @@ public class RobotMap {
 	
 
 	//This is for Arm
+<<<<<<< HEAD
 	public static final double ARM_kP = 0.05;
+=======
+	public static final double ARM_kP = 0.001;
+>>>>>>> origin/ArmWrist-Testing
 	public static final double ARM_kI = 0;
 	public static final double ARM_kD = 0;
 	public static final double ARM_kF = 0;
@@ -122,16 +126,24 @@ public class RobotMap {
 	public static final int PCM_ID2 			= 1;
 	
 	//Solenoids
-	public static final int DRIVE_SHIFT 		= 0;
+	public static final int DRIVE_SHIFT 		= 0;//Currently 0 because physically not allocated and commented out in code
 	public static final int WRIST_MOVE_LONG_FORWARD   = 7;
 	public static final int WRIST_MOVE_LONG_BACKWARD  = 3;
 	public static final int WRIST_MOVE_SHORT_FORWARD  = 5;
 	public static final int WRIST_MOVE_SHORT_BACKWARD = 6;
+<<<<<<< HEAD
 	public static final int ARM_BRAKE = 1;
 	public static final int ROLLER_CLAW_SHORT_OUT		= 2;
 	public static final int ROLLER_CLAW_SHORT_IN		= 4;
 //	public static final int ROLLER_CLAW_LONG_OUT		= 0;
 //	public static final int ROLLER_CLAW_LONG_IN			= 1;
+=======
+	public static final int ARM_BRAKE = 0;
+	public static final int ROLLER_CLAW_SHORT_OUT		= 2;
+	public static final int ROLLER_CLAW_SHORT_IN		= 1;
+	public static final int ROLLER_CLAW_LONG_OUT		= 0;//Currently 0 because physically not allocated and commented out in code
+	public static final int ROLLER_CLAW_LONG_IN			= 0;//Currently 0 because physically not allocated and commented out in code
+>>>>>>> origin/ArmWrist-Testing
 
 	
 	//DIO Sensors
@@ -148,11 +160,10 @@ public class RobotMap {
 	
 	//Setpoints
 	// This is in Degrees
-	public static final int FLOOR_SETPOINT = 0;
-	public static final int PORTAL_SETPOINT = 0;
-	public static final int SET_SWITCH_SETPOINT = 0;
-	public static final int SCALE_SETPOINT = 0;
-	public static final int HIGHEST_RUNG_SETPOINT = 0;
+	public static final int FLOOR_SETPOINT = 25;
+	public static final int SET_SWITCH_PORTAL_SETPOINT = 56;
+	public static final int SCALE_HIGH = 122;
+	public static final int SCALE_MID = 101;
 
 }
 
