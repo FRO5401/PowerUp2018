@@ -24,11 +24,7 @@ public class RobotMap {
 	
 
 	//This is for Arm
-<<<<<<< HEAD
-	public static final double ARM_kP = 0.05;
-=======
-	public static final double ARM_kP = 0.001;
->>>>>>> origin/ArmWrist-Testing
+	public static final double ARM_kP = 0;
 	public static final double ARM_kI = 0;
 	public static final double ARM_kD = 0;
 	public static final double ARM_kF = 0;
