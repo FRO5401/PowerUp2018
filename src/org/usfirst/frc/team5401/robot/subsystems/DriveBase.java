@@ -59,17 +59,14 @@ public class DriveBase extends Subsystem {
 		navxGyro = new AHRS(I2C.Port.kMXP);
 		navxGyro.reset();
 		
-		SmartDashboard.putNumber("navx Angle", 	getGyroAngle());
-		SmartDashboard.putNumber("navx Pitch", 	getGyroPitch());
-		SmartDashboard.putNumber("navx Roll", 	getGyroRoll());
-		
-		
-		SmartDashboard.putNumber("Left Enc Raw" , leftEncoder.get());
+    	SmartDashboard.putNumber("Left Enc Raw" , leftEncoder.get());
 		SmartDashboard.putNumber("Right Enc Raw", rightEncoder.get());
 		SmartDashboard.putNumber("Left Enc Adj" , leftEncoder.getDistance());
 		SmartDashboard.putNumber("Right Enc Adj", rightEncoder.getDistance());
-		SmartDashboard.putNumber("Mean Enc Adj", getEncoderDistance(3));
 		
+		SmartDashboard.putNumber("navx Angle", 	getGyroAngle());
+		SmartDashboard.putNumber("navx Pitch", 	getGyroPitch());
+		SmartDashboard.putNumber("navx Roll", 	getGyroRoll());
 	}
 	
     @Override
@@ -78,7 +75,7 @@ public class DriveBase extends Subsystem {
     	setDefaultCommand(new XboxMove());
     }
     
-    //TODO need to verify the negatives are in right place
+
     public void drive(double leftDriveDesired, double rightDriveDesired){
     	leftDrive1 .set(leftDriveDesired);
     	rightDrive1.set(-1* rightDriveDesired);
@@ -118,12 +115,6 @@ public class DriveBase extends Subsystem {
     	rightEncoder.setDistancePerPulse(RobotMap.LOW_GEAR_RIGHT_DPP);
     	System.out.println("Shifting Drive Gear to Low Gear");
     }
-    public double getVelocityOfRobot(){
-    	double velocity = (Math.abs(leftEncoder.getRate()) + Math.abs(rightEncoder.getRate()))/2;
-    	//For testing
-    	SmartDashboard.putNumber("Robot Velocity", velocity);
-    	return velocity;
-    }
     
     public boolean getGearShifterValue () {
 //    	return gearShifter.get();
@@ -150,7 +141,6 @@ public class DriveBase extends Subsystem {
     	SmartDashboard.putNumber("Left Enc Adj", leftDistance);
     	SmartDashboard.putNumber("Right Enc Adj", rightDistance);
     	double encoderDistance = (leftDistance + rightDistance)/2;
-    	SmartDashboard.putNumber("Mean Enc Adj", encoderDistance);
     	
     	if(encoderNumber == 1)
     	{
@@ -204,19 +194,6 @@ public class DriveBase extends Subsystem {
     	rightPID2.disable();
     }
     
-    public double returnPIDInput () {
-    	// Return your input value for the PID loop
-    	// e.g. a sensor, like a potentiometer
-    	// yourPot.getAverageVoltage() / kYourMaxVoltage;
-    	return getEncoderDistance(3);
-    }
-    
-    public void usePIDOutput (double output) {
-    	// Use output to drive your system, like a motor
-    	// e.g. yourMotor.set(output);
-    	SmartDashboard.putNumber("PIDOutput", output);
-    	drive(output, output);
-    }
     
     public void setSetpoint(double setpoint)	{
     	leftPID1.setSetpoint(setpoint);

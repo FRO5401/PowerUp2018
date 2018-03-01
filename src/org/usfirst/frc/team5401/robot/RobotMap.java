@@ -14,7 +14,7 @@ public class RobotMap {
 	public static final double LOW_GEAR_RIGHT_DPP = -.149926;//-.15345
 	public static final double HIGH_GEAR_LEFT_DPP = 0;
 	public static final double HIGH_GEAR_RIGHT_DPP = 0;
-	public static final double PID_ABSOLUTE_TOLERANCE = 0.5; //threshold
+	public static final double DRIVE_PID_ABSOLUTE_TOLERANCE = 0.5; //threshold
 	
 	public static final double DRIVE_P = 0.01;
 	public static final double DRIVE_I = 0;
@@ -48,7 +48,7 @@ public class RobotMap {
 	//This is for XboxMove
 	public static final double MINIMUM_VELOCITY_FOR_HIGH_GEAR = 0; //Experimentally Determined, REMEMBER inches per second
 	public static final double MAXIMUM_VELOCITY_FOR_LOW_GEAR = 0;
-	public static final double DRIVE_SENSITIVITY_PRECISE = 1;
+	public static final double DRIVE_SENSITIVITY_PRECISE = 0.5;
 	public static final double DRIVE_SENSITIVITY_DEFAULT = 1;
 	public static final double DRIVE_THRESHHOLD = 0.2;
 	public static final double DRIVE_SPIN_SENSITIVITY = 1;
