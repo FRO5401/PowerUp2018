@@ -11,11 +11,10 @@ public class Climb extends Command {
 	
 	private double input;
 
-    public Climb(double direction) {
+    public Climb() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.climber);
-    	input = direction;
     }
 
     // Called just before this Command runs the first time
@@ -25,6 +24,14 @@ public class Climb extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	int POV = Robot.oi.xboxDPad(Robot.oi.xboxController_Operator);
+    	if (POV ==315 || POV == 45 || POV == 0) {
+    		//up
+    	} else if (POV == 135 || POV == 225 || POV == 180) {
+    		//down
+    	} else {
+    		Robot.climber.stopClimber();
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()

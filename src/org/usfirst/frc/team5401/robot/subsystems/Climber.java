@@ -68,14 +68,23 @@ public class Climber extends Subsystem {
 	public boolean reportTopClimbSwitch(){
 		SmartDashboard.putBoolean("Climber Top Switch", !(climberSwitchTop.get()));
 		return  !climberSwitchTop.get();
-		
 	}
 	
 	public boolean reportBottomClimbSwitch(){
 		SmartDashboard.putBoolean("Climber Bottom Switch", !(climberSwitchBottom.get()));
 		return  !climberSwitchBottom.get();
-		
 	}
 	
+	public void climberStartMotors(double input){
+		if (!(reportTopClimbSwitch() && input > 0 || reportBottomClimbSwitch() && input < 0)){
+			input = 0;
+		}
+				
+		climberMotor.set(ControlMode.PercentOutput, (input * RobotMap.CLIMB_PRECISION));
+	}
+	
+	public void stopClimber(){
+		climberMotor.set(ControlMode.PercentOutput, 0);
+	}
 }
 
