@@ -28,7 +28,7 @@ public class Climb extends Command {
     	if (POV ==315 || POV == 45 || POV == 0) {
     		//up
     	} else if (POV == 135 || POV == 225 || POV == 180) {
-    		//down
+    		Robot.climber.
     	} else {
     		Robot.climber.stopClimber();
     	}
