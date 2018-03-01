@@ -9,7 +9,6 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class Climb extends Command {
 	
-	private double input;
 
     public Climb() {
         // Use requires() here to declare subsystem dependencies
@@ -24,11 +23,13 @@ public class Climb extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	int POV = Robot.oi.xboxDPad(Robot.oi.xboxController_Operator);
-    	if (POV ==315 || POV == 45 || POV == 0) {
-    		//up
-    	} else if (POV == 135 || POV == 225 || POV == 180) {
-    		Robot.climber.
+    	double POVinput = Robot.oi.xboxDPad(Robot.oi.xboxController_Operator);
+    	
+    	
+    	if (POVinput == 315 || POVinput == 45 || POVinput == 0) {
+    		Robot.climber.climberStartMotors(1);//up
+    	} else if (POVinput == 135 || POVinput == 225 || POVinput == 180) {
+    		Robot.climber.climberStartMotors(-1);//down
     	} else {
     		Robot.climber.stopClimber();
     	}
