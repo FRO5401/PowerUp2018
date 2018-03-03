@@ -35,7 +35,7 @@ public class RobotMap {
 	public static final int TIMEOUT_LIMIT_IN_Ms = 10;//Might change. 10 is default in sample code
 	public static final int ARM_THRESHOLD_FOR_PID = 2;
 	public static final double ARM_OVERRIDE_JOYSTICK_THRESHOLD = 0.2; 
-	public static final double ARM_OVERRIDE_PRECISION = 0.75;
+	public static final double ARM_OVERRIDE_PRECISION = 0.5;
 	
 	//Arm
 	public static final int ARM_TALON_CHANNEL = 0;
@@ -121,7 +121,7 @@ public class RobotMap {
 	
 	//Climber Motor
 	//TODO Subject to change. Based on TalonSRX position on dashboard
-	public static final int CLIMBER_MOTOR = 1;
+	public static final int CLIMBER_MOTOR = 6;
 	public static final double CLIMB_PRECISION = 1;
 
 	
@@ -147,10 +147,10 @@ public class RobotMap {
 	public static final int CLIMBER_PLATFORM_OUT	=	0;//Currently 0 because physically not allocated and commented out in code
 	
 	//DIO Sensors
-	public static final int DRIVE_ENC_LEFT_A 	= 0;
-	public static final int DRIVE_ENC_LEFT_B 	= 1;
-	public static final int DRIVE_ENC_RIGHT_A 	= 2;
-	public static final int DRIVE_ENC_RIGHT_B 	= 3;
+	public static final int DRIVE_ENC_LEFT_A 	= 2;
+	public static final int DRIVE_ENC_LEFT_B 	= 3;
+	public static final int DRIVE_ENC_RIGHT_A 	= 0;
+	public static final int DRIVE_ENC_RIGHT_B 	= 1;
 
 	public static final int ROLLER_CLAW_LIMIT_SWITCH   = 0;
   
