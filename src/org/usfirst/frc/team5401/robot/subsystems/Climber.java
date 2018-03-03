@@ -20,7 +20,7 @@ public class Climber extends Subsystem {
 	private Solenoid climberStablizer;
 	private DigitalInput climberSwitchTop;
 	private DigitalInput climberSwitchBottom;
-	private TalonSRX climberMotor;
+	//private TalonSRX climberMotor;
 	private DoubleSolenoid climberPlatforms;
 	
 	private boolean stablizerEnabled;
@@ -32,7 +32,7 @@ public class Climber extends Subsystem {
 		climberPlatforms      = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.CLIMBER_PLATFORM_IN, RobotMap.CLIMBER_PLATFORM_OUT);
 		climberSwitchTop    = new DigitalInput (RobotMap.CLIMBER_SWITCH_TOP);
 		climberSwitchBottom = new DigitalInput (RobotMap.CLIMBER_SWITCH_BOTTOM);
-		climberMotor        = new TalonSRX (RobotMap.CLIMBER_MOTOR);
+//		climberMotor        = new TalonSRX (RobotMap.CLIMBER_MOTOR);
 		
 		stablizerEnabled = false;
 		platformEnabled = false;
@@ -80,11 +80,11 @@ public class Climber extends Subsystem {
 			input = 0;
 		}
 				
-		climberMotor.set(ControlMode.PercentOutput, (input * RobotMap.CLIMB_PRECISION));
+//		climberMotor.set(ControlMode.PercentOutput, (input * RobotMap.CLIMB_PRECISION));
 	}
 	
 	public void stopClimber(){
-		climberMotor.set(ControlMode.PercentOutput, 0);
+//		climberMotor.set(ControlMode.PercentOutput, 0);
 	}
 }
 
