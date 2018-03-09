@@ -121,7 +121,8 @@ public class RobotMap {
 	
 	//Climber Motor
 	//TODO Subject to change. Based on TalonSRX position on dashboard
-	public static final int CLIMBER_MOTOR = 6;
+	public static final int CLIMBER_MOTOR_TOP = 6;
+	public static final int CLIMBER_MOTOR_BOTTOM = 7;
 	public static final double CLIMB_PRECISION = 1;
 
 	

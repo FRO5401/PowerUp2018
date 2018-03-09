@@ -9,6 +9,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.VictorSP;
+
 
 import org.usfirst.frc.team5401.robot.RobotMap;
 
@@ -17,22 +19,24 @@ import org.usfirst.frc.team5401.robot.RobotMap;
  */
 public class Climber extends Subsystem {
 	
-	private Solenoid climberStablizer;
+//	private Solenoid climberStablizer;
 	private DigitalInput climberSwitchTop;
 	private DigitalInput climberSwitchBottom;
-	//private TalonSRX climberMotor;
-	private DoubleSolenoid climberPlatforms;
+	private VictorSP climberMotorTop;
+	private VictorSP climberMotorBottom;
+//	private DoubleSolenoid climberPlatforms;
 	
 	private boolean stablizerEnabled;
 	private boolean platformEnabled;
 	
 	
 	public Climber(){
-		climberStablizer    = new Solenoid(RobotMap.CLIMBER_STABLIZER);
-		climberPlatforms      = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.CLIMBER_PLATFORM_IN, RobotMap.CLIMBER_PLATFORM_OUT);
+//		climberStablizer    = new Solenoid(RobotMap.CLIMBER_STABLIZER);
+//		climberPlatforms      = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.CLIMBER_PLATFORM_IN, RobotMap.CLIMBER_PLATFORM_OUT);
 		climberSwitchTop    = new DigitalInput (RobotMap.CLIMBER_SWITCH_TOP);
 		climberSwitchBottom = new DigitalInput (RobotMap.CLIMBER_SWITCH_BOTTOM);
-//		climberMotor        = new TalonSRX (RobotMap.CLIMBER_MOTOR);
+		climberMotorTop = new VictorSP(RobotMap.CLIMBER_MOTOR_TOP);
+		climberMotorBottom = new VictorSP(RobotMap.CLIMBER_MOTOR_BOTTOM);
 		
 		stablizerEnabled = false;
 		platformEnabled = false;
@@ -47,7 +51,7 @@ public class Climber extends Subsystem {
 	
 	//Stablizer
 	public void changeStablizer(boolean stablizerState){
-		climberStablizer.set(stablizerState);
+//		climberStablizer.set(stablizerState);
 		stablizerEnabled = stablizerState;
 	}
 	
@@ -55,11 +59,11 @@ public class Climber extends Subsystem {
 	public void changeClimberPlatforms(int platformState){
 		if(platformState == 1)
 		{
-			climberPlatforms.set(DoubleSolenoid.Value.kForward);
+//			climberPlatforms.set(DoubleSolenoid.Value.kForward);
 		}
 		else
 		{
-			climberPlatforms.set(DoubleSolenoid.Value.kReverse);
+//			climberPlatforms.set(DoubleSolenoid.Value.kReverse);
 		}
 		
 	}
