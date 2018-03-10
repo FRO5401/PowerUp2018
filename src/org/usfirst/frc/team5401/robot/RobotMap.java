@@ -75,7 +75,7 @@ public class RobotMap {
 	public static final int XBOX_AXIS_RIGHT_X = 4;
 	public static final int XBOX_AXIS_RIGHT_Y = 5;
 	
-	public static final double AXIS_THRESHOLD = 0;
+	public static final double AXIS_THRESHOLD = 0.7;
 	
 	//OI Buttons
 	public static final int XBOX_BUTTON_A_DRIVER	   		 = 1;

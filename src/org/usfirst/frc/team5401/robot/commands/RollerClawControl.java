@@ -31,8 +31,8 @@ public class RollerClawControl extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	openClose = Robot.oi.xboxAxisAsDigitalInput(RobotMap.XBOX_AXIS_LEFT_Y, Robot.oi.xboxController_Operator);
-    	upDown = Robot.oi.xboxAxisAsDigitalInput(RobotMap.XBOX_AXIS_LEFT_X, Robot.oi.xboxController_Operator);
+    	openClose = Robot.oi.xboxAxisAsDigitalInput(RobotMap.XBOX_AXIS_LEFT_X, Robot.oi.xboxController_Operator);
+    	upDown = Robot.oi.xboxAxisAsDigitalInput(RobotMap.XBOX_AXIS_LEFT_Y, Robot.oi.xboxController_Operator);
     	in = Robot.oi.xboxButton(RobotMap.XBOX_BUTTON_LEFT_BUMPER_OPERATOR, Robot.oi.xboxController_Operator);
     	out = Robot.oi.xboxButton(RobotMap.XBOX_BUTTON_RIGHT_BUMPER_OPERATOR, Robot.oi.xboxController_Operator);
     	
