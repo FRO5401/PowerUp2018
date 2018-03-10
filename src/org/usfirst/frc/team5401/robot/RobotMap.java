@@ -24,7 +24,7 @@ public class RobotMap {
 	
 
 	//This is for Arm
-	public static final double ARM_kP = 0;
+	public static final double ARM_kP = 0.3;
 	public static final double ARM_kI = 0;
 	public static final double ARM_kD = 0;
 	public static final double ARM_kF = 0;
@@ -131,7 +131,7 @@ public class RobotMap {
 	public static final int PCM_ID2 			= 1;
 	
 	//Solenoids
-	public static final int DRIVE_SHIFT 		= 0;//Currently 0 because physically not allocated and commented out in code
+	public static final int DRIVE_SHIFT 		= 0;
 	public static final int WRIST_MOVE_LONG_FORWARD   = 7;
 	public static final int WRIST_MOVE_LONG_BACKWARD  = 3;
 	public static final int WRIST_MOVE_SHORT_FORWARD  = 5;
@@ -162,10 +162,10 @@ public class RobotMap {
 	
 	//Setpoints
 	// This is in Degrees
-	public static final int FLOOR_SETPOINT = 25;
-	public static final int SET_SWITCH_PORTAL_SETPOINT = 56;
-	public static final int SCALE_HIGH = 122;
-	public static final int SCALE_MID = 101;
+	public static final double FLOOR_SETPOINT = 25.0;
+	public static final double SET_SWITCH_PORTAL_SETPOINT = 56.0;
+	public static final double SCALE_HIGH = 122.0;
+	public static final double SCALE_MID = 101.0;
 
 	public static final int CLIMBER_SWITCH_TOP		= 0;
 	public static final int CLIMBER_SWITCH_BOTTOM 	= 0;

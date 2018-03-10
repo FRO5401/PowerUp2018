@@ -14,7 +14,7 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 /*
- *
+ * TRUE FOR BRAKE MEANS BRAKE IS released
  */
 
 public class ArmWrist extends Subsystem {
@@ -59,7 +59,7 @@ public class ArmWrist extends Subsystem {
 		//Sets up feedback device for PID
 		//May have to change the QuadEncoder to something else.
 		armTalon.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, loopIndex, RobotMap.TIMEOUT_LIMIT_IN_Ms);//10 is a timeout that waits for successful conection to sensor
-		armTalon.setSensorPhase(true);//true if sensor value is positive if the motor controller output is negative. False if both are positive or negative
+		armTalon.setSensorPhase(false);//true if sensor value is positive if the motor controller output is negative. False if both are positive or negative
 		
 		//Sets allowable error, which is how far the actual value is off from intended value
 		//0 is slot index, which is parameter slot for the constant. Not sure what this actually does
@@ -129,7 +129,11 @@ public class ArmWrist extends Subsystem {
 	
 
 	public void setPoint(double setPointIndexInDegrees){
-		double setPointNativeUnits = setPointIndexInDegrees / RobotMap.ANGLE_PER_PULSE;
+		setPointIndexInDegrees = 30;
+//		double setPointNativeUnits = setPointIndexInDegrees / RobotMap.ANGLE_PER_PULSE;
+		double setPointNativeUnits = setPointIndexInDegrees / 0.0071180006;
+
+		System.out.println(setPointNativeUnits);
 		armTalon.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Brake);
 		armTalon.set(ControlMode.Position, setPointNativeUnits);
 		brake.set(true);  //TODO brake is reversed, we should refactor this to only reverse it once
@@ -152,9 +156,12 @@ public class ArmWrist extends Subsystem {
 	}
 	
 	public boolean onTarget(double setPointDegrees){
+		setPointDegrees = 30;
 		SmartDashboard.putNumber("Set point", setPointDegrees);
-		SmartDashboard.putNumber("Arm Error", Math.abs(getArmAngle() - setPointDegrees));
-		boolean onTarget = (Math.abs(getArmAngle() - setPointDegrees)) < RobotMap.ARM_THRESHOLD_FOR_PID;//TODO may want to make this bombproof because i think right now negative angles will confuse it
+		double armError = (armTalon.getSensorCollection().getQuadraturePosition()) - (setPointDegrees / RobotMap.ANGLE_PER_PULSE);
+		SmartDashboard.putNumber("Arm Error", armError);
+		System.out.println("Arm Error: " + armError);
+		boolean onTarget = Math.abs(armError) < RobotMap.ARM_THRESHOLD_FOR_PID;//TODO may want to make this bombproof because i think right now negative angles will confuse it
 		return onTarget;
 		//getClosedLoopT gets the SetPoint already set (or moving to)
 	}
@@ -179,6 +186,8 @@ public class ArmWrist extends Subsystem {
 		double armAngle = (armTalon.getSensorCollection().getQuadraturePosition() * RobotMap.ANGLE_PER_PULSE) + RobotMap.ANGLE_OFFSET;
 		SmartDashboard.putNumber("Arm Angle", armAngle);
 		SmartDashboard.putNumber("Native Units for Arm", armTalon.getSensorCollection().getQuadraturePosition());
+		System.out.println("Native Units Position" + armTalon.getSensorCollection().getQuadraturePosition());
+		System.out.println("Arm Motor Speed " + armTalon.getSensorCollection().getQuadratureVelocity());
 		return armAngle;	
 	}
 	
