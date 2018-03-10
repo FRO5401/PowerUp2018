@@ -1,11 +1,8 @@
 package org.usfirst.frc.team5401.robot.subsystems;
 
 import org.usfirst.frc.team5401.robot.RobotMap;
-import org.usfirst.frc.team5401.robot.commands.*;
 
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -15,69 +12,57 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class RollerClaw extends Subsystem {
 	
-//	private DigitalInput limitSwitch;
-	private DoubleSolenoid rollerClawShort;
-	private DoubleSolenoid rollerClawLong;
-	
-	private VictorSP topRoller;
-	private VictorSP bottomRoller;
-	
-	public RollerClaw(){
-		topRoller = new VictorSP(RobotMap.ROLLER_CLAW_TOP_ROLLER);
-		bottomRoller = new VictorSP(RobotMap.ROLLER_CLAW_BOTTOM_ROLLER);
-		rollerClawShort = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.ROLLER_CLAW_SHORT_IN, RobotMap.ROLLER_CLAW_SHORT_OUT);
-//		rollerClawLong = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.ROLLER_CLAW_LONG_IN, RobotMap.ROLLER_CLAW_LONG_OUT);
-//		limitSwitch = new DigitalInput(RobotMap.ROLLER_CLAW_LIMIT_SWITCH);
-	}
+	//Solenoid Subject to change, depending on stock
+	private DoubleSolenoid clawOpenClose;
+	private DoubleSolenoid clawUpDown;
+	private VictorSP clawRollers;
 
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
+    public RollerClaw(){
+    	clawOpenClose = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.ROLLER_CLAW_OPEN, RobotMap.ROLLER_CLAW_CLOSE);
+    	clawUpDown = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.ROLLER_CLAW_UP, RobotMap.ROLLER_CLAW_DOWN);
+    	clawRollers = new VictorSP(RobotMap.ROLLER_CLAW_ROLLERS);
+    	
+    }
+    
+    public void clawOpenClose(int horizDirection){
+    	if(horizDirection == 1){
+    		clawOpenClose.set(DoubleSolenoid.Value.kForward);
+    		SmartDashboard.putNumber("RollerClaw Open/Close", 1);
+    	}
+    	else if(horizDirection == -1){
+    		clawOpenClose.set(DoubleSolenoid.Value.kReverse);
+    		SmartDashboard.putNumber("RollerClaw Open/Close", -1);
+    	}
+    }
+    
+    public void clawUpDown(int vertDirection){
+    	if(vertDirection == 1){
+    		clawUpDown.set(DoubleSolenoid.Value.kForward);
+    		SmartDashboard.putNumber("RollerClaw Up/Down", 1);
+    	}
+    	else if(vertDirection == -1){
+    		clawUpDown.set(DoubleSolenoid.Value.kReverse);
+    		SmartDashboard.putNumber("RollerClaw Up/Down", -1);
+    	}
+    }
+    
+    public void feedIn(boolean feederDirection){
+    	if(feederDirection);
+    	int desiredDirection = 1;
+    	clawRollers.set(RobotMap.ROLLER_SPEED * desiredDirection);
+    	SmartDashboard.putNumber("Feeder Direction: ", 1);
+    }
+    
+    public void feedOut(boolean feederDirection){
+    	if(feederDirection);
+    	int desiredDirection = -1;
+    	clawRollers.set(RobotMap.ROLLER_SPEED * desiredDirection);
+    	SmartDashboard.putNumber("Feeder Direction: ", -1);
+    }
 
-	public void initDefaultCommand() {
+    public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
-    	setDefaultCommand(new RollerClawMove());
     }
-    
-    public void rollerInOut(int inOutDirection){
-    	topRoller.set(RobotMap.ROLLER_SPEED * -inOutDirection);
-    	bottomRoller.set(RobotMap.ROLLER_SPEED * inOutDirection);
-    }
-
-    //XXX Switches are all reversed because they default to true and go false when tripped
-    public boolean getLimitSwitch(){
-//    	SmartDashboard.putBoolean("Cube in", !limitSwitch.get());
-//    	return !limitSwitch.get();
-    	return false;
-    }
-    
-    public void stopMotors(){
-    	topRoller.set(0);
-    	bottomRoller.set(0);
-    }
-    
-    public void rollerClawShortChange(int clawFarDirection){
-    	if (clawFarDirection == 1) {
-    		rollerClawShort.set(DoubleSolenoid.Value.kForward);
-    	} 
-    	else {
-    		rollerClawShort.set(DoubleSolenoid.Value.kReverse);
-    	}
-    }
-/*    
-    public void rollerClawLongChange(int clawCloseDirection){
-    	if (clawCloseDirection == 1){
-//    		rollerClawLong.set(DoubleSolenoid.Value.kForward);
-    	}
-    	else {
-//    		rollerClawLong.set(DoubleSolenoid.Value.kReverse);
-    	}
-    }
-    */
-    public void checkVictor(){
-    	System.out.println("Bottom: "  + bottomRoller.isAlive());
-    	System.out.println("Top: "  + topRoller.isAlive());
-    }
-    	
 }
 

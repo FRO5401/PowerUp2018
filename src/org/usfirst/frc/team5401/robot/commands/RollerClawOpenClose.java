@@ -5,30 +5,26 @@ import org.usfirst.frc.team5401.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *	While held, run roller. Use this command from OI
  *
  */
-public class RollerClawInOut extends Command {
+public class RollerClawOpenClose extends Command {
 	
-	int rollerDirection;
-	boolean limitSwitch;
+	private int openClose;
 
-    public RollerClawInOut(int direction) {
+    public RollerClawOpenClose(int clawDirection) {
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.rollerclaw);
-        rollerDirection = direction;
-        limitSwitch = false;
-
+        requires(Robot.rollerClaw);
+        
+        openClose = clawDirection;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-		Robot.rollerclaw.rollerInOut(rollerDirection);
+    	Robot.rollerClaw.clawOpenClose(openClose);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        limitSwitch = Robot.rollerclaw.getLimitSwitch();
     }
 
     // Make this return true when this Command no longer needs to run execute()

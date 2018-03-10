@@ -28,6 +28,7 @@ public class Robot extends IterativeRobot {
 	public static RollerClaw rollerclaw;
 	public static CompressorSubsystem compressorsubsystem;
 	public static DumbCamera dumbcamera;
+	public static RollerClaw rollerClaw;
 	public static OI oi;
 	
 
@@ -47,6 +48,7 @@ public class Robot extends IterativeRobot {
 		rollerclaw = new RollerClaw();
 		compressorsubsystem = new CompressorSubsystem();
 		dumbcamera = new DumbCamera();
+		rollerClaw = new RollerClaw();
 		oi = new OI();
 		
 		//chooser.addDefault("Default Auto", new ExampleCommand());

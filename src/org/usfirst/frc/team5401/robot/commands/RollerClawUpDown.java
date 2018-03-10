@@ -7,30 +7,29 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class RollerClawDirectionControl extends Command {
+public class RollerClawUpDown extends Command {
 	
-	public int inOut;
+	private int upDown;
 
-    public RollerClawDirectionControl() {
+    public RollerClawUpDown(int clawLiftDirection) {
         // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-    	requires(Robot.rollerclaw);
+        requires(Robot.rollerClaw);
+        
+        upDown = clawLiftDirection;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.rollerClaw.clawUpDown(upDown);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-//    	inOut = Robot.oi.getXboxTriggers_Operator();
-    	
-    	Robot.rollerclaw.rollerInOut(inOut);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true
