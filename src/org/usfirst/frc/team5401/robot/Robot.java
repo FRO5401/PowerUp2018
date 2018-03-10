@@ -1,5 +1,7 @@
 package org.usfirst.frc.team5401.robot;
 import org.usfirst.frc.team5401.robot.autonomous.*;
+
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -19,12 +21,14 @@ import org.usfirst.frc.team5401.robot.subsystems.*;
 public class Robot extends IterativeRobot {
 
 	//OI has to be last
-	public static Arm arm;
+	public static ArmWrist armwrist;
 	public static Climber climber;
 	public static DriveBase drivebase;
 	public static RollerClaw rollerclaw;
-	public static Wrist wrist;
+	public static CompressorSubsystem compressorsubsystem;
+	public static DumbCamera dumbcamera;
 	public static OI oi;
+	
 
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
@@ -36,15 +40,23 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		//OI has to be last
-		arm = new Arm();
+		armwrist = new ArmWrist();
 		climber = new Climber();
 		drivebase = new DriveBase();
 		rollerclaw = new RollerClaw();
-		wrist = new Wrist();
+		compressorsubsystem = new CompressorSubsystem();
+		dumbcamera = new DumbCamera();
 		oi = new OI();
 		
 		//chooser.addDefault("Default Auto", new ExampleCommand());
-		chooser.addDefault("AutoDrive", new AutoDrive( 127 , 1));
+		chooser.addDefault("Do Nothing", new AutoPIDDrive(0));
+		chooser.addObject("Baseline Only", new AutoPIDDrive(97));
+		chooser.addObject("AutoCenterSwitch", new AutoCenterSwitch());
+		chooser.addObject("AutoLeftSwitch", new AutoLeftSwitch());
+		chooser.addObject("AutoRightSwitch", new AutoRightSwitch());
+		
+		chooser.addObject("AutoScaleLeft", new AutoScaleLeft());
+		chooser.addObject("AutoScaleRight", new AutoScaleRight());
 		SmartDashboard.putData("Auto mode", chooser);
 	}
 
@@ -76,6 +88,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
+		SmartDashboard.putString("Auto Side in INIT", DriverStation.getInstance().getGameSpecificMessage());
 		autonomousCommand = chooser.getSelected();
 
 		/*
@@ -95,6 +108,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousPeriodic() {
+		SmartDashboard.putString("Auto Side PERIODIC", DriverStation.getInstance().getGameSpecificMessage());
 		Scheduler.getInstance().run();
 	}
 

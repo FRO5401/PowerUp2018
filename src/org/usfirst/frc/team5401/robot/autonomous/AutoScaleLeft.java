@@ -10,27 +10,29 @@ public class AutoScaleLeft extends CommandGroup {
 
     public AutoScaleLeft() {
     	//Start at Auto Position #1
-    	String gameData = DriverStation.getInstance().getGameSpecificMessage();
-    	if(gameData.charAt(1) == 'L')
-    	{ 
-    	//This will be putting block on left side (Closer to Left)
-    		addSequential(new AutoDrive(331.549, 1));
-    		addSequential(new AutoTurnAngle(90));
-    		addSequential(new AutoDrive(40, 1));
-
-    		//addSequential(new xxxx());
+    	//The following is a ternary operator, which is similar to a condensed if else statement
+String gameData = DriverStation.getInstance().getGameSpecificMessage();
+    	
+    	if(gameData.isEmpty()){
+    		gameData = "XXX";
     	}
-    	else 
+    		if(gameData.charAt(0) == 'R'){
+    	//Start at Auto Position #2. Drive to front of switch, place block on switch
+    		addSequential(new AutoPIDDrive(21));
+    		addSequential(new AutoTurnAngle(7));
+    		addSequential(new AutoPIDDrive(40));
+    		addSequential(new AutoTurnAngle(-6));
+    	    addSequential(new AutoPIDDrive(37));
+    	}
+    	else if(gameData.charAt(0) == 'R')
     	{    	
-    	//This will be putting block the right side
-    		addSequential(new AutoDrive(70, 1));
-    		addSequential(new AutoTurnAngle(90));
-    		addSequential(new AutoDrive(280, 1));
-    		addSequential(new AutoTurnAngle(-90));
-    		addSequential(new AutoDrive(261.549, 1));
-    		addSequential(new AutoTurnAngle(-90));
-    		addSequential(new AutoDrive(40, 1));
-    		//addSequential(new xxxx());
+    	//Start at Auto Position #2. Drive Forward 85 inches to base line 
+    	//(Figure out specifics later)
+    		addSequential(new AutoPIDDrive(85));
+ 
+    	}else if(gameData.charAt(0) == 'X')
+    	{
+    		addSequential(new AutoPIDDrive(10));
     	}
     }
-}
+  }
