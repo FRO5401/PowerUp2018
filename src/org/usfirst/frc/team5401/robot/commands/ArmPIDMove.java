@@ -55,7 +55,7 @@ public class ArmPIDMove extends Command {
     // Called once after isFinished returns true
     @Override
 	protected void end() {
-    	
+    	System.out.println("PIDMove ENDING");
     	Robot.armwrist.pidStop();
     }
 

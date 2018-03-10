@@ -24,7 +24,7 @@ public class RobotMap {
 	
 
 	//This is for Arm
-	public static final double ARM_kP = 0.3;
+	public static final double ARM_kP = 0.5;
 	public static final double ARM_kI = 0;
 	public static final double ARM_kD = 0;
 	public static final double ARM_kF = 0;
@@ -33,7 +33,7 @@ public class RobotMap {
 	
 	public static final double ARM_RANGE = 0;
 	public static final int TIMEOUT_LIMIT_IN_Ms = 10;//Might change. 10 is default in sample code
-	public static final int ARM_THRESHOLD_FOR_PID = 2;
+	public static final double ARM_THRESHOLD_FOR_PID_IN_DEGREES = 5.0;
 	public static final double ARM_OVERRIDE_JOYSTICK_THRESHOLD = 0.2; 
 	public static final double ARM_OVERRIDE_PRECISION = 0.5;
 	
@@ -162,10 +162,10 @@ public class RobotMap {
 	
 	//Setpoints
 	// This is in Degrees
-	public static final double FLOOR_SETPOINT = 25.0;
-	public static final double SET_SWITCH_PORTAL_SETPOINT = 56.0;
-	public static final double SCALE_HIGH = 122.0;
-	public static final double SCALE_MID = 101.0;
+	public static final double FLOOR_SETPOINT = 25.0 - RobotMap.ANGLE_OFFSET;  //Actual Numbers refer to angled arm relative to vertical bar.
+	public static final double SET_SWITCH_PORTAL_SETPOINT = 56.0 - RobotMap.ANGLE_OFFSET; //Subraction of angle offset is used to simplify calculations down the line.
+	public static final double SCALE_HIGH = 122.0 - RobotMap.ANGLE_OFFSET;
+	public static final double SCALE_MID = 101.0 - RobotMap.ANGLE_OFFSET;
 
 	public static final int CLIMBER_SWITCH_TOP		= 0;
 	public static final int CLIMBER_SWITCH_BOTTOM 	= 0;

@@ -64,7 +64,7 @@ public class ArmWrist extends Subsystem {
 		//Sets allowable error, which is how far the actual value is off from intended value
 		//0 is slot index, which is parameter slot for the constant. Not sure what this actually does
 		//This was in the example not sure why it was zero
-		armTalon.configAllowableClosedloopError(slotIndex, RobotMap.ARM_THRESHOLD_FOR_PID, RobotMap.TIMEOUT_LIMIT_IN_Ms);
+		armTalon.configAllowableClosedloopError(slotIndex, (int)(RobotMap.ARM_THRESHOLD_FOR_PID_IN_DEGREES / RobotMap.ANGLE_PER_PULSE), RobotMap.TIMEOUT_LIMIT_IN_Ms);
 		
 		//Sets max and min reverse and forward. First number is max/min output in percent 1 = 100%
         armTalon.configNominalOutputForward(RobotMap.ARM_NOM_OUTPUT, 	RobotMap.TIMEOUT_LIMIT_IN_Ms);
@@ -129,9 +129,7 @@ public class ArmWrist extends Subsystem {
 	
 
 	public void setPoint(double setPointIndexInDegrees){
-		setPointIndexInDegrees = 30;
-//		double setPointNativeUnits = setPointIndexInDegrees / RobotMap.ANGLE_PER_PULSE;
-		double setPointNativeUnits = setPointIndexInDegrees / 0.0071180006;
+		double setPointNativeUnits = setPointIndexInDegrees / RobotMap.ANGLE_PER_PULSE;
 
 		System.out.println(setPointNativeUnits);
 		armTalon.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Brake);
@@ -156,12 +154,11 @@ public class ArmWrist extends Subsystem {
 	}
 	
 	public boolean onTarget(double setPointDegrees){
-		setPointDegrees = 30;
 		SmartDashboard.putNumber("Set point", setPointDegrees);
 		double armError = (armTalon.getSensorCollection().getQuadraturePosition()) - (setPointDegrees / RobotMap.ANGLE_PER_PULSE);
 		SmartDashboard.putNumber("Arm Error", armError);
-		System.out.println("Arm Error: " + armError);
-		boolean onTarget = Math.abs(armError) < RobotMap.ARM_THRESHOLD_FOR_PID;//TODO may want to make this bombproof because i think right now negative angles will confuse it
+		System.out.println("\nArm Error: " + armError);
+		boolean onTarget = Math.abs(armError) < (RobotMap.ARM_THRESHOLD_FOR_PID_IN_DEGREES / RobotMap.ANGLE_PER_PULSE);//TODO may want to make this bombproof because i think right now negative angles will confuse it
 		return onTarget;
 		//getClosedLoopT gets the SetPoint already set (or moving to)
 	}
