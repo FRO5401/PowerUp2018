@@ -69,6 +69,13 @@ public class DriveBase extends Subsystem {
 		SmartDashboard.putNumber("navx Roll", 	getGyroRoll());
 	}
 	
+	public void getError() {
+		SmartDashboard.putNumber("Left Pid 1", leftPID1.getError());
+		SmartDashboard.putNumber("Right Pid 1", rightPID1.getError());
+		SmartDashboard.putNumber("Left Pid 2", leftPID2.getError());
+		SmartDashboard.putNumber("Right Pid 2", rightPID2.getError());
+		
+	}
     @Override
 	public void initDefaultCommand() {
         // Set the default command for a subsystem here.

@@ -41,7 +41,7 @@ public class AutoPIDDrive extends Command {
     	
     	SmartDashboard.putNumber("Right Error", Math.abs(Robot.drivebase.getSetpoint(2) - Robot.drivebase.getEncoderDistance(2)));
     	SmartDashboard.putNumber("LEft Error", Math.abs(Robot.drivebase.getSetpoint(1) - Robot.drivebase.getEncoderDistance(1)));
-    	
+    	Robot.drivebase.getError();
     }
 
     // Make this return true when this Command no longer needs to run execute()
