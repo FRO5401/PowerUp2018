@@ -24,7 +24,7 @@ public class RobotMap {
 	public static final double TURN_I = 0.001;
 	public static final double TURN_D = 0;
 	public static final double TURN_F = 0;
-	public static final double OUTPUT_RANGE = 0.6;
+	public static final double OUTPUT_RANGE = 0.4;
 
 	//This is for Arm
 	public static final double ARM_MOTOR_SPEED = 0;

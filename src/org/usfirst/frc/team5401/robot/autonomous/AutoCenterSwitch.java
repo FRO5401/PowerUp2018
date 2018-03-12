@@ -24,10 +24,10 @@ public class AutoCenterSwitch extends CommandGroup {
     		addSequential(new AutoPIDTurnAngle(-37));
     		addSequential(new AutoPIDDrive(85));
     		addSequential(new AutoPIDTurnAngle(37));
-    		addSequential(new AutoPIDDrive(20));
+    		addSequential(new AutoPIDDrive(3));
     		//addSequential(new xxxxARM());
-    		addSequential(new AutoPIDDrive(-15));
-    		addSequential(new AutoPIDTurnAngle(90));
+    		//addSequential(new AutoPIDDrive(-15));
+    		//addSequential(new AutoPIDTurnAngle(90));
     		//addSequential(new xxxxARM()); 
     	}
     	else if(gameData.charAt(0) == 'R')
@@ -38,10 +38,10 @@ public class AutoCenterSwitch extends CommandGroup {
     		addSequential(new AutoPIDTurnAngle(37));
     		addSequential(new AutoPIDDrive(85));
     		addSequential(new AutoPIDTurnAngle(-37));
-    		addSequential(new AutoPIDDrive(24));
+    		addSequential(new AutoPIDDrive(4));
     		//addSequential(new xxxxARM());
-    		addSequential(new AutoPIDDrive(-15));
-    		addSequential(new AutoPIDTurnAngle(-90));
+    		//addSequential(new AutoPIDDrive(-15));
+    		//addSequential(new AutoPIDTurnAngle(-90));
     		//addSequential(new xxxxARM());
     	}else if(gameData.charAt(0) == 'X')
     	{
