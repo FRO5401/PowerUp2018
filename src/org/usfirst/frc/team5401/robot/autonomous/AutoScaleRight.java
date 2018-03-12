@@ -16,6 +16,7 @@ public class AutoScaleRight extends CommandGroup {
     	if(gameData.isEmpty()){
     		gameData = "XXX";
     	} 
+
     	if(gameData.charAt(0) == 'R')
     	{
     	//Start at Auto Position #5.

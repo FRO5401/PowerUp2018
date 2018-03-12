@@ -18,18 +18,14 @@ public class AutoRightSwitch extends CommandGroup {
     	
     	if(gameData.charAt(0) == 'L')
     	{
-    		addSequential(new AutoPIDDrive(97));
-    		//addSequential(new xxxxARM());
-    		addSequential(new AutoPIDDrive(-15));
-    		addSequential(new AutoPIDTurnAngle(90));
-    		//addSequential(new xxxxARM());
+    		addSequential(new AutoPIDDrive(95));
     	}
     	//Start at Auto Position #5. Drive Forward to the switch, place block on switch
     		
     	else if(gameData.charAt(0) == 'R')
     	{
     		//Arm deploy
-    		addSequential(new AutoPIDDrive(97));
+    		addSequential(new AutoPIDDrive(95));
     		//addSequential(new xxxxARM());
     		addSequential(new AutoPIDDrive(-15));
     		addSequential(new AutoPIDTurnAngle(-90));

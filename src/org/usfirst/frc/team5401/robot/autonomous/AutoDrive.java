@@ -3,13 +3,7 @@ package org.usfirst.frc.team5401.robot.autonomous;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
 import org.usfirst.frc.team5401.robot.Robot;
-import org.usfirst.frc.team5401.robot.subsystems.DriveBase;
-import org.usfirst.frc.team5401.robot.RobotMap;
-import org.usfirst.frc.team5401.robot.commands.XboxMove;
 
 
 /**
@@ -50,7 +44,8 @@ public class AutoDrive extends Command {
     }
 
     // Called just before this Command runs the first time
-    protected void initialize() {
+    @Override
+	protected void initialize() {
     	Robot.drivebase.encoderReset();
     	heading = Robot.drivebase.getGyroAngle();
     	drift = 0;
@@ -65,7 +60,8 @@ public class AutoDrive extends Command {
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
+    @Override
+	protected void execute() {
     	if (Math.abs(desiredDistance) <= autoDistThresh){
     		//DesiredDistance too small!
     		doneTraveling = true;
@@ -102,19 +98,22 @@ public class AutoDrive extends Command {
     }
 
     // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
+    @Override
+	protected boolean isFinished() {
         return doneTraveling;
     }
 
     // Called once after isFinished returns true
-    protected void end() {
+    @Override
+	protected void end() {
     	Robot.drivebase.stop();
     	System.out.println("Angle when EXITING DriveShift:" + Robot.drivebase.getGyroAngle());
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
-    protected void interrupted() {
+    @Override
+	protected void interrupted() {
     	Robot.drivebase.stop();
     }
 }

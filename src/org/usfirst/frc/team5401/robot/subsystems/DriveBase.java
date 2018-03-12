@@ -1,12 +1,13 @@
 package org.usfirst.frc.team5401.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.VictorSP;
+
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.Encoder;
@@ -16,6 +17,7 @@ import com.kauailabs.navx.frc.AHRS;
 import org.usfirst.frc.team5401.robot.RobotMap;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team5401.robot.commands.XboxMove;
+import edu.wpi.first.wpilibj.Solenoid;
 
 /**
  *
@@ -32,6 +34,8 @@ public class DriveBase extends Subsystem {
 	private SpeedControllerGroup rightDriveGroup;
 	
 
+
+    private Solenoid gearShifter;
 	private PIDController leftPID1;
 	private PIDController leftPID2;
 	private PIDController rightPID1;
@@ -40,23 +44,18 @@ public class DriveBase extends Subsystem {
 	private PIDController leftTurnController;
 	private PIDController rightTurnController;
 	
-//	private DoubleSolenoid gearShifter;
-	
 	private Encoder leftEncoder;
 	private Encoder rightEncoder;
 	private AHRS navxGyro;
 	
 
-	public DriveBase(){		
-		leftDrive1   	= new VictorSP(RobotMap.DRIVE_LEFT_MOTOR_1);
-		leftDrive2  	= new VictorSP(RobotMap.DRIVE_LEFT_MOTOR_2);
-		rightDrive1  	= new VictorSP(RobotMap.DRIVE_RIGHT_MOTOR_1);
-		rightDrive2 	= new VictorSP(RobotMap.DRIVE_RIGHT_MOTOR_2);
-		
-		leftDriveGroup = new SpeedControllerGroup(leftDrive1, leftDrive2);
-		rightDriveGroup = new SpeedControllerGroup(rightDrive1, rightDrive2);
-				
-//		gearShifter = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.DRIVE_SHIFT_IN, RobotMap.DRIVE_SHIFT_OUT);
+	public DriveBase(){
+
+		leftDrive1   = new VictorSP(RobotMap.DRIVE_LEFT_MOTOR_1);
+		rightDrive1  = new VictorSP(RobotMap.DRIVE_RIGHT_MOTOR_1);
+		leftDrive2  = new VictorSP(RobotMap.DRIVE_LEFT_MOTOR_2);
+		rightDrive2 = new VictorSP(RobotMap.DRIVE_RIGHT_MOTOR_2);
+		gearShifter = new Solenoid(RobotMap.PCM_ID, RobotMap.DRIVE_SHIFT);
 
 		leftEncoder = new Encoder(RobotMap.DRIVE_ENC_LEFT_A, RobotMap.DRIVE_ENC_LEFT_B, true, Encoder.EncodingType.k4X);
 		//																					vvv if this was false, DPP doesn't have to be negative
@@ -80,6 +79,9 @@ public class DriveBase extends Subsystem {
 		navxGyro = new AHRS(I2C.Port.kMXP);
 		navxGyro.reset();
 
+		leftDriveGroup = new SpeedControllerGroup(leftDrive1, leftDrive2);
+		rightDriveGroup = new SpeedControllerGroup(rightDrive1, rightDrive2);
+		
 //		navxGyro.setPIDSourceType(PIDSourceType.kDisplacement);
 		leftTurnController = new PIDController(RobotMap.TURN_P, RobotMap.TURN_I, RobotMap.TURN_D, RobotMap.TURN_F, navxGyro, leftDriveGroup);
 		rightTurnController = new PIDController(RobotMap.TURN_P, RobotMap.TURN_I, RobotMap.TURN_D, RobotMap.TURN_F, navxGyro, rightDriveGroup);
@@ -91,25 +93,30 @@ public class DriveBase extends Subsystem {
 		leftTurnController.setOutputRange(-RobotMap.OUTPUT_RANGE, RobotMap.OUTPUT_RANGE);
 		rightTurnController.setOutputRange(-RobotMap.OUTPUT_RANGE, RobotMap.OUTPUT_RANGE);
 		
-		SmartDashboard.putNumber("navx Angle", 	getGyroAngle());
-		SmartDashboard.putNumber("navx Pitch", 	getGyroPitch());
-		SmartDashboard.putNumber("navx Roll", 	getGyroRoll());
-		
-		
-		SmartDashboard.putNumber("Left Enc Raw" , leftEncoder.get());
+    	SmartDashboard.putNumber("Left Enc Raw" , leftEncoder.get());
 		SmartDashboard.putNumber("Right Enc Raw", rightEncoder.get());
 		SmartDashboard.putNumber("Left Enc Adj" , leftEncoder.getDistance());
 		SmartDashboard.putNumber("Right Enc Adj", rightEncoder.getDistance());
-		SmartDashboard.putNumber("Mean Enc Adj", getEncoderDistance(3));
 		
+		SmartDashboard.putNumber("navx Angle", 	getGyroAngle());
+		SmartDashboard.putNumber("navx Pitch", 	getGyroPitch());
+		SmartDashboard.putNumber("navx Roll", 	getGyroRoll());
 	}
 	
-    public void initDefaultCommand() {
+	public void getError() {
+		SmartDashboard.putNumber("Left Pid 1", leftPID1.getError());
+		SmartDashboard.putNumber("Right Pid 1", rightPID1.getError());
+		SmartDashboard.putNumber("Left Pid 2", leftPID2.getError());
+		SmartDashboard.putNumber("Right Pid 2", rightPID2.getError());
+		
+	}
+    @Override
+	public void initDefaultCommand() {
         // Set the default command for a subsystem here.
     	setDefaultCommand(new XboxMove());
     }
     
-    //TODO need to verify the negatives are in right place
+
     public void drive(double leftDriveDesired, double rightDriveDesired){
     	leftDrive1 .set(leftDriveDesired);
     	rightDrive1.set(-1* rightDriveDesired);
@@ -136,7 +143,7 @@ public class DriveBase extends Subsystem {
     public void shiftGearLowToHigh(){
     	//Meaning Low speed to high speed
     	//Assumes Pneumatic forward/out shifts low to high
-//    	gearShifter.set(DoubleSolenoid.Value.kForward);
+    	gearShifter.set(true);
     	leftEncoder.setDistancePerPulse(RobotMap.HIGH_GEAR_LEFT_DPP);
     	rightEncoder.setDistancePerPulse(RobotMap.HIGH_GEAR_RIGHT_DPP);
     	System.out.println("Shifting Drive Gear to High Gear");
@@ -144,18 +151,16 @@ public class DriveBase extends Subsystem {
 
     public void shiftGearHighToLow(){
     	//Assumes Pneumatic reverse/in shifts high to low
-//    	gearShifter.set(DoubleSolenoid.Value.kReverse);
+    	gearShifter.set(false);
     	leftEncoder.setDistancePerPulse(RobotMap.LOW_GEAR_LEFT_DPP);
     	rightEncoder.setDistancePerPulse(RobotMap.LOW_GEAR_RIGHT_DPP);
     	System.out.println("Shifting Drive Gear to Low Gear");
     }
-    public double getVelocityOfRobot(){
-    	double velocity = (Math.abs(leftEncoder.getRate()) + Math.abs(rightEncoder.getRate()))/2;
-    	//For testing
-    	SmartDashboard.putNumber("Robot Velocity", velocity);
-    	return velocity;
-    }
+    
+    public boolean getGearShifterValue () {
+    	return gearShifter.get();
 
+    }
     
     public void setDPPLowGear(){
     	leftEncoder.setDistancePerPulse(RobotMap.LOW_GEAR_LEFT_DPP);
@@ -177,7 +182,6 @@ public class DriveBase extends Subsystem {
     	SmartDashboard.putNumber("Left Enc Adj", leftDistance);
     	SmartDashboard.putNumber("Right Enc Adj", rightDistance);
     	double encoderDistance = (leftDistance + rightDistance)/2;
-    	SmartDashboard.putNumber("Mean Enc Adj", encoderDistance);
     	
     	if(encoderNumber == 1)
     	{
@@ -236,6 +240,7 @@ public class DriveBase extends Subsystem {
     	rightPID1.disable();
     	rightPID2.disable();
     }
+    
 
     public void setDriveStraightSetpoint(double setpoint)	{
     	leftPID1.setSetpoint(setpoint);
