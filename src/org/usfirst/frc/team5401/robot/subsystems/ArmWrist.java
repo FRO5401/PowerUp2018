@@ -131,7 +131,7 @@ public class ArmWrist extends Subsystem {
 	public void setPoint(double setPointIndexInDegrees){
 		double setPointNativeUnits = setPointIndexInDegrees / RobotMap.ANGLE_PER_PULSE;
 
-		System.out.println(setPointNativeUnits);
+		//System.out.println(setPointNativeUnits);
 		armTalon.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Brake);
 		armTalon.set(ControlMode.Position, setPointNativeUnits);
 		brake.set(true);  //TODO brake is reversed, we should refactor this to only reverse it once
@@ -149,16 +149,20 @@ public class ArmWrist extends Subsystem {
 
 	public void overrideMove(double operatorJoystick){
 		armTalon.set(ControlMode.PercentOutput, operatorJoystick);
-		System.out.println("overrideMove");
+		//System.out.println("overrideMove");
 		//Like DriveBase, sends out a direction to move to speed controller
 	}
 	
 	public boolean onTarget(double setPointDegrees){
 		SmartDashboard.putNumber("Set point", setPointDegrees);
-		double armError = (armTalon.getSensorCollection().getQuadraturePosition()) - (setPointDegrees / RobotMap.ANGLE_PER_PULSE);
-		SmartDashboard.putNumber("Arm Error", armError);
-		System.out.println("\nArm Error: " + armError);
-		boolean onTarget = Math.abs(armError) < (RobotMap.ARM_THRESHOLD_FOR_PID_IN_DEGREES / RobotMap.ANGLE_PER_PULSE);//TODO may want to make this bombproof because i think right now negative angles will confuse it
+		double armNativeUnitError = (armTalon.getSensorCollection().getQuadraturePosition()) - (setPointDegrees / RobotMap.ANGLE_PER_PULSE);
+		SmartDashboard.putNumber("Arm Native Unit Error", armNativeUnitError);
+		//System.out.println("\nArm Native Unit Error: " + armNativeUnitError);
+		
+		double armAngleError = (armTalon.getSensorCollection().getQuadraturePosition() * RobotMap.ANGLE_PER_PULSE) - (setPointDegrees);
+		SmartDashboard.putNumber("Arm Angle Error", armAngleError);
+		
+		boolean onTarget = Math.abs(armNativeUnitError) < (RobotMap.ARM_THRESHOLD_FOR_PID_IN_DEGREES / RobotMap.ANGLE_PER_PULSE);//TODO may want to make this bombproof because i think right now negative angles will confuse it
 		return onTarget;
 		//getClosedLoopT gets the SetPoint already set (or moving to)
 	}
@@ -180,11 +184,11 @@ public class ArmWrist extends Subsystem {
 	
 	public double getArmAngle(){
 		//Shows degrees. Converts native units to degrees
-		double armAngle = (armTalon.getSensorCollection().getQuadraturePosition() * RobotMap.ANGLE_PER_PULSE) + RobotMap.ANGLE_OFFSET;
+		double armAngle = (armTalon.getSensorCollection().getQuadraturePosition() * RobotMap.ANGLE_PER_PULSE);
 		SmartDashboard.putNumber("Arm Angle", armAngle);
 		SmartDashboard.putNumber("Native Units for Arm", armTalon.getSensorCollection().getQuadraturePosition());
-		System.out.println("Native Units Position" + armTalon.getSensorCollection().getQuadraturePosition());
-		System.out.println("Arm Motor Speed " + armTalon.getSensorCollection().getQuadratureVelocity());
+		//System.out.println("Native Units Position" + armTalon.getSensorCollection().getQuadraturePosition());
+		//System.out.println("Arm Motor Speed " + armTalon.getSensorCollection().getQuadratureVelocity());
 		return armAngle;	
 	}
 	

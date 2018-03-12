@@ -25,7 +25,7 @@ public class RobotMap {
 
 	//This is for Arm
 	public static final double ARM_kP = 0.5;
-	public static final double ARM_kI = 0;
+	public static final double ARM_kI = 0.002;
 	public static final double ARM_kD = 0;
 	public static final double ARM_kF = 0;
 	public static final double ARM_PEAK_OUTPUT = 0.75;
@@ -40,7 +40,6 @@ public class RobotMap {
 	//Arm
 	public static final int ARM_TALON_CHANNEL = 0;
 	public static final double ANGLE_PER_PULSE = .0071180006;
-	public static final double ANGLE_OFFSET = 25;
 	
 	//This is for RollerClaw
 	public static final double ROLLER_SPEED = 0.75;
@@ -162,10 +161,11 @@ public class RobotMap {
 	
 	//Setpoints
 	// This is in Degrees
-	public static final double FLOOR_SETPOINT = 25.0 - RobotMap.ANGLE_OFFSET;  //Actual Numbers refer to angled arm relative to vertical bar.
-	public static final double SET_SWITCH_PORTAL_SETPOINT = 56.0 - RobotMap.ANGLE_OFFSET; //Subraction of angle offset is used to simplify calculations down the line.
-	public static final double SCALE_HIGH = 122.0 - RobotMap.ANGLE_OFFSET;
-	public static final double SCALE_MID = 101.0 - RobotMap.ANGLE_OFFSET;
+	//Floor setpoints are angles relative to the zero position, which is the position that the arm starts in. Also the lowest arm position possible 
+	public static final double FLOOR_SETPOINT = 5.0;  
+	public static final double SET_SWITCH_PORTAL_SETPOINT = 31.0; 
+	public static final double SCALE_HIGH = 97.0;
+	public static final double SCALE_MID = 76.0;
 
 	public static final int CLIMBER_SWITCH_TOP		= 0;
 	public static final int CLIMBER_SWITCH_BOTTOM 	= 0;
