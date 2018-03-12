@@ -16,24 +16,7 @@ public class AutoScaleRight extends CommandGroup {
     	if(gameData.isEmpty()){
     		gameData = "XXX";
     	} 
-<<<<<<< HEAD
-    	
-    	if(gameData.charAt(0) == 'L')
-    	{
-    		addSequential(new AutoPIDDrive(97));
-    	}
-    	//Start at Auto Position #5. Drive Forward to the switch, place block on switch
-    		
-    	else if(gameData.charAt(0) == 'R')
-    	{
-    		//Arm deploy
-    		addSequential(new AutoPIDDrive(97));
-    		//addSequential(new xxxx());
-    
-    	}else if(gameData.charAt(0) == 'X')
-    	{
-    		addSequential(new AutoPIDDrive(10));
-=======
+
     	if(gameData.charAt(0) == 'R')
     	{
     	//Start at Auto Position #5.
@@ -61,7 +44,6 @@ public class AutoScaleRight extends CommandGroup {
     	else if(gameData.charAt(0) == 'X')
     	{
     		addSequential(new AutoPIDDrive(85));
->>>>>>> 3ca46f72f8553d228cdc57a7782cfbf2d19f4d3b
     	}
     }
 }

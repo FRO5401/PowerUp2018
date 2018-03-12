@@ -73,6 +73,9 @@ public class DriveBase extends Subsystem {
 		navxGyro = new AHRS(I2C.Port.kMXP);
 		navxGyro.reset();
 
+		leftDriveGroup = new SpeedControllerGroup(leftDrive1, leftDrive2);
+		rightDriveGroup = new SpeedControllerGroup(rightDrive1, rightDrive2);
+		
 //		navxGyro.setPIDSourceType(PIDSourceType.kDisplacement);
 		leftTurnController = new PIDController(RobotMap.TURN_P, RobotMap.TURN_I, RobotMap.TURN_D, RobotMap.TURN_F, navxGyro, leftDriveGroup);
 		rightTurnController = new PIDController(RobotMap.TURN_P, RobotMap.TURN_I, RobotMap.TURN_D, RobotMap.TURN_F, navxGyro, rightDriveGroup);

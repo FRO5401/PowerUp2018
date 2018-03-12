@@ -39,7 +39,7 @@ public class RobotMap {
 	public static final int TIMEOUT_LIMIT_IN_Ms = 10;//Might change. 10 is default in sample code
 	public static final double ARM_THRESHOLD_FOR_PID_IN_DEGREES = 1.0;
 	public static final double ARM_OVERRIDE_JOYSTICK_THRESHOLD = 0.2; 
-<<<<<<< HEAD
+
 	public static final double ARM_OVERRIDE_PRECISION = 0.5;
 	
 	//Arm
