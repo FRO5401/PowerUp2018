@@ -7,8 +7,9 @@ import org.usfirst.frc.team5401.robot.Robot;
 import org.usfirst.frc.team5401.robot.RobotMap;
 
 /**
- * 
+ * @deprecated use AutoPIDTurnAngle
  */
+@Deprecated
 public class AutoTurnAngle extends Command {
 	
 	private double desiredTurnAngleRelativeToInitAngle;

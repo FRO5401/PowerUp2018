@@ -23,10 +23,10 @@ public class XboxMove extends Command {
     }
 
     // Called repeatedly when this Command is scheduled to run
-    @Override
-	protected void execute() {
+    protected void execute() {
+    	SmartDashboard.putNumber("Angle XboxDrive", Robot.drivebase.getGyroAngle());
+    	
     	double  slew      = Robot.oi.xboxAxis(RobotMap.XBOX_AXIS_LEFT_X, Robot.oi.xboxController_Driver);
-
 
     	double 	throttle  = Robot.oi.xboxAxis(RobotMap.XBOX_AXIS_RIGHT_TRIGGER, Robot.oi.xboxController_Driver);
     	double 	reverse   = Robot.oi.xboxAxis(RobotMap.XBOX_AXIS_LEFT_TRIGGER, Robot.oi.xboxController_Driver);

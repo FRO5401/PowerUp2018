@@ -39,6 +39,7 @@ public class RobotMap {
 	public static final int TIMEOUT_LIMIT_IN_Ms = 10;//Might change. 10 is default in sample code
 	public static final double ARM_THRESHOLD_FOR_PID_IN_DEGREES = 1.0;
 	public static final double ARM_OVERRIDE_JOYSTICK_THRESHOLD = 0.2; 
+<<<<<<< HEAD
 	public static final double ARM_OVERRIDE_PRECISION = 0.5;
 	
 	//Arm
@@ -57,7 +58,7 @@ public class RobotMap {
 	public static final double DRIVE_SPIN_SENSITIVITY = 1;
 	
 	//This is for AutoTurnAngle
-	public static final double ANGLE_THRESHOLD = 1; //in degrees
+	public static final double ANGLE_THRESHOLD = 0.5; //in degrees
 	public static final double AUTO_TURN_SPEED = 0.95;
 	public static final double AUTO_TURN_PRECISION = 0.75;
 	
@@ -102,7 +103,7 @@ public class RobotMap {
 	public static final int XBOX_BUTTON_START_OPERATOR	  	  = 8;
 	public static final int XBOX_BUTTON_L3_OPERATOR		  	  = 9;
 	public static final int XBOX_BUTTON_R3_OPERATOR		  	  = 10;
-
+	
 	public static final int XBOX_BUTTON_A_TESTER   		  	  = 1;
 	public static final int XBOX_BUTTON_B_TESTER		      = 2;
 	public static final int XBOX_BUTTON_X_TESTER		      = 3;
@@ -116,10 +117,11 @@ public class RobotMap {
 	 
 	//Motors
 		//Drive Motors
-	public static final int DRIVE_LEFT_MOTOR_1 	= 2;
-	public static final int DRIVE_LEFT_MOTOR_2 	= 3;
+
 	public static final int DRIVE_RIGHT_MOTOR_1 = 0;
 	public static final int DRIVE_RIGHT_MOTOR_2 = 1;
+	public static final int DRIVE_LEFT_MOTOR_1 	= 2;
+	public static final int DRIVE_LEFT_MOTOR_2 	= 3;	
 
 	
 	//Climber Motor
@@ -128,7 +130,6 @@ public class RobotMap {
 	public static final int CLIMBER_MOTOR_BOTTOM = 7;
 	public static final double CLIMB_PRECISION = 1;
 
-	
 	//PCM ID
 	public static final int PCM_ID 				= 0;
 	public static final int PCM_ID2 			= 1;
@@ -151,6 +152,7 @@ public class RobotMap {
 	public static final int CLIMBER_PLATFORM_OUT	=	0;//Currently 0 because physically not allocated and commented out in code
 	
 	//DIO Sensors
+
 	public static final int DRIVE_ENC_LEFT_A 	= 2;
 	public static final int DRIVE_ENC_LEFT_B 	= 3;
 	public static final int DRIVE_ENC_RIGHT_A 	= 0;
@@ -175,4 +177,3 @@ public class RobotMap {
 	public static final int CLIMBER_SWITCH_BOTTOM 	= 0;
 	
 }
-
