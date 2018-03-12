@@ -1,5 +1,6 @@
 package org.usfirst.frc.team5401.robot;
 import org.usfirst.frc.team5401.robot.autonomous.*;
+import org.usfirst.frc.team5401.robot.commands.*;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -25,7 +26,6 @@ public class Robot extends IterativeRobot {
 	public static Climber climber;
 	public static DriveBase drivebase;
 	public static RollerClaw rollerclaw;
-	public static Wrist wrist;
 	public static CompressorSubsystem compressorsubsystem;
 	public static DumbCamera dumbcamera;
 	public static OI oi;
@@ -45,22 +45,22 @@ public class Robot extends IterativeRobot {
 		climber = new Climber();
 		drivebase = new DriveBase();
 		rollerclaw = new RollerClaw();
-		wrist = new Wrist();
 		compressorsubsystem = new CompressorSubsystem();
 		dumbcamera = new DumbCamera();
 		oi = new OI();
 		
 		//chooser.addDefault("Default Auto", new ExampleCommand());
 		chooser.addDefault("Do Nothing", new AutoPIDDrive(0));
-		//chooser.addObject("Drive Straight", new AutoDrive(55, .5)); //non pid
 		chooser.addObject("Baseline Only", new AutoPIDDrive(97));
-		chooser.addObject("PID Drive with Wait", new AutoPIDDriveWithWait());
 		chooser.addObject("AutoCenterSwitch", new AutoCenterSwitch());
 		chooser.addObject("AutoLeftSwitch", new AutoLeftSwitch());
 		chooser.addObject("AutoRightSwitch", new AutoRightSwitch());
+		
 		chooser.addObject("AutoScaleLeft", new AutoScaleLeft());
 		chooser.addObject("AutoScaleRight", new AutoScaleRight());
-		chooser.addObject("AutoTurnTest", new AutoTurnAngle(360));
+
+		chooser.addObject("Turn PID Test", new AutoPIDTurnAngle(45));
+		chooser.addObject("TurnTurnTurn Test", new TurnTurnTurn());
 		SmartDashboard.putData("Auto mode", chooser);
 	}
 

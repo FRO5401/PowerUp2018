@@ -3,6 +3,9 @@
 package org.usfirst.frc.team5401.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team5401.robot.RobotMap;
@@ -11,14 +14,14 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 /*
- *
+ * TRUE FOR BRAKE MEANS BRAKE IS released
  */
 
 public class ArmWrist extends Subsystem {
 
-//	private DoubleSolenoid wristMoveLong;
-//	private DoubleSolenoid wristMoveShort;
-//	private Solenoid brake;
+	private DoubleSolenoid wristMoveLong;
+	private DoubleSolenoid wristMoveShort;
+	private Solenoid brake;
 	//Encoder not needed for TalonSRX due to VS Encoders
 	private TalonSRX armTalon;
 	//private AnalogPotentiometer armPot; Probably will not be used
@@ -40,8 +43,10 @@ public class ArmWrist extends Subsystem {
 		armTalon = new TalonSRX(RobotMap.ARM_TALON_CHANNEL);//TODO need to check on RoboRIO  //TODO Make this a constant ref to robot map, move other todo to robotmap
 		//armPot = new AnalogPotentiometer(RobotMap.ARM_POT_CHANNEL, RobotMap.ARM_RANGE, RobotMap.ARM_OFFSET);
 		
-//		wristMoveLong = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.WRIST_MOVE_LONG_FORWARD, RobotMap.WRIST_MOVE_LONG_BACKWARD);
-//		wristMoveShort = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.WRIST_MOVE_SHORT_FORWARD, RobotMap.WRIST_MOVE_SHORT_BACKWARD);
+		brake = new Solenoid(RobotMap.PCM_ID, RobotMap.ARM_BRAKE);
+		
+		wristMoveLong = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.WRIST_MOVE_LONG_FORWARD, RobotMap.WRIST_MOVE_LONG_BACKWARD);
+		wristMoveShort = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.WRIST_MOVE_SHORT_FORWARD, RobotMap.WRIST_MOVE_SHORT_BACKWARD);
 
 
 		/******REPEAT THE FOLLOWING LINE TO MAKE SET POINTS*********/
@@ -54,18 +59,18 @@ public class ArmWrist extends Subsystem {
 		//Sets up feedback device for PID
 		//May have to change the QuadEncoder to something else.
 		armTalon.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, loopIndex, RobotMap.TIMEOUT_LIMIT_IN_Ms);//10 is a timeout that waits for successful conection to sensor
-		armTalon.setSensorPhase(true);//true if sensor value is positive if the motor controller output is negative. False if both are positive or negative
+		armTalon.setSensorPhase(false);//true if sensor value is positive if the motor controller output is negative. False if both are positive or negative
 		
 		//Sets allowable error, which is how far the actual value is off from intended value
 		//0 is slot index, which is parameter slot for the constant. Not sure what this actually does
 		//This was in the example not sure why it was zero
-		armTalon.configAllowableClosedloopError(slotIndex, RobotMap.ARM_THRESHOLD_FOR_PID, RobotMap.TIMEOUT_LIMIT_IN_Ms);
+		armTalon.configAllowableClosedloopError(slotIndex, (int)(RobotMap.ARM_THRESHOLD_FOR_PID_IN_DEGREES / RobotMap.ANGLE_PER_PULSE), RobotMap.TIMEOUT_LIMIT_IN_Ms);
 		
 		//Sets max and min reverse and forward. First number is max/min output in percent 1 = 100%
-        armTalon.configNominalOutputForward(0, 	RobotMap.TIMEOUT_LIMIT_IN_Ms);
-        armTalon.configNominalOutputReverse(0, 	RobotMap.TIMEOUT_LIMIT_IN_Ms);
-        armTalon.configPeakOutputForward(1, 	RobotMap.TIMEOUT_LIMIT_IN_Ms);
-        armTalon.configPeakOutputReverse(-1, 	RobotMap.TIMEOUT_LIMIT_IN_Ms);
+        armTalon.configNominalOutputForward(RobotMap.ARM_NOM_OUTPUT, 	RobotMap.TIMEOUT_LIMIT_IN_Ms);
+        armTalon.configNominalOutputReverse(RobotMap.ARM_NOM_OUTPUT, 	RobotMap.TIMEOUT_LIMIT_IN_Ms);
+        armTalon.configPeakOutputForward(RobotMap.ARM_PEAK_OUTPUT, 	RobotMap.TIMEOUT_LIMIT_IN_Ms);
+        armTalon.configPeakOutputReverse(-1* RobotMap.ARM_PEAK_OUTPUT, 	RobotMap.TIMEOUT_LIMIT_IN_Ms);
        
         //Sets F, P, I, and D
         //Middle parameter is the corresponding value for F, P, I, or D
@@ -76,58 +81,60 @@ public class ArmWrist extends Subsystem {
         armTalon.config_kD(slotIndex, RobotMap.ARM_kD, RobotMap.TIMEOUT_LIMIT_IN_Ms);        
 	}
 	
-    @Override
+//    @Override
 	public void initDefaultCommand() {
         //Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
     
     public void longWristUpDown(int longWristDirection){
-    	if(longWristDirection == 1) {
-//    		wristMoveLong.set(DoubleSolenoid.Value.kForward);
+    	if(longWristDirection > 0.2) { //TODO What is this and why is the number hard coded?
+    		wristMoveLong.set(DoubleSolenoid.Value.kForward);
     		//Long wrist will be extending outwards
     	} 
-    	else if(longWristDirection == -1) {
-//    		wristMoveLong.set(DoubleSolenoid.Value.kReverse);
+    	else if(longWristDirection < -0.2) {
+    		wristMoveLong.set(DoubleSolenoid.Value.kReverse);
     		//Wrist will be coming back inward
     	}
     }
     
     public void shortWristUpDown(int shortWristDirection){
-    	if(shortWristDirection == 1) {
-//    		wristMoveShort.set(DoubleSolenoid.Value.kForward);
+    	if(shortWristDirection > 0.2) {
+    		wristMoveShort.set(DoubleSolenoid.Value.kForward);
     		//Short wrist will be extending outwards
     	} 
-    	else if(shortWristDirection == -1) {
-//    		wristMoveShort.set(DoubleSolenoid.Value.kReverse);
+    	else if(shortWristDirection < -0.2) {
+    		wristMoveShort.set(DoubleSolenoid.Value.kReverse);
     		//Wrist will be coming back inward
     	}
     }
     public void checkWrist(){
     	//You do this as you do not need to create an Encoder Object for VP Encoders with the TalonSRX
     	if(armTalon.getSensorCollection().getQuadraturePosition() > RobotMap.MAX_ARM_ANGLE_BEFORE_SOLENOIDS_FIRE){
- //   		wristMoveLong.set(DoubleSolenoid.Value.kForward);
- //   		wristMoveShort.set(DoubleSolenoid.Value.kForward);
+    		wristMoveLong.set(DoubleSolenoid.Value.kForward);
+//    		wristMoveShort.set(DoubleSolenoid.Value.kForward);
     	}
     	else if(armTalon.getSensorCollection().getQuadraturePosition() < RobotMap.MAX_ARM_ANGLE_BEFORE_SOLENOIDS_FIRE){
- //  		wristMoveLong.set(DoubleSolenoid.Value.kReverse);
- //   		wristMoveShort.set(DoubleSolenoid.Value.kReverse);
+    		wristMoveLong.set(DoubleSolenoid.Value.kReverse);
+//    		wristMoveShort.set(DoubleSolenoid.Value.kReverse);
     	}
     }
 
 	public void setBrake(boolean brakeSet){
 		//Controlled by either override or reaching end of PID setpoint
 		//Disabled once override is engaged
-//		brake.set(brakeSet);
+		brake.set(brakeSet);
 	}
 
 	
 
 	public void setPoint(double setPointIndexInDegrees){
 		double setPointNativeUnits = setPointIndexInDegrees / RobotMap.ANGLE_PER_PULSE;
+
+		//System.out.println(setPointNativeUnits);
 		armTalon.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Brake);
 		armTalon.set(ControlMode.Position, setPointNativeUnits);
-//		brake.set(false);
+		brake.set(true);  //TODO brake is reversed, we should refactor this to only reverse it once
 		armPidEnabled = true;
 		//Finds set point
 		//Calls to command for which set point
@@ -135,42 +142,78 @@ public class ArmWrist extends Subsystem {
 	}
 
 	public void pidStop(){
-//		brake.set(true);
+		brake.set(false);
 		armPidEnabled = false;
-		armTalon.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Coast);
+		armTalon.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Brake);
 	}
 
 	public void overrideMove(double operatorJoystick){
 		armTalon.set(ControlMode.PercentOutput, operatorJoystick);
+		//System.out.println("overrideMove");
 		//Like DriveBase, sends out a direction to move to speed controller
 	}
 	
-	public boolean onTarget(){
-		boolean onTarget = Math.abs(armTalon.getSensorCollection().getQuadraturePosition() - armTalon.getClosedLoopTarget(loopIndex)) < RobotMap.ARM_THRESHOLD_FOR_PID;
+	public boolean onTarget(double setPointDegrees){
+		SmartDashboard.putNumber("Set point", setPointDegrees);
+		double armNativeUnitError = (armTalon.getSensorCollection().getQuadraturePosition()) - (setPointDegrees / RobotMap.ANGLE_PER_PULSE);
+		SmartDashboard.putNumber("Arm Native Unit Error", armNativeUnitError);
+		//System.out.println("\nArm Native Unit Error: " + armNativeUnitError);
+		
+		double armAngleError = (armTalon.getSensorCollection().getQuadraturePosition() * RobotMap.ANGLE_PER_PULSE) - (setPointDegrees);
+		SmartDashboard.putNumber("Arm Angle Error", armAngleError);
+		
+		boolean onTarget = Math.abs(armNativeUnitError) < (RobotMap.ARM_THRESHOLD_FOR_PID_IN_DEGREES / RobotMap.ANGLE_PER_PULSE);//TODO may want to make this bombproof because i think right now negative angles will confuse it
 		return onTarget;
 		//getClosedLoopT gets the SetPoint already set (or moving to)
 	}
 	
 	public void overrideStopped(){
 		
-		armTalon.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Coast);
-//		brake.set(true);
+		armTalon.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Brake);
+		brake.set(false);
 		armPidEnabled = false;
 	}
 	
 	public void armInterrupted(){
 		
 		armPidEnabled = false;
-		armTalon.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Coast);
+		brake.set(false);
+		armTalon.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Brake);
 		
 	}
 	
 	public double getArmAngle(){
 		//Shows degrees. Converts native units to degrees
-		double armAngle = armTalon.getSensorCollection().getQuadraturePosition() * RobotMap.ANGLE_PER_PULSE;
+		double armAngle = (armTalon.getSensorCollection().getQuadraturePosition() * RobotMap.ANGLE_PER_PULSE);
 		SmartDashboard.putNumber("Arm Angle", armAngle);
 		SmartDashboard.putNumber("Native Units for Arm", armTalon.getSensorCollection().getQuadraturePosition());
+		//System.out.println("Native Units Position" + armTalon.getSensorCollection().getQuadraturePosition());
+		//System.out.println("Arm Motor Speed " + armTalon.getSensorCollection().getQuadratureVelocity());
 		return armAngle;	
+	}
+	
+	public void getWristAngle(){
+		
+		if(getArmAngle() <= 34)/*Ground and or Reset*/{
+			//Forward is Currently In and Reverse is Out (Don't know why)
+			wristMoveLong.set(DoubleSolenoid.Value.kForward);
+    		wristMoveShort.set(DoubleSolenoid.Value.kReverse);
+			
+		} else if(getArmAngle() >= 34  && getArmAngle() <= 60)/*Portal/Switch*/{
+			wristMoveLong.set(DoubleSolenoid.Value.kForward);
+    		wristMoveShort.set(DoubleSolenoid.Value.kReverse);
+			
+		}else if(getArmAngle() >= 60 && getArmAngle() <= 105)/*ScaleMidAndLow*/{
+			wristMoveLong.set(DoubleSolenoid.Value.kForward);
+    		wristMoveShort.set(DoubleSolenoid.Value.kReverse);
+			
+		}else if(getArmAngle() >= 105 && getArmAngle() <= 122)/*ScaleHigh*/{
+			wristMoveLong.set(DoubleSolenoid.Value.kReverse);
+    		wristMoveShort.set(DoubleSolenoid.Value.kReverse);
+		}else{
+			wristMoveLong.set(DoubleSolenoid.Value.kReverse);
+			wristMoveShort.set(DoubleSolenoid.Value.kReverse);
+		}
 	}
 	
 	//1 for mode is coast. 2 for mode is brake
