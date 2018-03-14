@@ -6,26 +6,7 @@ package org.usfirst.frc.team5401.robot;
 * the wiring easier and significantly reduces the number of magic numbers
 * floating around.
 */
-public class RobotMap {
-	
-	//Global Constants that are not locations
-	//Constants for DriveBase
-	public static final double LOW_GEAR_LEFT_DPP = .149926;//-.149926
-	public static final double LOW_GEAR_RIGHT_DPP = .149926;//-.15345
-	public static final double HIGH_GEAR_LEFT_DPP = 0;
-	public static final double HIGH_GEAR_RIGHT_DPP = 0;
-	public static final double DRIVE_PID_ABSOLUTE_TOLERANCE = 0.5; //threshold
-	
-	public static final double DRIVE_P = 0.11;
-	public static final double DRIVE_I = 0;
-	public static final double DRIVE_D = 0;
-	
-	public static final double TURN_P = 0.01;
-	public static final double TURN_I = 0.001;
-	public static final double TURN_D = 0;
-	public static final double TURN_F = 0;
-	public static final double OUTPUT_RANGE = 0.6;
-	
+public class RobotMap {	
 
 	//Constants for ArmWrist
 	public static final double ARM_kP = 0.5;
@@ -50,8 +31,30 @@ public class RobotMap {
 	public static final double SCALE_HIGH = 97.0;
 	public static final double SCALE_MID = 76.0;
 
-	//Constants for RollerClaw
-	public static final double ROLLER_SPEED = 0.75;
+	//Constants for Climber
+	public static final double CLIMB_PRECISION = 1;
+
+	//Global Constants that are not locations
+	//Constants for DriveBase
+	public static final double LOW_GEAR_LEFT_DPP = .149926;//-.149926
+	public static final double LOW_GEAR_RIGHT_DPP = .149926;//-.15345
+	public static final double HIGH_GEAR_LEFT_DPP = 0;
+	public static final double HIGH_GEAR_RIGHT_DPP = 0;
+	public static final double DRIVE_PID_ABSOLUTE_TOLERANCE = 0.5; //threshold
+	
+	public static final double DRIVE_P = 0.11;
+	public static final double DRIVE_I = 0;
+	public static final double DRIVE_D = 0;
+	
+	public static final double TURN_P = 0.01;
+	public static final double TURN_I = 0.001;
+	public static final double TURN_D = 0;
+	public static final double TURN_F = 0;
+	public static final double OUTPUT_RANGE = 0.6;
+
+	
+	//Constants for Infeed
+	public static final double	INFEED_SPEED = 0.75;
 	
 	//Constants for XboxMove
 	public static final double DRIVE_SENSITIVITY_PRECISE = 0.5;
@@ -124,11 +127,10 @@ public class RobotMap {
 		//Climber Motor
 	public static final int CLIMBER_MOTOR_TOP = 6;
 	public static final int CLIMBER_MOTOR_BOTTOM = 7;
-	public static final double CLIMB_PRECISION = 1;
 
-		//RollerClaw Motors
-	public static final int ROLLER_CLAW_ROLLER_LEFT    = 4;
-	public static final int ROLLER_CLAW_ROLLER_RIGHT	= 9;
+		//Infeed Motors
+	public static final int INFEED_ROLLER_LEFT    = 4;
+	public static final int INFEED_ROLLER_RIGHT	= 5;
 	
 	//PCM ID
 	public static final int PCM_ID 				= 0;
@@ -138,14 +140,12 @@ public class RobotMap {
 	public static final int DRIVE_SHIFT 		= 0;
 	public static final int WRIST_MOVE_LONG_FORWARD   = 7;
 	public static final int WRIST_MOVE_LONG_BACKWARD  = 3;
-	public static final int WRIST_MOVE_SHORT_FORWARD  = 5;
-	public static final int WRIST_MOVE_SHORT_BACKWARD = 6;
 
-	public static final int ARM_BRAKE = 1;
-	public static final int ROLLER_CLAW_OPEN		= 2;
-	public static final int ROLLER_CLAW_CLOSE		= 4;
-	public static final int ROLLER_CLAW_UP 			= 5;
-	public static final int ROLLER_CLAW_DOWN		= 6;
+	public static final int ARM_BRAKE 		= 1;
+	public static final int INFEED_OPEN		= 2;
+	public static final int INFEED_CLOSE	= 4;
+	public static final int INFEED_UP 		= 5;
+	public static final int INFEED_DOWN		= 6;
 
 	public static final int CLIMBER_STABLIZER		=	0;//Currently 0 because physically not allocated and commented out in code
 	public static final int CLIMBER_PLATFORM_IN		=	0;//Currently 0 because physically not allocated and commented out in code
@@ -157,7 +157,7 @@ public class RobotMap {
 	public static final int DRIVE_ENC_RIGHT_A 	= 0;
 	public static final int DRIVE_ENC_RIGHT_B 	= 1;
 
-	public static final int ROLLER_CLAW_LIMIT_SWITCH   = 0;//Currently 0 because physically not allocated and commented out in code
+	public static final int INFEED_LIMIT_SWITCH   = 0;//Currently 0 because physically not allocated and commented out in code
 
 	public static final int CLIMBER_SWITCH_TOP		= 0;
 	public static final int CLIMBER_SWITCH_BOTTOM 	= 0;

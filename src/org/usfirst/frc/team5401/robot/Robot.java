@@ -27,7 +27,7 @@ public class Robot extends IterativeRobot {
 	public static CompressorSubsystem compressorsubsystem;
 	public static DriveBase drivebase;
 	public static DumbCamera dumbcamera;
-	public static RollerClaw rollerclaw;
+	public static Infeed infeed;
 	public static OI oi;
 	
 
@@ -46,7 +46,7 @@ public class Robot extends IterativeRobot {
 		compressorsubsystem = new CompressorSubsystem();
 		drivebase = new DriveBase();
 		dumbcamera = new DumbCamera();
-		rollerclaw = new RollerClaw();
+		infeed = new Infeed();
 		
 		oi = new OI();
 		

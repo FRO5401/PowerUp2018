@@ -8,16 +8,16 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class RollerClawControl extends Command {
+public class InfeedControl extends Command {
 	
 	private int openClose;
 	private int upDown;
 	private boolean in;
 	private boolean out;
 
-    public RollerClawControl() {
+    public InfeedControl() {
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.rollerclaw);
+        requires(Robot.infeed);
         
         openClose = 0;
         upDown = 0;
@@ -36,20 +36,20 @@ public class RollerClawControl extends Command {
     	in = Robot.oi.xboxButton(RobotMap.XBOX_BUTTON_LEFT_BUMPER_OPERATOR, Robot.oi.xboxController_Operator);
     	out = Robot.oi.xboxButton(RobotMap.XBOX_BUTTON_RIGHT_BUMPER_OPERATOR, Robot.oi.xboxController_Operator);
     	
-    	Robot.rollerclaw.clawOpenClose(openClose);
-    	Robot.rollerclaw.clawUpDown(upDown);
+    	Robot.infeed.clawOpenClose(openClose);
+    	Robot.infeed.clawUpDown(upDown);
     	
     	if(in == true)
     	{
-    		Robot.rollerclaw.feedInOut(1);
+    		Robot.infeed.feedInOut(1);
     	}
     	else if(out == true)
     	{
-    		Robot.rollerclaw.feedInOut(-1);
+    		Robot.infeed.feedInOut(-1);
     	}
     	else
     	{
-    		Robot.rollerclaw.feedInOut(0);
+    		Robot.infeed.feedInOut(0);
     	}
     }
 
