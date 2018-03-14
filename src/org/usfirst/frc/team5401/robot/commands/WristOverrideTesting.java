@@ -10,12 +10,10 @@ import edu.wpi.first.wpilibj.command.Command;
 public class WristOverrideTesting extends Command {
 	
 	boolean inOrOut;
-	String  pneumaticName;
 	
-    public WristOverrideTesting(String name, boolean inOrOutInput) {
+    public WristOverrideTesting(boolean inOrOutInput) {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.armwrist);
-        pneumaticName = name;
         inOrOut = inOrOutInput;
     }
 

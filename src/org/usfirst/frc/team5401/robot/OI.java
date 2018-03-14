@@ -62,10 +62,8 @@ public class OI {
 		xboxY_Operator.whenPressed(new ArmPIDMove(RobotMap.SCALE_HIGH));
 		xboxX_Operator.whenPressed(new ArmPIDMove(RobotMap.SCALE_MID));
 		
-		xboxX_Tester.whenPressed(new WristOverrideTesting("Long", false));//Out
-		xboxX_Tester.whenReleased(new WristOverrideTesting("Long", true));//In
-		xboxY_Tester.whenPressed(new WristOverrideTesting("Short", false));//Out
-		xboxY_Tester.whenReleased(new WristOverrideTesting("Short", true));//In
+		xboxX_Tester.whenPressed(new WristOverrideTesting(false));//Out
+		xboxX_Tester.whenReleased(new WristOverrideTesting(true));//In
 		
 	}
 	
