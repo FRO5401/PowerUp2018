@@ -93,16 +93,6 @@ public class ArmWrist extends Subsystem {
     		//Wrist will be extending forward
     	}
     }
-    
-    public void checkWrist(){
-    	//You do this as you do not need to create an Encoder Object for VP Encoders with the TalonSRX
-    	if(armTalon.getSensorCollection().getQuadraturePosition() > RobotMap.MAX_ARM_ANGLE_BEFORE_SOLENOIDS_FIRE){
-    		wristMoveLong.set(DoubleSolenoid.Value.kForward);
-    	}
-    	else if(armTalon.getSensorCollection().getQuadraturePosition() < RobotMap.MAX_ARM_ANGLE_BEFORE_SOLENOIDS_FIRE){
-    		wristMoveLong.set(DoubleSolenoid.Value.kReverse);
-    	}
-    }
 
 	public void setBrake(boolean brakeSet){
 		//Controlled by either override or reaching end of PID setpoint

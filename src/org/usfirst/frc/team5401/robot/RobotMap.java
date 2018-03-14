@@ -41,7 +41,15 @@ public class RobotMap {
 	public static final double ARM_OVERRIDE_PRECISION = 0.5;
 	public static final int ARM_TALON_CHANNEL = 0;
 	public static final double ANGLE_PER_PULSE = .0071180006;
-	
+
+	//Setpoints
+	// This is in Degrees
+	//Floor setpoints are angles relative to the zero position, which is the position that the arm starts in. Also the lowest arm position possible 
+	public static final double FLOOR_SETPOINT = 5.0;  
+	public static final double SET_SWITCH_PORTAL_SETPOINT = 31.0; 
+	public static final double SCALE_HIGH = 97.0;
+	public static final double SCALE_MID = 76.0;
+
 	//Constants for RollerClaw
 	public static final double ROLLER_SPEED = 0.75;
 	
@@ -55,13 +63,11 @@ public class RobotMap {
 	public static final double ANGLE_THRESHOLD = 0.5; //in degrees
 	public static final double AUTO_TURN_SPEED = 0.95;
 	public static final double AUTO_TURN_PRECISION = 0.75;
-	
-	//This is for Angles
-	public static final double MAX_ARM_ANGLE_BEFORE_SOLENOIDS_FIRE = 89;
-	
-	
-	//This is for OI
-	public static final int ARM_POSITION_DESIRED   = 0;
+
+	//Constants for OI
+	public static final double AXIS_THRESHOLD = 0.7;
+
+	//Positions for OI
 	public static final int XBOX_CONTROLLER_DRIVER = 0;
 	public static final int XBOX_CONTROLLER_OPERATOR = 1;
 	public static final int XBOX_CONTROLLER_TESTER = 2;
@@ -73,9 +79,8 @@ public class RobotMap {
 	public static final int XBOX_AXIS_RIGHT_X = 4;
 	public static final int XBOX_AXIS_RIGHT_Y = 5;
 	
-	public static final double AXIS_THRESHOLD = 0.7;
 	
-	//OI Buttons
+	//OI Buttons Position
 	public static final int XBOX_BUTTON_A_DRIVER	   		 = 1;
 	public static final int XBOX_BUTTON_B_DRIVER		     = 2;
 	public static final int XBOX_BUTTON_X_DRIVER		     = 3;
@@ -111,19 +116,20 @@ public class RobotMap {
 	 
 	//Motors
 		//Drive Motors
-
 	public static final int DRIVE_RIGHT_MOTOR_1 = 0;
 	public static final int DRIVE_RIGHT_MOTOR_2 = 1;
 	public static final int DRIVE_LEFT_MOTOR_1 	= 2;
 	public static final int DRIVE_LEFT_MOTOR_2 	= 3;	
 
-	
-	//Climber Motor
-	//TODO Subject to change. Based on TalonSRX position on dashboard
+		//Climber Motor
 	public static final int CLIMBER_MOTOR_TOP = 6;
 	public static final int CLIMBER_MOTOR_BOTTOM = 7;
 	public static final double CLIMB_PRECISION = 1;
 
+		//RollerClaw Motors
+	public static final int ROLLER_CLAW_ROLLER_LEFT    = 4;
+	public static final int ROLLER_CLAW_ROLLER_RIGHT	= 9;
+	
 	//PCM ID
 	public static final int PCM_ID 				= 0;
 	public static final int PCM_ID2 			= 1;
@@ -146,27 +152,14 @@ public class RobotMap {
 	public static final int CLIMBER_PLATFORM_OUT	=	0;//Currently 0 because physically not allocated and commented out in code
 	
 	//DIO Sensors
-
 	public static final int DRIVE_ENC_LEFT_A 	= 2;
 	public static final int DRIVE_ENC_LEFT_B 	= 3;
 	public static final int DRIVE_ENC_RIGHT_A 	= 0;
 	public static final int DRIVE_ENC_RIGHT_B 	= 1;
 
-	public static final int ROLLER_CLAW_LIMIT_SWITCH   = 0;
-  
-	//RollerClaw
-	public static final int ROLLER_CLAW_ROLLER_LEFT    = 4;
-	public static final int ROLLER_CLAW_ROLLER_RIGHT	= 9;
-	
-	//Setpoints
-	// This is in Degrees
-	//Floor setpoints are angles relative to the zero position, which is the position that the arm starts in. Also the lowest arm position possible 
-	public static final double FLOOR_SETPOINT = 5.0;  
-	public static final double SET_SWITCH_PORTAL_SETPOINT = 31.0; 
-	public static final double SCALE_HIGH = 97.0;
-	public static final double SCALE_MID = 76.0;
+	public static final int ROLLER_CLAW_LIMIT_SWITCH   = 0;//Currently 0 because physically not allocated and commented out in code
 
 	public static final int CLIMBER_SWITCH_TOP		= 0;
 	public static final int CLIMBER_SWITCH_BOTTOM 	= 0;
-	
+
 }
