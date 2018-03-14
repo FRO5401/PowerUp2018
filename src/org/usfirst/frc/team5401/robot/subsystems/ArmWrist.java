@@ -20,15 +20,11 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 public class ArmWrist extends Subsystem {
 
 	private DoubleSolenoid wristMoveLong;
-	private DoubleSolenoid wristMoveShort;
 	private Solenoid brake;
-	//Encoder not needed for TalonSRX due to VS Encoders
+	//Encoder not needed for TalonSRX due to Versa Planetary Encoders
 	private TalonSRX armTalon;
-	//private AnalogPotentiometer armPot; Probably will not be used
-
 
 	private double armAngle;
-	private boolean armPidEnabled;
 	private int loopIndex;
 	private int slotIndex;
 	
@@ -81,42 +77,29 @@ public class ArmWrist extends Subsystem {
         armTalon.config_kD(slotIndex, RobotMap.ARM_kD, RobotMap.TIMEOUT_LIMIT_IN_Ms);        
 	}
 	
-//    @Override
 	public void initDefaultCommand() {
         //Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
     
     public void longWristUpDown(int longWristDirection){
-    	if(longWristDirection > 0.2) { //TODO What is this and why is the number hard coded?
+    	if(longWristDirection > 0) {
     		wristMoveLong.set(DoubleSolenoid.Value.kForward);
-    		//Long wrist will be extending outwards
+    		//Long wrist will be going back in
     	} 
-    	else if(longWristDirection < -0.2) {
+    	else if(longWristDirection < 0) {
     		wristMoveLong.set(DoubleSolenoid.Value.kReverse);
-    		//Wrist will be coming back inward
+    		//Wrist will be extending forward
     	}
     }
     
-    public void shortWristUpDown(int shortWristDirection){
-    	if(shortWristDirection > 0.2) {
-    		wristMoveShort.set(DoubleSolenoid.Value.kForward);
-    		//Short wrist will be extending outwards
-    	} 
-    	else if(shortWristDirection < -0.2) {
-    		wristMoveShort.set(DoubleSolenoid.Value.kReverse);
-    		//Wrist will be coming back inward
-    	}
-    }
     public void checkWrist(){
     	//You do this as you do not need to create an Encoder Object for VP Encoders with the TalonSRX
     	if(armTalon.getSensorCollection().getQuadraturePosition() > RobotMap.MAX_ARM_ANGLE_BEFORE_SOLENOIDS_FIRE){
     		wristMoveLong.set(DoubleSolenoid.Value.kForward);
-//    		wristMoveShort.set(DoubleSolenoid.Value.kForward);
     	}
     	else if(armTalon.getSensorCollection().getQuadraturePosition() < RobotMap.MAX_ARM_ANGLE_BEFORE_SOLENOIDS_FIRE){
     		wristMoveLong.set(DoubleSolenoid.Value.kReverse);
-//    		wristMoveShort.set(DoubleSolenoid.Value.kReverse);
     	}
     }
 
@@ -195,24 +178,16 @@ public class ArmWrist extends Subsystem {
 	public void getWristAngle(){
 		
 		if(getArmAngle() <= 34)/*Ground and or Reset*/{
-			//Forward is Currently In and Reverse is Out (Don't know why)
+			//Forward (in code) is Currently (physically) In and Reverse is Out (Don't know why)
 			wristMoveLong.set(DoubleSolenoid.Value.kForward);
-    		wristMoveShort.set(DoubleSolenoid.Value.kReverse);
-			
 		} else if(getArmAngle() >= 34  && getArmAngle() <= 60)/*Portal/Switch*/{
 			wristMoveLong.set(DoubleSolenoid.Value.kForward);
-    		wristMoveShort.set(DoubleSolenoid.Value.kReverse);
-			
 		}else if(getArmAngle() >= 60 && getArmAngle() <= 105)/*ScaleMidAndLow*/{
-			wristMoveLong.set(DoubleSolenoid.Value.kForward);
-    		wristMoveShort.set(DoubleSolenoid.Value.kReverse);
-			
+			wristMoveLong.set(DoubleSolenoid.Value.kForward);	
 		}else if(getArmAngle() >= 105 && getArmAngle() <= 122)/*ScaleHigh*/{
 			wristMoveLong.set(DoubleSolenoid.Value.kReverse);
-    		wristMoveShort.set(DoubleSolenoid.Value.kReverse);
 		}else{
 			wristMoveLong.set(DoubleSolenoid.Value.kReverse);
-			wristMoveShort.set(DoubleSolenoid.Value.kReverse);
 		}
 	}
 	
