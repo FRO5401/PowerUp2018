@@ -24,9 +24,8 @@ public class Robot extends IterativeRobot {
 	//OI has to be last
 	public static ArmWrist armwrist;
 	public static Climber climber;
-	public static DriveBase drivebase;
-	public static RollerClaw rollerclaw;
 	public static CompressorSubsystem compressorsubsystem;
+	public static DriveBase drivebase;
 	public static DumbCamera dumbcamera;
 	public static RollerClaw rollerclaw;
 	public static OI oi;
@@ -44,11 +43,11 @@ public class Robot extends IterativeRobot {
 		//OI has to be last
 		armwrist = new ArmWrist();
 		climber = new Climber();
-		drivebase = new DriveBase();
-		rollerclaw = new RollerClaw();
 		compressorsubsystem = new CompressorSubsystem();
+		drivebase = new DriveBase();
 		dumbcamera = new DumbCamera();
-		rollerClaw = new RollerClaw();
+		rollerclaw = new RollerClaw();
+		
 		oi = new OI();
 		
 		//chooser.addDefault("Default Auto", new ExampleCommand());

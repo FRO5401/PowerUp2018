@@ -9,7 +9,7 @@ package org.usfirst.frc.team5401.robot;
 public class RobotMap {
 	
 	//Global Constants that are not locations
-	//This is for DriveBase
+	//Constants for DriveBase
 	public static final double LOW_GEAR_LEFT_DPP = .149926;//-.149926
 	public static final double LOW_GEAR_RIGHT_DPP = .149926;//-.15345
 	public static final double HIGH_GEAR_LEFT_DPP = 0;
@@ -27,34 +27,31 @@ public class RobotMap {
 	public static final double OUTPUT_RANGE = 0.6;
 	
 
-	//This is for Arm
+	//Constants for ArmWrist
 	public static final double ARM_kP = 0.5;
 	public static final double ARM_kI = 0.002;
 	public static final double ARM_kD = 0;
 	public static final double ARM_kF = 0;
 	public static final double ARM_PEAK_OUTPUT = 0.75;
 	public static final double ARM_NOM_OUTPUT = 0;
-	
 	public static final double ARM_RANGE = 0;
 	public static final int TIMEOUT_LIMIT_IN_Ms = 10;//Might change. 10 is default in sample code
 	public static final double ARM_THRESHOLD_FOR_PID_IN_DEGREES = 1.0;
-	public static final double ARM_OVERRIDE_JOYSTICK_THRESHOLD = 0.2;
+	public static final double ARM_OVERRIDE_JOYSTICK_THRESHOLD = 0.2; 
 	public static final double ARM_OVERRIDE_PRECISION = 0.5;
 	public static final int ARM_TALON_CHANNEL = 0;
 	public static final double ANGLE_PER_PULSE = .0071180006;
 	
-	//This is for RollerClaw
+	//Constants for RollerClaw
 	public static final double ROLLER_SPEED = 0.75;
 	
-	//This is for XboxMove
-	public static final double MINIMUM_VELOCITY_FOR_HIGH_GEAR = 0; //Experimentally Determined, REMEMBER inches per second
-	public static final double MAXIMUM_VELOCITY_FOR_LOW_GEAR = 0;
+	//Constants for XboxMove
 	public static final double DRIVE_SENSITIVITY_PRECISE = 0.5;
 	public static final double DRIVE_SENSITIVITY_DEFAULT = 1;
 	public static final double DRIVE_THRESHHOLD = 0.2;
 	public static final double DRIVE_SPIN_SENSITIVITY = 1;
 	
-	//This is for AutoTurnAngle
+	//Constants for AutoTurnAngle
 	public static final double ANGLE_THRESHOLD = 0.5; //in degrees
 	public static final double AUTO_TURN_SPEED = 0.95;
 	public static final double AUTO_TURN_PRECISION = 0.75;
@@ -158,8 +155,8 @@ public class RobotMap {
 	public static final int ROLLER_CLAW_LIMIT_SWITCH   = 0;
   
 	//RollerClaw
-	public static final int ROLLER_CLAW_ROLLERS    = 4;
-
+	public static final int ROLLER_CLAW_ROLLER_LEFT    = 4;
+	public static final int ROLLER_CLAW_ROLLER_RIGHT	= 9;
 	
 	//Setpoints
 	// This is in Degrees
