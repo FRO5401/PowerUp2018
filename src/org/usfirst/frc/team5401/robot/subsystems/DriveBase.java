@@ -70,6 +70,12 @@ public class DriveBase extends Subsystem {
 		rightPID1 	= new PIDController(RobotMap.DRIVE_P,RobotMap.DRIVE_I,RobotMap.DRIVE_D, rightEncoder, rightDrive1);
 		rightPID2 	= new PIDController(RobotMap.DRIVE_P,RobotMap.DRIVE_I,RobotMap.DRIVE_D, rightEncoder, rightDrive2);
 		
+		leftPID1.setOutputRange(-RobotMap.OUTPUT_RANGE, RobotMap.OUTPUT_RANGE);
+		leftPID2.setOutputRange(-RobotMap.OUTPUT_RANGE, RobotMap.OUTPUT_RANGE);
+		rightPID1.setOutputRange(-RobotMap.OUTPUT_RANGE, RobotMap.OUTPUT_RANGE);
+		rightPID2.setOutputRange(-RobotMap.OUTPUT_RANGE, RobotMap.OUTPUT_RANGE);
+		
+		
 		navxGyro = new AHRS(I2C.Port.kMXP);
 		navxGyro.reset();
 
