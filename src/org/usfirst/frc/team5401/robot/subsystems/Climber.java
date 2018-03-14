@@ -34,8 +34,8 @@ public class Climber extends Subsystem {
 	public Climber(){
 //		climberStablizer    = new Solenoid(RobotMap.CLIMBER_STABLIZER);
 //		climberPlatforms      = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.CLIMBER_PLATFORM_IN, RobotMap.CLIMBER_PLATFORM_OUT);
-//		climberSwitchTop    = new DigitalInput (RobotMap.CLIMBER_SWITCH_TOP);
-//		climberSwitchBottom = new DigitalInput (RobotMap.CLIMBER_SWITCH_BOTTOM);
+		climberSwitchTop    = new DigitalInput (RobotMap.CLIMBER_SWITCH_TOP);
+		climberSwitchBottom = new DigitalInput (RobotMap.CLIMBER_SWITCH_BOTTOM);
 		climberMotorTop = new VictorSP(RobotMap.CLIMBER_MOTOR_TOP);
 		climberMotorBottom = new VictorSP(RobotMap.CLIMBER_MOTOR_BOTTOM);
 		
@@ -55,7 +55,7 @@ public class Climber extends Subsystem {
 		stablizerEnabled = stablizerState;
 	}
 	
-	//true is out, f is in
+	//true is out, false is in
 	public void changeClimberPlatforms(boolean platformState){
 		if(platformState == true)
 		{
@@ -87,11 +87,13 @@ public class Climber extends Subsystem {
 			input = 0;
 		}
 				
-//		climberMotor.set(ControlMode.PercentOutput, (input * RobotMap.CLIMB_PRECISION));
+		climberMotorTop.set((input * RobotMap.CLIMB_PRECISION));
+		climberMotorBottom.set((input * RobotMap.CLIMB_PRECISION));
 	}
 	
 	public void stopClimber(){
-//		climberMotor.set(ControlMode.PercentOutput, 0);
+		climberMotorTop.set(0);
+		climberMotorBottom.set(0);
 	}
 }
 
