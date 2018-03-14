@@ -15,13 +15,14 @@ public class RollerClaw extends Subsystem {
 	//Solenoid Subject to change, depending on stock
 	private DoubleSolenoid clawOpenClose;
 	private DoubleSolenoid clawUpDown;
-	private VictorSP clawRollers;
+	private VictorSP clawRollerLeft;
+	private VictorSP clawRollerRight;
 
     public RollerClaw(){
     	clawOpenClose = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.ROLLER_CLAW_OPEN, RobotMap.ROLLER_CLAW_CLOSE);
     	clawUpDown = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.ROLLER_CLAW_UP, RobotMap.ROLLER_CLAW_DOWN);
-    	clawRollers = new VictorSP(RobotMap.ROLLER_CLAW_ROLLERS);
-    	
+    	clawRollerLeft = new VictorSP(RobotMap.ROLLER_CLAW_ROLLER_LEFT);
+    	clawRollerRight = new VictorSP(RobotMap.ROLLER_CLAW_ROLLER_RIGHT);
     }
     
     public void clawOpenClose(int horizDirection){
@@ -46,18 +47,22 @@ public class RollerClaw extends Subsystem {
     	}
     }
     
-    public void feedIn(boolean feederDirection){
-    	if(feederDirection);
-    	int desiredDirection = 1;
-    	clawRollers.set(RobotMap.ROLLER_SPEED * desiredDirection);
-    	SmartDashboard.putNumber("Feeder Direction: ", 1);
-    }
-    
-    public void feedOut(boolean feederDirection){
-    	if(feederDirection);
-    	int desiredDirection = -1;
-    	clawRollers.set(RobotMap.ROLLER_SPEED * desiredDirection);
-    	SmartDashboard.putNumber("Feeder Direction: ", -1);
+    public void feedInOut(int feederDirection){
+    	if(feederDirection == 1)
+    	{
+    		clawRollerLeft.set(RobotMap.ROLLER_SPEED * feederDirection);
+    		clawRollerRight.set(-RobotMap.ROLLER_SPEED * feederDirection);
+    	}
+    	else if(feederDirection == -1)
+    	{
+    		clawRollerLeft.set(RobotMap.ROLLER_SPEED * feederDirection);
+    		clawRollerRight.set(-RobotMap.ROLLER_SPEED * feederDirection);
+       	}
+    	else
+    	{
+    		clawRollerLeft.set(0);
+    		clawRollerRight.set(0);
+    	}
     }
 
     public void initDefaultCommand() {

@@ -17,7 +17,7 @@ public class RollerClawControl extends Command {
 
     public RollerClawControl() {
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.rollerClaw);
+        requires(Robot.rollerclaw);
         
         openClose = 0;
         upDown = 0;
@@ -36,10 +36,21 @@ public class RollerClawControl extends Command {
     	in = Robot.oi.xboxButton(RobotMap.XBOX_BUTTON_LEFT_BUMPER_OPERATOR, Robot.oi.xboxController_Operator);
     	out = Robot.oi.xboxButton(RobotMap.XBOX_BUTTON_RIGHT_BUMPER_OPERATOR, Robot.oi.xboxController_Operator);
     	
-    	Robot.rollerClaw.clawOpenClose(openClose);
-    	Robot.rollerClaw.clawUpDown(upDown);
-    	Robot.rollerClaw.feedIn(in);
-    	Robot.rollerClaw.feedOut(out);
+    	Robot.rollerclaw.clawOpenClose(openClose);
+    	Robot.rollerclaw.clawUpDown(upDown);
+    	
+    	if(in == true)
+    	{
+    		Robot.rollerclaw.feedInOut(1);
+    	}
+    	else if(out == true)
+    	{
+    		Robot.rollerclaw.feedInOut(-1);
+    	}
+    	else
+    	{
+    		Robot.rollerclaw.feedInOut(0);
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()

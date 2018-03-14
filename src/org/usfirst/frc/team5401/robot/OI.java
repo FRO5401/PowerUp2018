@@ -84,6 +84,7 @@ public class OI {
 	
 	public int xboxAxisAsDigitalInput(int axisInput, Joystick userMap)
 	{
+		//if a  joystick on the xbox controller goes up, the output is negative
 		if(userMap.getRawAxis(axisInput) > RobotMap.AXIS_THRESHOLD)
 		{
 			return 1;

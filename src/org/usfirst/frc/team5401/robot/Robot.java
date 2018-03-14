@@ -28,7 +28,7 @@ public class Robot extends IterativeRobot {
 	public static RollerClaw rollerclaw;
 	public static CompressorSubsystem compressorsubsystem;
 	public static DumbCamera dumbcamera;
-	public static RollerClaw rollerClaw;
+	public static RollerClaw rollerclaw;
 	public static OI oi;
 	
 
