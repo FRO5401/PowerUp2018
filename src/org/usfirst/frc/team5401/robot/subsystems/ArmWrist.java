@@ -24,12 +24,15 @@ public class ArmWrist extends Subsystem {
 	//Encoder not needed for TalonSRX due to Versa Planetary Encoders
 	private TalonSRX armTalon;
 
+	private boolean armPidEnabled;
+	
 	private double armAngle;
 	private int loopIndex;
 	private int slotIndex;
 	
 	public ArmWrist(){
-
+		armPidEnabled = false;
+		
 		loopIndex = 0;
 		slotIndex = 0;
 		//This is for the ConfigSelectedFeedbackSensor whose second parameter is PID index, this loop index is the ACTUAL parameter of PID index and is zero for a primary closed loop, or one per cascade coasting. 
@@ -42,8 +45,6 @@ public class ArmWrist extends Subsystem {
 		brake = new Solenoid(RobotMap.PCM_ID, RobotMap.ARM_BRAKE);
 		
 		wristMoveLong = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.WRIST_MOVE_LONG_FORWARD, RobotMap.WRIST_MOVE_LONG_BACKWARD);
-		wristMoveShort = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.WRIST_MOVE_SHORT_FORWARD, RobotMap.WRIST_MOVE_SHORT_BACKWARD);
-
 
 		/******REPEAT THE FOLLOWING LINE TO MAKE SET POINTS*********/
 
@@ -158,7 +159,6 @@ public class ArmWrist extends Subsystem {
 	}
 	
 	public void armInterrupted(){
-		
 		armPidEnabled = false;
 		brake.set(false);
 		armTalon.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Brake);
@@ -175,10 +175,9 @@ public class ArmWrist extends Subsystem {
 		return armAngle;	
 	}
 	
-	public void getWristAngle(){
-		
+	public void adjustWristToAngle(){
+		//Forward (in code) is Currently (physically) In and Reverse is Out (Don't know why)
 		if(getArmAngle() <= 34)/*Ground and or Reset*/{
-			//Forward (in code) is Currently (physically) In and Reverse is Out (Don't know why)
 			wristMoveLong.set(DoubleSolenoid.Value.kForward);
 		} else if(getArmAngle() >= 34  && getArmAngle() <= 60)/*Portal/Switch*/{
 			wristMoveLong.set(DoubleSolenoid.Value.kForward);

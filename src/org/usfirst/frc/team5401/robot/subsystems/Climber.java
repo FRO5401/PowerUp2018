@@ -51,7 +51,7 @@ public class Climber extends Subsystem {
 	
 	//Stablizer
 	public void changeStablizer(boolean stablizerState){
-		climberStablizer.set(stablizerState);
+//		climberStablizer.set(stablizerState);
 		stablizerEnabled = stablizerState;
 	}
 	

@@ -9,9 +9,9 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class ClimberPlatformChangePosition extends Command {
 	
-	public int climberPlatformState;
+	public boolean climberPlatformState;
 	
-    public ClimberPlatformChangePosition(int climberPlatformStateInput) {
+    public ClimberPlatformChangePosition(boolean climberPlatformStateInput) {
     	requires(Robot.climber);
     	climberPlatformState = climberPlatformStateInput;
     }

@@ -21,27 +21,14 @@ public class WristOverrideTesting extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.armwrist.longWristUpDown(1);
-    	if(pneumaticName.equals("Long"))
-    	{
-    		if(inOrOut == true)
-    		{
-    			Robot.armwrist.longWristUpDown(1);
-    		}
-    		else if(inOrOut == false)
-    		{
-    			Robot.armwrist.longWristUpDown(-1);	
-    		}
-    	}
-    	else if(pneumaticName.equals("Short"))
-    	{    		
-    		if(inOrOut == true)
-    		{
-    			Robot.armwrist.shortWristUpDown(1);
-    		}
-    		else if(inOrOut == false){	
-    			Robot.armwrist.shortWristUpDown(-1);
-    		}
+    	if(inOrOut == true)
+    	{	
+   			Robot.armwrist.longWristUpDown(1);
+   		}
+   		else if(inOrOut == false)
+   		{
+   		
+    		Robot.armwrist.longWristUpDown(-1);	
     	}
     }
     // Called repeatedly when this Command is scheduled to run
