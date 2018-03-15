@@ -70,10 +70,15 @@ public class DriveBase extends Subsystem {
 		rightPID1 	= new PIDController(RobotMap.DRIVE_P,RobotMap.DRIVE_I,RobotMap.DRIVE_D, rightEncoder, rightDrive1);
 		rightPID2 	= new PIDController(RobotMap.DRIVE_P,RobotMap.DRIVE_I,RobotMap.DRIVE_D, rightEncoder, rightDrive2);
 		
-		leftPID1.setOutputRange(-RobotMap.OUTPUT_RANGE, RobotMap.OUTPUT_RANGE);
-		leftPID2.setOutputRange(-RobotMap.OUTPUT_RANGE, RobotMap.OUTPUT_RANGE);
-		rightPID1.setOutputRange(-RobotMap.OUTPUT_RANGE, RobotMap.OUTPUT_RANGE);
-		rightPID2.setOutputRange(-RobotMap.OUTPUT_RANGE, RobotMap.OUTPUT_RANGE);
+		leftPID1.setAbsoluteTolerance(RobotMap.DRIVE_PID_ABSOLUTE_TOLERANCE);
+		leftPID2.setAbsoluteTolerance(RobotMap.DRIVE_PID_ABSOLUTE_TOLERANCE);
+		rightPID1.setAbsoluteTolerance(RobotMap.DRIVE_PID_ABSOLUTE_TOLERANCE);
+		rightPID2.setAbsoluteTolerance(RobotMap.DRIVE_PID_ABSOLUTE_TOLERANCE);
+		
+		leftPID1.setOutputRange(-RobotMap.DRIVE_OUTPUT_RANGE, RobotMap.DRIVE_OUTPUT_RANGE);
+		leftPID2.setOutputRange(-RobotMap.DRIVE_OUTPUT_RANGE, RobotMap.DRIVE_OUTPUT_RANGE);
+		rightPID1.setOutputRange(-RobotMap.DRIVE_OUTPUT_RANGE, RobotMap.DRIVE_OUTPUT_RANGE);
+		rightPID2.setOutputRange(-RobotMap.DRIVE_OUTPUT_RANGE, RobotMap.DRIVE_OUTPUT_RANGE);
 		
 		
 		navxGyro = new AHRS(I2C.Port.kMXP);
@@ -90,8 +95,11 @@ public class DriveBase extends Subsystem {
 		rightTurnController.setAbsoluteTolerance(RobotMap.ANGLE_THRESHOLD);
 		//TODO We should probably also setContinuous
 		
-		leftTurnController.setOutputRange(-RobotMap.OUTPUT_RANGE, RobotMap.OUTPUT_RANGE);
-		rightTurnController.setOutputRange(-RobotMap.OUTPUT_RANGE, RobotMap.OUTPUT_RANGE);
+//		leftTurnController.setContinuous(true);
+//		rightTurnController.setContinuous(true);  //XXX Crashes robot code
+		
+		leftTurnController.setOutputRange(-RobotMap.TURN_OUTPUT_RANGE, RobotMap.TURN_OUTPUT_RANGE);
+		rightTurnController.setOutputRange(-RobotMap.TURN_OUTPUT_RANGE, RobotMap.TURN_OUTPUT_RANGE);
 		
     	SmartDashboard.putNumber("Left Enc Raw" , leftEncoder.get());
 		SmartDashboard.putNumber("Right Enc Raw", rightEncoder.get());
@@ -108,6 +116,11 @@ public class DriveBase extends Subsystem {
 		SmartDashboard.putNumber("Right Pid 1", rightPID1.getError());
 		SmartDashboard.putNumber("Left Pid 2", leftPID2.getError());
 		SmartDashboard.putNumber("Right Pid 2", rightPID2.getError());
+		
+		SmartDashboard.putBoolean("Left Pid 1 onTarget", leftPID1.onTarget());
+		SmartDashboard.putBoolean("Right Pid 1 onTarget", rightPID1.onTarget());
+		SmartDashboard.putBoolean("Left Pid 2 onTarget", leftPID2.onTarget());
+		SmartDashboard.putBoolean("Right Pid 2 onTarget", rightPID2.onTarget());
 		
 	}
     @Override
@@ -247,6 +260,7 @@ public class DriveBase extends Subsystem {
     	leftPID2.setSetpoint(setpoint);
     	rightPID1.setSetpoint(-setpoint);
     	rightPID2.setSetpoint(-setpoint);
+
     }
     
     public double getDriveStraightSetpoint(double leftOrRight)	{
