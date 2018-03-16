@@ -22,7 +22,6 @@ public class AutoPIDDrive extends Command {
     }
 
     // Called just before this Command runs the first time
-    @Override
 	protected void initialize() {
     	Robot.drivebase.shiftGearHighToLow();
     	Robot.drivebase.encoderReset();
@@ -36,7 +35,7 @@ public class AutoPIDDrive extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
 	protected void execute() {
-    	System.out.println("AutoPIDDrive Exe");
+    	//System.out.println("AutoPIDDrive Exe");
     	SmartDashboard.putNumber("navx Angle", Robot.drivebase.getGyroAngle());
     	SmartDashboard.putNumber("Right SetPOINT", Robot.drivebase.getDriveStraightSetpoint(2));
     	SmartDashboard.putNumber("LEFT SetPOINT", Robot.drivebase.getDriveStraightSetpoint(1));

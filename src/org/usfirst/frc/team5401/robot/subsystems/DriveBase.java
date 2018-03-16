@@ -117,6 +117,12 @@ public class DriveBase extends Subsystem {
 		SmartDashboard.putNumber("Left Pid 2", leftPID2.getError());
 		SmartDashboard.putNumber("Right Pid 2", rightPID2.getError());
 		
+		SmartDashboard.putBoolean("leftPID1 Enabled", leftPID1.isEnabled());
+		SmartDashboard.putBoolean("leftPID2 Enabled", leftPID2.isEnabled());
+		SmartDashboard.putBoolean("rigthPID1 Enabled", rightPID1.isEnabled());
+		SmartDashboard.putBoolean("rigthPID2 Enabled", rightPID2.isEnabled());
+		
+		
 		SmartDashboard.putBoolean("Left Pid 1 onTarget", leftPID1.onTarget());
 		SmartDashboard.putBoolean("Right Pid 1 onTarget", rightPID1.onTarget());
 		SmartDashboard.putBoolean("Left Pid 2 onTarget", leftPID2.onTarget());
@@ -260,7 +266,6 @@ public class DriveBase extends Subsystem {
     	leftPID2.setSetpoint(setpoint);
     	rightPID1.setSetpoint(-setpoint);
     	rightPID2.setSetpoint(-setpoint);
-
     }
     
     public double getDriveStraightSetpoint(double leftOrRight)	{

@@ -10,11 +10,12 @@ public class RobotMap {
 	
 	//Global Constants that are not locations
 	//This is for DriveBase
-	public static final double LOW_GEAR_LEFT_DPP = .149926;//-.149926
-	public static final double LOW_GEAR_RIGHT_DPP = .149926;//-.15345
+	public static final double LOW_GEAR_LEFT_DPP = -.149926;//-.149926
+	public static final double LOW_GEAR_RIGHT_DPP = -.149926;//-.15345
 	public static final double HIGH_GEAR_LEFT_DPP = 0;
 	public static final double HIGH_GEAR_RIGHT_DPP = 0;
-	public static final double DRIVE_PID_ABSOLUTE_TOLERANCE = 0.5; //threshold
+	public static final double DRIVE_PID_ABSOLUTE_TOLERANCE = 1.0; //threshold
+	public static final double DRIVE_OUTPUT_RANGE = 0.6;
 	
 	public static final double DRIVE_P = 0.11;
 	public static final double DRIVE_I = 0;
@@ -24,7 +25,7 @@ public class RobotMap {
 	public static final double TURN_I = 0.001;
 	public static final double TURN_D = 0;
 	public static final double TURN_F = 0;
-	public static final double OUTPUT_RANGE = 0.6;
+	public static final double TURN_OUTPUT_RANGE = 0.6;
 
 	//This is for Arm
 	public static final double ARM_kP = 0.5;
@@ -152,10 +153,10 @@ public class RobotMap {
 	
 	//DIO Sensors
 
-	public static final int DRIVE_ENC_LEFT_A 	= 2;
-	public static final int DRIVE_ENC_LEFT_B 	= 3;
-	public static final int DRIVE_ENC_RIGHT_A 	= 0;
-	public static final int DRIVE_ENC_RIGHT_B 	= 1;
+	public static final int DRIVE_ENC_LEFT_A 	= 0;
+	public static final int DRIVE_ENC_LEFT_B 	= 1;
+	public static final int DRIVE_ENC_RIGHT_A 	= 2;
+	public static final int DRIVE_ENC_RIGHT_B 	= 3;
 
 	public static final int ROLLER_CLAW_LIMIT_SWITCH   = 0;
   
