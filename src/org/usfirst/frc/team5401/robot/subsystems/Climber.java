@@ -34,8 +34,8 @@ public class Climber extends Subsystem {
 	public Climber(){
 //		climberStablizer    = new Solenoid(RobotMap.CLIMBER_STABLIZER);
 //		climberPlatforms      = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.CLIMBER_PLATFORM_IN, RobotMap.CLIMBER_PLATFORM_OUT);
-		climberSwitchTop    = new DigitalInput (RobotMap.CLIMBER_SWITCH_TOP);
-		climberSwitchBottom = new DigitalInput (RobotMap.CLIMBER_SWITCH_BOTTOM);
+//		climberSwitchTop    = new DigitalInput (RobotMap.CLIMBER_SWITCH_TOP);
+//		climberSwitchBottom = new DigitalInput (RobotMap.CLIMBER_SWITCH_BOTTOM);
 		climberMotorTop = new VictorSP(RobotMap.CLIMBER_MOTOR_TOP);
 		climberMotorBottom = new VictorSP(RobotMap.CLIMBER_MOTOR_BOTTOM);
 		
@@ -68,7 +68,7 @@ public class Climber extends Subsystem {
 		
 	}
 	
-	
+/*	
 	public boolean reportTopClimbSwitch(){
 		SmartDashboard.putBoolean("Climber Top Switch", !(climberSwitchTop.get()));
 		//Switches are all reversed because they default to true and go false when tripped
@@ -81,11 +81,11 @@ public class Climber extends Subsystem {
 		return  !climberSwitchBottom.get();
 		//Above line of code now returns true when limit switch is tripped
 	}
-	
+*/	
 	public void climberStartMotors(double input){
-		if (!(reportTopClimbSwitch() && input > 0 || reportBottomClimbSwitch() && input < 0)){
-			input = 0;
-		}
+//		if (!(reportTopClimbSwitch() && input > 0 || reportBottomClimbSwitch() && input < 0)){
+//			input = 0;
+//		}
 				
 		climberMotorTop.set((input * RobotMap.CLIMB_PRECISION));
 		climberMotorBottom.set((input * RobotMap.CLIMB_PRECISION));
