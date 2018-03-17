@@ -10,6 +10,7 @@ public class ArmPIDMove extends Command {
 
 	private boolean done; 
 	private double setPoint;
+	
 	//Setpoint input in degrees
     public ArmPIDMove(double setPointInput) {
     	

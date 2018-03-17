@@ -46,8 +46,8 @@ public class RobotMap {
 	public static final int ARM_TALON_CHANNEL = 0;
 	public static final double ANGLE_PER_PULSE = .0071180006;
 	
-	//This is for RollerClaw
-	public static final double ROLLER_SPEED = 0.75;
+	//This is for INFEED
+	public static final double INFEED_SPEED = 0.75;
 	
 	//This is for XboxMove
 	public static final double MINIMUM_VELOCITY_FOR_HIGH_GEAR = 0; //Experimentally Determined, REMEMBER inches per second
@@ -138,12 +138,12 @@ public class RobotMap {
 	public static final int DRIVE_SHIFT 		= 0;
 	public static final int WRIST_MOVE_LONG_FORWARD   = 7;
 	public static final int WRIST_MOVE_LONG_BACKWARD  = 3;
-	public static final int WRIST_MOVE_SHORT_FORWARD  = 5;
-	public static final int WRIST_MOVE_SHORT_BACKWARD = 6;
+	public static final int INFEED_UP                 = 5;
+	public static final int INFEED_DOWN               = 6;
 
-	public static final int ARM_BRAKE = 1;
-	public static final int ROLLER_CLAW_SHORT_OUT		= 2;
-	public static final int ROLLER_CLAW_SHORT_IN		= 4;
+	public static final int ARM_BRAKE                  = 1;
+	public static final int INFEED_OPEN		           = 2;
+	public static final int INFEED_CLOSED		       = 4;
 	public static final int ROLLER_CLAW_LONG_OUT		= 0;//Currently 0 because physically not allocated and commented out in code
 	public static final int ROLLER_CLAW_LONG_IN			= 0;//Currently 0 because physically not allocated and commented out in code
 
@@ -161,8 +161,9 @@ public class RobotMap {
 	public static final int ROLLER_CLAW_LIMIT_SWITCH   = 0;
   
 	//RollerClaw
-	public static final int ROLLER_CLAW_TOP_ROLLER    = 4;
-	public static final int ROLLER_CLAW_BOTTOM_ROLLER   = 5;
+	//AS of 3-17-18 not sure on which one goes to which one, however it shouldn't matter
+	public static final int RIGHT_INFEED    = 4;
+	public static final int LEFT_INFEED   = 5;
 
 	
 	//Setpoints

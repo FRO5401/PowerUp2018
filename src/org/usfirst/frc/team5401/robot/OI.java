@@ -69,6 +69,48 @@ public class OI {
 		
 	}
 	
+	public double xboxAxis(double input, Joystick userMap) {
+		return userMap.getRawAxis(input);
+	}	
+
+	//Controller Button
+	public boolean xboxButton(int button, Joystick userMap) {
+		return userMap.getRawButton(button);
+	}
+
+	//DPad
+	public double xboxDPad(Joystick userMap){
+		return userMap.getPOV();
+	}
+	
+	public int xboxAxisAsDigitalInput(int axisInput, Joystick userMap)
+	{
+		if(userMap.getRawAxis(axisInput) > RobotMap.AXIS_THRESHOLD)
+		{
+			return 1;
+		}
+		else if(userMap.getRawAxis(axisInput) < RobotMap.AXIS_THRESHOLD)
+		{
+			return -1;
+		}
+		else
+		{
+			return 0;
+		}
+	}
+	
+	public int getXboxTriggers_Operator(){
+		double left  = xboxController_Operator.getRawAxis(RobotMap.XBOX_AXIS_LEFT_TRIGGER);
+		double right = xboxController_Operator.getRawAxis(RobotMap.XBOX_AXIS_RIGHT_TRIGGER);
+		if (right > .1){ 
+			return 1;
+		} else if (left > .1){//<--left is in
+			return -1;
+		} else {
+			return 0;
+		}
+	}
+	
 	//Controller Axis
 	public double xboxAxis(int input, Joystick userMap) {
 		return userMap.getRawAxis(input);
