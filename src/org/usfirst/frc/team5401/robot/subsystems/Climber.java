@@ -83,8 +83,8 @@ public class Climber extends Subsystem {
 		if (!(reportTopClimbSwitch() && input > 0 || reportBottomClimbSwitch() && input < 0)){
 			input = 0;
 		}
-				
-//		climberMotor.set(ControlMode.PercentOutput, (input * RobotMap.CLIMB_PRECISION));
+		climberMotorTop.set(RobotMap.CLIMB_PRECISION);		
+		climberMotorBottom.set(RobotMap.CLIMB_PRECISION);		
 	}
 	
 	public void stopClimber(){
