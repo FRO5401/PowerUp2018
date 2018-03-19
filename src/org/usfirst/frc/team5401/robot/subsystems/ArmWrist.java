@@ -119,6 +119,8 @@ public class ArmWrist extends Subsystem {
 		brake.set(false);
 		armPidEnabled = false;
 		armTalon.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Brake);
+		armTalon.set(ControlMode.PercentOutput, 0);
+		
 	}
 
 	public void overrideMove(double operatorJoystick){
@@ -144,6 +146,7 @@ public class ArmWrist extends Subsystem {
 	public void overrideStopped(){
 		
 		armTalon.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Brake);
+		armTalon.set(ControlMode.PercentOutput, 0);
 		brake.set(false);
 		armPidEnabled = false;
 	}
@@ -152,7 +155,7 @@ public class ArmWrist extends Subsystem {
 		armPidEnabled = false;
 		brake.set(false);
 		armTalon.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Brake);
-		
+		armTalon.set(ControlMode.PercentOutput, 0);
 	}
 	
 	public double getArmAngle(){
