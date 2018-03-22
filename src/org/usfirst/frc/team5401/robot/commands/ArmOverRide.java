@@ -46,20 +46,20 @@ public class ArmOverRide extends Command {
     	
     	//True means brake is released
     	Robot.armwrist.setBrake(overRideButton);
-       	System.out.println("OverRide Button: " + overRideButton);
+//       	System.out.println("OverRide Button: " + overRideButton);
     	
     	if(overRideButton == true)
     	{	
     		System.out.println("overRideButton is true");
-    		if(overRideMoving > RobotMap.ARM_OVERRIDE_JOYSTICK_THRESHOLD && Robot.armwrist.getArmAngle() < 175)
+    		if(overRideMoving > RobotMap.ARM_OVERRIDE_JOYSTICK_THRESHOLD && Robot.armwrist.getArmAngle() < 150)
     		{
     			Robot.armwrist.overrideMove(overRideMoving);
-    			System.out.println("Arm moving up");
+//    			System.out.println("Arm moving up");
     		}
-    		else if(overRideMoving < RobotMap.ARM_OVERRIDE_JOYSTICK_THRESHOLD && Robot.armwrist.getArmAngle() > 24)
+    		else if(overRideMoving < RobotMap.ARM_OVERRIDE_JOYSTICK_THRESHOLD && Robot.armwrist.getArmAngle() > 0)
     		{
     			Robot.armwrist.overrideMove(overRideMoving);
-    			System.out.println("Arm moving down");
+//    			System.out.println("Arm moving down");
     		}
     		
     		if(Math.abs(overRideMoving) < RobotMap.ARM_OVERRIDE_JOYSTICK_THRESHOLD)

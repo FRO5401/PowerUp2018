@@ -20,7 +20,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 public class ArmWrist extends Subsystem {
 
 	private DoubleSolenoid wristMoveLong;
-	private DoubleSolenoid wristMoveShort;
+//	private DoubleSolenoid wristMoveShort;
 	private Solenoid brake;
 	//Encoder not needed for TalonSRX due to VS Encoders
 	private TalonSRX armTalon;
@@ -46,7 +46,7 @@ public class ArmWrist extends Subsystem {
 		brake = new Solenoid(RobotMap.PCM_ID, RobotMap.ARM_BRAKE);
 		
 		wristMoveLong = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.WRIST_MOVE_LONG_FORWARD, RobotMap.WRIST_MOVE_LONG_BACKWARD);
-		wristMoveShort = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.WRIST_MOVE_SHORT_FORWARD, RobotMap.WRIST_MOVE_SHORT_BACKWARD);
+//		wristMoveShort = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.WRIST_MOVE_SHORT_FORWARD, RobotMap.WRIST_MOVE_SHORT_BACKWARD);
 
 
 		/******REPEAT THE FOLLOWING LINE TO MAKE SET POINTS*********/
@@ -100,11 +100,11 @@ public class ArmWrist extends Subsystem {
     
     public void shortWristUpDown(int shortWristDirection){
     	if(shortWristDirection > 0.2) {
-    		wristMoveShort.set(DoubleSolenoid.Value.kForward);
+//    		wristMoveShort.set(DoubleSolenoid.Value.kForward);
     		//Short wrist will be extending outwards
     	} 
     	else if(shortWristDirection < -0.2) {
-    		wristMoveShort.set(DoubleSolenoid.Value.kReverse);
+//    		wristMoveShort.set(DoubleSolenoid.Value.kReverse);
     		//Wrist will be coming back inward
     	}
     }
@@ -197,22 +197,22 @@ public class ArmWrist extends Subsystem {
 		if(getArmAngle() <= 34)/*Ground and or Reset*/{
 			//Forward is Currently In and Reverse is Out (Don't know why)
 			wristMoveLong.set(DoubleSolenoid.Value.kForward);
-    		wristMoveShort.set(DoubleSolenoid.Value.kReverse);
+//    		wristMoveShort.set(DoubleSolenoid.Value.kReverse);
 			
 		} else if(getArmAngle() >= 34  && getArmAngle() <= 60)/*Portal/Switch*/{
 			wristMoveLong.set(DoubleSolenoid.Value.kForward);
-    		wristMoveShort.set(DoubleSolenoid.Value.kReverse);
+//    		wristMoveShort.set(DoubleSolenoid.Value.kReverse);
 			
 		}else if(getArmAngle() >= 60 && getArmAngle() <= 105)/*ScaleMidAndLow*/{
 			wristMoveLong.set(DoubleSolenoid.Value.kForward);
-    		wristMoveShort.set(DoubleSolenoid.Value.kReverse);
+//    		wristMoveShort.set(DoubleSolenoid.Value.kReverse);
 			
 		}else if(getArmAngle() >= 105 && getArmAngle() <= 122)/*ScaleHigh*/{
 			wristMoveLong.set(DoubleSolenoid.Value.kReverse);
-    		wristMoveShort.set(DoubleSolenoid.Value.kReverse);
+//    		wristMoveShort.set(DoubleSolenoid.Value.kReverse);
 		}else{
 			wristMoveLong.set(DoubleSolenoid.Value.kReverse);
-			wristMoveShort.set(DoubleSolenoid.Value.kReverse);
+//			wristMoveShort.set(DoubleSolenoid.Value.kReverse);
 		}
 	}
 	
