@@ -59,8 +59,11 @@ public class OI {
 
 		xboxA_Operator.whenPressed(new ArmPIDMove(RobotMap.FLOOR_SETPOINT));
 		xboxY_Operator.whenPressed(new ArmPIDMove(RobotMap.SCALE_HIGH));
+		xboxStart_Operator.whenPressed(new ArmPIDMove(RobotMap.CLIMB_POINT));
 		
 		xboxBack_Operator.whenPressed(new WristSwitchState());
+		
+		
 	}
 	
 	//Controller Axis
