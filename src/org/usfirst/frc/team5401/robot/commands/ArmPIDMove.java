@@ -41,8 +41,6 @@ public class ArmPIDMove extends Command {
     	} 
 
     	Robot.armwrist.getArmAngle();
-//    	Robot.armwrist.adjustWristToAngle();
-//    	done = (Robot.armwrist.onTarget(setPoint));
     	
     }
 

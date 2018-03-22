@@ -31,6 +31,7 @@ public class RobotMap {
 	public static final double SET_SWITCH_PORTAL_SETPOINT = 31.0; 
 	public static final double SCALE_HIGH = 97.0;
 	public static final double SCALE_MID = 76.0;
+	public static final double CLIMB_POINT = 150.0;
 
 	//Constants for Climber
 	public static final double CLIMB_PRECISION = 1;

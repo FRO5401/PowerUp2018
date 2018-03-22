@@ -18,6 +18,7 @@ public class Infeed extends Subsystem {
 	private DoubleSolenoid clawUpDown;
 	private VictorSP clawRollerLeft;
 	private VictorSP clawRollerRight;
+	
 
     public Infeed(){
     	clawOpenClose = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.INFEED_OPEN, RobotMap.INFEED_CLOSE);
@@ -51,12 +52,12 @@ public class Infeed extends Subsystem {
     
     public void feedInOut(int feederDirection){
     	if(feederDirection == 1)
-    	{
+    	{	//out
     		clawRollerLeft.set(RobotMap.INFEED_SPEED * feederDirection);
     		clawRollerRight.set(-RobotMap.INFEED_SPEED * feederDirection);
     	}
     	else if(feederDirection == -1)
-    	{
+    	{	//in
     		clawRollerLeft.set(RobotMap.INFEED_SPEED * feederDirection);
     		clawRollerRight.set(-RobotMap.INFEED_SPEED * feederDirection);
        	}

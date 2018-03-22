@@ -7,30 +7,20 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class WristOverrideTesting extends Command {
+public class WristSwitchState extends Command {
 	
-	boolean inOrOut;
-	
-    public WristOverrideTesting(boolean inOrOutInput) {
+    public WristSwitchState() {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.armwrist);
-        inOrOut = inOrOutInput;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	if(inOrOut == true)
-    	{	
-   			Robot.armwrist.longWristUpDown(1);
-   		}
-   		else if(inOrOut == false)
-   		{
-   		
-    		Robot.armwrist.longWristUpDown(-1);	
-    	}
+    	
     }
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	Robot.armwrist.wristInOut();
     }
 
     // Make this return true when this Command no longer needs to run execute()

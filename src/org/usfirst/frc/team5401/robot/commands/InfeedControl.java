@@ -43,11 +43,11 @@ public class InfeedControl extends Command {
     	
     	if(in == true)
     	{
-    		Robot.infeed.feedInOut(1);
+    		Robot.infeed.feedInOut(-1);
     	}
     	else if(out == true)
     	{
-    		Robot.infeed.feedInOut(-1);
+    		Robot.infeed.feedInOut(1);
     	}
     	else
     	{

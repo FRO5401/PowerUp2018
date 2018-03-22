@@ -29,8 +29,11 @@ public class ArmWrist extends Subsystem {
 	private double armAngle;
 	private int loopIndex;
 	private int slotIndex;
+	private boolean wristSolenoidPosition;
 	
 	public ArmWrist(){
+		wristSolenoidPosition = true;
+		
 		armPidEnabled = false;
 		
 		loopIndex = 0;
@@ -83,16 +86,19 @@ public class ArmWrist extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     }
     
-    public void longWristUpDown(int longWristDirection){
-    	if(longWristDirection > 0) {
+	public void wristInOut(){
+    	if(wristSolenoidPosition == true) {
     		wristMoveLong.set(DoubleSolenoid.Value.kForward);
+    		wristSolenoidPosition = false;
     		//Long wrist will be going back in
     	} 
-    	else if(longWristDirection < 0) {
+    	else if(wristSolenoidPosition == false) {
     		wristMoveLong.set(DoubleSolenoid.Value.kReverse);
+    		wristSolenoidPosition = true;
     		//Wrist will be extending forward
     	}
     }
+	
 
 	public void setBrake(boolean brakeSet){
 		//Controlled by either override or reaching end of PID setpoint
@@ -168,20 +174,6 @@ public class ArmWrist extends Subsystem {
 		return armAngle;	
 	}
 	
-	public void adjustWristToAngle(){
-		//Forward (in code) is Currently (physically) In and Reverse is Out (Don't know why)
-		if(getArmAngle() <= 34)/*Ground and or Reset*/{
-			wristMoveLong.set(DoubleSolenoid.Value.kReverse);
-		} else if(getArmAngle() >= 34  && getArmAngle() <= 60)/*Portal/Switch*/{
-			wristMoveLong.set(DoubleSolenoid.Value.kReverse);
-		}else if(getArmAngle() >= 60 && getArmAngle() <= 105)/*ScaleMidAndLow*/{
-			wristMoveLong.set(DoubleSolenoid.Value.kReverse);	
-		}else if(getArmAngle() >= 105 && getArmAngle() <= 122)/*ScaleHigh*/{
-			wristMoveLong.set(DoubleSolenoid.Value.kReverse);
-		}else{
-			wristMoveLong.set(DoubleSolenoid.Value.kReverse);
-		}
-	}
 	
 	//1 for mode is coast. 2 for mode is brake
 	public void setTalonSRXNeutralMode(int mode)

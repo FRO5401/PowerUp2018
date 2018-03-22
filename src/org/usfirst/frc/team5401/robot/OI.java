@@ -58,13 +58,9 @@ public class OI {
 		xboxR3_Operator.whenPressed(new ArmOverRide());
 
 		xboxA_Operator.whenPressed(new ArmPIDMove(RobotMap.FLOOR_SETPOINT));
-		xboxB_Operator.whenPressed(new ArmPIDMove(RobotMap.SET_SWITCH_PORTAL_SETPOINT));
 		xboxY_Operator.whenPressed(new ArmPIDMove(RobotMap.SCALE_HIGH));
-		xboxX_Operator.whenPressed(new ArmPIDMove(RobotMap.SCALE_MID));
 		
-		xboxX_Tester.whenPressed(new WristOverrideTesting(false));//Out
-		xboxY_Tester.whenPressed(new WristOverrideTesting(true));//In
-		
+		xboxBack_Operator.whenPressed(new WristSwitchState());
 	}
 	
 	//Controller Axis

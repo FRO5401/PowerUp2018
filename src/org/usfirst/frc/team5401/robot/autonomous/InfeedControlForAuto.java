@@ -1,34 +1,29 @@
-package org.usfirst.frc.team5401.robot.commands;
+package org.usfirst.frc.team5401.robot.autonomous;
 
 import org.usfirst.frc.team5401.robot.Robot;
-import org.usfirst.frc.team5401.robot.RobotMap;
-
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class WristMove extends Command {
-	
-	int wristChangePoint;
+public class InfeedControlForAuto extends Command {
 
-    public WristMove() {
+	private int directionControl;
+	
+	//1 for out, 0 for stop, -1 for in
+    public InfeedControlForAuto(int directionInput) {
         // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-    	requires(Robot.armwrist);
-    	wristChangePoint = 0;
+        requires(Robot.infeed);
+        directionControl = directionInput;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-
+    	Robot.infeed.feedInOut(directionControl);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	//wristChangePoint = Robot.oi.readXboxLeftY_Test();
-    	//Robot.armwrist.longWristUpDown(wristChangePoint);
-    	//Robot.armwrist.shortWristUpDown(wristChangePoint);
     }
 
     // Make this return true when this Command no longer needs to run execute()
