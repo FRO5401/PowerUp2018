@@ -1,7 +1,9 @@
 package org.usfirst.frc.team5401.robot.autonomous;
-
+import org.usfirst.frc.team5401.robot.RobotMap;
+import org.usfirst.frc.team5401.robot.commands.*;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.command.WaitCommand;
 
 /**
  *
@@ -22,27 +24,26 @@ public class AutoCenterSwitch extends CommandGroup {
     	//This will be putting block on left side (Closer to Left)
     		addSequential(new AutoPIDDrive(21));
     		addSequential(new AutoPIDTurnAngle(-37));
-    		addSequential(new AutoPIDDrive(85));
+    		addParallel(new ArmPIDMove(RobotMap.SET_SWITCH_PORTAL_SETPOINT));
+    		addSequential(new AutoPIDDrive(90));
     		addSequential(new AutoPIDTurnAngle(37));
-    		addSequential(new AutoPIDDrive(20));
-    		//addSequential(new xxxxARM());
-    		addSequential(new AutoPIDDrive(-15));
+    		addSequential(new AutoPIDDrive(3));
+    		addSequential(new WaitCommand(2));
+    		//addSequential(new AutoPIDDrive(-15));
     		addSequential(new AutoPIDTurnAngle(90));
-    		//addSequential(new xxxxARM()); 
-    	}
-    	else if(gameData.charAt(0) == 'R')
+    	}else if(gameData.charAt(0) == 'R')
     	{    	
     	//Start at Auto Position #3. 
     	//This will be putting block the right side (Closer to right)
     		addSequential(new AutoPIDDrive(21));
     		addSequential(new AutoPIDTurnAngle(37));
-    		addSequential(new AutoPIDDrive(85));
+    		addParallel(new ArmPIDMove(RobotMap.SET_SWITCH_PORTAL_SETPOINT));
+    		addSequential(new AutoPIDDrive(90));
     		addSequential(new AutoPIDTurnAngle(-37));
-    		addSequential(new AutoPIDDrive(24));
-    		//addSequential(new xxxxARM());
-    		addSequential(new AutoPIDDrive(-15));
+    		addSequential(new AutoPIDDrive(8));
+    		addSequential(new WaitCommand(2));
+    		//addSequential(new AutoPIDDrive(-15));
     		addSequential(new AutoPIDTurnAngle(-90));
-    		//addSequential(new xxxxARM());
     	}else if(gameData.charAt(0) == 'X')
     	{
     		addSequential(new AutoPIDDrive(50));

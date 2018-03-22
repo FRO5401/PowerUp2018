@@ -56,10 +56,10 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("AutoCenterSwitch", new AutoCenterSwitch());
 		chooser.addObject("AutoLeftSwitch", new AutoLeftSwitch());
 		chooser.addObject("AutoRightSwitch", new AutoRightSwitch());
-		
+		chooser.addObject("AutoPIDDriveWithWait", new AutoPIDDriveWithWait());
 		chooser.addObject("AutoScaleLeft", new AutoScaleLeft());
 		chooser.addObject("AutoScaleRight", new AutoScaleRight());
-
+		chooser.addObject("AutoScaleCenter", new AutoScaleCenter());
 		chooser.addObject("Turn PID Test", new AutoPIDTurnAngle(45));
 		chooser.addObject("TurnTurnTurn Test", new TurnTurnTurn());
 		SmartDashboard.putData("Auto mode", chooser);
@@ -115,6 +115,7 @@ public class Robot extends IterativeRobot {
 	public void autonomousPeriodic() {
 		SmartDashboard.putString("Auto Side PERIODIC", DriverStation.getInstance().getGameSpecificMessage());
 		Scheduler.getInstance().run();
+		Robot.drivebase.getError();
 	}
 
 	@Override
