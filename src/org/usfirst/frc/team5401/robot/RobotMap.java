@@ -13,7 +13,8 @@ public class RobotMap {
 	public static final double ARM_kI = 0.002;
 	public static final double ARM_kD = 0;
 	public static final double ARM_kF = 0;
-	public static final double ARM_PEAK_OUTPUT = 0.80;
+	public static final double ARM_PEAK_OUTPUT_FORWARD = 0.80;
+	public static final double ARM_PEAK_OUTPUT_REVERSE = -0.40;
 	public static final double ARM_NOM_OUTPUT = 0;
 	public static final double ARM_RANGE = 0;
 	public static final int TIMEOUT_LIMIT_IN_Ms = 10;//Might change. 10 is default in sample code
@@ -142,8 +143,8 @@ public class RobotMap {
 	public static final int WRIST_MOVE_LONG_BACKWARD  = 3;
 
 	public static final int ARM_BRAKE 		= 1;
-	public static final int INFEED_OPEN		= 2;
-	public static final int INFEED_CLOSE	= 4;
+	public static final int INFEED_OPEN		= 4;
+	public static final int INFEED_CLOSE	= 2;
 	public static final int INFEED_UP 		= 5;
 	public static final int INFEED_DOWN		= 6;
 

@@ -63,7 +63,7 @@ public class OI {
 		xboxX_Operator.whenPressed(new ArmPIDMove(RobotMap.SCALE_MID));
 		
 		xboxX_Tester.whenPressed(new WristOverrideTesting(false));//Out
-		xboxX_Tester.whenReleased(new WristOverrideTesting(true));//In
+		xboxY_Tester.whenPressed(new WristOverrideTesting(true));//In
 		
 	}
 	
@@ -89,7 +89,7 @@ public class OI {
 		{
 			return 1;
 		}
-		else if(userMap.getRawAxis(axisInput) < RobotMap.AXIS_THRESHOLD)
+		else if(userMap.getRawAxis(axisInput) < (-1 * RobotMap.AXIS_THRESHOLD))
 		{
 			return -1;
 		}

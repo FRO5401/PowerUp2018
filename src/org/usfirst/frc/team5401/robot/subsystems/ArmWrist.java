@@ -66,8 +66,8 @@ public class ArmWrist extends Subsystem {
 		//Sets max and min reverse and forward. First number is max/min output in percent 1 = 100%
         armTalon.configNominalOutputForward(RobotMap.ARM_NOM_OUTPUT, 	RobotMap.TIMEOUT_LIMIT_IN_Ms);
         armTalon.configNominalOutputReverse(RobotMap.ARM_NOM_OUTPUT, 	RobotMap.TIMEOUT_LIMIT_IN_Ms);
-        armTalon.configPeakOutputForward(RobotMap.ARM_PEAK_OUTPUT, 	RobotMap.TIMEOUT_LIMIT_IN_Ms);
-        armTalon.configPeakOutputReverse(-1* RobotMap.ARM_PEAK_OUTPUT, 	RobotMap.TIMEOUT_LIMIT_IN_Ms);
+        armTalon.configPeakOutputForward(RobotMap.ARM_PEAK_OUTPUT_FORWARD, 	RobotMap.TIMEOUT_LIMIT_IN_Ms);
+        armTalon.configPeakOutputReverse(RobotMap.ARM_PEAK_OUTPUT_REVERSE, 	RobotMap.TIMEOUT_LIMIT_IN_Ms);
        
         //Sets F, P, I, and D
         //Middle parameter is the corresponding value for F, P, I, or D
@@ -171,11 +171,11 @@ public class ArmWrist extends Subsystem {
 	public void adjustWristToAngle(){
 		//Forward (in code) is Currently (physically) In and Reverse is Out (Don't know why)
 		if(getArmAngle() <= 34)/*Ground and or Reset*/{
-			wristMoveLong.set(DoubleSolenoid.Value.kForward);
+			wristMoveLong.set(DoubleSolenoid.Value.kReverse);
 		} else if(getArmAngle() >= 34  && getArmAngle() <= 60)/*Portal/Switch*/{
-			wristMoveLong.set(DoubleSolenoid.Value.kForward);
+			wristMoveLong.set(DoubleSolenoid.Value.kReverse);
 		}else if(getArmAngle() >= 60 && getArmAngle() <= 105)/*ScaleMidAndLow*/{
-			wristMoveLong.set(DoubleSolenoid.Value.kForward);	
+			wristMoveLong.set(DoubleSolenoid.Value.kReverse);	
 		}else if(getArmAngle() >= 105 && getArmAngle() <= 122)/*ScaleHigh*/{
 			wristMoveLong.set(DoubleSolenoid.Value.kReverse);
 		}else{

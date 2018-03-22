@@ -39,6 +39,7 @@ public class Infeed extends Subsystem {
     
     public void clawUpDown(int vertDirection){
     	if(vertDirection == 1){
+    		//When joystick is up
     		clawUpDown.set(DoubleSolenoid.Value.kForward);
     		SmartDashboard.putNumber("Infeed Up/Down", 1);
     	}
