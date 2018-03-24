@@ -34,7 +34,7 @@ public class RobotMap {
 	public static final double CLIMB_POINT = 150.0;
 
 	//Constants for Climber
-	public static final double CLIMB_PRECISION = 1;
+	public static final double CLIMB_PRECISION = 0.3;
 
 	//Global Constants that are not locations
 	//Constants for DriveBase

@@ -1,5 +1,7 @@
 package org.usfirst.frc.team5401.robot.subsystems;
 
+import org.usfirst.frc.team5401.robot.commands.Climb;
+
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -46,7 +48,7 @@ public class Climber extends Subsystem {
 	
 	public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
+        setDefaultCommand(new Climb());
     }
 	
 	//Stablizer
