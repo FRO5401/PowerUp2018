@@ -24,7 +24,7 @@ public class Climb extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	double POVinput = Robot.oi.xboxDPad(Robot.oi.xboxController_Operator);
-    	System.out.println("POV " + POVinput);
+    	
     	
     	if (POVinput == 315 || POVinput == 45 || POVinput == 0) {
     		Robot.climber.climberStartMotors(1);//up

@@ -90,7 +90,7 @@ public class Climber extends Subsystem {
 //		}
 				
 		climberMotorTop.set((input * RobotMap.CLIMB_PRECISION));
-		climberMotorBottom.set((-input * RobotMap.CLIMB_PRECISION));
+		climberMotorBottom.set((input * RobotMap.CLIMB_PRECISION));
 	}
 	
 	public void stopClimber(){
