@@ -37,7 +37,7 @@ public class InfeedControl extends Command {
     	in = Robot.oi.xboxButton(RobotMap.XBOX_BUTTON_LEFT_BUMPER_OPERATOR, Robot.oi.xboxController_Operator);
     	out = Robot.oi.xboxButton(RobotMap.XBOX_BUTTON_RIGHT_BUMPER_OPERATOR, Robot.oi.xboxController_Operator);
     	
-    	System.out.println("Open/Close: " + openClose);
+//    	System.out.println("Open/Close: " + openClose);
     	Robot.infeed.clawOpenClose(openClose);
     	Robot.infeed.clawUpDown(upDown);
     	
