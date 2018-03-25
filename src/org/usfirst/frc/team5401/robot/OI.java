@@ -61,7 +61,7 @@ public class OI {
 		xboxY_Operator.whenPressed(new ArmPIDMove(RobotMap.SCALE_HIGH));
 		xboxStart_Operator.whenPressed(new ArmPIDMove(RobotMap.CLIMB_POINT));
 		
-		xboxBack_Operator.whenPressed(new WristSwitchState());
+		//xboxBack_Operator.whenPressed(new WristSwitchState());
 		
 		
 	}

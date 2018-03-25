@@ -34,7 +34,7 @@ public class RobotMap {
 	public static final double CLIMB_POINT = 150.0;
 
 	//Constants for Climber
-	public static final double CLIMB_PRECISION = 0.1;
+	public static final double CLIMB_PRECISION = 1;
 
 	//Global Constants that are not locations
 	//This is for DriveBase
@@ -158,10 +158,10 @@ public class RobotMap {
 	public static final int CLIMBER_PLATFORM_OUT	=	0;//Currently 0 because physically not allocated and commented out in code
 	
 	//DIO Sensors
-	public static final int DRIVE_ENC_LEFT_A 	= 0;
-	public static final int DRIVE_ENC_LEFT_B 	= 1;
-	public static final int DRIVE_ENC_RIGHT_A 	= 2;
-	public static final int DRIVE_ENC_RIGHT_B 	= 3;
+	public static final int DRIVE_ENC_LEFT_A 	= 2;
+	public static final int DRIVE_ENC_LEFT_B 	= 3;
+	public static final int DRIVE_ENC_RIGHT_A 	= 0;
+	public static final int DRIVE_ENC_RIGHT_B 	= 1;
 
 	public static final int INFEED_LIMIT_SWITCH   = 0;//Currently 0 because physically not allocated and commented out in code
 

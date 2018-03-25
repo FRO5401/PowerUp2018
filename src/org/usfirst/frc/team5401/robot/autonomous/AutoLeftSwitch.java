@@ -15,7 +15,8 @@ public class AutoLeftSwitch extends CommandGroup {
     	}
     		if(gameData.charAt(0) == 'L'){
     	//Start at Auto Position #2. Drive to front of switch, place block on switch
-    		addSequential(new AutoPIDDrive(21));
+    		addSequential(new AutoBaselineSwitch());
+/*    		addSequential(new AutoPIDDrive(21));
     		addSequential(new AutoPIDTurnAngle(7));
     		addSequential(new AutoPIDDrive(40));
     		addSequential(new AutoPIDTurnAngle(-6));
@@ -24,7 +25,7 @@ public class AutoLeftSwitch extends CommandGroup {
     	    addSequential(new AutoPIDDrive(-15));
     		addSequential(new AutoPIDTurnAngle(90));
     		//addSequential(new xxxxARM());
-    	}
+*/    	}
     	else if(gameData.charAt(0) == 'R')
     	{    	
     	//Start at Auto Position #2. Drive Forward 85 inches to base line 

@@ -6,14 +6,14 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class InfeedControlForAuto extends Command {
+public class InfeedInOutForAuto extends Command {
 
 	private int directionControl;
 	
 	//1 for out, 0 for stop, -1 for in
-    public InfeedControlForAuto(int directionInput) {
+    public InfeedInOutForAuto(int directionInput) {
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.infeed);
+    	requires(Robot.infeed);
         directionControl = directionInput;
     }
 

@@ -24,13 +24,15 @@ public class AutoRightSwitch extends CommandGroup {
     		
     	else if(gameData.charAt(0) == 'R')
     	{
+    		addSequential(new AutoBaselineSwitch());	
+/*    		
     		//Arm deploy
     		addSequential(new AutoPIDDrive(95));
     		//addSequential(new xxxxARM());
     		addSequential(new AutoPIDDrive(-15));
     		addSequential(new AutoPIDTurnAngle(-90));
     		//addSequential(new xxxx());
-    
+*/    
     	}else if(gameData.charAt(0) == 'X')
     	{
     		addSequential(new AutoPIDDrive(85));

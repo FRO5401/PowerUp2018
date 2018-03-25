@@ -24,24 +24,26 @@ public class AutoCenterSwitch extends CommandGroup {
     	//This will be putting block on left side (Closer to Left)
     		addSequential(new AutoPIDDrive(21));
     		addSequential(new AutoPIDTurnAngle(-37));
-    		addParallel(new ArmPIDMove(RobotMap.SET_SWITCH_PORTAL_SETPOINT));
     		addSequential(new AutoPIDDrive(90));
     		addSequential(new AutoPIDTurnAngle(37));
-    		addSequential(new AutoPIDDrive(3));
+    		addSequential(new AutoPIDDrive(10));
+    		addSequential(new InfeedUpDownForAuto(-1));
     		addSequential(new WaitCommand(2));
+    		addSequential(new InfeedInOutForAuto(-1));
     		//addSequential(new AutoPIDDrive(-15));
-    		addSequential(new AutoPIDTurnAngle(90));
+    		//addSequential(new AutoPIDTurnAngle(90));
     	}else if(gameData.charAt(0) == 'R')
     	{    	
     	//Start at Auto Position #3. 
     	//This will be putting block the right side (Closer to right)
     		addSequential(new AutoPIDDrive(21));
     		addSequential(new AutoPIDTurnAngle(37));
-    		addParallel(new ArmPIDMove(RobotMap.SET_SWITCH_PORTAL_SETPOINT));
     		addSequential(new AutoPIDDrive(90));
     		addSequential(new AutoPIDTurnAngle(-37));
-    		addSequential(new AutoPIDDrive(8));
+    		addSequential(new AutoPIDDrive(10));
+    		addSequential(new InfeedUpDownForAuto(-1));
     		addSequential(new WaitCommand(2));
+    		addSequential(new InfeedInOutForAuto(-1));
     		//addSequential(new AutoPIDDrive(-15));
     		addSequential(new AutoPIDTurnAngle(-90));
     	}else if(gameData.charAt(0) == 'X')
