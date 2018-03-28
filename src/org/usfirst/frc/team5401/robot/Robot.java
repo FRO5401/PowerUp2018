@@ -52,7 +52,7 @@ public class Robot extends IterativeRobot {
 		
 		//chooser.addDefault("Default Auto", new ExampleCommand());
 		chooser.addDefault("Do Nothing", new AutoPIDDrive(0));
-		chooser.addObject("Baseline Only", new AutoPIDDrive(97));
+		chooser.addObject("Baseline Only", new BaselineOnly());
 		chooser.addObject("AutoCenterSwitch", new AutoCenterSwitch());
 		chooser.addObject("AutoLeftSwitch", new AutoLeftSwitch());
 		chooser.addObject("AutoRightSwitch", new AutoRightSwitch());

@@ -11,39 +11,29 @@ public class AutoRightScale extends CommandGroup {
     public AutoRightScale() {
     	//Start at Auto Position #6
     	//The following is a ternary operator, which is similar to a condensed if else statement
-	String gameData = DriverStation.getInstance().getGameSpecificMessage();
+    	String gameData = DriverStation.getInstance().getGameSpecificMessage();
     	
     	if(gameData.isEmpty()){
     		gameData = "XXX";
     	} 
-
-    	if(gameData.charAt(0) == 'R')
+    	
+    	if(gameData.charAt(1) == 'R')
     	{
-    	//Start at Auto Position #5.
-    	//This will be putting block on left side 
-    		addSequential(new AutoPIDDrive(100));
-    		/*addSequential(new AutoTurnAngle(-37));
-    		addSequential(new AutoPIDDrive(85));
-    		addSequential(new AutoTurnAngle(37));
-    		addSequential(new AutoPIDDrive(20));
-    		addSequential(new xxxxARM());*/
-   
+    		addSequential(new AutoPIDDrive(-270));
+    		addSequential(new ArmPIDMove(RobotMap.AUTO_SCALE_SETPOINT));
+    		addSequential(new AutoPIDTurnAngle(90));
     	}
-    	else if(gameData.charAt(0) == 'L')
-    	{    	
-    	//Start at Auto Position #5. 
-    	//This will be putting block the right side
-    		addSequential(new AutoPIDDrive(85));
-    		/*addSequential(new AutoTurnAngle(37));
-    		addSequential(new AutoPIDDrive(85));
-    		addSequential(new AutoTurnAngle(-37));
-    		addSequential(new AutoPIDDrive(24));
-    		addSequential(new xxxxARM());*/
-    		
-    	}
-    	else if(gameData.charAt(0) == 'X')
+    	else
     	{
-    		addSequential(new AutoPIDDrive(85));
+    		if(gameData.charAt(0) == 'R')
+    		{
+    			addSequential(new AutoRightSideSwitch());
+    		}
+    		else
+    		{
+    			addSequential(new BaselineOnly());
+    		}
     	}
+    	
     }
 }
