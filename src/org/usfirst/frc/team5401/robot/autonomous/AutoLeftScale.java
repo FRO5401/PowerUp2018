@@ -33,6 +33,7 @@ public class AutoLeftScale extends CommandGroup {
     		}
     		else
     		{
+    			addSequential(new BaselineOnly());
     		}
     	}
     	
