@@ -26,7 +26,6 @@ public class InfeedInOutForAuto extends Command {
     protected void execute() {
     	System.out.println("Infeed for Auto Init");
     	Robot.infeed.feedInOut(directionControl);
-    	
     }
 
     // Make this return true when this Command no longer needs to run execute()

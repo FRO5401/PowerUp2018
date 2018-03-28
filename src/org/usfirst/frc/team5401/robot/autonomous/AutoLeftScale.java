@@ -6,20 +6,19 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class AutoScaleRight extends CommandGroup {
+public class AutoLeftScale extends CommandGroup {
 
-    public AutoScaleRight() {
-    	//Start at Auto Position #6
+    public AutoLeftScale() {
+    	//Start at Auto Position #1
     	//The following is a ternary operator, which is similar to a condensed if else statement
-	String gameData = DriverStation.getInstance().getGameSpecificMessage();
+String gameData = DriverStation.getInstance().getGameSpecificMessage();
     	
     	if(gameData.isEmpty()){
     		gameData = "XXX";
-    	} 
-
-    	if(gameData.charAt(0) == 'R')
+    	}
+    	if(gameData.charAt(0) == 'L')
     	{
-    	//Start at Auto Position #5.
+    	//Start at Auto Position #1.
     	//This will be putting block on left side 
     		addSequential(new AutoPIDDrive(100));
     		/*addSequential(new AutoTurnAngle(-37));
@@ -29,9 +28,9 @@ public class AutoScaleRight extends CommandGroup {
     		addSequential(new xxxxARM());*/
    
     	}
-    	else if(gameData.charAt(0) == 'L')
+    	else if(gameData.charAt(0) == 'R')
     	{    	
-    	//Start at Auto Position #5. 
+    	//Start at Auto Position #1. 
     	//This will be putting block the right side
     		addSequential(new AutoPIDDrive(85));
     		/*addSequential(new AutoTurnAngle(37));
@@ -44,6 +43,7 @@ public class AutoScaleRight extends CommandGroup {
     	else if(gameData.charAt(0) == 'X')
     	{
     		addSequential(new AutoPIDDrive(85));
+    		//addSequential(new xxxxARM());
     	}
     }
-}
+  }
