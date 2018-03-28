@@ -18,7 +18,7 @@ public class AutoBaselineSwitch extends CommandGroup {
     	
     	addSequential(new AutoPIDDrive(144));
     	addSequential(new InfeedUpDownForAuto(-1));
-		addSequential(new WaitCommand(2));
+		addSequential(new WaitCommand(1));
 		addSequential(new InfeedInOutForAuto(-1));
         // Add Commands here:
         // e.g. addSequential(new Command1());

@@ -60,8 +60,12 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("AutoScaleLeft", new AutoScaleLeft());
 		chooser.addObject("AutoScaleRight", new AutoScaleRight());
 		chooser.addObject("AutoScaleCenter", new AutoScaleCenter());
+		chooser.addObject("AutoLeftSideSwitch", new AutoLeftSideSwitch());
+		chooser.addObject("AutoRightSideScale", new AutoRightSideSwitch());
 		chooser.addObject("Turn PID Test", new AutoPIDTurnAngle(45));
 		chooser.addObject("TurnTurnTurn Test", new TurnTurnTurn());
+		chooser.addObject("Auto Left Side Switch", new AutoLeftSideSwitch());
+		chooser.addObject("Auto Right Side Switch", new AutoRightSideSwitch());
 		SmartDashboard.putData("Auto mode", chooser);
 	}
 
