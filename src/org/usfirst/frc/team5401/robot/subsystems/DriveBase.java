@@ -309,4 +309,20 @@ public class DriveBase extends Subsystem {
     public boolean getTurnPIDOnTarget()	{
     	return (leftTurnController.onTarget() && rightTurnController.onTarget());
     }
+    
+    public void setDrivePIDOutputRange(double leftOutputRange, double rightOutputRange)
+    {
+		leftPID1.setOutputRange(-leftOutputRange, leftOutputRange);
+		leftPID2.setOutputRange(-leftOutputRange, leftOutputRange);
+		rightPID1.setOutputRange(-rightOutputRange, rightOutputRange);
+		rightPID2.setOutputRange(-rightOutputRange, rightOutputRange);
+    }
+    
+    public void setDrivePIDOutputRangeToDefault()
+    {
+    	leftPID1.setOutputRange(-RobotMap.DRIVE_OUTPUT_RANGE, RobotMap.DRIVE_OUTPUT_RANGE);
+		leftPID2.setOutputRange(-RobotMap.DRIVE_OUTPUT_RANGE, RobotMap.DRIVE_OUTPUT_RANGE);
+		rightPID1.setOutputRange(-RobotMap.DRIVE_OUTPUT_RANGE, RobotMap.DRIVE_OUTPUT_RANGE);
+		rightPID2.setOutputRange(-RobotMap.DRIVE_OUTPUT_RANGE, RobotMap.DRIVE_OUTPUT_RANGE);
+    }
 }
