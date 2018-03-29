@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class AutoRightScale extends CommandGroup {
 
     public AutoRightScale() {
+    	//Robot must be backward
     	//Starts at the right end of driver station wall. where the flat part hits the slant
     	//The following is a ternary operator, which is similar to a condensed if else statement
     	String gameData = DriverStation.getInstance().getGameSpecificMessage();
@@ -29,11 +30,15 @@ public class AutoRightScale extends CommandGroup {
     	{
     		if(gameData.charAt(0) == 'R')
     		{
-    			addSequential(new AutoRightSideSwitch());
+            	addSequential(new AutoPIDDrive(-144));
+            	addSequential(new AutoPIDTurnAngle(90));
+            	addSequential(new AutoPIDDrive(20));
+            	addSequential(new InfeedUpDownForAuto(-1));
+            	addSequential(new InfeedInOutForAuto(-1));
     		}
     		else
     		{
-    			addSequential(new BaselineOnly());
+    			addSequential(new AutoPIDDrive(-97));
     		}
     	}
     	

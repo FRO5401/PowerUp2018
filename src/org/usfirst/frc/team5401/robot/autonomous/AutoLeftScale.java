@@ -13,7 +13,7 @@ public class AutoLeftScale extends CommandGroup {
 
     public AutoLeftScale() {
     	String gameData = DriverStation.getInstance().getGameSpecificMessage();
-    	
+    	//Robot must be backward
     	//Starts at the left end of driver station wall. where the flat part hits the slant
     	if(gameData.isEmpty()){
     		gameData = "XXX";
@@ -29,11 +29,15 @@ public class AutoLeftScale extends CommandGroup {
     	{
     		if(gameData.charAt(0) == 'L')
     		{
-    			addSequential(new AutoLeftSideSwitch());
+        		addSequential(new AutoPIDDrive(-144));
+            	addSequential(new AutoPIDTurnAngle(-90));
+            	addSequential(new AutoPIDDrive(20));
+            	addSequential(new InfeedUpDownForAuto(-1));
+            	addSequential(new InfeedInOutForAuto(-1));
     		}
     		else
     		{
-    			addSequential(new BaselineOnly());
+    			addSequential(new AutoPIDDrive(-97));
     		}
     	}
     	
