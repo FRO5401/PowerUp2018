@@ -22,7 +22,7 @@ public class AutoPIDTurnAngle extends Command {
     	requires(Robot.drivebase);
     	desiredTurnAngleRelativeToInitAnglePID = angle;
     	currentAngleRelativeToInitAngle = 0;
-    	System.out.println("AutoTurnAngle Constructed");
+//    	System.out.println("AutoPIDTurnAngle Constructed");
     }
 
 // Called just before this Command runs the first time

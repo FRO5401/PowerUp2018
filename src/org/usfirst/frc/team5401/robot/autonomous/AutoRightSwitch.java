@@ -12,7 +12,6 @@ public class AutoRightSwitch extends CommandGroup {
     	//The following is a ternary operator, which is similar to a condensed if else statement
     	String gameData = DriverStation.getInstance().getGameSpecificMessage();
     	
-    	System.out.println(gameData);
     	if(gameData.isEmpty()){
     		gameData = "XXX";
     	} 
