@@ -21,7 +21,7 @@ public class AutoLeftSideSwitch extends CommandGroup {
     	{
     		addSequential(new AutoPIDDrive(150));
         	addSequential(new AutoPIDTurnAngle(90));
-        	addSequential(new AutoPIDDrive(20));
+        	addSequential(new AutoPIDDrive(10));
         	addSequential(new InfeedUpDownForAuto(-1));
         	addSequential(new WaitCommand(1));
         	addSequential(new InfeedInOutForAuto(-1));
