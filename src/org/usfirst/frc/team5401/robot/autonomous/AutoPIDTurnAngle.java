@@ -38,8 +38,7 @@ public class AutoPIDTurnAngle extends Command {
     protected void execute() {
         currentAngleRelativeToInitAngle = Robot.drivebase.getGyroAngle();
     	SmartDashboard.putNumber("Relative to Inital Angle", currentAngleRelativeToInitAngle);
-    	SmartDashboard.putNumber("Relative to Init Angle", currentAngleRelativeToInitAngle);
-	    
+    	System.out.println("PID Relative to Inital Angle: " + currentAngleRelativeToInitAngle);
 //New Code block kjm 020618
     	if(Robot.drivebase.getTurnPIDOnTarget())
     		{

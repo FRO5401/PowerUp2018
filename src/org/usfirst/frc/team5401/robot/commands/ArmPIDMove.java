@@ -37,7 +37,11 @@ public class ArmPIDMove extends Command {
     	//System.out.print("PID Move Exec.");
     	if(Robot.armwrist.getArmAngle() > 100)
     	{
-    		Robot.armwrist.setMaxSpeed(0.4, RobotMap.ARM_PEAK_OUTPUT_REVERSE);	
+    		Robot.armwrist.setMaxSpeed(0.4, -0.4);	
+    	}
+    	else if(Robot.armwrist.getArmAngle() > 65)
+    	{
+    		Robot.armwrist.setMaxSpeed(0.6, -0.3);
     	}
     	else if(Robot.armwrist.getArmAngle() > 30)
     	{
@@ -46,7 +50,7 @@ public class ArmPIDMove extends Command {
     	else if(Robot.armwrist.getArmAngle() <= 30)
     	{    		
     		System.out.println("SLOW DOWN ARM");
-    		Robot.armwrist.setMaxSpeed(0.8, RobotMap.ARM_PEAK_OUTPUT_REVERSE);
+    		Robot.armwrist.setMaxSpeed(RobotMap.ARM_PEAK_OUTPUT_FORWARD, RobotMap.ARM_PEAK_OUTPUT_REVERSE);
     	}
     	else
     	{

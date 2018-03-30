@@ -19,9 +19,9 @@ public class AutoLeftSideSwitch extends CommandGroup {
     	
     	if(gameData.charAt(0) == 'L')
     	{
-    		addSequential(new AutoPIDDrive(144));
+    		addSequential(new AutoPIDDrive(150));
         	addSequential(new AutoPIDTurnAngle(90));
-        	addSequential(new AutoPIDDrive(28));
+        	addSequential(new AutoPIDDrive(20));
         	addSequential(new InfeedUpDownForAuto(-1));
         	addSequential(new WaitCommand(1));
         	addSequential(new InfeedInOutForAuto(-1));
@@ -31,8 +31,8 @@ public class AutoLeftSideSwitch extends CommandGroup {
     	else if(gameData.charAt(0) == 'R')
     	{
     		addSequential(new AutoPIDDrive(144));
-        	addSequential(new AutoPIDTurnAngle(90));
-        	addSequential(new AutoPIDDrive(20));
+        	//addSequential(new AutoPIDTurnAngle(90));
+        	//addSequential(new AutoPIDDrive(20));
         	
     	}else if(gameData.charAt(0) == 'X')
     	{

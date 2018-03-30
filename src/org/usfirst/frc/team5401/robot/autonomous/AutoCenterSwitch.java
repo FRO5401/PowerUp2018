@@ -28,7 +28,7 @@ public class AutoCenterSwitch extends CommandGroup {
     		addSequential(new AutoPIDTurnAngle(37));
     		addSequential(new AutoPIDDrive(10));
     		addSequential(new InfeedUpDownForAuto(-1));
-    		//addSequential(new WaitCommand(1));
+    		addSequential(new WaitCommand(1));
     		addSequential(new InfeedInOutForAuto(-1));
     		//addSequential(new AutoPIDDrive(-15));
     		//addSequential(new AutoPIDTurnAngle(90));
@@ -42,10 +42,10 @@ public class AutoCenterSwitch extends CommandGroup {
     		addSequential(new AutoPIDTurnAngle(-37));
     		addSequential(new AutoPIDDrive(10));
     		addSequential(new InfeedUpDownForAuto(-1));
-    		//addSequential(new WaitCommand(1));
+    		addSequential(new WaitCommand(1));
     		addSequential(new InfeedInOutForAuto(-1));
     		//addSequential(new AutoPIDDrive(-15));
-    		addSequential(new AutoPIDTurnAngle(-90));
+    		//addSequential(new AutoPIDTurnAngle(-90));
     	}else if(gameData.charAt(0) == 'X')
     	{
     		//XXX Fix
