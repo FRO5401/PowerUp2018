@@ -30,6 +30,8 @@ public class Robot extends IterativeRobot {
 	public static Infeed infeed;
 	public static OI oi;
 	
+	
+	public String FMSGameData;
 
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
@@ -50,6 +52,23 @@ public class Robot extends IterativeRobot {
 		
 		oi = new OI();
 		
+		FMSGameData = "";
+		
+	}
+
+	/**
+	 * This function is called once each time the robot enters Disabled mode.
+	 * You can use it to reset any subsystem information you want to clear when
+	 * the robot is disabled.
+	 */
+	@Override
+	public void disabledInit() {
+
+	}
+
+	@Override
+	public void disabledPeriodic() {
+		Scheduler.getInstance().run();
 		//chooser.addDefault("Default Auto", new ExampleCommand());
 		chooser.addDefault("Do Nothing", new AutoPIDDrive(0));
 		chooser.addObject("Baseline Only", new BaselineOnly());
@@ -66,21 +85,7 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("Auto Right Side Switch", new AutoRightSideSwitch());
 		chooser.addObject("InfeedTest", new InfeedAutoTest());
 		SmartDashboard.putData("Auto mode", chooser);
-	}
-
-	/**
-	 * This function is called once each time the robot enters Disabled mode.
-	 * You can use it to reset any subsystem information you want to clear when
-	 * the robot is disabled.
-	 */
-	@Override
-	public void disabledInit() {
-
-	}
-
-	@Override
-	public void disabledPeriodic() {
-		Scheduler.getInstance().run();
+		
 	}
 
 	/**

@@ -27,7 +27,7 @@ public class AutoTurnAngle extends Command {
     	currentAngleRelativeToInitAngle = 0;
     	initAngle = 0;
     	finished = true;
-    	System.out.println("AutoTurnAngle Constructed");
+    	//System.out.println("AutoTurnAngle Constructed");
     }
 
     // Called just before this Command runs the first time

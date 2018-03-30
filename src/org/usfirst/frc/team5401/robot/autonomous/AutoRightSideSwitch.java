@@ -36,8 +36,7 @@ public class AutoRightSideSwitch extends CommandGroup {
     	}else if(gameData.charAt(0) == 'X')
     	{
     		addSequential(new AutoPIDDrive(97));
-    		addSequential(new AutoPIDTurnAngle(-90));
-    		//addSequential(new xxxxARM());
+    		addSequential(new AutoPIDTurnAngle(90));
     	}
 
         // Add Commands here:
