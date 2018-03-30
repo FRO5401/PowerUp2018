@@ -58,7 +58,8 @@ public class OI {
 		xboxR3_Operator.whenPressed(new ArmOverRide());
 
 		xboxA_Operator.whenPressed(new ArmPIDMove(RobotMap.FLOOR_SETPOINT));
-		xboxY_Operator.whenPressed(new ArmPIDMove(RobotMap.SCALE_HIGH));
+		xboxB_Operator.whenPressed(new ArmPIDMove(RobotMap.SCALE_HIGH));
+		xboxY_Operator.whenPressed(new ArmPIDMove(RobotMap.AUTO_SCALE_SETPOINT));
 		xboxStart_Operator.whenPressed(new ArmPIDMove(RobotMap.CLIMB_POINT));
 		
 		//xboxBack_Operator.whenPressed(new WristSwitchState());

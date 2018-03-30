@@ -1,5 +1,6 @@
 package org.usfirst.frc.team5401.robot.autonomous;
 
+import edu.wpi.first.wpilibj.command.WaitCommand;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -20,8 +21,9 @@ public class AutoLeftSideSwitch extends CommandGroup {
     	{
     		addSequential(new AutoPIDDrive(144));
         	addSequential(new AutoPIDTurnAngle(90));
-        	addSequential(new AutoPIDDrive(20));
+        	addSequential(new AutoPIDDrive(28));
         	addSequential(new InfeedUpDownForAuto(-1));
+        	addSequential(new WaitCommand(1));
         	addSequential(new InfeedInOutForAuto(-1));
     	}
     	//Start at Auto Position #5. Drive Forward to the switch, place block on switch

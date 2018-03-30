@@ -24,13 +24,13 @@ public class InfeedInOutForAuto extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	System.out.println("Infeed for Auto Init");
-    	Robot.infeed.feedInOut(directionControl);
+    	System.out.println("Infeed out for Auto Init");
+    	Robot.infeed.feedInOut(-1);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return false;
     }
 
     // Called once after isFinished returns true

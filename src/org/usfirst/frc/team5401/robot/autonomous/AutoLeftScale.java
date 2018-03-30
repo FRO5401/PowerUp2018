@@ -1,5 +1,6 @@
 package org.usfirst.frc.team5401.robot.autonomous;
 
+import edu.wpi.first.wpilibj.command.WaitCommand;
 import org.usfirst.frc.team5401.robot.RobotMap;
 import org.usfirst.frc.team5401.robot.commands.ArmPIDMove;
 
@@ -33,6 +34,7 @@ public class AutoLeftScale extends CommandGroup {
             	addSequential(new AutoPIDTurnAngle(-90));
             	addSequential(new AutoPIDDrive(20));
             	addSequential(new InfeedUpDownForAuto(-1));
+            	addSequential(new WaitCommand(1));
             	addSequential(new InfeedInOutForAuto(-1));
     		}
     		else

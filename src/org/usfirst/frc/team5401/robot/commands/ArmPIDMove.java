@@ -1,6 +1,8 @@
 package org.usfirst.frc.team5401.robot.commands;
 
 import org.usfirst.frc.team5401.robot.Robot;
+import org.usfirst.frc.team5401.robot.RobotMap;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -33,6 +35,23 @@ public class ArmPIDMove extends Command {
     @Override
 	protected void execute() {
     	//System.out.print("PID Move Exec.");
+    	if(Robot.armwrist.getArmAngle() > 100)
+    	{
+    		Robot.armwrist.setMaxSpeed(0.4, RobotMap.ARM_PEAK_OUTPUT_REVERSE);	
+    	}
+    	else if(Robot.armwrist.getArmAngle() > 30)
+    	{
+    		Robot.armwrist.setMaxSpeed(0.6, RobotMap.ARM_PEAK_OUTPUT_REVERSE);
+    	}
+    	else if(Robot.armwrist.getArmAngle() <= 30)
+    	{    		
+    		System.out.println("SLOW DOWN ARM");
+    		Robot.armwrist.setMaxSpeed(0.8, RobotMap.ARM_PEAK_OUTPUT_REVERSE);
+    	}
+    	else
+    	{
+    		Robot.armwrist.setMaxSpeed(RobotMap.ARM_PEAK_OUTPUT_FORWARD, RobotMap.ARM_PEAK_OUTPUT_REVERSE);
+    	}
     	if (Robot.armwrist.onTarget(setPoint)){
     		//desiredTurnAngleRelativeToInitAngle too small
     		System.out.println("ArmPID should stop1");

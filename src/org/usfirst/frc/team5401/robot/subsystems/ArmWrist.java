@@ -187,5 +187,11 @@ public class ArmWrist extends Subsystem {
 			armTalon.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Brake);
 		}
 	}
+	
+	public void setMaxSpeed(double forwardSpeed, double backwardSpeed)
+	{
+		armTalon.configPeakOutputForward(forwardSpeed, 	RobotMap.TIMEOUT_LIMIT_IN_Ms);
+        armTalon.configPeakOutputReverse(backwardSpeed, 	RobotMap.TIMEOUT_LIMIT_IN_Ms);
+	}
 }
 

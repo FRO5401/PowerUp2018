@@ -14,7 +14,7 @@ public class RobotMap {
 	public static final double ARM_kD = 0;
 	public static final double ARM_kF = 0;
 	public static final double ARM_PEAK_OUTPUT_FORWARD = 0.80;
-	public static final double ARM_PEAK_OUTPUT_REVERSE = -0.40;
+	public static final double ARM_PEAK_OUTPUT_REVERSE = -0.20;
 	public static final double ARM_NOM_OUTPUT = 0;
 	public static final double ARM_RANGE = 0;
 	public static final int TIMEOUT_LIMIT_IN_Ms = 10;//Might change. 10 is default in sample code
@@ -31,8 +31,8 @@ public class RobotMap {
 	public static final double SET_SWITCH_PORTAL_SETPOINT = 31.0; 
 	public static final double SCALE_HIGH = 97.0;
 	public static final double SCALE_MID = 76.0;
-	public static final double CLIMB_POINT = 150.0;
-	public static final double AUTO_SCALE_SETPOINT = 150.0;
+	public static final double CLIMB_POINT = 120.0;
+	public static final double AUTO_SCALE_SETPOINT = 120.0;
 
 	//Constants for Climber
 	public static final double CLIMB_PRECISION = 1;
