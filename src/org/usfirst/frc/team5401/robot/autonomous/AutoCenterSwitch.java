@@ -24,9 +24,9 @@ public class AutoCenterSwitch extends CommandGroup {
     	//This will be putting block on left side (Closer to Left)
     		addSequential(new AutoPIDDrive(21));
     		addSequential(new AutoPIDTurnAngle(-37));
-    		addSequential(new AutoPIDDrive(90));
+    		addSequential(new AutoPIDDrive(78));
     		addSequential(new AutoPIDTurnAngle(37));
-    		addSequential(new AutoPIDDrive(10));
+    		addSequential(new AutoPIDDrive(7));
     		addSequential(new InfeedUpDownForAuto(-1));
     		addSequential(new WaitCommand(1));
     		addSequential(new InfeedInOutForAuto(-1));
@@ -40,7 +40,7 @@ public class AutoCenterSwitch extends CommandGroup {
     		addSequential(new AutoPIDTurnAngle(37));
     		addSequential(new AutoPIDDrive(90));
     		addSequential(new AutoPIDTurnAngle(-37));
-    		addSequential(new AutoPIDDrive(10));
+    		addSequential(new AutoPIDDrive(7));
     		addSequential(new InfeedUpDownForAuto(-1));
     		addSequential(new WaitCommand(1));
     		addSequential(new InfeedInOutForAuto(-1));

@@ -10,7 +10,8 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class InfeedControl extends Command {
 	
-	private int openClose;
+	private int open;
+	private int close;
 	private int upDown;
 	private boolean in;
 	private boolean out;
@@ -19,7 +20,8 @@ public class InfeedControl extends Command {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.infeed);
         
-        openClose = 0;
+        open = 0;
+        close = 0;
         upDown = 0;
         in = false;
         out = false;
@@ -31,14 +33,23 @@ public class InfeedControl extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	openClose = -1*Robot.oi.xboxAxisAsDigitalInput(RobotMap.XBOX_AXIS_LEFT_X, Robot.oi.xboxController_Operator);
+    	
+    	
+    	open = -1*Robot.oi.xboxAxisAsDigitalInput(RobotMap.XBOX_AXIS_LEFT_TRIGGER, Robot.oi.xboxController_Operator);
+    	close = Robot.oi.xboxAxisAsDigitalInput(RobotMap.XBOX_AXIS_RIGHT_TRIGGER, Robot.oi.xboxController_Operator);
     	//Makes up == 1
     	upDown = -1*Robot.oi.xboxAxisAsDigitalInput(RobotMap.XBOX_AXIS_LEFT_Y, Robot.oi.xboxController_Operator);
     	out = Robot.oi.xboxButton(RobotMap.XBOX_BUTTON_LEFT_BUMPER_OPERATOR, Robot.oi.xboxController_Operator);
     	in = Robot.oi.xboxButton(RobotMap.XBOX_BUTTON_RIGHT_BUMPER_OPERATOR, Robot.oi.xboxController_Operator);
     	
-    	Robot.infeed.clawOpenClose(openClose);
+    	//Robot.infeed.clawOpenClose(openClose);
     	Robot.infeed.clawUpDown(upDown);
+    	
+    	if (close == 1) {
+    		Robot.infeed.clawOpenClose(-close);
+    	} else if (open == -1) {
+    		Robot.infeed.clawOpenClose(-open);
+    	}
     	
     	if(out == true)
     	{
