@@ -35,7 +35,11 @@ public class ArmPIDMove extends Command {
     @Override
 	protected void execute() {
     	//System.out.print("PID Move Exec.");
-    	if(Robot.armwrist.getArmAngle() > 100)
+    	if(Robot.armwrist.getArmAngle() > 135)
+    	{
+    		Robot.armwrist.setMaxSpeed(0.3, -0.4);
+    	}
+    	else if(Robot.armwrist.getArmAngle() > 100)
     	{
     		Robot.armwrist.setMaxSpeed(0.4, -0.4);	
     	}

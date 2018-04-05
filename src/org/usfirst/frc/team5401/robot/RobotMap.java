@@ -32,7 +32,7 @@ public class RobotMap {
 	public static final double SCALE_HIGH = 97.0;
 	public static final double SCALE_MID = 76.0;
 	public static final double CLIMB_POINT = 120.0;
-	public static final double AUTO_SCALE_SETPOINT = 120.0;
+	public static final double AUTO_SCALE_SETPOINT = 145.0;
 
 	//Constants for Climber
 	public static final double CLIMB_PRECISION = 1;
