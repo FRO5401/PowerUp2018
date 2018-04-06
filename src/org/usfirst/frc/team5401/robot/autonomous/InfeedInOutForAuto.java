@@ -24,7 +24,7 @@ public class InfeedInOutForAuto extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	System.out.println("Infeed out for Auto Init");
+//    	System.out.println("Infeed out for Auto Init");
     	Robot.infeed.feedInOut(-1);
     }
 

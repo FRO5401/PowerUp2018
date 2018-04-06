@@ -43,7 +43,13 @@ public class AutoPIDDrive extends Command {
     	SmartDashboard.putNumber("Right Error", Math.abs(Robot.drivebase.getDriveStraightSetpoint(2) - Robot.drivebase.getEncoderDistance(2)));
     	SmartDashboard.putNumber("LEft Error", Math.abs(Robot.drivebase.getDriveStraightSetpoint(1) - Robot.drivebase.getEncoderDistance(1)));
     	Robot.drivebase.getError();
-        if ((Math.abs(Robot.drivebase.getDriveStraightSetpoint(1) - Robot.drivebase.getEncoderDistance(1)) < RobotMap.DRIVE_PID_ABSOLUTE_TOLERANCE) 	&&	(Math.abs(Robot.drivebase.getDriveStraightSetpoint(2) - Robot.drivebase.getEncoderDistance(2)) < RobotMap.DRIVE_PID_ABSOLUTE_TOLERANCE))
+    	//System.out.print("Left Encoder: " + Robot.drivebase.getEncoderDistance(1) + " ");
+    	//System.out.println("Right Encoder: " + Robot.drivebase.getEncoderDistance(2) + " ");
+    	//System.out.println((Math.abs(Robot.drivebase.getDriveStraightSetpoint(1) - Robot.drivebase.getEncoderDistance(1)) < RobotMap.DRIVE_PID_ABSOLUTE_TOLERANCE));
+    	//System.out.println((Math.abs(Robot.drivebase.getDriveStraightSetpoint(2) - Robot.drivebase.getEncoderDistance(2)) < RobotMap.DRIVE_PID_ABSOLUTE_TOLERANCE));
+    	//System.out.println((Math.abs(Robot.drivebase.getDriveStraightSetpoint(1) - Robot.drivebase.getEncoderDistance(1)) < RobotMap.DRIVE_PID_ABSOLUTE_TOLERANCE) 	&&	(Math.abs(Robot.drivebase.getDriveStraightSetpoint(2) - Robot.drivebase.getEncoderDistance(2)) < RobotMap.DRIVE_PID_ABSOLUTE_TOLERANCE));
+    	
+    	if ((Math.abs(Robot.drivebase.getDriveStraightSetpoint(1) - Robot.drivebase.getEncoderDistance(1)) < RobotMap.DRIVE_PID_ABSOLUTE_TOLERANCE) 	&&	(Math.abs(Robot.drivebase.getDriveStraightSetpoint(2) - Robot.drivebase.getEncoderDistance(2)) < RobotMap.DRIVE_PID_ABSOLUTE_TOLERANCE))
 		{
 	    	Robot.drivebase.disableDriveStraightPID();
 			Robot.drivebase.stop();
@@ -62,15 +68,13 @@ public class AutoPIDDrive extends Command {
         }
 
   */
-    	System.out.print("Left Encoder: " + Robot.drivebase.getEncoderDistance(1) + " ");
-    	System.out.println("Right Encoder: " + Robot.drivebase.getEncoderDistance(2) + " ");
     	return doneTurn;
     }
 
     // Called once after isFinished returns true
     protected void end() {
     	Robot.drivebase.disableDriveStraightPID();
-    	System.out.println("AUtoPIDDrive Finsihed");
+    	//System.out.println("AUtoPIDDrive Finsihed");
     	
     }
 

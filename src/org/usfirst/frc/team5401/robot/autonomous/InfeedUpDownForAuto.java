@@ -18,7 +18,7 @@ public class InfeedUpDownForAuto extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	System.out.println("Claw Down Auto");
+//    	System.out.println("Claw Down Auto");
     	Robot.infeed.clawUpDown(upDown);
     }
 
