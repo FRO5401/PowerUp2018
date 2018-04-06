@@ -11,11 +11,10 @@ import edu.wpi.first.wpilibj.CameraServer;
 public class DumbCamera extends Subsystem {
 
 	public DumbCamera(){
-	/*
+	
 		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
 		camera.setResolution(320, 240);
 		camera.setFPS(10);
-	*/
 	}
 		
     // Put methods for controlling this subsystem

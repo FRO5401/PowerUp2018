@@ -62,6 +62,8 @@ public class AutoPIDDrive extends Command {
         }
 
   */
+    	System.out.print("Left Encoder: " + Robot.drivebase.getEncoderDistance(1) + " ");
+    	System.out.println("Right Encoder: " + Robot.drivebase.getEncoderDistance(2) + " ");
     	return doneTurn;
     }
 
