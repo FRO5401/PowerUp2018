@@ -165,7 +165,7 @@ public class DriveBase extends Subsystem {
     	gearShifter.set(true);
     	leftEncoder.setDistancePerPulse(RobotMap.HIGH_GEAR_LEFT_DPP);
     	rightEncoder.setDistancePerPulse(RobotMap.HIGH_GEAR_RIGHT_DPP);
-    	System.out.println("Shifting Drive Gear to High Gear");
+    	//System.out.println("Shifting Drive Gear to High Gear");
     }
 
     public void shiftGearHighToLow(){
@@ -173,7 +173,7 @@ public class DriveBase extends Subsystem {
     	gearShifter.set(false);
     	leftEncoder.setDistancePerPulse(RobotMap.LOW_GEAR_LEFT_DPP);
     	rightEncoder.setDistancePerPulse(RobotMap.LOW_GEAR_RIGHT_DPP);
-    	System.out.println("Shifting Drive Gear to Low Gear");
+    	//System.out.println("Shifting Drive Gear to Low Gear");
     }
     
     public boolean getGearShifterValue () {

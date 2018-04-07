@@ -53,7 +53,7 @@ public class ArmPIDMove extends Command {
     	}
     	else if(Robot.armwrist.getArmAngle() <= 30)
     	{    		
-    		System.out.println("SLOW DOWN ARM");
+    		//System.out.println("SLOW DOWN ARM");
     		Robot.armwrist.setMaxSpeed(RobotMap.ARM_PEAK_OUTPUT_FORWARD, RobotMap.ARM_PEAK_OUTPUT_REVERSE);
     	}
     	else
@@ -62,7 +62,7 @@ public class ArmPIDMove extends Command {
     	}
     	if (Robot.armwrist.onTarget(setPoint)){
     		//desiredTurnAngleRelativeToInitAngle too small
-    		System.out.println("ArmPID should stop1");
+    		//System.out.println("ArmPID should stop1");
         	Robot.armwrist.pidStop();
     		done = true;
     	} 
