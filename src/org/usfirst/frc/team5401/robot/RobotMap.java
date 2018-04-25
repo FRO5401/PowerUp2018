@@ -69,7 +69,7 @@ public class RobotMap {
 	public static final double DRIVE_SPIN_SENSITIVITY = 1;
 	
 	//Constants for AutoTurnAngle
-	public static final double ANGLE_THRESHOLD = 0.5; //in degrees
+	public static final double ANGLE_THRESHOLD = 0.25; //in degrees
 	public static final double AUTO_TURN_SPEED = 0.95;
 	public static final double AUTO_TURN_PRECISION = 0.75;
 
