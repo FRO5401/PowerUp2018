@@ -46,6 +46,7 @@ public class RobotMap {
 	public static final double HIGH_GEAR_RIGHT_DPP = 0;
 	public static final double DRIVE_PID_ABSOLUTE_TOLERANCE = 1.0; //threshold
 	public static final double DRIVE_OUTPUT_RANGE = 0.6;
+	public static final double DRIVE_PID_CORRECTION_THRESHOLD = 1;
 	
 	public static final double DRIVE_P = 0.11;
 	public static final double DRIVE_I = 0;
