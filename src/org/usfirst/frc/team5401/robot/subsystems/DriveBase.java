@@ -33,16 +33,15 @@ public class DriveBase extends Subsystem {
 	private SpeedControllerGroup leftDriveGroup;
 	private SpeedControllerGroup rightDriveGroup;
 	
+	private SpeedControllerGroup allDrive;
+	
 
 
     private Solenoid gearShifter;
 	private PIDController leftPID1;
-	private PIDController leftPID2;
 	private PIDController rightPID1;
-	private PIDController rightPID2;
 	
-	private PIDController leftTurnController;
-	private PIDController rightTurnController;
+	private PIDController turnController;
 	
 	private Encoder leftEncoder;
 	private Encoder rightEncoder;
@@ -55,6 +54,12 @@ public class DriveBase extends Subsystem {
 		rightDrive1  = new VictorSP(RobotMap.DRIVE_RIGHT_MOTOR_1);
 		leftDrive2  = new VictorSP(RobotMap.DRIVE_LEFT_MOTOR_2);
 		rightDrive2 = new VictorSP(RobotMap.DRIVE_RIGHT_MOTOR_2);
+		
+		leftDriveGroup = new SpeedControllerGroup(leftDrive1, leftDrive2);
+		rightDriveGroup = new SpeedControllerGroup(rightDrive1, rightDrive2);
+		
+		allDrive = new SpeedControllerGroup(leftDrive1, leftDrive2, rightDrive1, rightDrive2);
+		
 		gearShifter = new Solenoid(RobotMap.PCM_ID, RobotMap.DRIVE_SHIFT);
 
 		leftEncoder = new Encoder(RobotMap.DRIVE_ENC_LEFT_A, RobotMap.DRIVE_ENC_LEFT_B, true, Encoder.EncodingType.k4X);
@@ -65,39 +70,28 @@ public class DriveBase extends Subsystem {
 		leftEncoder.setPIDSourceType(PIDSourceType.kDisplacement);
 		rightEncoder.setPIDSourceType(PIDSourceType.kDisplacement);
 		
-		leftPID1 	= new PIDController(RobotMap.DRIVE_P,RobotMap.DRIVE_I,RobotMap.DRIVE_D, leftEncoder, leftDrive1);
-		leftPID2 	= new PIDController(RobotMap.DRIVE_P,RobotMap.DRIVE_I,RobotMap.DRIVE_D, leftEncoder, leftDrive2);		
-		rightPID1 	= new PIDController(RobotMap.DRIVE_P,RobotMap.DRIVE_I,RobotMap.DRIVE_D, rightEncoder, rightDrive1);
-		rightPID2 	= new PIDController(RobotMap.DRIVE_P,RobotMap.DRIVE_I,RobotMap.DRIVE_D, rightEncoder, rightDrive2);
+		leftPID1 	= new PIDController(RobotMap.DRIVE_P,RobotMap.DRIVE_I,RobotMap.DRIVE_D, leftEncoder, leftDriveGroup);
+		rightPID1 	= new PIDController(RobotMap.DRIVE_P,RobotMap.DRIVE_I,RobotMap.DRIVE_D, rightEncoder, rightDriveGroup);
+	
 		
 		leftPID1.setAbsoluteTolerance(RobotMap.DRIVE_PID_ABSOLUTE_TOLERANCE);
-		leftPID2.setAbsoluteTolerance(RobotMap.DRIVE_PID_ABSOLUTE_TOLERANCE);
 		rightPID1.setAbsoluteTolerance(RobotMap.DRIVE_PID_ABSOLUTE_TOLERANCE);
-		rightPID2.setAbsoluteTolerance(RobotMap.DRIVE_PID_ABSOLUTE_TOLERANCE);
 		
 		leftPID1.setOutputRange(-RobotMap.DRIVE_OUTPUT_RANGE, RobotMap.DRIVE_OUTPUT_RANGE);
-		leftPID2.setOutputRange(-RobotMap.DRIVE_OUTPUT_RANGE, RobotMap.DRIVE_OUTPUT_RANGE);
 		rightPID1.setOutputRange(-RobotMap.DRIVE_OUTPUT_RANGE, RobotMap.DRIVE_OUTPUT_RANGE);
-		rightPID2.setOutputRange(-RobotMap.DRIVE_OUTPUT_RANGE, RobotMap.DRIVE_OUTPUT_RANGE);
 		
 		
 		navxGyro = new AHRS(I2C.Port.kMXP);
 		navxGyro.reset();
 
-		leftDriveGroup = new SpeedControllerGroup(leftDrive1, leftDrive2);
-		rightDriveGroup = new SpeedControllerGroup(rightDrive1, rightDrive2);
 		
 //		navxGyro.setPIDSourceType(PIDSourceType.kDisplacement);
-		leftTurnController = new PIDController(RobotMap.TURN_P, RobotMap.TURN_I, RobotMap.TURN_D, RobotMap.TURN_F, navxGyro, leftDriveGroup);
-		rightTurnController = new PIDController(RobotMap.TURN_P, RobotMap.TURN_I, RobotMap.TURN_D, RobotMap.TURN_F, navxGyro, rightDriveGroup);
+		//Since turn requires motor to be both positive or both negative only one pidController is needed
+		turnController = new PIDController(RobotMap.TURN_P, RobotMap.TURN_I, RobotMap.TURN_D, RobotMap.TURN_F, navxGyro, allDrive);
 		
 		leftTurnController.setAbsoluteTolerance(RobotMap.ANGLE_THRESHOLD);
 		rightTurnController.setAbsoluteTolerance(RobotMap.ANGLE_THRESHOLD);
-		//TODO We should probably also setContinuous
-		
-//		leftTurnController.setContinuous(true);
-//		rightTurnController.setContinuous(true);  //XXX Crashes robot code
-		
+				
 		leftTurnController.setOutputRange(-RobotMap.TURN_OUTPUT_RANGE, RobotMap.TURN_OUTPUT_RANGE);
 		rightTurnController.setOutputRange(-RobotMap.TURN_OUTPUT_RANGE, RobotMap.TURN_OUTPUT_RANGE);
 		
@@ -114,22 +108,14 @@ public class DriveBase extends Subsystem {
 	public void getError() {
 		SmartDashboard.putNumber("Left Pid 1", leftPID1.getError());
 		SmartDashboard.putNumber("Right Pid 1", rightPID1.getError());
-		SmartDashboard.putNumber("Left Pid 2", leftPID2.getError());
-		SmartDashboard.putNumber("Right Pid 2", rightPID2.getError());
 		
 		SmartDashboard.putBoolean("leftPID1 Enabled", leftPID1.isEnabled());
-		SmartDashboard.putBoolean("leftPID2 Enabled", leftPID2.isEnabled());
 		SmartDashboard.putBoolean("rigthPID1 Enabled", rightPID1.isEnabled());
-		SmartDashboard.putBoolean("rigthPID2 Enabled", rightPID2.isEnabled());
-		
 		
 		SmartDashboard.putBoolean("Left Pid 1 onTarget", leftPID1.onTarget());
 		SmartDashboard.putBoolean("Right Pid 1 onTarget", rightPID1.onTarget());
-		SmartDashboard.putBoolean("Left Pid 2 onTarget", leftPID2.onTarget());
-		SmartDashboard.putBoolean("Right Pid 2 onTarget", rightPID2.onTarget());
-		
 	}
-    @Override
+
 	public void initDefaultCommand() {
         // Set the default command for a subsystem here.
     	setDefaultCommand(new XboxMove());
@@ -248,24 +234,18 @@ public class DriveBase extends Subsystem {
     
     public void enableDriveStraightPID () {
     	leftPID1.enable();
-    	leftPID2.enable();
     	rightPID1.enable();
-    	rightPID2.enable();
     }
     
     public void disableDriveStraightPID () {
     	leftPID1.disable();
-    	leftPID2.disable();
     	rightPID1.disable();
-    	rightPID2.disable();
     }
     
 
     public void setDriveStraightSetpoint(double setpoint)	{
     	leftPID1.setSetpoint(setpoint);
-    	leftPID2.setSetpoint(setpoint);
     	rightPID1.setSetpoint(-setpoint);
-    	rightPID2.setSetpoint(-setpoint);
     }
     
     public double getDriveStraightSetpoint(double leftOrRight)	{
@@ -313,16 +293,12 @@ public class DriveBase extends Subsystem {
     public void setDrivePIDOutputRange(double leftOutputRange, double rightOutputRange)
     {
 		leftPID1.setOutputRange(-leftOutputRange, leftOutputRange);
-		leftPID2.setOutputRange(-leftOutputRange, leftOutputRange);
 		rightPID1.setOutputRange(-rightOutputRange, rightOutputRange);
-		rightPID2.setOutputRange(-rightOutputRange, rightOutputRange);
     }
     
     public void setDrivePIDOutputRangeToDefault()
     {
     	leftPID1.setOutputRange(-RobotMap.DRIVE_OUTPUT_RANGE, RobotMap.DRIVE_OUTPUT_RANGE);
-		leftPID2.setOutputRange(-RobotMap.DRIVE_OUTPUT_RANGE, RobotMap.DRIVE_OUTPUT_RANGE);
 		rightPID1.setOutputRange(-RobotMap.DRIVE_OUTPUT_RANGE, RobotMap.DRIVE_OUTPUT_RANGE);
-		rightPID2.setOutputRange(-RobotMap.DRIVE_OUTPUT_RANGE, RobotMap.DRIVE_OUTPUT_RANGE);
     }
 }
