@@ -22,35 +22,26 @@ public class AutoPIDTurnAngle extends Command {
     	requires(Robot.drivebase);
     	desiredTurnAngleRelativeToInitAnglePID = angle;
     	currentAngleRelativeToInitAngle = 0;
-//    	System.out.println("AutoPIDTurnAngle Constructed");
     }
 
-// Called just before this Command runs the first time
+    // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.drivebase.gyroReset();
     	Robot.drivebase.enableTurnPID();
     	Robot.drivebase.setTurnSetpoint(desiredTurnAngleRelativeToInitAnglePID);
-    	//System.out.println("Initializing Auto PID Angle Turn");
-	    doneTurn = false;							//Initialize finish flag
+        doneTurn = false;							//Initialize finish flag
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         currentAngleRelativeToInitAngle = Robot.drivebase.getGyroAngle();
     	SmartDashboard.putNumber("Relative to Inital Angle", currentAngleRelativeToInitAngle);
-    	//System.out.println("PID Relative to Inital Angle: " + currentAngleRelativeToInitAngle);
-//New Code block kjm 020618
-    	if(Robot.drivebase.getTurnPIDOnTarget())
+     	if(Robot.drivebase.getTurnPIDOnTarget())
     		{
 				Robot.drivebase.disableTurnPID();
 				Robot.drivebase.stop();
 				doneTurn = true;
     		}	
-
-//End new code block kjm 020618
-    	
-//    	System.out.println("Executing Auto PID Angle Turn");
-//    	System.out.println("Left Error: " + Robot.drivebase.getLeftTurnPIDError() + " Right Error: " + Robot.drivebase.getRightTurnPIDError());
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -61,13 +52,11 @@ public class AutoPIDTurnAngle extends Command {
     // Called once after isFinished returns true
     protected void end() {
     	Robot.drivebase.disableTurnPID();
-    	//System.out.println("AutoPIDTurnAngle end()");
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
     	Robot.drivebase.disableTurnPID();
-    	//System.out.println("AutoPIDTurnAnglePID Interrupted");
     }
 }
