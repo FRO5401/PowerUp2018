@@ -89,11 +89,9 @@ public class DriveBase extends Subsystem {
 		//Since turn requires motor to be both positive or both negative only one pidController is needed
 		turnController = new PIDController(RobotMap.TURN_P, RobotMap.TURN_I, RobotMap.TURN_D, RobotMap.TURN_F, navxGyro, allDrive);
 		
-		leftTurnController.setAbsoluteTolerance(RobotMap.ANGLE_THRESHOLD);
-		rightTurnController.setAbsoluteTolerance(RobotMap.ANGLE_THRESHOLD);
-				
-		leftTurnController.setOutputRange(-RobotMap.TURN_OUTPUT_RANGE, RobotMap.TURN_OUTPUT_RANGE);
-		rightTurnController.setOutputRange(-RobotMap.TURN_OUTPUT_RANGE, RobotMap.TURN_OUTPUT_RANGE);
+		turnController.setAbsoluteTolerance(RobotMap.ANGLE_THRESHOLD);
+		
+		turnController.setOutputRange(-RobotMap.TURN_OUTPUT_RANGE, RobotMap.TURN_OUTPUT_RANGE);
 		
     	SmartDashboard.putNumber("Left Enc Raw" , leftEncoder.get());
 		SmartDashboard.putNumber("Right Enc Raw", rightEncoder.get());
@@ -263,21 +261,20 @@ public class DriveBase extends Subsystem {
     
 
     public void enableTurnPID () {
-    	leftTurnController.enable();
-    	rightTurnController.enable();
+    	turnController.enable();
+    	turnController.enable();
     }
     
     public void disableTurnPID () {
-    	leftTurnController.disable();
-    	rightTurnController.disable();
+    	turnController.disable();
+    	turnController.disable();
     }
 
     public void setTurnSetpoint(double setpoint)	{
     	//If both motors are used to turn, the motor are both positive or both negative
-    	leftTurnController.setSetpoint(setpoint);
-    	rightTurnController.setSetpoint(setpoint);
+    	turnController.setSetpoint(setpoint);
     }
-    
+/*    
     public double getLeftTurnPIDError()	{
     	return leftTurnController.getError();
     }
@@ -285,9 +282,16 @@ public class DriveBase extends Subsystem {
     public double getRightTurnPIDError()	{
     	return rightTurnController.getError();
     }
+*/
+    
+    public double getTurnPIDError()
+    {
+    	return turnController.getError();
+    }
     
     public boolean getTurnPIDOnTarget()	{
-    	return (leftTurnController.onTarget() && rightTurnController.onTarget());
+//    	return (leftTurnController.onTarget() && rightTurnController.onTarget());
+    	return turnController.onTarget();
     }
     
     public void setDrivePIDOutputRange(double leftOutputRange, double rightOutputRange)
