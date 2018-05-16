@@ -5,6 +5,7 @@ package org.usfirst.frc.team5401.robot.subsystems;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -23,6 +24,7 @@ public class ArmWrist extends Subsystem {
 	private Solenoid brake;
 	//Encoder not needed for TalonSRX due to Versa Planetary Encoders
 	private TalonSRX armTalon;
+	public PowerDistributionPanel PDP;  
 
 	private boolean armPidEnabled;
 	
@@ -38,6 +40,7 @@ public class ArmWrist extends Subsystem {
 		
 		loopIndex = 0;
 		slotIndex = 0;
+		PDP = new PowerDistributionPanel();
 		//This is for the ConfigSelectedFeedbackSensor whose second parameter is PID index, this loop index is the ACTUAL parameter of PID index and is zero for a primary closed loop, or one per cascade coasting. 
 		//Zero is used as it is used within the example code.
 
@@ -99,7 +102,34 @@ public class ArmWrist extends Subsystem {
     	}
     }
 	
+	
+	public double getVoltages(){
+		double v = PDP.getVoltage();
+		return v;
+	}
+	
+	public double getTotalCurrentPDP(){
+		double tc = PDP.getTotalCurrent();
+		return tc;
+	}
 
+	public double getCurrent12(){
+		double c = PDP.getCurrent(12);
+		return c;
+	}
+	public double getCurrent13(){
+		double c = PDP.getCurrent(13);
+		return c;
+	}
+	public double getCurrent14(){
+		double c = PDP.getCurrent(14);
+		return c;
+	}
+	public double getCurrent15(){
+		double c = PDP.getCurrent(15);
+		return c;
+	}
+	
 	public void setBrake(boolean brakeSet){
 		//Controlled by either override or reaching end of PID setpoint
 		//Disabled once override is engaged

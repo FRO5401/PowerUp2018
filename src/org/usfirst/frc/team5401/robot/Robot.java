@@ -124,6 +124,12 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putString("Auto Side PERIODIC", DriverStation.getInstance().getGameSpecificMessage());
 		Scheduler.getInstance().run();
 		Robot.drivebase.getError();
+		SmartDashboard.putNumber("Voltage", Robot.armwrist.getVoltages());
+		SmartDashboard.putNumber("Total Current", Robot.armwrist.getTotalCurrentPDP());
+		SmartDashboard.putNumber("Current 12", Robot.armwrist.getCurrent12());
+		SmartDashboard.putNumber("Current 13", Robot.armwrist.getCurrent13());
+		SmartDashboard.putNumber("Current 14", Robot.armwrist.getCurrent14());
+		SmartDashboard.putNumber("Current 15", Robot.armwrist.getCurrent15());
 	}
 
 	@Override
@@ -142,6 +148,13 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		SmartDashboard.putNumber("Voltage", Robot.armwrist.getVoltages());
+		SmartDashboard.putNumber("Total Current", Robot.armwrist.getTotalCurrentPDP());
+		SmartDashboard.putNumber("Current 12", Robot.armwrist.getCurrent12());
+		SmartDashboard.putNumber("Current 13", Robot.armwrist.getCurrent13());
+		SmartDashboard.putNumber("Current 14", Robot.armwrist.getCurrent14());
+		SmartDashboard.putNumber("Current 15", Robot.armwrist.getCurrent15());
+		
 	}
 
 	/**
