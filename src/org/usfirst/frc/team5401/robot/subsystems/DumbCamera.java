@@ -1,6 +1,6 @@
 package org.usfirst.frc.team5401.robot.subsystems;
 
-import org.usfirst.frc.team5401.robot.HalfCirlceVision;
+import org.usfirst.frc.team5401.robot.GreenTape;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.vision.VisionThread;
@@ -45,7 +45,7 @@ public class DumbCamera extends Subsystem {
 		
 		
 		
-		visionThread = new VisionThread(camera, new HalfCirlceVision(), pipeline -> {
+		visionThread = new VisionThread(camera, new GreenTape(), pipeline -> {
 			if(!pipeline.filterContoursOutput().isEmpty()){
 				Rect boundingBox = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
 				
