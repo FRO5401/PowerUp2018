@@ -15,16 +15,35 @@ import edu.wpi.first.wpilibj.CameraServer;
  */
 public class DumbCamera extends Subsystem {
 	
+	
 	private VisionThread visionThread;
-	private double centerX = 0.0;
-	private double centerY = 0.0;
+	private double centerX;
+	private double centerY;
+	
+	private int cameraWidth;
+	private int cameraHeight;
+	
+	private double inchesForHalfOfWidth;
 	
 	private final Object visionLock = new Object();
 	public DumbCamera(){
 	
+		centerX = 0.0;
+		centerY = 0.0;
+		
+		cameraWidth = 480;
+		cameraHeight = 360;
+		
+		inchesForHalfOfWidth = 0;
+		
+		
 		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
-		camera.setResolution(320, 240);
+		camera.setResolution(cameraWidth, cameraHeight);
 		camera.setFPS(10);
+		camera.setBrightness(0);
+		camera.setExposureManual(0);
+		
+		
 		
 		visionThread = new VisionThread(camera, new HalfCirlceVision(), pipeline -> {
 			if(!pipeline.filterContoursOutput().isEmpty()){
@@ -64,12 +83,12 @@ public class DumbCamera extends Subsystem {
 		
 		
 		//XXX Below gives turn, in pixel amount, to turn towards the middle, need to put in pixel to distance conversion 
-		double turnInPixelDistance = centerX - (320/2);//XXX may need to put it as (160/2) - centerX. 160 is image width
+		double turnInPixelDistance = centerX - (cameraWidth/2);//XXX may need to put it as (image width/2) - centerX.
 		
 		//12 inches over 160 pixel. Measured. 
-		double turnInInchesDistance = turnInPixelDistance * (12.0/160.0);
-		//atan is arc tan. Divide by 12 because that is the distance from the surface with the retro tape 
-		double turnAngleInRad = Math.atan(turnInInchesDistance/12.0);
+		double turnInInchesDistance = turnInPixelDistance * (inchesForHalfOfWidth/cameraWidth);
+		//atan is arc tan.  
+		double turnAngleInRad = Math.atan(turnInInchesDistance/inchesForHalfOfWidth);
 		double turnAngleInDegrees = turnAngleInRad * (180.0/(Math.PI));//Coverts Radian angle to degrees
 		
 		return turnAngleInDegrees;
