@@ -6,6 +6,7 @@ package org.usfirst.frc.team5401.robot;
 * the wiring easier and significantly reduces the number of magic numbers
 * floating around.
 */
+//test commit
 public class RobotMap {	
 
 	//Constants for ArmWrist
