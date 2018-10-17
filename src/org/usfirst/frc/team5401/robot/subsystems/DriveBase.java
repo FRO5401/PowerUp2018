@@ -33,8 +33,6 @@ public class DriveBase extends Subsystem {
 	private SpeedControllerGroup leftDriveGroup;
 	private SpeedControllerGroup rightDriveGroup;
 	
-
-
     private Solenoid gearShifter;
 	private PIDController leftPID1;
 	private PIDController leftPID2;

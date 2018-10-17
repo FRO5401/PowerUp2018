@@ -28,6 +28,7 @@ public class Robot extends IterativeRobot {
 	public static DriveBase drivebase;
 	public static DumbCamera dumbcamera;
 	public static Infeed infeed;
+	public static ShortArm2 shortarm;
 	public static OI oi;
 	
 	
