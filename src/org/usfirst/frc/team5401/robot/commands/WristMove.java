@@ -1,19 +1,22 @@
 package org.usfirst.frc.team5401.robot.commands;
 
 import org.usfirst.frc.team5401.robot.Robot;
+import org.usfirst.frc.team5401.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class Climb extends Command {
+public class WristMove extends Command {
 	
+	int wristChangePoint;
 
-    public Climb() {
+    public WristMove() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.climber);
+    	requires(Robot.armwrist);
+    	wristChangePoint = 0;
     }
 
     // Called just before this Command runs the first time
@@ -23,21 +26,14 @@ public class Climb extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	double POVinput = Robot.oi.xboxDPad(Robot.oi.xboxController_Operator);
-    	
-    	
-    	if (POVinput == 315 || POVinput == 45 || POVinput == 0) {
-    		Robot.climber.climberStartMotors(1);//up
-    	} else if (POVinput == 135 || POVinput == 225 || POVinput == 180) {
-    		Robot.climber.climberStartMotors(-1);//down
-    	} else {
-    		Robot.climber.stopClimber();
-    	}
+    	//wristChangePoint = Robot.oi.readXboxLeftY_Test();
+    	//Robot.armwrist.longWristUpDown(wristChangePoint);
+    	//Robot.armwrist.shortWristUpDown(wristChangePoint);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return false;
     }
 
     // Called once after isFinished returns true

@@ -52,8 +52,8 @@ public class AutoDrive extends Command {
     	doneTraveling = true;
     	distanceTraveled = 0;
     	
-    	//System.out.println("AutoDriveInitializing");
-    	//System.out.println("Angle when starting DriveShift:" + Robot.drivebase.getGyroAngle());
+    	System.out.println("AutoDriveInitializing");
+    	System.out.println("Angle when starting DriveShift:" + Robot.drivebase.getGyroAngle());
     	SmartDashboard.putNumber("heading", heading);
     	
 //    	Robot.drivebase.shiftGearHighToLow();
@@ -107,7 +107,7 @@ public class AutoDrive extends Command {
     @Override
 	protected void end() {
     	Robot.drivebase.stop();
-    	//System.out.println("Angle when EXITING DriveShift:" + Robot.drivebase.getGyroAngle());
+    	System.out.println("Angle when EXITING DriveShift:" + Robot.drivebase.getGyroAngle());
     }
 
     // Called when another command which requires one or more of the same

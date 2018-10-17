@@ -42,6 +42,6 @@ public class CompressorToggle extends Command {
     @Override
 	protected void interrupted() {
     	Robot.compressorsubsystem.stopCompressor();
-    	//System.out.println("CompressorToggle Interrupted");
+    	System.out.println("CompressorToggle Interrupted");
     }
 }

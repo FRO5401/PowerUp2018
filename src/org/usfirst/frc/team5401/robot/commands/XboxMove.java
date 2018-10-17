@@ -13,7 +13,7 @@ public class XboxMove extends Command {
 
 	public XboxMove() {
 		requires(Robot.drivebase);
-        //System.out.println("XBoxMove Constructed");
+        System.out.println("XBoxMove Constructed");
     }
 
     // Called just before this Command runs the first time
@@ -87,7 +87,7 @@ public class XboxMove extends Command {
     @Override
 	protected void end() { //SHOULD never run
     	Robot.drivebase.stop();
-    	//System.out.println("XboxMove end()");
+    	System.out.println("XboxMove end()");
     }
 
     // Called when another command which requires one or more of the same
@@ -95,6 +95,6 @@ public class XboxMove extends Command {
     @Override
 	protected void interrupted() {
     	Robot.drivebase.stop();
-    	//System.out.println("XboxMove Interrupted");
+    	System.out.println("XboxMove Interrupted");
     }
 }

@@ -7,32 +7,25 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class Climb extends Command {
+public class RollerClawLongAcutatorMove extends Command {
 	
+	int upDownLong;
 
-    public Climb() {
+    public RollerClawLongAcutatorMove(int rollerClawCloseDirection) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.climber);
+    	requires(Robot.rollerclaw);
+    	
+    	upDownLong = rollerClawCloseDirection;    	
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-
+//    	Robot.rollerclaw.rollerClawLongChange(upDownLong);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	double POVinput = Robot.oi.xboxDPad(Robot.oi.xboxController_Operator);
-    	
-    	
-    	if (POVinput == 315 || POVinput == 45 || POVinput == 0) {
-    		Robot.climber.climberStartMotors(1);//up
-    	} else if (POVinput == 135 || POVinput == 225 || POVinput == 180) {
-    		Robot.climber.climberStartMotors(-1);//down
-    	} else {
-    		Robot.climber.stopClimber();
-    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()

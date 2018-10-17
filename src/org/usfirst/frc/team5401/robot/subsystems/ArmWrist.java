@@ -20,22 +20,20 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 public class ArmWrist extends Subsystem {
 
 	private DoubleSolenoid wristMoveLong;
+//	private DoubleSolenoid wristMoveShort;
 	private Solenoid brake;
-	//Encoder not needed for TalonSRX due to Versa Planetary Encoders
+	//Encoder not needed for TalonSRX due to VS Encoders
 	private TalonSRX armTalon;
+	//private AnalogPotentiometer armPot; Probably will not be used
 
-	private boolean armPidEnabled;
-	
+
 	private double armAngle;
+	private boolean armPidEnabled;
 	private int loopIndex;
 	private int slotIndex;
-	private boolean wristSolenoidPosition;
 	
 	public ArmWrist(){
-		wristSolenoidPosition = true;
-		
-		armPidEnabled = false;
-		
+
 		loopIndex = 0;
 		slotIndex = 0;
 		//This is for the ConfigSelectedFeedbackSensor whose second parameter is PID index, this loop index is the ACTUAL parameter of PID index and is zero for a primary closed loop, or one per cascade coasting. 
@@ -48,6 +46,8 @@ public class ArmWrist extends Subsystem {
 		brake = new Solenoid(RobotMap.PCM_ID, RobotMap.ARM_BRAKE);
 		
 		wristMoveLong = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.WRIST_MOVE_LONG_FORWARD, RobotMap.WRIST_MOVE_LONG_BACKWARD);
+//		wristMoveShort = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.WRIST_MOVE_SHORT_FORWARD, RobotMap.WRIST_MOVE_SHORT_BACKWARD);
+
 
 		/******REPEAT THE FOLLOWING LINE TO MAKE SET POINTS*********/
 
@@ -69,8 +69,8 @@ public class ArmWrist extends Subsystem {
 		//Sets max and min reverse and forward. First number is max/min output in percent 1 = 100%
         armTalon.configNominalOutputForward(RobotMap.ARM_NOM_OUTPUT, 	RobotMap.TIMEOUT_LIMIT_IN_Ms);
         armTalon.configNominalOutputReverse(RobotMap.ARM_NOM_OUTPUT, 	RobotMap.TIMEOUT_LIMIT_IN_Ms);
-        armTalon.configPeakOutputForward(RobotMap.ARM_PEAK_OUTPUT_FORWARD, 	RobotMap.TIMEOUT_LIMIT_IN_Ms);
-        armTalon.configPeakOutputReverse(RobotMap.ARM_PEAK_OUTPUT_REVERSE, 	RobotMap.TIMEOUT_LIMIT_IN_Ms);
+        armTalon.configPeakOutputForward(RobotMap.ARM_PEAK_OUTPUT, 	RobotMap.TIMEOUT_LIMIT_IN_Ms);
+        armTalon.configPeakOutputReverse(-1* RobotMap.ARM_PEAK_OUTPUT, 	RobotMap.TIMEOUT_LIMIT_IN_Ms);
        
         //Sets F, P, I, and D
         //Middle parameter is the corresponding value for F, P, I, or D
@@ -81,24 +81,44 @@ public class ArmWrist extends Subsystem {
         armTalon.config_kD(slotIndex, RobotMap.ARM_kD, RobotMap.TIMEOUT_LIMIT_IN_Ms);        
 	}
 	
+//    @Override
 	public void initDefaultCommand() {
         //Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
     
-	public void wristInOut(){
-    	if(wristSolenoidPosition == true) {
+    public void longWristUpDown(int longWristDirection){
+    	if(longWristDirection > 0.2) { //TODO What is this and why is the number hard coded?
     		wristMoveLong.set(DoubleSolenoid.Value.kForward);
-    		wristSolenoidPosition = false;
-    		//Long wrist will be going back in
+    		//Long wrist will be extending outwards
     	} 
-    	else if(wristSolenoidPosition == false) {
+    	else if(longWristDirection < -0.2) {
     		wristMoveLong.set(DoubleSolenoid.Value.kReverse);
-    		wristSolenoidPosition = true;
-    		//Wrist will be extending forward
+    		//Wrist will be coming back inward
     	}
     }
-	
+    
+    public void shortWristUpDown(int shortWristDirection){
+    	if(shortWristDirection > 0.2) {
+//    		wristMoveShort.set(DoubleSolenoid.Value.kForward);
+    		//Short wrist will be extending outwards
+    	} 
+    	else if(shortWristDirection < -0.2) {
+//    		wristMoveShort.set(DoubleSolenoid.Value.kReverse);
+    		//Wrist will be coming back inward
+    	}
+    }
+    public void checkWrist(){
+    	//You do this as you do not need to create an Encoder Object for VP Encoders with the TalonSRX
+    	if(armTalon.getSensorCollection().getQuadraturePosition() > RobotMap.MAX_ARM_ANGLE_BEFORE_SOLENOIDS_FIRE){
+    		wristMoveLong.set(DoubleSolenoid.Value.kForward);
+//    		wristMoveShort.set(DoubleSolenoid.Value.kForward);
+    	}
+    	else if(armTalon.getSensorCollection().getQuadraturePosition() < RobotMap.MAX_ARM_ANGLE_BEFORE_SOLENOIDS_FIRE){
+    		wristMoveLong.set(DoubleSolenoid.Value.kReverse);
+//    		wristMoveShort.set(DoubleSolenoid.Value.kReverse);
+    	}
+    }
 
 	public void setBrake(boolean brakeSet){
 		//Controlled by either override or reaching end of PID setpoint
@@ -125,8 +145,6 @@ public class ArmWrist extends Subsystem {
 		brake.set(false);
 		armPidEnabled = false;
 		armTalon.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Brake);
-		armTalon.set(ControlMode.PercentOutput, 0);
-		
 	}
 
 	public void overrideMove(double operatorJoystick){
@@ -152,16 +170,16 @@ public class ArmWrist extends Subsystem {
 	public void overrideStopped(){
 		
 		armTalon.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Brake);
-		armTalon.set(ControlMode.PercentOutput, 0);
 		brake.set(false);
 		armPidEnabled = false;
 	}
 	
 	public void armInterrupted(){
+		
 		armPidEnabled = false;
 		brake.set(false);
 		armTalon.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Brake);
-		armTalon.set(ControlMode.PercentOutput, 0);
+		
 	}
 	
 	public double getArmAngle(){
@@ -174,6 +192,29 @@ public class ArmWrist extends Subsystem {
 		return armAngle;	
 	}
 	
+	public void getWristAngle(){
+		
+		if(getArmAngle() <= 34)/*Ground and or Reset*/{
+			//Forward is Currently In and Reverse is Out (Don't know why)
+			wristMoveLong.set(DoubleSolenoid.Value.kForward);
+//    		wristMoveShort.set(DoubleSolenoid.Value.kReverse);
+			
+		} else if(getArmAngle() >= 34  && getArmAngle() <= 60)/*Portal/Switch*/{
+			wristMoveLong.set(DoubleSolenoid.Value.kForward);
+//    		wristMoveShort.set(DoubleSolenoid.Value.kReverse);
+			
+		}else if(getArmAngle() >= 60 && getArmAngle() <= 105)/*ScaleMidAndLow*/{
+			wristMoveLong.set(DoubleSolenoid.Value.kForward);
+//    		wristMoveShort.set(DoubleSolenoid.Value.kReverse);
+			
+		}else if(getArmAngle() >= 105 && getArmAngle() <= 122)/*ScaleHigh*/{
+			wristMoveLong.set(DoubleSolenoid.Value.kReverse);
+//    		wristMoveShort.set(DoubleSolenoid.Value.kReverse);
+		}else{
+			wristMoveLong.set(DoubleSolenoid.Value.kReverse);
+//			wristMoveShort.set(DoubleSolenoid.Value.kReverse);
+		}
+	}
 	
 	//1 for mode is coast. 2 for mode is brake
 	public void setTalonSRXNeutralMode(int mode)
@@ -186,12 +227,6 @@ public class ArmWrist extends Subsystem {
 		{
 			armTalon.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Brake);
 		}
-	}
-	
-	public void setMaxSpeed(double forwardSpeed, double backwardSpeed)
-	{
-		armTalon.configPeakOutputForward(forwardSpeed, 	RobotMap.TIMEOUT_LIMIT_IN_Ms);
-        armTalon.configPeakOutputReverse(backwardSpeed, 	RobotMap.TIMEOUT_LIMIT_IN_Ms);
 	}
 }
 

@@ -24,14 +24,13 @@ public class Robot extends IterativeRobot {
 	//OI has to be last
 	public static ArmWrist armwrist;
 	public static Climber climber;
-	public static CompressorSubsystem compressorsubsystem;
 	public static DriveBase drivebase;
+	public static RollerClaw rollerclaw;
+	public static CompressorSubsystem compressorsubsystem;
 	public static DumbCamera dumbcamera;
-	public static Infeed infeed;
+	public static RollerArm2 rollerarm;
 	public static OI oi;
 	
-	
-	public String FMSGameData;
 
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
@@ -45,15 +44,26 @@ public class Robot extends IterativeRobot {
 		//OI has to be last
 		armwrist = new ArmWrist();
 		climber = new Climber();
-		compressorsubsystem = new CompressorSubsystem();
 		drivebase = new DriveBase();
+		rollerclaw = new RollerClaw();
+		compressorsubsystem = new CompressorSubsystem();
 		dumbcamera = new DumbCamera();
-		infeed = new Infeed();
-		
+		rollerarm = new RollerArm2();
 		oi = new OI();
 		
-		FMSGameData = "";
+		//chooser.addDefault("Default Auto", new ExampleCommand());
+		chooser.addDefault("Do Nothing", new AutoPIDDrive(0));
+		chooser.addObject("Baseline Only", new AutoPIDDrive(97));
+		chooser.addObject("AutoCenterSwitch", new AutoCenterSwitch());
+		chooser.addObject("AutoLeftSwitch", new AutoLeftSwitch());
+		chooser.addObject("AutoRightSwitch", new AutoRightSwitch());
 		
+		chooser.addObject("AutoScaleLeft", new AutoScaleLeft());
+		chooser.addObject("AutoScaleRight", new AutoScaleRight());
+
+		chooser.addObject("Turn PID Test", new AutoPIDTurnAngle(45));
+		chooser.addObject("TurnTurnTurn Test", new TurnTurnTurn());
+		SmartDashboard.putData("Auto mode", chooser);
 	}
 
 	/**
@@ -69,23 +79,6 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
-		//chooser.addDefault("Default Auto", new ExampleCommand());
-		chooser.addDefault("Do Nothing", new AutoPIDDrive(0));
-		chooser.addObject("Baseline Only", new BaselineOnly());
-		chooser.addObject("AutoCenterSwitch", new AutoCenterSwitch());
-		chooser.addObject("AutoLeftSwitch", new AutoLeftSwitch());
-		chooser.addObject("AutoRightSwitch", new AutoRightSwitch());
-		chooser.addObject("AutoPIDDriveWithWait", new AutoPIDDriveWithWait());
-//		chooser.addObject("AutoScaleLeft", new AutoLeftScale());
-//		chooser.addObject("AutoScaleRight", new AutoRightScale());
-//		chooser.addObject("AutoScaleCenter", new AutoCenterScale());
-		chooser.addObject("Turn PID Test", new AutoPIDTurnAngle(-37));
-		chooser.addObject("TurnTurnTurn Test", new TurnTurnTurn());
-		chooser.addObject("Auto Left Side Switch", new AutoLeftSideSwitch());
-		chooser.addObject("Auto Right Side Switch", new AutoRightSideSwitch());
-		chooser.addObject("InfeedTest", new InfeedAutoTest());
-		SmartDashboard.putData("Auto mode", chooser);
-		
 	}
 
 	/**
@@ -123,7 +116,6 @@ public class Robot extends IterativeRobot {
 	public void autonomousPeriodic() {
 		SmartDashboard.putString("Auto Side PERIODIC", DriverStation.getInstance().getGameSpecificMessage());
 		Scheduler.getInstance().run();
-		Robot.drivebase.getError();
 	}
 
 	@Override
