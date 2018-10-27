@@ -27,7 +27,6 @@ public class XboxMove extends Command {
     	SmartDashboard.putNumber("Angle XboxDrive", Robot.drivebase.getGyroAngle());
     	
     	double  slew      = Robot.oi.xboxAxis(RobotMap.XBOX_AXIS_LEFT_X, Robot.oi.xboxController_Driver);
-
     	double 	throttle  = Robot.oi.xboxAxis(RobotMap.XBOX_AXIS_RIGHT_TRIGGER, Robot.oi.xboxController_Driver);
     	double 	reverse   = Robot.oi.xboxAxis(RobotMap.XBOX_AXIS_LEFT_TRIGGER, Robot.oi.xboxController_Driver);
     	boolean precision = Robot.oi.xboxButton(RobotMap.XBOX_BUTTON_LEFT_BUMPER_DRIVER, Robot.oi.xboxController_Driver);
@@ -40,7 +39,8 @@ public class XboxMove extends Command {
     	//Manual Gear Shift
     	if (gearShiftHigh){
     		Robot.drivebase.shiftGearLowToHigh();
-    	} else if (gearShiftLow){
+    	} 
+    	else if (gearShiftLow){
     		Robot.drivebase.shiftGearHighToLow();
     	}
 
@@ -49,25 +49,30 @@ public class XboxMove extends Command {
     	
     	if (precision) { //Sets drive precision based on RobotMap and Precision Mode
     		sensitivity	=	RobotMap.DRIVE_SENSITIVITY_PRECISE;
-    	} else {
+    	}
+    	else {
     		sensitivity	=	RobotMap.DRIVE_SENSITIVITY_DEFAULT;
     	}
     	
     	if (brake){
     		left  = 0;
     		right = 0;
-    	} else if(!turn){
+    	}
+    	else if(!turn){
     		if (slew > RobotMap.DRIVE_THRESHHOLD){ //If Slew is positive (Thumbstick pushed right), go Right
     			left  = (throttle - reverse) * sensitivity;					//Send Left full power
     			right = (throttle - reverse) * sensitivity * (1 - slew);	//Send Right partial power, tempered by how hard the thumbstick is being pushed
-    		} else if (slew < (-1 * RobotMap.DRIVE_THRESHHOLD)){ //If Slew is negative (Thumbstick pushed left), go Left
+    		} 
+    		else if(slew < (-1 * RobotMap.DRIVE_THRESHHOLD)){ //If Slew is negative (Thumbstick pushed left), go Left
     			left  = (throttle - reverse) * sensitivity * (1 + slew); //Send Left partial power, tempered by how hard thumbstick is being pushed left
     			right = (throttle - reverse) * sensitivity; 			//Send right full power
-    		} else { //Drive forward/back normally
+    		}
+    		else { //Drive forward/back normally
     			left  = (throttle - reverse) * sensitivity;
     			right = (throttle - reverse) * sensitivity;
     		}
-    	} else {
+    	} 
+    	else {
     		if (Math.abs(slew) > RobotMap.DRIVE_THRESHHOLD){
     			left  = RobotMap.DRIVE_SPIN_SENSITIVITY * slew;
     			right = RobotMap.DRIVE_SPIN_SENSITIVITY * slew * -1;
@@ -86,7 +91,7 @@ public class XboxMove extends Command {
     // Called once after isFinished returns true
     @Override
 	protected void end() { //SHOULD never run
-    	Robot.drivebase.stop();
+    	Robot.drivebase.stopMotors();
     	//System.out.println("XboxMove end()");
     }
 
@@ -94,7 +99,7 @@ public class XboxMove extends Command {
     // subsystems is scheduled to run
     @Override
 	protected void interrupted() {
-    	Robot.drivebase.stop();
+    	Robot.drivebase.stopMotors();
     	//System.out.println("XboxMove Interrupted");
     }
 }

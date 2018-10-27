@@ -7,7 +7,7 @@ import org.usfirst.frc.team5401.robot.Robot;
 import org.usfirst.frc.team5401.robot.RobotMap;
 
 /**
- * @deprecated use AutoPIDTurnAngle
+ * 
  */
 @Deprecated
 public class AutoTurnAngle extends Command {
@@ -76,7 +76,7 @@ public class AutoTurnAngle extends Command {
     // Called once after isFinished returns true
     @Override
 	protected void end() {
-    	Robot.drivebase.stop();
+    	Robot.drivebase.stopMotors();
     	System.out.println("AutoTurnAngle end()");
     }
 
@@ -84,7 +84,7 @@ public class AutoTurnAngle extends Command {
     // subsystems is scheduled to run
     @Override
 	protected void interrupted() {
-    	Robot.drivebase.stop();
+    	Robot.drivebase.stopMotors();
     	System.out.println("AutoTurnAngle Interrupted");
     }
 }

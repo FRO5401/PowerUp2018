@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class BaselineOnly extends CommandGroup {
 
     public BaselineOnly() {
-    	addSequential(new AutoPIDDrive(97));
+    	addSequential(new AutoDrive(97, .5));
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

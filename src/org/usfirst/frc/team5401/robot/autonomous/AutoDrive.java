@@ -8,7 +8,6 @@ import org.usfirst.frc.team5401.robot.Robot;
 
 /**
  * This command is also used as a "BaselineOnly" command
- * @deprecated use AutoPIDDrive
  */
 @Deprecated
 public class AutoDrive extends Command {
@@ -65,7 +64,8 @@ public class AutoDrive extends Command {
     	if (Math.abs(desiredDistance) <= autoDistThresh){
     		//DesiredDistance too small!
     		doneTraveling = true;
-    	} else {
+    	} 
+    	else {
     		drift = Robot.drivebase.getGyroAngle() - heading;
     		SmartDashboard.putNumber("Drift", drift);
     			if (desiredDistance > 0 && (distanceTraveled < Math.abs(desiredDistance) - autoDistThresh)){ //DesiredDistance is positive, go forward
@@ -74,21 +74,26 @@ public class AutoDrive extends Command {
     					Robot.drivebase.drive(autoDriveSpeed + (kP_Drift * drift), autoDriveSpeed); //Adjust right motor when driving forward
 //    				} else if (drift < -.5){
 //    					Robot.drivebase.drive(autoDriveSpeed, autoDriveSpeed + (kP_Drift * drift));
-    				} else {
+    				}
+    				else {
     					Robot.drivebase.drive(autoDriveSpeed, autoDriveSpeed);
     				}
     				doneTraveling = false;
-    			} else if (desiredDistance < 0 && (distanceTraveled > autoDistThresh - Math.abs(desiredDistance))){ //DesiredDistance is negative, go backward
+    			}
+    			else if (desiredDistance < 0 && (distanceTraveled > autoDistThresh - Math.abs(desiredDistance))){ //DesiredDistance is negative, go backward
     				//Drive Backward
     				if (drift > .5){ //Currently assumes we always drift left (while looking backward as the front) while going backwards
     					Robot.drivebase.drive(-autoDriveSpeed, -(autoDriveSpeed + (kP_Drift * drift)));//Adjusts left motor when driving backwards
-    				} else if (drift < -.5){
+    				}
+    				else if (drift < -.5){
     					Robot.drivebase.drive(-autoDriveSpeed + (kP_Drift * drift), -autoDriveSpeed);
-    				} else {
+    				}
+    				else {
     					Robot.drivebase.drive(-autoDriveSpeed, -autoDriveSpeed);
     				}
     				doneTraveling = false;
-    			} else { //error, exactly 0, or done
+    			}
+    			else { //error, exactly 0, or done
     				//Finished
     				doneTraveling = true;
     			}
@@ -106,7 +111,7 @@ public class AutoDrive extends Command {
     // Called once after isFinished returns true
     @Override
 	protected void end() {
-    	Robot.drivebase.stop();
+    	Robot.drivebase.stopMotors();
     	//System.out.println("Angle when EXITING DriveShift:" + Robot.drivebase.getGyroAngle());
     }
 
@@ -114,6 +119,6 @@ public class AutoDrive extends Command {
     // subsystems is scheduled to run
     @Override
 	protected void interrupted() {
-    	Robot.drivebase.stop();
+    	Robot.drivebase.stopMotors();
     }
 }

@@ -22,11 +22,11 @@ public class AutoCenterSwitch extends CommandGroup {
     	{
     	//Start at Auto Position #3.
     	//This will be putting block on left side (Closer to Left)
-    		addSequential(new AutoPIDDrive(21));
-    		addSequential(new AutoPIDTurnAngle(-37));
-    		addSequential(new AutoPIDDrive(90)); //78
-    		addSequential(new AutoPIDTurnAngle(37));
-    		addSequential(new AutoPIDDrive(6));
+    		addSequential(new AutoDrive(21, .5));
+    		addSequential(new AutoTurnAngle(-37));
+    		addSequential(new AutoDrive(90, .5)); //78
+    		addSequential(new AutoTurnAngle(37));
+    		addSequential(new AutoDrive(6, .5));
     		addSequential(new InfeedUpDownForAuto(31));
     		addSequential(new WaitCommand(1));
     		addSequential(new InfeedInOutForAuto(-1));
@@ -36,11 +36,11 @@ public class AutoCenterSwitch extends CommandGroup {
     	else if(gameData.charAt(0) == 'R'){    	
     	//Start at Auto Position #3. 
     	//This will be putting block the right side (Closer to right)
-    		addSequential(new AutoPIDDrive(21));
-    		addSequential(new AutoPIDTurnAngle(37));
-    		addSequential(new AutoPIDDrive(72)); //90
-    		addSequential(new AutoPIDTurnAngle(-37));
-    		addSequential(new AutoPIDDrive(20)); //7
+    		addSequential(new AutoDrive(21, .5));
+    		addSequential(new AutoTurnAngle(37));
+    		addSequential(new AutoDrive(72, .5)); //90
+    		addSequential(new AutoTurnAngle(-37));
+    		addSequential(new AutoDrive(20, .5)); //7
     		addSequential(new InfeedUpDownForAuto(31));
     		addSequential(new WaitCommand(1));
     		addSequential(new InfeedInOutForAuto(-1));
@@ -49,9 +49,9 @@ public class AutoCenterSwitch extends CommandGroup {
     	}
     	else if(gameData.charAt(0) == 'X'){
     		//XXX Fix
-    		addSequential(new AutoPIDDrive(50));
-    		addSequential(new AutoPIDTurnAngle(90));
-    		addSequential(new AutoPIDTurnAngle(-90));
+    		addSequential(new AutoDrive(50, .5));
+    		addSequential(new AutoTurnAngle(90));
+    		addSequential(new AutoTurnAngle(-90));
     	}
     }
 }

@@ -30,13 +30,13 @@ public class AutoLeftSwitch extends CommandGroup {
     	{    	
     	//Start at Auto Position #2. Drive Forward 85 inches to base line 
     	//(Figure out specifics later)
-    		addSequential(new AutoPIDDrive(97));
-    		addSequential(new AutoPIDTurnAngle(90));
+    		addSequential(new AutoDrive(97, .5));
+    		addSequential(new AutoTurnAngle(90));
  
     	}else if(gameData.charAt(0) == 'X')
     	{
-    		addSequential(new AutoPIDDrive(97));
-    		addSequential(new AutoPIDTurnAngle(90));
+    		addSequential(new AutoDrive(97, .5));
+    		addSequential(new AutoTurnAngle(90));
     		//addSequential(new xxxxARM());
 
     	}

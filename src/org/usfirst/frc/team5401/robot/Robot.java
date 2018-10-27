@@ -61,16 +61,11 @@ public class Robot extends IterativeRobot {
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
 		//chooser.addDefault("Default Auto", new ExampleCommand());
-		chooser.addDefault("Do Nothing", new AutoPIDDrive(0));
+		chooser.addDefault("Do Nothing", new AutoDrive(0, 0));
 		chooser.addObject("Baseline Only", new BaselineOnly());
 		chooser.addObject("AutoCenterSwitch", new AutoCenterSwitch());
 		chooser.addObject("AutoLeftSwitch", new AutoLeftSwitch());
 		chooser.addObject("AutoRightSwitch", new AutoRightSwitch());
-		chooser.addObject("AutoPIDDriveWithWait", new AutoPIDDriveWithWait());
-//		chooser.addObject("AutoScaleLeft", new AutoLeftScale());
-//		chooser.addObject("AutoScaleRight", new AutoRightScale());
-//		chooser.addObject("AutoScaleCenter", new AutoCenterScale());
-		chooser.addObject("Turn PID Test", new AutoPIDTurnAngle(-37));
 		chooser.addObject("TurnTurnTurn Test", new TurnTurnTurn());
 		chooser.addObject("Auto Left Side Switch", new AutoLeftSideSwitch());
 		chooser.addObject("Auto Right Side Switch", new AutoRightSideSwitch());
@@ -114,7 +109,6 @@ public class Robot extends IterativeRobot {
 	public void autonomousPeriodic() {
 		SmartDashboard.putString("Auto Side PERIODIC", DriverStation.getInstance().getGameSpecificMessage());
 		Scheduler.getInstance().run();
-		Robot.drivebase.getError();
 	}
 
 	@Override
