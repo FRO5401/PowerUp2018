@@ -23,17 +23,17 @@ import edu.wpi.first.wpilibj.Solenoid;
  *
  */
 public class DriveBase extends Subsystem {
-	//All constants are now in RobotMap
-	
+
 	private VictorSP leftDrive1;
 	private VictorSP rightDrive1;
 	private VictorSP leftDrive2;
 	private VictorSP rightDrive2;
 	
+	private DoubleSolenoid gearShifter;
+	
 	private SpeedControllerGroup leftDriveGroup;
 	private SpeedControllerGroup rightDriveGroup;
 	
-    private Solenoid gearShifter;
 	private PIDController leftPID1;
 	private PIDController leftPID2;
 	private PIDController rightPID1;
@@ -53,10 +53,10 @@ public class DriveBase extends Subsystem {
 		rightDrive1  = new VictorSP(RobotMap.DRIVE_RIGHT_MOTOR_1);
 		leftDrive2  = new VictorSP(RobotMap.DRIVE_LEFT_MOTOR_2);
 		rightDrive2 = new VictorSP(RobotMap.DRIVE_RIGHT_MOTOR_2);
-		gearShifter = new Solenoid(RobotMap.PCM_ID, RobotMap.DRIVE_SHIFT);
+		gearShifter = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.SHIFTER_IN, RobotMap.SHIFTER_OUT);
 
 		leftEncoder = new Encoder(RobotMap.DRIVE_ENC_LEFT_A, RobotMap.DRIVE_ENC_LEFT_B, true, Encoder.EncodingType.k4X);
-		//																					vvv if this was false, DPP doesn't have to be negative
+		//																				^^^vvv if these were false, DPP doesn't have to be negative
 		rightEncoder = new Encoder(RobotMap.DRIVE_ENC_RIGHT_A, RobotMap.DRIVE_ENC_RIGHT_B, true, Encoder.EncodingType.k4X);
 		
 		//Jason - I think the following is unnecessary because the initEncoder method, which called in the encoder constructor sets the PIDSourceType to displacement
@@ -160,7 +160,7 @@ public class DriveBase extends Subsystem {
     public void shiftGearLowToHigh(){
     	//Meaning Low speed to high speed
     	//Assumes Pneumatic forward/out shifts low to high
-    	gearShifter.set(true);
+    	gearShifter.set(DoubleSolenoid.Value.kForward);
     	leftEncoder.setDistancePerPulse(RobotMap.HIGH_GEAR_LEFT_DPP);
     	rightEncoder.setDistancePerPulse(RobotMap.HIGH_GEAR_RIGHT_DPP);
     	//System.out.println("Shifting Drive Gear to High Gear");
@@ -168,15 +168,14 @@ public class DriveBase extends Subsystem {
 
     public void shiftGearHighToLow(){
     	//Assumes Pneumatic reverse/in shifts high to low
-    	gearShifter.set(false);
+    	gearShifter.set(DoubleSolenoid.Value.kReverse);
     	leftEncoder.setDistancePerPulse(RobotMap.LOW_GEAR_LEFT_DPP);
     	rightEncoder.setDistancePerPulse(RobotMap.LOW_GEAR_RIGHT_DPP);
     	//System.out.println("Shifting Drive Gear to Low Gear");
     }
     
-    public boolean getGearShifterValue () {
-    	return gearShifter.get();
-
+    public String getGearShifterValue() {
+    	return gearShifter.get().toString();
     }
     
     public void setDPPLowGear(){

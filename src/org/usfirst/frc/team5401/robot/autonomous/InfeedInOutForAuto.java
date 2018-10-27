@@ -13,19 +13,18 @@ public class InfeedInOutForAuto extends Command {
 	//1 for out, 0 for stop, -1 for in
     public InfeedInOutForAuto(int directionInput) {
         // Use requires() here to declare subsystem dependencies
-    	requires(Robot.infeed);
+    	requires(Robot.shortarm);
         directionControl = directionInput;
     }
 
     // Called just before this Command runs the first time
-    protected void initialize() {
-    	
+    protected void initialize() 	
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
 //    	System.out.println("Infeed out for Auto Init");
-    	Robot.infeed.feedInOut(-1);
+    	Robot.shortarm.feedInOut(1);
     }
 
     // Make this return true when this Command no longer needs to run execute()

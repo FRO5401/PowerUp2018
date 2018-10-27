@@ -15,8 +15,7 @@ public class CompressorSubsystem extends Subsystem {
 
 	public CompressorSubsystem() {
 		compressor = new Compressor(RobotMap.PCM_ID);
-
-		SmartDashboard.putBoolean("Compressor On/Off", true);
+		getCompressorStatus();
 	}
 	
     @Override
@@ -28,10 +27,11 @@ public class CompressorSubsystem extends Subsystem {
     	compressor.setClosedLoopControl(true);
     	compressor.start();
     	SmartDashboard.putBoolean("Compressor On/Off", true);
+    	getCompressorStatus();
     }
     
     public void stopCompressor() {
-    	compressor.stop() ;
+    	compressor.stop();
     	SmartDashboard.putBoolean("Compressor On/Off", false);
     }
     
@@ -45,13 +45,4 @@ public class CompressorSubsystem extends Subsystem {
     public boolean isEnabled(){
     	return compressor.enabled();
     }
-    
-    public void switchState(){
-    	if (isEnabled()){
-    		stopCompressor();
-    	} else {
-    		startCompressor();
-    	}
-    }
-
 }

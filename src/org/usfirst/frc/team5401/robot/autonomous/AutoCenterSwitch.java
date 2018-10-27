@@ -27,13 +27,13 @@ public class AutoCenterSwitch extends CommandGroup {
     		addSequential(new AutoPIDDrive(90)); //78
     		addSequential(new AutoPIDTurnAngle(37));
     		addSequential(new AutoPIDDrive(6));
-    		addSequential(new InfeedUpDownForAuto(-1));
+    		addSequential(new InfeedUpDownForAuto(31));
     		addSequential(new WaitCommand(1));
     		addSequential(new InfeedInOutForAuto(-1));
     		//addSequential(new AutoPIDDrive(-15));
     		//addSequential(new AutoPIDTurnAngle(90));
-    	}else if(gameData.charAt(0) == 'R')
-    	{    	
+    	}
+    	else if(gameData.charAt(0) == 'R'){    	
     	//Start at Auto Position #3. 
     	//This will be putting block the right side (Closer to right)
     		addSequential(new AutoPIDDrive(21));
@@ -41,13 +41,13 @@ public class AutoCenterSwitch extends CommandGroup {
     		addSequential(new AutoPIDDrive(72)); //90
     		addSequential(new AutoPIDTurnAngle(-37));
     		addSequential(new AutoPIDDrive(20)); //7
-    		addSequential(new InfeedUpDownForAuto(-1));
+    		addSequential(new InfeedUpDownForAuto(31));
     		addSequential(new WaitCommand(1));
     		addSequential(new InfeedInOutForAuto(-1));
     		//addSequential(new AutoPIDDrive(-15));
     		//addSequential(new AutoPIDTurnAngle(-90));
-    	}else if(gameData.charAt(0) == 'X')
-    	{
+    	}
+    	else if(gameData.charAt(0) == 'X'){
     		//XXX Fix
     		addSequential(new AutoPIDDrive(50));
     		addSequential(new AutoPIDTurnAngle(90));

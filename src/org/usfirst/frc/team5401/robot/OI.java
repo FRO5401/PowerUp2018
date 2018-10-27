@@ -15,7 +15,6 @@ public class OI {
 	//These objects must be public for other classes to access when calling methods from OI
 	public Joystick xboxController_Driver = new Joystick(RobotMap.XBOX_CONTROLLER_DRIVER);
 	public Joystick xboxController_Operator = new Joystick(RobotMap.XBOX_CONTROLLER_OPERATOR);
-	public Joystick xboxController_Tester = new Joystick(RobotMap.XBOX_CONTROLLER_TESTER);
 	
 	//Buttons
 	Button xboxA_Driver			  = new JoystickButton(xboxController_Driver, 1);
@@ -40,31 +39,9 @@ public class OI {
 	Button xboxL3_Operator		  	= new JoystickButton(xboxController_Operator, 9);
 	Button xboxR3_Operator		  	= new JoystickButton(xboxController_Operator, 10);
 
-	Button xboxA_Tester			  = new JoystickButton(xboxController_Tester, 1);
-	Button xboxB_Tester			  = new JoystickButton(xboxController_Tester, 2);
-	Button xboxX_Tester			  = new JoystickButton(xboxController_Tester, 3);
-	Button xboxY_Tester			  = new JoystickButton(xboxController_Tester, 4);
-	Button xboxLeftBumper_Tester  = new JoystickButton(xboxController_Tester, 5);
-	Button xboxRightBumper_Tester = new JoystickButton(xboxController_Tester, 6);
-	Button xboxBack_Tester		  = new JoystickButton(xboxController_Tester, 7);
-	Button xboxStart_Tester		  = new JoystickButton(xboxController_Tester, 8);
-	Button xboxL3_Tester		  = new JoystickButton(xboxController_Tester, 9);
-	Button xboxR3_Tester		  = new JoystickButton(xboxController_Tester, 10);
-
 	public OI()
 	{
-		
-		xboxY_Driver.whenPressed(new CompressorToggle());
-		xboxR3_Operator.whenPressed(new ArmOverRide());
-
-		xboxA_Operator.whenPressed(new ArmPIDMove(RobotMap.FLOOR_SETPOINT));
-		xboxB_Operator.whenPressed(new ArmPIDMove(RobotMap.SCALE_HIGH));
-		xboxY_Operator.whenPressed(new ArmPIDMove(RobotMap.AUTO_SCALE_SETPOINT));
-//		xboxStart_Operator.whenPressed(new ArmPIDMove(RobotMap.CLIMB_POINT));
-		
-		//xboxBack_Operator.whenPressed(new WristSwitchState());
-		
-		
+		xboxStart_Operator.whenPressed(new CompressorToggle());	
 	}
 	
 	//Controller Axis

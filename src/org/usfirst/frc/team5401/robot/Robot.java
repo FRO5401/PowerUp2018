@@ -21,19 +21,14 @@ import org.usfirst.frc.team5401.robot.subsystems.*;
  */
 public class Robot extends IterativeRobot {
 
-	//OI has to be last
-	public static ArmWrist armwrist;
-	public static Climber climber;
+	//XXX OI is always last.
+	public String FMSGameData;
 	public static CompressorSubsystem compressorsubsystem;
 	public static DriveBase drivebase;
-	public static DumbCamera dumbcamera;
-	public static Infeed infeed;
-	public static ShortArm2 shortarm;
+	public static ShortArm shortarm;
+	
 	public static OI oi;
 	
-	
-	public String FMSGameData;
-
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 
@@ -44,17 +39,12 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		//OI has to be last
-		armwrist = new ArmWrist();
-		climber = new Climber();
-		compressorsubsystem = new CompressorSubsystem();
-		drivebase = new DriveBase();
-		dumbcamera = new DumbCamera();
-		infeed = new Infeed();
-		
-		oi = new OI();
-		
 		FMSGameData = "";
 		
+		compressorsubsystem = new CompressorSubsystem();
+		drivebase = new DriveBase();
+	
+		oi = new OI();	
 	}
 
 	/**

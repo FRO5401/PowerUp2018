@@ -12,14 +12,14 @@ public class InfeedUpDownForAuto extends Command {
 	
     public InfeedUpDownForAuto(int upDownInput) {
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.infeed);
+        requires(Robot.shortarm);
         upDown = upDownInput;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
 //    	System.out.println("Claw Down Auto");
-    	Robot.infeed.clawUpDown(upDown);
+    	Robot.shortarm.moveArm(upDown);
     }
 
     // Called repeatedly when this Command is scheduled to run

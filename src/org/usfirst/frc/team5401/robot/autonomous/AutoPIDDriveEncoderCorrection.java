@@ -34,7 +34,7 @@ public class AutoPIDDriveEncoderCorrection extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if (abs(leftEncoder - rightEncoder) >= RobotMap.DRIVE_PID_CORRECTION_THRESHOLD) {
+    	if (Math.abs(leftEncoder - rightEncoder) >= RobotMap.DRIVE_PID_CORRECTION_THRESHOLD) {
     		
     	}
     }
