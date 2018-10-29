@@ -58,14 +58,12 @@ public class OI {
 		xboxR3_Operator.whenPressed(new ArmOverRide());
 
 		xboxA_Operator.whenPressed(new ArmPIDMove(RobotMap.FLOOR_SETPOINT));
-		xboxB_Operator.whenPressed(new ArmPIDMove(RobotMap.SET_SWITCH_PORTAL_SETPOINT));
-		xboxY_Operator.whenPressed(new ArmPIDMove(RobotMap.SCALE_HIGH));
-		xboxX_Operator.whenPressed(new ArmPIDMove(RobotMap.SCALE_MID));
+		xboxB_Operator.whenPressed(new ArmPIDMove(RobotMap.SCALE_HIGH));
+		xboxY_Operator.whenPressed(new ArmPIDMove(RobotMap.AUTO_SCALE_SETPOINT));
+//		xboxStart_Operator.whenPressed(new ArmPIDMove(RobotMap.CLIMB_POINT));
 		
-		xboxX_Tester.whenPressed(new WristOverrideTesting("Long", false));//Out
-		xboxX_Tester.whenReleased(new WristOverrideTesting("Long", true));//In
-		xboxY_Tester.whenPressed(new WristOverrideTesting("Short", false));//Out
-		xboxY_Tester.whenReleased(new WristOverrideTesting("Short", true));//In
+		//xboxBack_Operator.whenPressed(new WristSwitchState());
+		
 		
 	}
 	
@@ -86,11 +84,12 @@ public class OI {
 	
 	public int xboxAxisAsDigitalInput(int axisInput, Joystick userMap)
 	{
+		//if a  joystick on the xbox controller goes up, the output is negative
 		if(userMap.getRawAxis(axisInput) > RobotMap.AXIS_THRESHOLD)
 		{
 			return 1;
 		}
-		else if(userMap.getRawAxis(axisInput) < RobotMap.AXIS_THRESHOLD)
+		else if(userMap.getRawAxis(axisInput) < (-1 * RobotMap.AXIS_THRESHOLD))
 		{
 			return -1;
 		}

@@ -1,24 +1,14 @@
 package org.usfirst.frc.team5401.robot.autonomous;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import edu.wpi.first.wpilibj.command.WaitCommand;
 
 /**
  *
  */
-public class TurnTurnTurn extends CommandGroup {
+public class BaselineOnly extends CommandGroup {
 
-    public TurnTurnTurn() {
-    	
-    	addSequential(new AutoPIDTurnAngle(45));
-    	//System.out.print("90 Degrees");
-    	addSequential(new WaitCommand(2));
-    	addSequential(new AutoPIDTurnAngle(-45));
-    	//System.out.print("-45 Degrees");
-    	addSequential(new WaitCommand(2));
-    	addSequential(new AutoPIDTurnAngle(45));
-    	//System.out.print("45 Degrees");
-    	addSequential(new AutoPIDDrive(2));
+    public BaselineOnly() {
+    	addSequential(new AutoPIDDrive(97));
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

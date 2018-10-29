@@ -1,6 +1,7 @@
 package org.usfirst.frc.team5401.robot.commands;
 
 import org.usfirst.frc.team5401.robot.Robot;
+import edu.wpi.first.wpilibj.command.Scheduler;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -32,10 +33,12 @@ public class StabilizerDeploy extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	Scheduler.getInstance().add(new InfeedControl());
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	Scheduler.getInstance().add(new InfeedControl());
     }
 }

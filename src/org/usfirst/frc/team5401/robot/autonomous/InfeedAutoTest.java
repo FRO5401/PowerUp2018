@@ -1,24 +1,17 @@
 package org.usfirst.frc.team5401.robot.autonomous;
 
+import org.usfirst.frc.team5401.robot.autonomous.*;
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import edu.wpi.first.wpilibj.command.WaitCommand;
 
 /**
  *
  */
-public class TurnTurnTurn extends CommandGroup {
+public class InfeedAutoTest extends CommandGroup {
 
-    public TurnTurnTurn() {
+    public InfeedAutoTest() {
+    	addSequential(new InfeedUpDownForAuto(-1));
+    	addSequential(new InfeedInOutForAuto(-1));
     	
-    	addSequential(new AutoPIDTurnAngle(45));
-    	//System.out.print("90 Degrees");
-    	addSequential(new WaitCommand(2));
-    	addSequential(new AutoPIDTurnAngle(-45));
-    	//System.out.print("-45 Degrees");
-    	addSequential(new WaitCommand(2));
-    	addSequential(new AutoPIDTurnAngle(45));
-    	//System.out.print("45 Degrees");
-    	addSequential(new AutoPIDDrive(2));
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

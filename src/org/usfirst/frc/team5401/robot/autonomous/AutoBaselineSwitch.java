@@ -1,24 +1,25 @@
 package org.usfirst.frc.team5401.robot.autonomous;
 
+import org.usfirst.frc.team5401.robot.commands.*;
+import org.usfirst.frc.team5401.robot.RobotMap;
+import org.usfirst.frc.team5401.robot.commands.*;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.WaitCommand;
+
+import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
  */
-public class TurnTurnTurn extends CommandGroup {
+public class AutoBaselineSwitch extends CommandGroup {
 
-    public TurnTurnTurn() {
+    public AutoBaselineSwitch() {
     	
-    	addSequential(new AutoPIDTurnAngle(45));
-    	//System.out.print("90 Degrees");
-    	addSequential(new WaitCommand(2));
-    	addSequential(new AutoPIDTurnAngle(-45));
-    	//System.out.print("-45 Degrees");
-    	addSequential(new WaitCommand(2));
-    	addSequential(new AutoPIDTurnAngle(45));
-    	//System.out.print("45 Degrees");
-    	addSequential(new AutoPIDDrive(2));
+    	addSequential(new AutoPIDDrive(100));
+    	addSequential(new InfeedUpDownForAuto(-1));
+		addSequential(new WaitCommand(1));
+		addSequential(new InfeedInOutForAuto(-1));
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

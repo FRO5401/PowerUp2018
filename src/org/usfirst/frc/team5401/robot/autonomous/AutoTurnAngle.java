@@ -27,7 +27,6 @@ public class AutoTurnAngle extends Command {
     	currentAngleRelativeToInitAngle = 0;
     	initAngle = 0;
     	finished = true;
-    	System.out.println("AutoTurnAngle Constructed");
     }
 
     // Called just before this Command runs the first time
@@ -48,7 +47,7 @@ public class AutoTurnAngle extends Command {
     	//System.out.println("Current Angle: " + currentAngleRelativeToInitAngle);
     	if (Math.abs(desiredTurnAngleRelativeToInitAngle) <= RobotMap.ANGLE_THRESHOLD){
     		//desiredTurnAngleRelativeToInitAngle too small
-    		System.out.println("AutoTurnAngle should stop1");
+    		//System.out.println("AutoTurnAngle should stop1");
     		finished = true;
     	} else {
     		if (desiredTurnAngleRelativeToInitAngle > 0 && (currentAngleRelativeToInitAngle < Math.abs(desiredTurnAngleRelativeToInitAngle) - RobotMap.ANGLE_THRESHOLD)){
@@ -60,7 +59,7 @@ public class AutoTurnAngle extends Command {
     		} else { //error or exactly 0
     			//Finished 
     			finished = true;
-    			System.out.println("AutoTurnAngle should stop2");
+    			//System.out.println("AutoTurnAngle should stop2");
     		}
     	currentAngleRelativeToInitAngle = Robot.drivebase.getGyroAngle() - initAngle;
     	}

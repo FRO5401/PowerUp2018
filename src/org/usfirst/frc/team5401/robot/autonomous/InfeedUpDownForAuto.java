@@ -1,36 +1,34 @@
-package org.usfirst.frc.team5401.robot.commands;
+package org.usfirst.frc.team5401.robot.autonomous;
 
 import org.usfirst.frc.team5401.robot.Robot;
-
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class RollerClawDirectionControl extends Command {
-	
-	public int inOut;
+public class InfeedUpDownForAuto extends Command {
 
-    public RollerClawDirectionControl() {
+	private int upDown;
+	
+    public InfeedUpDownForAuto(int upDownInput) {
         // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-    	requires(Robot.rollerclaw);
+        requires(Robot.infeed);
+        upDown = upDownInput;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+//    	System.out.println("Claw Down Auto");
+    	Robot.infeed.clawUpDown(upDown);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-//    	inOut = Robot.oi.getXboxTriggers_Operator();
-    	
-    	Robot.rollerclaw.rollerInOut(inOut);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true

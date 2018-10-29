@@ -1,30 +1,26 @@
 package org.usfirst.frc.team5401.robot.commands;
 
 import org.usfirst.frc.team5401.robot.Robot;
+import org.usfirst.frc.team5401.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
-
 /**
  *
  */
-public class RollerClawShortActuatorMove extends Command {
+public class WristSwitchState extends Command {
 	
-	int upDownShort;
-
-    public RollerClawShortActuatorMove(int rollerClawFarDirection) {
+    public WristSwitchState() {
         // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-    	requires(Robot.rollerclaw);
-    	upDownShort = rollerClawFarDirection;
+        requires(Robot.armwrist);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	
     }
-
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.rollerclaw.rollerClawShortChange(upDownShort);
+    	Robot.armwrist.wristInOut();
     }
 
     // Make this return true when this Command no longer needs to run execute()

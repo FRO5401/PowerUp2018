@@ -29,20 +29,19 @@ public class ArmOverRide extends Command {
     	boolean overRideButton = Robot.oi.xboxButton(RobotMap.XBOX_BUTTON_R3_OPERATOR, Robot.oi.xboxController_Operator);
     	overrideEnabled = (overRideButton);
     	Robot.armwrist.setTalonSRXNeutralMode(1);
-       	System.out.println("Arm Override Start");
+       	//System.out.println("Arm Override Start");
    }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
 	protected void execute() {
-       	System.out.println("Arm Override Running");
+       	//System.out.println("Arm Override Running");
     	//Joystick up gives a negative value. The negative sign swtiches that.
     	double overRideMoving = -Robot.oi.xboxAxis(RobotMap.XBOX_AXIS_RIGHT_Y, Robot.oi.xboxController_Operator) * RobotMap.ARM_OVERRIDE_PRECISION;
-    	System.out.println(overRideMoving);
+    	//System.out.println(overRideMoving);
     	boolean overRideButton = Robot.oi.xboxButton(RobotMap.XBOX_BUTTON_R3_OPERATOR, Robot.oi.xboxController_Operator);
     	//calling to the button as well as the joystick
     	Robot.armwrist.getArmAngle();
-    	Robot.armwrist.getWristAngle();
     	
     	//True means brake is released
     	Robot.armwrist.setBrake(overRideButton);
@@ -50,7 +49,7 @@ public class ArmOverRide extends Command {
     	
     	if(overRideButton == true)
     	{	
-    		System.out.println("overRideButton is true");
+    		//System.out.println("overRideButton is true");
     		if(overRideMoving > RobotMap.ARM_OVERRIDE_JOYSTICK_THRESHOLD && Robot.armwrist.getArmAngle() < 150)
     		{
     			Robot.armwrist.overrideMove(overRideMoving);
@@ -65,11 +64,11 @@ public class ArmOverRide extends Command {
     		if(Math.abs(overRideMoving) < RobotMap.ARM_OVERRIDE_JOYSTICK_THRESHOLD)
     		{	
 //    			Robot.armwrist.setBrake(true);
-    			System.out.println("Override Button + Brake on");
+    			//System.out.println("Override Button + Brake on");
     			Robot.armwrist.overrideMove(0);
     		}
     	}  
-    	System.out.print("Test1");
+    	//System.out.print("Test1");
     	//Calling for the overridemove button from the subsystem and the value of the left joystick form OI. This is executed.
     	overrideEnabled = (overRideButton);
     	Robot.armwrist.getArmAngle();
@@ -78,7 +77,7 @@ public class ArmOverRide extends Command {
     // Make this return true when this Command no longer needs to run execute()
     @Override
 	protected boolean isFinished() {
-       	System.out.println("OverRide Enabled: " + overrideEnabled);
+       	//System.out.println("OverRide Enabled: " + overrideEnabled);
     	
         return !overrideEnabled;
     }
@@ -86,7 +85,7 @@ public class ArmOverRide extends Command {
     // Called once after isFinished returns true
     @Override
 	protected void end() {
-    	System.out.println("Arm Override End");
+    	//System.out.println("Arm Override End");
 		Robot.armwrist.overrideMove(0);
     	Robot.armwrist.overrideStopped();
     }
@@ -96,7 +95,7 @@ public class ArmOverRide extends Command {
     @Override
 	protected void interrupted() {
 		Robot.armwrist.overrideMove(0);
-    	System.out.println("Arm Override Interrupted");
+    	//System.out.println("Arm Override Interrupted");
     	Robot.armwrist.armInterrupted();
     }
 }

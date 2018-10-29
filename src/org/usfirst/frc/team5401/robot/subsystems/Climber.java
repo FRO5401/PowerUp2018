@@ -1,5 +1,7 @@
 package org.usfirst.frc.team5401.robot.subsystems;
 
+import org.usfirst.frc.team5401.robot.commands.Climb;
+
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -30,6 +32,7 @@ public class Climber extends Subsystem {
 	private boolean platformEnabled;
 	
 	
+	
 	public Climber(){
 //		climberStablizer    = new Solenoid(RobotMap.CLIMBER_STABLIZER);
 //		climberPlatforms      = new DoubleSolenoid(RobotMap.PCM_ID, RobotMap.CLIMBER_PLATFORM_IN, RobotMap.CLIMBER_PLATFORM_OUT);
@@ -38,15 +41,14 @@ public class Climber extends Subsystem {
 		climberMotorTop = new VictorSP(RobotMap.CLIMBER_MOTOR_TOP);
 		climberMotorBottom = new VictorSP(RobotMap.CLIMBER_MOTOR_BOTTOM);
 		
-		stablizerEnabled = false;
-		platformEnabled = false;
+		
 		SmartDashboard.putBoolean("Stablizer State", stablizerEnabled);
 		SmartDashboard.putBoolean("Climb Platforms State", platformEnabled);
 	}
 	
 	public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
+        setDefaultCommand(new Climb());
     }
 	
 	//Stablizer
@@ -55,9 +57,9 @@ public class Climber extends Subsystem {
 		stablizerEnabled = stablizerState;
 	}
 	
-	//1 is out, everything else is in
-	public void changeClimberPlatforms(int platformState){
-		if(platformState == 1)
+	//true is out, false is in
+	public void changeClimberPlatforms(boolean platformState){
+		if(platformState == true)
 		{
 //			climberPlatforms.set(DoubleSolenoid.Value.kForward);
 		}
@@ -68,27 +70,32 @@ public class Climber extends Subsystem {
 		
 	}
 	
-	//XXX Switches are all reversed because they default to true and go false when tripped
+/*	
 	public boolean reportTopClimbSwitch(){
 		SmartDashboard.putBoolean("Climber Top Switch", !(climberSwitchTop.get()));
+		//Switches are all reversed because they default to true and go false when tripped
 		return  !climberSwitchTop.get();
 	}
 	
 	public boolean reportBottomClimbSwitch(){
 		SmartDashboard.putBoolean("Climber Bottom Switch", !(climberSwitchBottom.get()));
+		//Switches are all reversed because they default to true and go false when tripped
 		return  !climberSwitchBottom.get();
+		//Above line of code now returns true when limit switch is tripped
 	}
-	
+*/	
 	public void climberStartMotors(double input){
-		if (!(reportTopClimbSwitch() && input > 0 || reportBottomClimbSwitch() && input < 0)){
-			input = 0;
-		}
-		climberMotorTop.set(RobotMap.CLIMB_PRECISION);		
-		climberMotorBottom.set(RobotMap.CLIMB_PRECISION);		
+//		if (!(reportTopClimbSwitch() && input > 0 || reportBottomClimbSwitch() && input < 0)){
+//			input = 0;
+//		}
+				
+		climberMotorTop.set((input * RobotMap.CLIMB_PRECISION));
+		climberMotorBottom.set((input * RobotMap.CLIMB_PRECISION));
 	}
 	
 	public void stopClimber(){
-//		climberMotor.set(ControlMode.PercentOutput, 0);
+		climberMotorTop.set(0);
+		climberMotorBottom.set(0);
 	}
 }
 

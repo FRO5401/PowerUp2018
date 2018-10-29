@@ -70,6 +70,17 @@ public class DriveBase extends Subsystem {
 		rightPID1 	= new PIDController(RobotMap.DRIVE_P,RobotMap.DRIVE_I,RobotMap.DRIVE_D, rightEncoder, rightDrive1);
 		rightPID2 	= new PIDController(RobotMap.DRIVE_P,RobotMap.DRIVE_I,RobotMap.DRIVE_D, rightEncoder, rightDrive2);
 		
+		leftPID1.setAbsoluteTolerance(RobotMap.DRIVE_PID_ABSOLUTE_TOLERANCE);
+		leftPID2.setAbsoluteTolerance(RobotMap.DRIVE_PID_ABSOLUTE_TOLERANCE);
+		rightPID1.setAbsoluteTolerance(RobotMap.DRIVE_PID_ABSOLUTE_TOLERANCE);
+		rightPID2.setAbsoluteTolerance(RobotMap.DRIVE_PID_ABSOLUTE_TOLERANCE);
+		
+		leftPID1.setOutputRange(-RobotMap.DRIVE_OUTPUT_RANGE, RobotMap.DRIVE_OUTPUT_RANGE);
+		leftPID2.setOutputRange(-RobotMap.DRIVE_OUTPUT_RANGE, RobotMap.DRIVE_OUTPUT_RANGE);
+		rightPID1.setOutputRange(-RobotMap.DRIVE_OUTPUT_RANGE, RobotMap.DRIVE_OUTPUT_RANGE);
+		rightPID2.setOutputRange(-RobotMap.DRIVE_OUTPUT_RANGE, RobotMap.DRIVE_OUTPUT_RANGE);
+		
+		
 		navxGyro = new AHRS(I2C.Port.kMXP);
 		navxGyro.reset();
 
@@ -84,8 +95,11 @@ public class DriveBase extends Subsystem {
 		rightTurnController.setAbsoluteTolerance(RobotMap.ANGLE_THRESHOLD);
 		//TODO We should probably also setContinuous
 		
-		leftTurnController.setOutputRange(-RobotMap.OUTPUT_RANGE, RobotMap.OUTPUT_RANGE);
-		rightTurnController.setOutputRange(-RobotMap.OUTPUT_RANGE, RobotMap.OUTPUT_RANGE);
+//		leftTurnController.setContinuous(true);
+//		rightTurnController.setContinuous(true);  //XXX Crashes robot code
+		
+		leftTurnController.setOutputRange(-RobotMap.TURN_OUTPUT_RANGE, RobotMap.TURN_OUTPUT_RANGE);
+		rightTurnController.setOutputRange(-RobotMap.TURN_OUTPUT_RANGE, RobotMap.TURN_OUTPUT_RANGE);
 		
     	SmartDashboard.putNumber("Left Enc Raw" , leftEncoder.get());
 		SmartDashboard.putNumber("Right Enc Raw", rightEncoder.get());
@@ -102,6 +116,17 @@ public class DriveBase extends Subsystem {
 		SmartDashboard.putNumber("Right Pid 1", rightPID1.getError());
 		SmartDashboard.putNumber("Left Pid 2", leftPID2.getError());
 		SmartDashboard.putNumber("Right Pid 2", rightPID2.getError());
+		
+		SmartDashboard.putBoolean("leftPID1 Enabled", leftPID1.isEnabled());
+		SmartDashboard.putBoolean("leftPID2 Enabled", leftPID2.isEnabled());
+		SmartDashboard.putBoolean("rigthPID1 Enabled", rightPID1.isEnabled());
+		SmartDashboard.putBoolean("rigthPID2 Enabled", rightPID2.isEnabled());
+		
+		
+		SmartDashboard.putBoolean("Left Pid 1 onTarget", leftPID1.onTarget());
+		SmartDashboard.putBoolean("Right Pid 1 onTarget", rightPID1.onTarget());
+		SmartDashboard.putBoolean("Left Pid 2 onTarget", leftPID2.onTarget());
+		SmartDashboard.putBoolean("Right Pid 2 onTarget", rightPID2.onTarget());
 		
 	}
     @Override
@@ -140,7 +165,7 @@ public class DriveBase extends Subsystem {
     	gearShifter.set(true);
     	leftEncoder.setDistancePerPulse(RobotMap.HIGH_GEAR_LEFT_DPP);
     	rightEncoder.setDistancePerPulse(RobotMap.HIGH_GEAR_RIGHT_DPP);
-    	System.out.println("Shifting Drive Gear to High Gear");
+    	//System.out.println("Shifting Drive Gear to High Gear");
     }
 
     public void shiftGearHighToLow(){
@@ -148,7 +173,7 @@ public class DriveBase extends Subsystem {
     	gearShifter.set(false);
     	leftEncoder.setDistancePerPulse(RobotMap.LOW_GEAR_LEFT_DPP);
     	rightEncoder.setDistancePerPulse(RobotMap.LOW_GEAR_RIGHT_DPP);
-    	System.out.println("Shifting Drive Gear to Low Gear");
+    	//System.out.println("Shifting Drive Gear to Low Gear");
     }
     
     public boolean getGearShifterValue () {
@@ -283,5 +308,21 @@ public class DriveBase extends Subsystem {
     
     public boolean getTurnPIDOnTarget()	{
     	return (leftTurnController.onTarget() && rightTurnController.onTarget());
+    }
+    
+    public void setDrivePIDOutputRange(double leftOutputRange, double rightOutputRange)
+    {
+		leftPID1.setOutputRange(-leftOutputRange, leftOutputRange);
+		leftPID2.setOutputRange(-leftOutputRange, leftOutputRange);
+		rightPID1.setOutputRange(-rightOutputRange, rightOutputRange);
+		rightPID2.setOutputRange(-rightOutputRange, rightOutputRange);
+    }
+    
+    public void setDrivePIDOutputRangeToDefault()
+    {
+    	leftPID1.setOutputRange(-RobotMap.DRIVE_OUTPUT_RANGE, RobotMap.DRIVE_OUTPUT_RANGE);
+		leftPID2.setOutputRange(-RobotMap.DRIVE_OUTPUT_RANGE, RobotMap.DRIVE_OUTPUT_RANGE);
+		rightPID1.setOutputRange(-RobotMap.DRIVE_OUTPUT_RANGE, RobotMap.DRIVE_OUTPUT_RANGE);
+		rightPID2.setOutputRange(-RobotMap.DRIVE_OUTPUT_RANGE, RobotMap.DRIVE_OUTPUT_RANGE);
     }
 }
