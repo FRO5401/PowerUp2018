@@ -12,17 +12,11 @@ public class RobotMap {
 
 	/*** Constants ***/
 		//ShortArm
-	public static final double ARM_PEAK_OUTPUT_FORWARD = 0.80;
-	public static final double ARM_PEAK_OUTPUT_REVERSE = -0.20;
-	public static final double ARM_NOM_OUTPUT = 0;
-	public static final double ARM_RANGE = 0;
-	public static final int TIMEOUT_LIMIT_IN_Ms = 10;//Might change. 10 is default in sample code
-	public static final double ARM_THRESHOLD_FOR_PID_IN_DEGREES = 1.0;
-	public static final double ARM_OVERRIDE_JOYSTICK_THRESHOLD = 0.2; 
-	public static final double ARM_OVERRIDE_PRECISION = 0.65;
 	public static final int ARM_TALON_CHANNEL = 0;
 	public static final double ANGLE_PER_PULSE = .007143424081276;
 	public static final double ARM_SPEED = .60;
+	public static final double ARM_MAX_ANGLE = 20;
+	public static final double ARM_MIN_ANGLE = -102;
 
 		//DriveBase
 	public static final double LOW_GEAR_LEFT_DPP = -.149926;//-.149926

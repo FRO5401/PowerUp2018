@@ -38,11 +38,12 @@ public class InfeedControl extends Command {
     	openClaw = Robot.oi.xboxButton(RobotMap.XBOX_BUTTON_RIGHT_BUMPER_OPERATOR, Robot.oi.xboxController_Operator); 
     	armOverride = Robot.oi.xboxButton(RobotMap.XBOX_BUTTON_L3_OPERATOR, Robot.oi.xboxController_Operator); 
     	
-    		//Overrides the arm (manual move)
-    	if(armOverride){
+    		//Overrides the arm (manual move) only allows movement within -102 - 20 degrees.
+    	if(armOverride && (Robot.shortarm.getArmAngle() > RobotMap.ARM_MIN_ANGLE && Robot.shortarm.getArmAngle() < RobotMap.ARM_MAX_ANGLE)){
     		Robot.shortarm.setArmBrake(true);
     		Robot.shortarm.manualOverride((-1 * upDown) * RobotMap.ARM_SPEED);
-    	} else {
+    	}
+    	else {
     		Robot.shortarm.manualOverride(0);
     		Robot.shortarm.setArmBrake(false);
     	}
@@ -55,11 +56,9 @@ public class InfeedControl extends Command {
     		Robot.shortarm.feedOut(out);
     	}
     	else if(in == 1 && out == 1) {
-    		System.out.println("FeedStop");
     		Robot.shortarm.feedStop();
     	}
     	else {
-    		System.out.println("FeedStop");
     		Robot.shortarm.feedStop();
     	}
     	

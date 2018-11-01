@@ -23,16 +23,15 @@ public class ShortArm extends Subsystem {
 	VictorSP leftRoller  = new VictorSP(RobotMap.INFEED_ROLLER_LEFT);
 	VictorSP rightRoller = new VictorSP(RobotMap.INFEED_ROLLER_RIGHT);
 	
-	public void moveArm(double armDirection){
-		if(armDirection > RobotMap.AXIS_THRESHOLD || armDirection < (-1 * RobotMap.AXIS_THRESHOLD)){
+	public void moveArm(double desiredDegrees){
+		if(desiredDegrees > RobotMap.ARM_MIN_ANGLE && desiredDegrees < RobotMap.ARM_MAX_ANGLE){
 			setArmBrake(false);
-			armTalon.set(ControlMode.PercentOutput, armDirection);
+			armTalon.set(ControlMode.Position, desiredDegrees);
 			
 		}
-		else if(armDirection == 0){
-			armTalon.set(ControlMode.PercentOutput, 0);
+		else if(desiredDegrees == 0){
+			armTalon.set(ControlMode.Position, 0);
 			setArmBrake(true);
-			
 		}		
 	}
 	
@@ -41,7 +40,6 @@ public class ShortArm extends Subsystem {
 	}
 	
 	public void feedOut(double rollerDirection){
-		//TODO: Add Feeder Rollers Method(s)
 		System.out.println("Roller Direction" + rollerDirection);
 		leftRoller.set((-1) * rollerDirection);
 		rightRoller.set(rollerDirection);
@@ -65,7 +63,6 @@ public class ShortArm extends Subsystem {
 	}
 	
 	public void manualOverride(double armDirection){
-		//TODO: Add Override Method\
 		armTalon.set(ControlMode.PercentOutput, armDirection);
 		getArmAngle();
 	}

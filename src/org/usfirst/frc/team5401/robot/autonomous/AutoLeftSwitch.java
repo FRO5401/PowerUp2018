@@ -13,7 +13,8 @@ public class AutoLeftSwitch extends CommandGroup {
     	if(gameData.isEmpty()){
     		gameData = "XXX";
     	}
-    		if(gameData.charAt(0) == 'L'){
+    	
+    	if(gameData.charAt(0) == 'L'){
     	//Start at Auto Position #2. Drive to front of switch, place block on switch
     		addSequential(new AutoBaselineSwitch());
 /*    		addSequential(new AutoPIDDrive(21));
@@ -26,19 +27,18 @@ public class AutoLeftSwitch extends CommandGroup {
     		addSequential(new AutoPIDTurnAngle(90));
     		//addSequential(new xxxxARM());
 */    	}
-    	else if(gameData.charAt(0) == 'R')
-    	{    	
+    	else if(gameData.charAt(0) == 'R'){    	
     	//Start at Auto Position #2. Drive Forward 85 inches to base line 
     	//(Figure out specifics later)
     		addSequential(new AutoDrive(97, .5));
     		addSequential(new AutoTurnAngle(90));
  
-    	}else if(gameData.charAt(0) == 'X')
-    	{
+    	}
+    	else if(gameData.charAt(0) == 'X'){
     		addSequential(new AutoDrive(97, .5));
     		addSequential(new AutoTurnAngle(90));
     		//addSequential(new xxxxARM());
 
     	}
     }
-  }
+}
