@@ -41,7 +41,7 @@ public class InfeedControl extends Command {
     		//Overrides the arm (manual move)
     	if(armOverride){
     		Robot.shortarm.setArmBrake(true);
-    		Robot.shortarm.manualOverride((-1 * upDown) * .25);
+    		Robot.shortarm.manualOverride((-1 * upDown) * RobotMap.ARM_SPEED);
     	} else {
     		Robot.shortarm.manualOverride(0);
     		Robot.shortarm.setArmBrake(false);

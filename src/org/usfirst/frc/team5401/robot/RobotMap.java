@@ -22,6 +22,7 @@ public class RobotMap {
 	public static final double ARM_OVERRIDE_PRECISION = 0.65;
 	public static final int ARM_TALON_CHANNEL = 0;
 	public static final double ANGLE_PER_PULSE = .007143424081276;
+	public static final double ARM_SPEED = .60;
 
 		//DriveBase
 	public static final double LOW_GEAR_LEFT_DPP = -.149926;//-.149926
