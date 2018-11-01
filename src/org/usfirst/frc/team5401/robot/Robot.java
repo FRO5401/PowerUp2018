@@ -43,6 +43,7 @@ public class Robot extends IterativeRobot {
 		
 		compressorsubsystem = new CompressorSubsystem();
 		drivebase = new DriveBase();
+		shortarm = new ShortArm();
 	
 		oi = new OI();	
 	}
@@ -54,7 +55,8 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void disabledInit() {
-
+		Robot.drivebase.gyroReset();
+		Robot.drivebase.encoderReset();
 	}
 
 	@Override
@@ -87,6 +89,8 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
+		Robot.drivebase.gyroReset();
+		Robot.drivebase.encoderReset();
 		SmartDashboard.putString("Auto Side in INIT", DriverStation.getInstance().getGameSpecificMessage());
 		autonomousCommand = chooser.getSelected();
 

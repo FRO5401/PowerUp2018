@@ -27,12 +27,12 @@ public class ShortArm extends Subsystem {
 		if(armDirection > RobotMap.AXIS_THRESHOLD || armDirection < (-1 * RobotMap.AXIS_THRESHOLD)){
 			setArmBrake(false);
 			armTalon.set(ControlMode.PercentOutput, armDirection);
-			getArmAngle();
+			
 		}
 		else if(armDirection == 0){
 			armTalon.set(ControlMode.PercentOutput, 0);
 			setArmBrake(true);
-			getTalonTemp();
+			
 		}		
 	}
 	
@@ -40,10 +40,15 @@ public class ShortArm extends Subsystem {
 		brake.set(armBrake);
 	}
 	
-	public void feedInOut(double rollerDirection){
+	public void feedOut(double rollerDirection){
 		//TODO: Add Feeder Rollers Method(s)
-		leftRoller.set(rollerDirection);
+		System.out.println("Roller Direction" + rollerDirection);
+		leftRoller.set((-1) * rollerDirection);
 		rightRoller.set(rollerDirection);
+	}
+	public void feedIn(double rollerDirection){
+		leftRoller.set((.75) * rollerDirection);
+		rightRoller.set((-.75) * rollerDirection);
 	}
 	
 	public void feedStop(){
@@ -59,8 +64,19 @@ public class ShortArm extends Subsystem {
 		rollerClaw.set(DoubleSolenoid.Value.kForward);
 	}
 	
-	public void manualOverride(){
-		//TODO: Add Override Method
+	public void manualOverride(double armDirection){
+		//TODO: Add Override Method\
+		armTalon.set(ControlMode.PercentOutput, armDirection);
+		getArmAngle();
+	}
+	
+	public void setTalonSRXNeutralMode(int mode){
+		if(mode == 1){
+			armTalon.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Coast);
+		}
+		else if(mode == 2){
+			armTalon.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Brake);
+		}
 	}
 	
 	public double getArmAngle(){

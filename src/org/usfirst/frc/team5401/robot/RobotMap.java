@@ -7,6 +7,8 @@ package org.usfirst.frc.team5401.robot;
 * floating around.
 */
 public class RobotMap {	
+	
+	//TODO: Update ALL ROBOTMAP PHYSICAL AND CODEBASE
 
 	/*** Constants ***/
 		//ShortArm
@@ -19,7 +21,7 @@ public class RobotMap {
 	public static final double ARM_OVERRIDE_JOYSTICK_THRESHOLD = 0.2; 
 	public static final double ARM_OVERRIDE_PRECISION = 0.65;
 	public static final int ARM_TALON_CHANNEL = 0;
-	public static final double ANGLE_PER_PULSE = .0071180006;
+	public static final double ANGLE_PER_PULSE = .007143424081276;
 
 		//DriveBase
 	public static final double LOW_GEAR_LEFT_DPP = -.149926;//-.149926
@@ -52,7 +54,7 @@ public class RobotMap {
 	
 	/*** OI ***/
 		//Constants
-	public static final double AXIS_THRESHOLD = 0.3;
+	public static final double AXIS_THRESHOLD = 0.5;
 
 		//Controllers
 	public static final int XBOX_CONTROLLER_DRIVER   = 0;
@@ -91,10 +93,10 @@ public class RobotMap {
 	
 	/*** Motors ***/
 		//Drive Motors
-	public static final int DRIVE_RIGHT_MOTOR_1 = 1;
-	public static final int DRIVE_RIGHT_MOTOR_2 = 8;
-	public static final int DRIVE_LEFT_MOTOR_1 	= 0;
-	public static final int DRIVE_LEFT_MOTOR_2 	= 7;	
+	public static final int DRIVE_RIGHT_MOTOR_1 = 6;
+	public static final int DRIVE_RIGHT_MOTOR_2 = 7;
+	public static final int DRIVE_LEFT_MOTOR_1 	= 9;
+	public static final int DRIVE_LEFT_MOTOR_2 	= 8;	
 
 		//Infeed Motors
 	public static final int INFEED_ROLLER_LEFT  = 4;
@@ -105,10 +107,12 @@ public class RobotMap {
 	
 	/*** Solenoids ***/
 		//Double
-	public static final int SHIFTER_IN   = 0;
-	public static final int SHIFTER_OUT  = 1;
-	public static final int INFEED_OPEN	 = 4;
-	public static final int INFEED_CLOSE = 2;
+	public static final int SHIFTER_IN   = 1;
+	public static final int SHIFTER_OUT  = 0;
+	public static final int INFEED_OPEN	 = 2;
+	public static final int INFEED_CLOSE = 3;
+	
+	//TODO: No up down solenoids exist, remove 
 	public static final int INFEED_UP 	 = 5;
 	public static final int INFEED_DOWN	 = 6;
 		
@@ -116,8 +120,8 @@ public class RobotMap {
 	public static final int ARM_BRAKE 	 = 6;
 	
 	/*** DIO Sensors ***/
-	public static final int DRIVE_ENC_LEFT_A 	= 2;
-	public static final int DRIVE_ENC_LEFT_B 	= 3;
-	public static final int DRIVE_ENC_RIGHT_A 	= 0;
-	public static final int DRIVE_ENC_RIGHT_B 	= 1;
+	public static final int DRIVE_ENC_LEFT_A 	= 0;
+	public static final int DRIVE_ENC_LEFT_B 	= 1;
+	public static final int DRIVE_ENC_RIGHT_A 	= 2;
+	public static final int DRIVE_ENC_RIGHT_B 	= 3;
 }

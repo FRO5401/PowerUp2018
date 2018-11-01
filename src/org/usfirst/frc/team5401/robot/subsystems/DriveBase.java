@@ -73,7 +73,7 @@ public class DriveBase extends Subsystem {
 
     public void drive(double leftDriveDesired, double rightDriveDesired){
     	leftDrive1 .set(leftDriveDesired);
-    	rightDrive1.set(-1* rightDriveDesired);
+    	rightDrive1.set(rightDriveDesired);
     	leftDrive2.set(leftDriveDesired);
     	rightDrive2.set(-1 * rightDriveDesired);
     	
@@ -153,6 +153,7 @@ public class DriveBase extends Subsystem {
     public void gyroReset(){
     	navxGyro.reset();
     }
+    
     public double getGyroAngle() {
     	double currentAngle = navxGyro.getAngle();
     	SmartDashboard.putBoolean("NavX Connection", navxGyro.isConnected());

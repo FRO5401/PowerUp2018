@@ -20,6 +20,7 @@ public class XboxMove extends Command {
     @Override
 	protected void initialize() {
     	Robot.drivebase.shiftGearHighToLow();
+    	Robot.drivebase.setDPPLowGear();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -39,9 +40,11 @@ public class XboxMove extends Command {
     	//Manual Gear Shift
     	if (gearShiftHigh){
     		Robot.drivebase.shiftGearLowToHigh();
+    		Robot.drivebase.setDPPHighGear();
     	} 
     	else if (gearShiftLow){
     		Robot.drivebase.shiftGearHighToLow();
+    		Robot.drivebase.setDPPLowGear();
     	}
 
     	//Driving Code

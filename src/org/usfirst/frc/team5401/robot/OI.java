@@ -39,9 +39,8 @@ public class OI {
 	Button xboxL3_Operator		  	= new JoystickButton(xboxController_Operator, 9);
 	Button xboxR3_Operator		  	= new JoystickButton(xboxController_Operator, 10);
 
-	public OI()
-	{
-		xboxStart_Operator.whenPressed(new CompressorToggle());	
+	public OI(){
+	
 	}
 	
 	//Controller Axis
