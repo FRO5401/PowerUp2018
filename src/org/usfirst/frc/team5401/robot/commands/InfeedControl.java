@@ -32,17 +32,29 @@ public class InfeedControl extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	upDown   = Robot.oi.xboxAxis(RobotMap.XBOX_AXIS_LEFT_Y, Robot.oi.xboxController_Operator);
+    	upDown   = (-1 * Robot.oi.xboxAxis(RobotMap.XBOX_AXIS_LEFT_Y, Robot.oi.xboxController_Operator));
     	in  = Robot.oi.xboxAxisAsDigitalInput(RobotMap.XBOX_AXIS_RIGHT_TRIGGER, Robot.oi.xboxController_Operator);
     	out = Robot.oi.xboxAxisAsDigitalInput(RobotMap.XBOX_AXIS_LEFT_TRIGGER, Robot.oi.xboxController_Operator);  
     	openClaw = Robot.oi.xboxButton(RobotMap.XBOX_BUTTON_RIGHT_BUMPER_OPERATOR, Robot.oi.xboxController_Operator); 
     	armOverride = Robot.oi.xboxButton(RobotMap.XBOX_BUTTON_L3_OPERATOR, Robot.oi.xboxController_Operator); 
     	
-    		//Overrides the arm (manual move) only allows movement within -102 - 20 degrees.
-    	if(armOverride && (Robot.shortarm.getArmAngle() > RobotMap.ARM_MIN_ANGLE && Robot.shortarm.getArmAngle() < RobotMap.ARM_MAX_ANGLE)){
+    		//Moving the Arm
+    			//If it goes past -102 deg.
+    	if (armOverride && (Robot.shortarm.getArmAngle() < RobotMap.ARM_MIN_ANGLE)){
     		Robot.shortarm.setArmBrake(true);
-    		Robot.shortarm.manualOverride((-1 * upDown) * RobotMap.ARM_SPEED);
+    		Robot.shortarm.manualOverride((-1 * Math.abs(upDown)) * RobotMap.ARM_SPEED);
     	}
+    			//If the arm is between -102 and 20 deg.
+    	else if(armOverride && (Robot.shortarm.getArmAngle() > RobotMap.ARM_MIN_ANGLE && Robot.shortarm.getArmAngle() < RobotMap.ARM_MAX_ANGLE)){
+    		Robot.shortarm.setArmBrake(true);
+    		Robot.shortarm.manualOverride(upDown * RobotMap.ARM_SPEED);
+    	}
+    			//If the arm goes past 20 deg. 
+    	else if(armOverride && (Robot.shortarm.getArmAngle() > RobotMap.ARM_MAX_ANGLE)){
+    		Robot.shortarm.setArmBrake(true);
+    		Robot.shortarm.manualOverride((Math.abs(upDown)) * RobotMap.ARM_SPEED);
+    	}
+    			//If something unexpected occurs.
     	else {
     		Robot.shortarm.manualOverride(0);
     		Robot.shortarm.setArmBrake(false);
