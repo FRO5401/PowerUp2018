@@ -1,6 +1,8 @@
 package org.usfirst.frc.team5401.robot.autonomous;
 
 import org.usfirst.frc.team5401.robot.Robot;
+import org.usfirst.frc.team5401.robot.RobotMap;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -19,7 +21,7 @@ public class InfeedUpDownForAuto extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
 //    	System.out.println("Claw Down Auto");
-    	Robot.shortarm.moveArm(upDown);
+    	Robot.shortarm.setPoint(upDown);
     }
 
     // Called repeatedly when this Command is scheduled to run

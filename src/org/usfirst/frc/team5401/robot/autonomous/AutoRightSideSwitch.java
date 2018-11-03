@@ -30,9 +30,9 @@ public class AutoRightSideSwitch extends CommandGroup {
         	addSequential(new AutoDrive(150, .5));
         	addSequential(new AutoTurnAngle(-90));
         	addSequential(new AutoDrive(13, .5));
-        	addSequential(new InfeedUpDownForAuto(-1));
+        	addSequential(new InfeedUpDownForAuto(-39));
         	addSequential(new WaitCommand(1));
-        	addSequential(new InfeedInOutForAuto(-1));
+        	addSequential(new InfeedInOutForAuto(1));
     	}
     	else if(gameData.charAt(0) == 'X'){
     		addSequential(new AutoDrive(97, .5));

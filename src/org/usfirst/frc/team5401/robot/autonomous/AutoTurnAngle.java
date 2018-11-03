@@ -9,7 +9,6 @@ import org.usfirst.frc.team5401.robot.RobotMap;
 /**
  * 
  */
-@Deprecated
 public class AutoTurnAngle extends Command {
 	
 	private double desiredTurnAngleRelativeToInitAngle;

@@ -54,6 +54,19 @@ public class ShortArm extends Subsystem {
 		rightRoller.set(0);
 	}
 	
+	public void setPoint(double setPointIndexInDegrees){
+		double setPointNativeUnits = setPointIndexInDegrees / RobotMap.ANGLE_PER_PULSE;
+
+		//System.out.println(setPointNativeUnits);
+		armTalon.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Brake);
+		armTalon.set(ControlMode.Position, setPointNativeUnits);
+		brake.set(true);  //TODO brake is reversed, we should refactor this to only reverse it once
+		//Finds set point
+		//Calls to command for which set point
+
+	}
+
+	
 	public void openClaw(){
 		rollerClaw.set(DoubleSolenoid.Value.kReverse);
 	}

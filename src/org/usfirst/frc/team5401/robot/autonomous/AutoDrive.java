@@ -9,7 +9,6 @@ import org.usfirst.frc.team5401.robot.Robot;
 /**
  * This command is also used as a "BaselineOnly" command
  */
-@Deprecated
 public class AutoDrive extends Command {
 
 	private double desiredDistance;
