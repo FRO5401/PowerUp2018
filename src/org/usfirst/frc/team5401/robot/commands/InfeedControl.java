@@ -42,7 +42,7 @@ public class InfeedControl extends Command {
     			//If it goes past -102 deg.
     	if (armOverride && (Robot.shortarm.getArmAngle() < RobotMap.ARM_MIN_ANGLE)){
     		Robot.shortarm.setArmBrake(true);
-    		Robot.shortarm.manualOverride((-1 * Math.abs(upDown)) * RobotMap.ARM_SPEED);
+    		Robot.shortarm.manualOverride(Math.abs(upDown) * RobotMap.ARM_SPEED);
     	}
     			//If the arm is between -102 and 20 deg.
     	else if(armOverride && (Robot.shortarm.getArmAngle() > RobotMap.ARM_MIN_ANGLE && Robot.shortarm.getArmAngle() < RobotMap.ARM_MAX_ANGLE)){
@@ -52,7 +52,7 @@ public class InfeedControl extends Command {
     			//If the arm goes past 20 deg. 
     	else if(armOverride && (Robot.shortarm.getArmAngle() > RobotMap.ARM_MAX_ANGLE)){
     		Robot.shortarm.setArmBrake(true);
-    		Robot.shortarm.manualOverride((Math.abs(upDown)) * RobotMap.ARM_SPEED);
+    		Robot.shortarm.manualOverride((-1 * (Math.abs(upDown))) * RobotMap.ARM_SPEED);
     	}
     			//If something unexpected occurs.
     	else {

@@ -1,6 +1,7 @@
 package org.usfirst.frc.team5401.robot.autonomous;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.command.WaitCommand;
 
 /**
  *
@@ -8,7 +9,10 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class BaselineOnly extends CommandGroup {
 
     public BaselineOnly() {
-    	addSequential(new AutoDrive(97, .5));
+    	//addSequential(new AutoTurnAngle(10));
+    	//addSequential(new WaitCommand(5));
+    	addSequential(new AutoDrive(60, 0.20));
+    	
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

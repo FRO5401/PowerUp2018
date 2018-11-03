@@ -67,20 +67,24 @@ public class AutoDrive extends Command {
     	else {
     		drift = Robot.drivebase.getGyroAngle() - heading;
     		SmartDashboard.putNumber("Drift", drift);
-    			if (desiredDistance > 0 && (distanceTraveled < Math.abs(desiredDistance) - autoDistThresh)){ //DesiredDistance is positive, go forward
+    			if ((desiredDistance > 0) && (distanceTraveled < (Math.abs(desiredDistance) - autoDistThresh))){ //DesiredDistance is positive, go forward
     				//Drive Forward
+    				System.out.print(distanceTraveled + " Positive Marker");
     				if (drift > .5){ //Currently assumes we always drift right while going forwards
-    					Robot.drivebase.drive(autoDriveSpeed + (kP_Drift * drift), autoDriveSpeed); //Adjust right motor when driving forward
+    					Robot.drivebase.drive(autoDriveSpeed + (kP_Drift * drift), autoDriveSpeed);
+    					System.out.print(distanceTraveled);//Adjust right motor when driving forward
 //    				} else if (drift < -.5){
 //    					Robot.drivebase.drive(autoDriveSpeed, autoDriveSpeed + (kP_Drift * drift));
     				}
     				else {
+    					System.out.print(distanceTraveled);
     					Robot.drivebase.drive(autoDriveSpeed, autoDriveSpeed);
     				}
     				doneTraveling = false;
     			}
-    			else if (desiredDistance < 0 && (distanceTraveled > autoDistThresh - Math.abs(desiredDistance))){ //DesiredDistance is negative, go backward
+    			else if ((desiredDistance < 0) && (distanceTraveled > (autoDistThresh - Math.abs(desiredDistance)))){ //DesiredDistance is negative, go backward
     				//Drive Backward
+    				System.out.print(distanceTraveled + " Neg Marker");
     				if (drift > .5){ //Currently assumes we always drift left (while looking backward as the front) while going backwards
     					Robot.drivebase.drive(-autoDriveSpeed, -(autoDriveSpeed + (kP_Drift * drift)));//Adjusts left motor when driving backwards
     				}
@@ -94,9 +98,11 @@ public class AutoDrive extends Command {
     			}
     			else { //error, exactly 0, or done
     				//Finished
+    		        
     				doneTraveling = true;
     			}
-    		distanceTraveled = (Robot.drivebase.getEncoderDistance(3));
+    		distanceTraveled = (Robot.drivebase.getEncoderDistance(1)); //XXX This shouldn't be calling a constant number
+    		//Changed above from 3 to 1.  There is no valid encoder 3, so this was probably always returning a 0 dist travelled KJM
     	}
     	
     }
@@ -104,7 +110,8 @@ public class AutoDrive extends Command {
     // Make this return true when this Command no longer needs to run execute()
     @Override
 	protected boolean isFinished() {
-        return doneTraveling;
+        System.out.print("Should be finished");
+    	return doneTraveling;
     }
 
     // Called once after isFinished returns true
