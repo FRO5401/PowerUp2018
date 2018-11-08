@@ -21,10 +21,11 @@ public class AutoLeftSideSwitch extends CommandGroup {
     	{
     		addSequential(new AutoDrive(150, .5));
         	addSequential(new AutoTurnAngle(90));
-        	addSequential(new AutoDrive(17, .5));
-        	addSequential(new InfeedUpDownForAuto(-1));
-        	addSequential(new WaitCommand(1));
-        	addSequential(new InfeedInOutForAuto(-1));
+        	addSequential(new WaitCommand(.5));
+        	addSequential(new AutoDrive(5, .5));
+        	//addSequential(new InfeedUpDownForAuto(-1));
+        	//xaddSequential(new WaitCommand(1));
+        	//addSequential(new InfeedInOutForAuto(-1));
     	}
     	//Start at Auto Position #5. Drive Forward to the switch, place block on switch
     		

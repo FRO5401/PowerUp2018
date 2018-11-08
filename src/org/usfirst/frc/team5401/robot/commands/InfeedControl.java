@@ -15,6 +15,7 @@ public class InfeedControl extends Command {
 	private boolean armOverride;
 	private double upDown;
 	private boolean openClaw;
+	private boolean testPos;
 	
     public InfeedControl() {
     	requires(Robot.shortarm);
@@ -27,7 +28,7 @@ public class InfeedControl extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.shortarm.setTalonSRXNeutralMode(1);
+    	Robot.shortarm.setTalonSRXNeutralMode(2);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -37,6 +38,7 @@ public class InfeedControl extends Command {
     	out = Robot.oi.xboxAxisAsDigitalInput(RobotMap.XBOX_AXIS_LEFT_TRIGGER, Robot.oi.xboxController_Operator);  
     	openClaw = Robot.oi.xboxButton(RobotMap.XBOX_BUTTON_RIGHT_BUMPER_OPERATOR, Robot.oi.xboxController_Operator); 
     	armOverride = Robot.oi.xboxButton(RobotMap.XBOX_BUTTON_L3_OPERATOR, Robot.oi.xboxController_Operator); 
+    	testPos = Robot.oi.xboxButton(RobotMap.XBOX_BUTTON_B_OPERATOR, Robot.oi.xboxController_Operator);
     	
     		//Moving the Arm
     			//If it goes past -102 deg.
@@ -80,6 +82,11 @@ public class InfeedControl extends Command {
     	}
     	else if(!openClaw){
     		Robot.shortarm.openClaw();
+    	}
+    	
+    		//Test Position
+    	if(testPos){
+    		Robot.shortarm.moveArm(0);
     	}
     }
 

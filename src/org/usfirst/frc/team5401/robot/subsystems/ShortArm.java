@@ -9,6 +9,7 @@ import org.usfirst.frc.team5401.robot.RobotMap;
 import org.usfirst.frc.team5401.robot.commands.InfeedControl;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 /**
@@ -53,7 +54,7 @@ public class ShortArm extends Subsystem {
 		leftRoller.set(0);
 		rightRoller.set(0);
 	}
-	
+
 	public void setPoint(double setPointIndexInDegrees){
 		double setPointNativeUnits = setPointIndexInDegrees / RobotMap.ANGLE_PER_PULSE;
 
@@ -65,7 +66,6 @@ public class ShortArm extends Subsystem {
 		//Calls to command for which set point
 
 	}
-
 	
 	public void openClaw(){
 		rollerClaw.set(DoubleSolenoid.Value.kReverse);

@@ -26,10 +26,12 @@ public class AutoCenterSwitch extends CommandGroup {
     		addSequential(new AutoTurnAngle(-37));
     		addSequential(new AutoDrive(90, .5)); //78
     		addSequential(new AutoTurnAngle(37));
-    		addSequential(new AutoDrive(6, .5));
-    		addSequential(new InfeedUpDownForAuto(31));
+    		addSequential(new WaitCommand(.5));
+    		addSequential(new AutoDrive(20, .5));
+    		addSequential(new WaitCommand(.2));
+    		addSequential(new InfeedUpDownForAuto(-39));
     		addSequential(new WaitCommand(1));
-    		addSequential(new InfeedInOutForAuto(-1));
+    		addSequential(new InfeedInOutForAuto(1));
     		//addSequential(new AutoPIDDrive(-15));
     		//addSequential(new AutoPIDTurnAngle(90));
     	}
@@ -38,20 +40,23 @@ public class AutoCenterSwitch extends CommandGroup {
     	//This will be putting block the right side (Closer to right)
     		addSequential(new AutoDrive(21, .5));
     		addSequential(new AutoTurnAngle(37));
+    		addSequential(new WaitCommand(.2));
     		addSequential(new AutoDrive(72, .5)); //90
     		addSequential(new AutoTurnAngle(-37));
-    		addSequential(new AutoDrive(20, .5)); //7
-    		addSequential(new InfeedUpDownForAuto(31));
-    		addSequential(new WaitCommand(1));
-    		addSequential(new InfeedInOutForAuto(-1));
+    		addSequential(new AutoDrive(20, .5));
+    		addSequential(new WaitCommand(.2));
+    		addSequential(new InfeedUpDownForAuto(-39));
+    		addSequential(new WaitCommand(.2));
+    		addSequential(new InfeedInOutForAuto(1));
     		//addSequential(new AutoPIDDrive(-15));
     		//addSequential(new AutoPIDTurnAngle(-90));
     	}
     	else if(gameData.charAt(0) == 'X'){
     		//XXX Fix
-    		addSequential(new AutoDrive(50, .5));
-    		addSequential(new AutoTurnAngle(90));
-    		addSequential(new AutoTurnAngle(-90));
+    		addSequential(new AutoDrive(21, .5));
+    		addSequential(new AutoTurnAngle(45));
+    		addSequential(new AutoDrive(72, .5));
+    		addSequential(new AutoDrive(5, .5));
     	}
     }
 }

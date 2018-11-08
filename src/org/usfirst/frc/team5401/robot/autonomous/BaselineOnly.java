@@ -11,7 +11,7 @@ public class BaselineOnly extends CommandGroup {
     public BaselineOnly() {
     	//addSequential(new AutoTurnAngle(10));
     	//addSequential(new WaitCommand(5));
-    	addSequential(new AutoDrive(60, 0.20));
+    	addSequential(new AutoDrive(100, 0.50));
     	
         // Add Commands here:
         // e.g. addSequential(new Command1());

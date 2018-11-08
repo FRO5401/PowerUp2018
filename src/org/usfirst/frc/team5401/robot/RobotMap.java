@@ -19,10 +19,10 @@ public class RobotMap {
 	public static final double ARM_MIN_ANGLE = -102;
 
 		//DriveBase
-	public static final double LOW_GEAR_LEFT_DPP = -.149926;//-.149926
-	public static final double LOW_GEAR_RIGHT_DPP = -.149926;//-.15345
-	public static final double HIGH_GEAR_LEFT_DPP = 0;
-	public static final double HIGH_GEAR_RIGHT_DPP = 0;
+	public static final double LOW_GEAR_LEFT_DPP = -.1553938356;//-.149926
+	public static final double LOW_GEAR_RIGHT_DPP = -.15125;//-.15345
+	public static final double HIGH_GEAR_LEFT_DPP = -.1548634812;
+	public static final double HIGH_GEAR_RIGHT_DPP = -.1517558528;
 	public static final double DRIVE_SENSITIVITY_PRECISE = 0.5;
 	public static final double DRIVE_SENSITIVITY_DEFAULT = 1;
 	public static final double DRIVE_THRESHHOLD = 0.2;
@@ -30,7 +30,7 @@ public class RobotMap {
 	
 		//AutoTurnAngle
 	public static final double ANGLE_THRESHOLD = 0.25; //in degrees
-	public static final double AUTO_TURN_SPEED = 0.95;
+	public static final double AUTO_TURN_SPEED = 0.5;
 	public static final double AUTO_TURN_PRECISION = 0.75;
 
 	// TODO: Figure out if these PID vals are necessary
@@ -115,8 +115,8 @@ public class RobotMap {
 	public static final int ARM_BRAKE 	 = 6;
 	
 	/*** DIO Sensors ***/
-	public static final int DRIVE_ENC_LEFT_A 	= 2;
-	public static final int DRIVE_ENC_LEFT_B 	= 3;
-	public static final int DRIVE_ENC_RIGHT_A 	= 0;
-	public static final int DRIVE_ENC_RIGHT_B 	= 1;
+	public static final int DRIVE_ENC_LEFT_A 	= 0;
+	public static final int DRIVE_ENC_LEFT_B 	= 1;
+	public static final int DRIVE_ENC_RIGHT_A 	= 2;
+	public static final int DRIVE_ENC_RIGHT_B 	= 3;
 }

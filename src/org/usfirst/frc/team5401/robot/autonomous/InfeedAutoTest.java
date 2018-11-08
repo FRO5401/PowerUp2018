@@ -1,7 +1,9 @@
+
 package org.usfirst.frc.team5401.robot.autonomous;
 
 import org.usfirst.frc.team5401.robot.autonomous.*;
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.command.WaitCommand;
 
 /**
  *
@@ -9,8 +11,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class InfeedAutoTest extends CommandGroup {
 
     public InfeedAutoTest() {
-    	addSequential(new InfeedUpDownForAuto(-1));
-    	addSequential(new InfeedInOutForAuto(-1));
+    	addSequential(new AutoDrive(10, .5));
+    	addSequential(new WaitCommand(5));
+    	addSequential(new InfeedUpDownForAuto(30));
     	
         // Add Commands here:
         // e.g. addSequential(new Command1());
